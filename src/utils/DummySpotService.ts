@@ -78,7 +78,6 @@ class DummySpotService {
 		let spots = this.dummySpots()
 
 		spots = spots.concat(spots)
-		spots = spots.concat(spots)
 
 		return spots
 	}
