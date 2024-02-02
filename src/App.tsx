@@ -2,6 +2,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom"
 import TopScreen from "./screens/TopScreen"
 import NotFoundScreen from "./screens/NotFoundScreen"
 import Header from "./components/Header"
+import Footer from "./components/Footer"
 
 function App() {
 
@@ -18,6 +19,8 @@ function App() {
 					<Route path="*" element={<NotFoundScreen />} />
 				</Routes>
 			</main>
+
+			<Footer />
 
 		</BrowserRouter>
 	)
