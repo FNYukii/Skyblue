@@ -2,6 +2,7 @@ import { useEffect, useState } from "react"
 import Spot from "../../entities/Spot"
 import SpotService from "../../utils/SpotService"
 import LoadingIcon from "./others/LoadingIcon"
+import ImageGrid from "./ImageGrid"
 
 function SpotList() {
 
@@ -46,7 +47,7 @@ function SpotList() {
 
 						<button key={index} className="hover:brightness-90 transition   rounded-lg overflow-hidden">
 
-							<img src={spot.images[0]} alt={spot.title} className="aspect-square object-cover   bg-gray-100" />
+							<ImageGrid imagesUrls={spot.images}/>
 						</button>
 					))}
 				</div>
