@@ -38,7 +38,7 @@ function NewSpotScreen() {
 		}
 
 		// Spotを投稿
-		const spotId = await SpotService.createSpot(imageUrls, title, comment, [])
+		const spotId = await SpotService.createSpot(imageUrls, title, comment, [99999, 99999])
 
 		// 失敗した場合
 		if (!spotId) {
@@ -71,7 +71,7 @@ function NewSpotScreen() {
 
 					<button
 						className="mt-4 mr-[-1rem] mb-[-0.25rem]  px-4 py-1 font-bold rounded-full   disabled:text-gray-400   enabled:hover:bg-gray-100 transition"
-						disabled={images.length === 0 || title === "" || comment === ""}
+						disabled={images.length === 0 || title === ""}
 						onClick={create}
 					>
 						投稿

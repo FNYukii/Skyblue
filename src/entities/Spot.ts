@@ -3,7 +3,7 @@ type Spot = {
 	userId: string
 	createdAt: Date
 
-	images: string[]
+	imageUrls: string[]
 	location: number[]
 
 	title: string

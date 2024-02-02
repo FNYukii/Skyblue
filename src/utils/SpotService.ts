@@ -16,7 +16,7 @@ class SpotService {
 		const userId: string = doc.get("userId") ?? ""
 		const createdAt: Date = doc.get("createdAt") ? doc.get("createdAt").toDate() : new Date()
 
-		const images: string[] = doc.get("images") ?? []
+		const imageUrls: string[] = doc.get("imageUrls") ?? []
 		const location: number[] = doc.get("location") ?? []
 
 		const title: string = doc.get("title") ?? ""
@@ -28,7 +28,7 @@ class SpotService {
 			userId: userId,
 			createdAt: createdAt,
 
-			images: images,
+			imageUrls: imageUrls,
 			location: location,
 
 			title: title,
@@ -84,7 +84,6 @@ class SpotService {
 		// 値チェック
 		if (imageUrls.length === 0 || imageUrls.length > 4) return null
 		if (title === "" || !title.match(/\S/g)) return null
-		if (comment === "" || !comment.match(/\S/g)) return null
 		if (location.length !== 2) return null
 
 		// UIDを取得
@@ -99,7 +98,7 @@ class SpotService {
 				userId: uid,
 				createdAt: serverTimestamp(),
 
-				images: imageUrls,
+				imageUrls: imageUrls,
 				location: location,
 
 				title: title,

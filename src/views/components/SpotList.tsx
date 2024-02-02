@@ -35,11 +35,14 @@ function SpotList() {
 			}
 
 			{isLoaded && spots === null &&
-
-				<p>Error.</p>
+				<p className="mt-16   text-center text-gray-500">読み取りに失敗しました</p>
 			}
 
-			{isLoaded && spots !== null &&
+			{isLoaded && spots !== null && spots.length === 0 &&
+				<p className="mt-16   text-center text-gray-500">スポットはありません</p>
+			}
+
+			{isLoaded && spots !== null && spots.length !== 0 &&
 
 				<div className="grid grid-cols-4 gap-2">
 
@@ -47,7 +50,7 @@ function SpotList() {
 
 						<button key={index} className="hover:brightness-90 transition   rounded-lg overflow-hidden">
 
-							<ImageGrid imagesUrls={spot.images}/>
+							<ImageGrid imagesUrls={spot.imageUrls}/>
 						</button>
 					))}
 				</div>
