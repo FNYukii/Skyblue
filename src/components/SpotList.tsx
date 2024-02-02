@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import Spot from "../entities/Spot"
-import DummySpotService from "../utils/DummySpotService"
+import SpotService from "../utils/SpotService"
 
 function SpotList() {
 
@@ -13,10 +13,13 @@ function SpotList() {
 
 	useEffect(() => {
 
-		const spots = DummySpotService.readSpots()
+		(async () => {
 
-		setSpots(spots)
-		setIsLoaded(true)
+			const spots = await SpotService.readSpots()
+
+			setSpots(spots)
+			setIsLoaded(true)
+		})()
 	}, [])
 
 
@@ -38,11 +41,11 @@ function SpotList() {
 
 				<div className="grid grid-cols-4 gap-2">
 
-					{spots.map(spot => (
+					{spots.map((spot, index) => (
 
-						<button className="hover:brightness-90 transition   rounded-lg overflow-hidden">
+						<button key={index} className="hover:brightness-90 transition   rounded-lg overflow-hidden">
 
-							<img src={spot.photos[0]} alt={spot.title} className="aspect-square object-cover"/>
+							<img src={spot.photos[0]} alt={spot.title} className="aspect-square object-cover" />
 						</button>
 					))}
 				</div>
