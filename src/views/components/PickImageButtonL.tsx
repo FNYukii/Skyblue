@@ -40,11 +40,9 @@ function PickImagesButtonL(props: Props) {
 
 		<div className={props.className}>
 
-			<button type="button" onClick={() => inputRef.current?.click()}>
+			<button type="button" onClick={() => inputRef.current?.click()} className="w-full aspect-video   rounded-xl border border-gray-300   flex justify-center items-center   hover:bg-gray-100 transition">
 
-				<div className="w-80 aspect-video   rounded-xl border border-gray-300   flex justify-center items-center   hover:bg-gray-100 transition">
-					<BiImageAdd className="text-4xl text-gray-400" />
-				</div>
+				<BiImageAdd className="text-4xl text-gray-400" />
 			</button>
 
 			<input hidden ref={inputRef} type="file" multiple accept=".jpg,.png,.gif" onChange={onFileInputChange} />

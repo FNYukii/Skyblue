@@ -40,7 +40,7 @@ function PickImagesButtonS(props: Props) {
 
 		<div className={props.className}>
 
-			<button type="button" onClick={() => inputRef.current?.click()} className="ml-[-0.5rem] mt-2   flex items-center gap-2   px-2 py-1 text-gray-500 rounded-full   hover:bg-gray-100 transition">
+			<button type="button" onClick={() => inputRef.current?.click()} className="ml-[-1rem] mt-2   flex items-center gap-2   px-4 py-1 text-gray-500 rounded-full   hover:bg-gray-100 transition">
 
 				<AiOutlinePlus />
 				<p>画像を追加</p>
