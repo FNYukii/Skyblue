@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react"
 import Spot from "../entities/Spot"
-import DummySpotService from "../utils/DummySpotService"
 import SpotService from "../utils/SpotService"
 
 function SpotList() {

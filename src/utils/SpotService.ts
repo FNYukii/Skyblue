@@ -1,4 +1,4 @@
-import { DocumentSnapshot, QueryDocumentSnapshot, collection, getDocs, limit, orderBy, query, where } from "firebase/firestore"
+import { DocumentSnapshot, QueryDocumentSnapshot, collection, getDocs, limit, query } from "firebase/firestore"
 import Spot from "../entities/Spot"
 import { db } from "./firebase"
 
