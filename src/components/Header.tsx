@@ -48,7 +48,11 @@ function Header() {
 			}
 
 			{isLoaded && isSignedIn &&
-				<button onClick={() => AuthService.signOut()} className="hover:underline">Sign Out</button>
+				<div className="flex gap-4">
+
+					<NavLink to="new" className="hover:underline">New Spot</NavLink>
+					<button onClick={() => AuthService.signOut()} className="hover:underline">Sign Out</button>
+				</div>
 			}
 		</header>
 	)
