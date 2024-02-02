@@ -48,9 +48,9 @@ function Header() {
 			}
 
 			{isLoaded && isSignedIn &&
-				<div className="flex gap-4">
+				<div className="flex gap-6">
 
-					<NavLink to="new" className="hover:underline">New Spot</NavLink>
+					<NavLink to="new" className="hover:underline">新しいスポット</NavLink>
 					<button onClick={() => AuthService.signOut()} className="hover:underline">Sign Out</button>
 				</div>
 			}
