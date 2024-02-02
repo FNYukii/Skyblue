@@ -12,7 +12,7 @@ function App() {
 
 			<Header />
 
-			<main className="mx-auto   w-full lg:w-[1024px]   px-4 lg:px-0   py-4 ">
+			<main className="mx-auto   w-full lg:w-[1024px]   px-4 lg:px-0">
 
 				<Routes>
 					<Route path="/" element={<TopScreen />} />
@@ -20,7 +20,7 @@ function App() {
 				</Routes>
 			</main>
 
-			<Footer className="sticky top-full"/>
+			<Footer className="mt-16   sticky top-full"/>
 
 		</BrowserRouter>
 	)
