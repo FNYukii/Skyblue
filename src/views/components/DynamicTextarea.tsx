@@ -38,7 +38,7 @@ function useResizeTextArea(value: string) {
 		}
 
 		element.style.height = "1rem"
-		element.style.height = `calc(${element.scrollHeight}px + 1px)`
+		element.style.height = `calc(${element.scrollHeight}px + 2px)`
 	}, [value])
 
 	return ref
