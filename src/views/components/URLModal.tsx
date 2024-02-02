@@ -47,7 +47,7 @@ function URLModal(props: Props) {
 
 
 			{/* モーダル */}
-			<div className="absolute    w-full px-6    sm:w-fit">
+			<div className="absolute    w-full px-6    sm:w-fit sm:min-w-80">
 
 				<div className="p-8 bg-white rounded-xl">
 					{props.children}

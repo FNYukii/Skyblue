@@ -1,6 +1,7 @@
 import { useState } from "react"
 import URLModal from "../components/URLModal"
 import PickImagesButton from "../components/PickImagesButton"
+import ImageFileGrid from "../components/ImageFileGrid"
 
 function AddScreen() {
 
@@ -16,14 +17,25 @@ function AddScreen() {
 
 			<h1 className="text-2xl font-bold">新しいスポット</h1>
 
-			<PickImagesButton onPick={(images) => setImages(images)} className="mt-4" />
+			<div className="mt-4 flex gap-4">
 
-			<div className="mt-4   grid grid-cols-2 gap-2">
+				<div>
 
-				{images.map((photo) => (
-					<img src={window.URL.createObjectURL(photo)} alt="Images for new Spot" className="h-32 aspect-square rounded-xl" />
-				))}
+					<ImageFileGrid images={images}/>
+
+					<PickImagesButton onPick={(images) => setImages(images)} small={images.length !== 0} />
+				</div>
+
+				<div>
+					<p>hello</p>
+				</div>
+
 			</div>
+
+
+
+
+
 		</URLModal>
 	)
 }
