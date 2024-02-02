@@ -2,6 +2,7 @@ import { useState } from "react"
 import URLModal from "../components/URLModal"
 import PickImagesButton from "../components/PickImagesButton"
 import ImageFileGrid from "../components/ImageFileGrid"
+import DynamicTextarea from "../components/DynamicTextarea"
 
 function AddScreen() {
 
@@ -21,13 +22,16 @@ function AddScreen() {
 
 				<div>
 
-					<ImageFileGrid images={images}/>
+					<ImageFileGrid images={images} />
 
 					<PickImagesButton onPick={(images) => setImages(images)} small={images.length !== 0} />
 				</div>
 
-				<div>
-					<p>hello</p>
+				<div className="flex flex-col">
+					
+					<input type="text" value={title} onChange={(e) => setTitle(e.target.value)} placeholder="タイトル" className="mt-0 w-60 pb-1   bg-transparent border-b border-gray-300   focus:outline-none focus:border-blue-500    placeholder:text-gray-400"/>
+				
+					<DynamicTextarea value={detail} onChange={(e) => setDetail(e.target.value)} placeholder="コメント" className="mt-6 w-60 pb-1   bg-transparent border-b border-gray-300   focus:outline-none focus:border-blue-500   placeholder:text-gray-400"/>
 				</div>
 
 			</div>
