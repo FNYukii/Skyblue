@@ -1,6 +1,7 @@
-import { DocumentSnapshot, QueryDocumentSnapshot, collection, getDocs, limit, query } from "firebase/firestore"
+import { DocumentSnapshot, QueryDocumentSnapshot, addDoc, collection, getDocs, limit, query, serverTimestamp } from "firebase/firestore"
 import Spot from "../entities/Spot"
 import { db } from "./firebase"
+import AuthService from "./AuthService"
 
 class SpotService {
 
@@ -73,9 +74,48 @@ class SpotService {
 
 
 
-	static async createSpot(): Promise<string | null> {
+	static async createSpot(
+		imageUrls: string[],
+		title: string,
+		comment: string,
+		location: number[]
+	): Promise<string | null> {
 
-		return null
+		// 値チェック
+		if (imageUrls.length === 0) return null
+		if (title === "" || !title.match(/\S/g)) return null
+		if (comment === "" || !comment.match(/\S/g)) return null
+		if (location.length !== 2) return null
+
+		// UIDを取得
+		const uid = await AuthService.uid()
+		if (!uid) return null
+
+		try {
+
+			// 新しいSpotを追加
+			const ref = await addDoc(collection(db, "spots"), {
+
+				userId: uid,
+				createdAt: serverTimestamp(),
+
+				images: imageUrls,
+				location: location,
+
+				title: title,
+				comment: comment
+			})
+
+			console.log(`SUCCESS! Created 1 Spot.`)
+
+			// 成功したらドキュメントIDをメソッド呼び出し元に返す
+			return ref.id
+
+		} catch (error) {
+
+			console.log(`FAIL! Error to Spot creation. ${error}`)
+			return null
+		}
 	}
 }
 
