@@ -38,9 +38,9 @@ function SpotList() {
 
 				<div className="grid grid-cols-4 gap-2">
 
-					{spots.map(spot => (
+					{spots.map((spot, index) => (
 
-						<button className="hover:brightness-90 transition   rounded-lg overflow-hidden">
+						<button key={index} className="hover:brightness-90 transition   rounded-lg overflow-hidden">
 
 							<img src={spot.photos[0]} alt={spot.title} className="aspect-square object-cover"/>
 						</button>
