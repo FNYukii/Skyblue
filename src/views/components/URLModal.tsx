@@ -47,9 +47,9 @@ function URLModal(props: Props) {
 
 
 			{/* モーダル */}
-			<div className="absolute   px-8   w-full sm:w-[600px]">
+			<div className="absolute">
 
-				<div className="p-8 bg-white rounded-xl">
+				<div className="max-w-[95vw] sm:w-[500px]   max-h-[95vh]    overflow-y-scroll scrollbar-styled   p-8 bg-white rounded-xl">
 					{props.children}
 				</div>
 			</div>

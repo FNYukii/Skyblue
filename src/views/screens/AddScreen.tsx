@@ -28,7 +28,7 @@ function AddScreen() {
 
 					<div>
 						<ImageFileGrid images={images} className={`${images.length !== 0 && "mt-4"}`} />
-						<PickImagesButtonS onPick={(images) => setImages(images)} className="mt-3"/>
+						<PickImagesButtonS onPick={(images) => setImages(images)} className="mt-3" />
 					</div>
 				}
 			</div>
@@ -37,8 +37,9 @@ function AddScreen() {
 
 			<DynamicTextarea value={detail} onChange={(e) => setDetail(e.target.value)} placeholder="コメント" className="block   mt-4 w-full pb-1   bg-transparent border-b border-gray-300   focus:outline-none focus:border-blue-500   placeholder:text-gray-400" />
 
-
-
+			<div className="flex justify-end">
+				<button className="mt-4 mr-[-1rem]  px-4 py-1 font-bold rounded-full   hover:bg-gray-100 transition">投稿</button>
+			</div>
 		</URLModal>
 	)
 }
