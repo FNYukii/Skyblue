@@ -1,11 +1,11 @@
 import { useState } from "react"
-import URLModal from "../components/URLModal"
-import DynamicTextarea from "../components/DynamicTextarea"
-import PickImagesButtonL from "../components/PickImageButtonL"
+import URLModal from "../components/others/URLModal"
+import DynamicTextarea from "../components/others/DynamicTextarea"
+import PickImagesButtonL from "../components/others/PickImageButtonL"
 import SpotService from "../../utils/SpotService"
 import { useNavigate } from "react-router-dom"
 import StorageService from "../../utils/StorageService"
-import LoadingIcon from "../components/LoadingIcon"
+import LoadingIcon from "../components/others/LoadingIcon"
 
 function NewSpotScreen() {
 
