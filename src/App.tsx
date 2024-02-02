@@ -7,6 +7,7 @@ import { useEffect, useState } from "react"
 import { onAuthStateChanged } from "firebase/auth"
 import { auth } from "./utils/firebase"
 import AddScreen from "./views/screens/AddScreen"
+import SplashScreen from "./views/screens/SplashScreen"
 
 function App() {
 
@@ -38,10 +39,7 @@ function App() {
 		<BrowserRouter>
 
 			{!isLoaded &&
-
-				<div>
-					<p>Splash Screen here.</p>
-				</div>
+				<SplashScreen />
 			}
 
 
