@@ -10,27 +10,27 @@ class DummySpotService {
 				userId: "alphaijoauroaijora",
 				createdAt: dayjs("2024-04-11").toDate(),
 
-				photos: ["https://images.unsplash.com/photo-1443527394413-4b820fd08dde"],
+				images: ["https://images.unsplash.com/photo-1443527394413-4b820fd08dde"],
 				title: "Alpha Tower",
-				detail: "かっこいい"
+				comment: "かっこいい"
 			},
 			{
 				id: "yotiuoiauofajo",
 				userId: "alphaijoauroaijora",
 				createdAt: dayjs("2024-01-16").toDate(),
 
-				photos: ["https://images.unsplash.com/photo-1528810289438-283f885c31ef"],
+				images: ["https://images.unsplash.com/photo-1528810289438-283f885c31ef"],
 				title: "Bravo Building",
-				detail: "壮麗"
+				comment: "壮麗"
 			},
 			{
 				id: "hlkjfldakjlfajlafa",
 				userId: "alphaijoauroaijora",
 				createdAt: dayjs("2024-01-20").toDate(),
 
-				photos: ["https://images.unsplash.com/photo-1428366890462-dd4baecf492b"],
+				images: ["https://images.unsplash.com/photo-1428366890462-dd4baecf492b"],
 				title: "Charlie Center",
-				detail: "重厚"
+				comment: "重厚"
 			},
 
 			{
@@ -38,27 +38,27 @@ class DummySpotService {
 				userId: "alphaijoauroaijora",
 				createdAt: dayjs("2024-01-21").toDate(),
 
-				photos: ["https://images.unsplash.com/photo-1490351267196-b7a67e26e41b"],
+				images: ["https://images.unsplash.com/photo-1490351267196-b7a67e26e41b"],
 				title: "Delta Data Center",
-				detail: "頑丈"
+				comment: "頑丈"
 			},
 			{
 				id: "opofafpaofoaeafafaf",
 				userId: "alphaijoauroaijora",
 				createdAt: dayjs("2024-01-22").toDate(),
 
-				photos: ["https://images.unsplash.com/photo-1479839672679-a46483c0e7c8"],
+				images: ["https://images.unsplash.com/photo-1479839672679-a46483c0e7c8"],
 				title: "Echo Education School",
-				detail: "巨大"
+				comment: "巨大"
 			},
 			{
 				id: "tydatuyftaudaufafafa",
 				userId: "alphaijoauroaijora",
 				createdAt: dayjs("2024-01-24").toDate(),
 
-				photos: ["https://images.unsplash.com/photo-1462396240927-52058a6a84ec"],
+				images: ["https://images.unsplash.com/photo-1462396240927-52058a6a84ec"],
 				title: "Foxtrot Factory",
-				detail: "機械的"
+				comment: "機械的"
 			},
 
 			{
@@ -66,9 +66,9 @@ class DummySpotService {
 				userId: "alphaijoauroaijora",
 				createdAt: dayjs("2024-01-26").toDate(),
 
-				photos: ["https://images.unsplash.com/photo-1606005426472-d4503e8b1387"],
+				images: ["https://images.unsplash.com/photo-1606005426472-d4503e8b1387"],
 				title: "Golf Global Center",
-				detail: "便利"
+				comment: "便利"
 			},
 		]
 	}

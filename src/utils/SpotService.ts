@@ -15,9 +15,9 @@ class SpotService {
 		const userId: string = doc.get("userId") ?? ""
 		const createdAt: Date = doc.get("createdAt") ? doc.get("createdAt").toDate() : new Date()
 
+		const images: string[] = doc.get("images") ?? []
 		const title: string = doc.get("title") ?? ""
-		const photos: string[] = doc.get("photos") ?? []
-		const detail: string = doc.get("detail") ?? ""
+		const comment: string = doc.get("comment") ?? ""
 
 		// 値を使ってSpotオブジェクトを作成
 		const spot: Spot = {
@@ -25,9 +25,9 @@ class SpotService {
 			userId: userId,
 			createdAt: createdAt,
 
-			photos: photos,
+			images: images,
 			title: title,
-			detail: detail,
+			comment: comment,
 		}
 
 		return spot

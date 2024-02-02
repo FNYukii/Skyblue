@@ -3,9 +3,9 @@ type Spot = {
 	userId: string
 	createdAt: Date
 
-	photos: string[]
+	images: string[]
 	title: string
-	detail: string
+	comment: string
 }
 
 export default Spot

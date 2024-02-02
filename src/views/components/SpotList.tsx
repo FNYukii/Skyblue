@@ -45,7 +45,7 @@ function SpotList() {
 
 						<button key={index} className="hover:brightness-90 transition   rounded-lg overflow-hidden">
 
-							<img src={spot.photos[0]} alt={spot.title} className="aspect-square object-cover" />
+							<img src={spot.images[0]} alt={spot.title} className="aspect-square object-cover" />
 						</button>
 					))}
 				</div>
