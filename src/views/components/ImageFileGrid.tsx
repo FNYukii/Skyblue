@@ -11,14 +11,14 @@ function ImageFileGrid(props: Props) {
 
 			{props.images.length === 1 &&
 
-				<img src={window.URL.createObjectURL(props.images[0])} alt="Images for new Spot" className="h-32 aspect-square object-cover rounded-lg" />
+				<img src={window.URL.createObjectURL(props.images[0])} alt="Images for new Spot" className="w-80 aspect-square object-cover rounded-lg" />
 			}
 
 
 
 			{props.images.length === 2 &&
 
-				<div className="flex aspect-square   max-h-60">
+				<div className="flex aspect-square   max-h-80">
 
 					<img src={window.URL.createObjectURL(props.images[0])} alt="Images for new Spot" className="h-full w-1/2   pr-[0.12rem]   object-cover rounded-lg" />
 					<img src={window.URL.createObjectURL(props.images[1])} alt="Images for new Spot" className="h-full w-1/2   pl-[0.12rem]   object-cover rounded-lg" />
@@ -29,7 +29,7 @@ function ImageFileGrid(props: Props) {
 
 			{props.images.length === 3 &&
 
-				<div className="flex aspect-square   max-h-60">
+				<div className="flex aspect-square   max-h-80">
 
 					<img src={window.URL.createObjectURL(props.images[0])} alt="Images for new Spot" className="h-full w-1/2   pr-[0.12rem]   object-cover rounded-lg" />
 
@@ -49,7 +49,7 @@ function ImageFileGrid(props: Props) {
 
 					{props.images.map(image => (
 
-						<img src={window.URL.createObjectURL(image)} alt="Images for new Spot" className="aspect-square object-cover rounded-lg   max-h-32" />
+						<img src={window.URL.createObjectURL(image)} alt="Images for new Spot" className="aspect-square object-cover rounded-lg   max-h-40" />
 					))}
 				</div>
 			}
