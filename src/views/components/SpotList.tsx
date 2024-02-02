@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
 import Spot from "../../entities/Spot"
 import SpotService from "../../utils/SpotService"
+import LoadingIcon from "./LoadingIcon"
 
 function SpotList() {
 
@@ -29,7 +30,7 @@ function SpotList() {
 		<div>
 
 			{!isLoaded &&
-				<p>Loading...</p>
+				<LoadingIcon center className="mt-16" />
 			}
 
 			{isLoaded && spots === null &&
@@ -45,7 +46,7 @@ function SpotList() {
 
 						<button key={index} className="hover:brightness-90 transition   rounded-lg overflow-hidden">
 
-							<img src={spot.images[0]} alt={spot.title} className="aspect-square object-cover" />
+							<img src={spot.images[0]} alt={spot.title} className="aspect-square object-cover   bg-gray-100" />
 						</button>
 					))}
 				</div>
