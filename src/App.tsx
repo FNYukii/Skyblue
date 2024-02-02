@@ -1,8 +1,8 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom"
-import TopScreen from "./screens/TopScreen"
-import NotFoundScreen from "./screens/NotFoundScreen"
-import Header from "./components/Header"
-import Footer from "./components/Footer"
+import TopScreen from "./views/screens/TopScreen"
+import NotFoundScreen from "./views/screens/NotFoundScreen"
+import Header from "./views/components/Header"
+import Footer from "./views/components/Footer"
 
 function App() {
 

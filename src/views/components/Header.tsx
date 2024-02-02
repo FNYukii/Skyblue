@@ -1,8 +1,8 @@
 import { NavLink } from "react-router-dom"
-import AuthService from "../utils/AuthService"
+import AuthService from "../../utils/AuthService"
 import { onAuthStateChanged } from "firebase/auth"
 import { useState, useEffect } from "react"
-import { auth } from "../utils/firebase"
+import { auth } from "../../utils/firebase"
 
 function Header() {
 
