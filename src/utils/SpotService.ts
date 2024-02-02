@@ -16,6 +16,8 @@ class SpotService {
 		const createdAt: Date = doc.get("createdAt") ? doc.get("createdAt").toDate() : new Date()
 
 		const images: string[] = doc.get("images") ?? []
+		const location: number[] = doc.get("location") ?? []
+
 		const title: string = doc.get("title") ?? ""
 		const comment: string = doc.get("comment") ?? ""
 
@@ -26,6 +28,8 @@ class SpotService {
 			createdAt: createdAt,
 
 			images: images,
+			location: location,
+
 			title: title,
 			comment: comment,
 		}

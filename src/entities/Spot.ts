@@ -4,6 +4,8 @@ type Spot = {
 	createdAt: Date
 
 	images: string[]
+	location: number[]
+
 	title: string
 	comment: string
 }
