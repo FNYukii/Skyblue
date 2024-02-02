@@ -20,7 +20,7 @@ function App() {
 				</Routes>
 			</main>
 
-			<Footer />
+			<Footer className="sticky top-full"/>
 
 		</BrowserRouter>
 	)
