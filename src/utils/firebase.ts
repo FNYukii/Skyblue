@@ -1,6 +1,7 @@
 import { initializeApp } from "firebase/app"
 import { getFirestore } from "firebase/firestore"
 import { getAuth } from "firebase/auth"
+import { getStorage } from "firebase/storage"
 
 // .envファイルに書いてある環境変数を元に、Firebaseプロジェクトの構成情報をまとめる
 const firebaseConfig = {
@@ -20,5 +21,6 @@ initializeApp(firebaseConfig)
 // AuthenticationとCloud Firestoreへの参照を取得
 const auth = getAuth()
 const db = getFirestore()
+const storage = getStorage()
 
-export { auth, db }
+export { auth, db, storage }

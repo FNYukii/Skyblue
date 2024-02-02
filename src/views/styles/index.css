@@ -1,3 +1,24 @@
 @import "tailwindcss/base";
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
+
+
+
+@layer components {
+
+	.scrollbar-styled {
+		scrollbar-gutter: stable;
+	}
+
+	.scrollbar-styled::-webkit-scrollbar {
+		@apply w-2
+	}
+
+	.scrollbar-styled::-webkit-scrollbar-track {
+		@apply bg-transparent
+	}
+
+	.scrollbar-styled:hover::-webkit-scrollbar-thumb {
+		@apply bg-slate-200 hover:bg-slate-300 rounded-full
+	}
+}
