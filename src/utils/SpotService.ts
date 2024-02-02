@@ -82,7 +82,7 @@ class SpotService {
 	): Promise<string | null> {
 
 		// 値チェック
-		if (imageUrls.length === 0) return null
+		if (imageUrls.length === 0 || imageUrls.length > 4) return null
 		if (title === "" || !title.match(/\S/g)) return null
 		if (comment === "" || !comment.match(/\S/g)) return null
 		if (location.length !== 2) return null

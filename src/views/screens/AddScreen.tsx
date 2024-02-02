@@ -4,6 +4,7 @@ import DynamicTextarea from "../components/DynamicTextarea"
 import PickImagesButtonL from "../components/PickImageButtonL"
 import SpotService from "../../utils/SpotService"
 import { useNavigate } from "react-router-dom"
+import StorageService from "../../utils/StorageService"
 
 function AddScreen() {
 
@@ -17,14 +18,21 @@ function AddScreen() {
 
 	async function create() {
 
-		// TODO: 画像をアップロード
+		// 画像をアップロード
+		const imageUrls = await StorageService.uploadImages(images, "/images")
 
-		const spotId = await SpotService.createSpot([], title, comment, [])
+		// 失敗した場合
+		if (!imageUrls) {
+			alert("画像のアップロードに失敗しました。")
+			return
+		}
+
+		// Spotを投稿
+		const spotId = await SpotService.createSpot(imageUrls, title, comment, [])
 
 		// 失敗した場合
 		if (!spotId) {
-			alert("投稿に失敗しました。")
-
+			alert("スポットの投稿に失敗しました。")
 			return
 		}
 
