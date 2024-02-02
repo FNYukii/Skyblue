@@ -7,7 +7,11 @@ import { useNavigate } from "react-router-dom"
 import StorageService from "../../utils/StorageService"
 import LoadingIcon from "../components/LoadingIcon"
 
-function AddScreen() {
+function NewSpotScreen() {
+
+	document.title = "新しいスポット - Skyblue"
+
+
 
 	const [images, setImages] = useState<File[]>([])
 	const [title, setTitle] = useState("")
@@ -82,4 +86,4 @@ function AddScreen() {
 	)
 }
 
-export default AddScreen
+export default NewSpotScreen
