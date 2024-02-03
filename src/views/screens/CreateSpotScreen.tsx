@@ -95,7 +95,7 @@ function CreateSpotScreen() {
 				}
 
 				{isLoading &&
-					<LoadingIcon className="mt-5" black />
+					<LoadingIcon className="mt-5" color="#000" />
 				}
 			</div>
 		</URLModal>

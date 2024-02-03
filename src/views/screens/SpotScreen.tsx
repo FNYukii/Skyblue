@@ -41,7 +41,9 @@ function SpotScreen() {
 			<div className="h-full">
 
 				{!isLoaded &&
-					<LoadingIcon center className="mt-16" />
+					<div className="h-[40%] flex flex-col justify-end">
+						<LoadingIcon center color="#fff" />
+					</div>
 				}
 
 				{isLoaded && spot === null &&
