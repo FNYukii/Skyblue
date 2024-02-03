@@ -10,7 +10,7 @@ import PickLocationButton from "../components/others/PickLocationButton"
 
 
 
-function NewSpotScreen() {
+function CreateSpotScreen() {
 
 	document.title = "新しいスポット - Skyblue"
 
@@ -102,4 +102,4 @@ function NewSpotScreen() {
 	)
 }
 
-export default NewSpotScreen
+export default CreateSpotScreen

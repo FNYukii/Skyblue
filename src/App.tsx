@@ -6,7 +6,7 @@ import Footer from "./views/components/sections/Footer"
 import { useEffect, useState } from "react"
 import { onAuthStateChanged } from "firebase/auth"
 import { auth } from "./utils/firebase"
-import NewSpotScreen from "./views/screens/NewSpotScreen"
+import CreateSpotScreen from "./views/screens/CreateSpotScreen"
 import SplashScreen from "./views/screens/SplashScreen"
 
 function App() {
@@ -84,7 +84,7 @@ function App() {
 
 
 					<Routes>
-						<Route path="/new" element={<NewSpotScreen />} />
+						<Route path="/new" element={<CreateSpotScreen />} />
 						<Route path="*" element={<></>} />
 					</Routes>
 				</div>
