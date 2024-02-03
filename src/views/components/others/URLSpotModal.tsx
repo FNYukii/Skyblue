@@ -48,7 +48,7 @@ function URLSpotModal(props: Props) {
 
 
 			{/* モーダル */}
-			<div className="absolute   h-[90vh] w-fit max-w-[95vw] max-h-[95vh]">
+			<div className="absolute   h-[90vh] max-w-[95vw] max-h-[95vh]">
 				{props.children}
 			</div>
 
