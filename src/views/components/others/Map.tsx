@@ -2,15 +2,14 @@ import { MapContainer, Marker, TileLayer, useMap } from 'react-leaflet'
 import "../../styles/leaflet.css"
 
 // 正しいMap表示に必要なファイルをインポート
-import L from "leaflet"
 import "leaflet/dist/leaflet.css"
+import L from "leaflet"
 L.Icon.Default.imagePath = 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/'
 
 
 
 interface Props {
 	location: number[]
-
 	className?: string
 }
 
