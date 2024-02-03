@@ -4,6 +4,7 @@ import { onAuthStateChanged } from "firebase/auth"
 import { useState, useEffect } from "react"
 import { auth } from "../../../utils/firebase"
 import SignInWithGoogleButton from "../others/SignInWithGoogleButton"
+import NavLinkToModal from "../others/NavLinkToModal"
 
 function Header() {
 
@@ -51,7 +52,7 @@ function Header() {
 			{isLoaded && isSignedIn &&
 				<div className="flex gap-6">
 
-					<NavLink to="new" className="hover:underline">新しいスポット</NavLink>
+					<NavLinkToModal to="new" className="hover:underline">新しいスポット</NavLinkToModal>
 					<button onClick={() => AuthService.signOut()} className="hover:underline">Sign Out</button>
 				</div>
 			}

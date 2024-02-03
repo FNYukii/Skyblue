@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom"
+import { Routes, Route, useLocation } from "react-router-dom"
 import TopScreen from "./views/screens/TopScreen"
 import NotFoundScreen from "./views/screens/NotFoundScreen"
 import Header from "./views/components/sections/Header"
@@ -19,9 +19,9 @@ function App() {
 
 
 
+	// ログイン状態を取得
 	useEffect(() => {
 
-		// ログイン状態を取得
 		onAuthStateChanged(auth, (user) => {
 			if (user) {
 				// ログイン済み
@@ -36,9 +36,21 @@ function App() {
 		})
 	}, [])
 
+
+
+	// 現在のパス
+	const location = useLocation()
+	const currentPath = location.pathname
+
+	// ひとつ前のパス or "/"
+	const state = location.state as { previousPath?: string }
+	const prevPath: string | null = state?.previousPath ?? "/"
+
+
+
 	return (
 
-		<BrowserRouter>
+		<div className="h-full">
 
 			{!isLoaded &&
 				<SplashScreen />
@@ -54,7 +66,8 @@ function App() {
 
 					<main className="mx-auto   w-full lg:w-[1024px]   px-4 lg:px-0">
 
-						<Routes>
+						<Routes location={currentPath === "/new" ? prevPath : currentPath}>
+
 							<Route path="*" element={<NotFoundScreen />} />
 							<Route path="/" element={<TopScreen />} />
 							<Route path="/spots/:spotId" element={<TopScreen />} />
@@ -68,7 +81,7 @@ function App() {
 
 					<Footer className="mt-16   sticky top-full" />
 
-
+					
 
 					<Routes>
 
@@ -81,7 +94,7 @@ function App() {
 					</Routes>
 				</div>
 			}
-		</BrowserRouter>
+		</div>
 	)
 }
 
