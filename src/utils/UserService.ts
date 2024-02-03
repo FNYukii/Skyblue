@@ -66,7 +66,7 @@ class UserService {
 			await setDoc(doc(db, "users", userId), {
 				createdAt: serverTimestamp(),
 				displayName: "名無しさん",
-				iconUrl: ""
+				iconUrl: "https://firebasestorage.googleapis.com/v0/b/skyblue-32fbd.appspot.com/o/icons%2Fdefault_icon.png?alt=media&token=7972a568-e171-4865-bbc4-1b014a43de85"
 			})
 			console.log(`SUCCESS! Created 1 User.`)
 
