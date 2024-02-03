@@ -8,6 +8,7 @@ import { onAuthStateChanged } from "firebase/auth"
 import { auth } from "./utils/firebase"
 import CreateSpotScreen from "./views/screens/CreateSpotScreen"
 import SplashScreen from "./views/screens/SplashScreen"
+import SpotScreen from "./views/screens/SpotScreen"
 
 function App() {
 
@@ -54,6 +55,7 @@ function App() {
 
 						<Routes>
 							<Route path="/" element={<TopScreen />} />
+							<Route path="/spots/:spotId" element={<SpotScreen />} />
 							<Route path="*" element={<NotFoundScreen />} />
 						</Routes>
 					</main>
@@ -74,6 +76,7 @@ function App() {
 
 						<Routes>
 							<Route path="/" element={<TopScreen />} />
+							<Route path="/spots/:spotId" element={<SpotScreen />} />
 							<Route path="/new" element={<TopScreen />} />
 							<Route path="*" element={<NotFoundScreen />} />
 						</Routes>

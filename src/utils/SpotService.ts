@@ -1,4 +1,4 @@
-import { DocumentSnapshot, QueryDocumentSnapshot, addDoc, collection, getDocs, limit, query, serverTimestamp } from "firebase/firestore"
+import { DocumentSnapshot, QueryDocumentSnapshot, addDoc, collection, doc, getDoc, getDocs, limit, query, serverTimestamp } from "firebase/firestore"
 import Spot from "../entities/Spot"
 import { db } from "./firebase"
 import AuthService from "./AuthService"
@@ -36,6 +36,35 @@ class SpotService {
 		}
 
 		return spot
+	}
+
+
+
+	static async readSpot(spotId: string): Promise<Spot | null> {
+
+		// 参照を取得
+		const docRef = doc(db, "spots", spotId)
+
+		try {
+
+			// データ読み取り
+			const doc = await getDoc(docRef)
+
+			// ドキュメントが無ければ失敗と扱う
+			if (!doc.exists()) {
+				console.log(`FAIL! Spot "${spotId}" is not exist.`)
+				return null
+			}
+			console.log(`SUCCESS! Read 1 Spot.`)
+
+			const spot = this.toSpot(doc)
+			return spot
+
+		} catch (error) {
+
+			console.log(`FAIL! Error reading Spot. ${error}`)
+			return null
+		}
 	}
 
 

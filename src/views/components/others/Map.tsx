@@ -30,7 +30,7 @@ function Map(props: Props) {
 				dragging={false}
 				zoomControl={false}
 
-				className='aspect-video border rounded-xl'
+				className='w-full h-full   border rounded-xl'
 			>
 
 				<MapChanger center={props.location}/>
