@@ -31,6 +31,9 @@ function NewSpotScreen() {
 
 		setIsLoading(true)
 
+		// 値チェック
+		if (location === null) return
+
 		// 画像をアップロード
 		const imageUrls = await StorageService.uploadImages(images, "/images")
 
@@ -42,7 +45,7 @@ function NewSpotScreen() {
 		}
 
 		// Spotを投稿
-		const spotId = await SpotService.createSpot(imageUrls, title, comment, [99999, 99999])
+		const spotId = await SpotService.createSpot(imageUrls, location, title, comment)
 
 		// 失敗した場合
 		if (!spotId) {
@@ -75,7 +78,7 @@ function NewSpotScreen() {
 
 					<button
 						className="mt-4 mr-[-1rem] mb-[-0.25rem]  px-4 py-1 font-bold rounded-full   disabled:text-gray-400   enabled:hover:bg-gray-100 transition"
-						disabled={images.length === 0 || title === ""}
+						disabled={images.length === 0 || location === null || title === ""}
 						onClick={create}
 					>
 						投稿
