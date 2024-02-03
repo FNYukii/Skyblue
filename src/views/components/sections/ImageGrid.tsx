@@ -20,8 +20,8 @@ function ImageGrid(props: Props) {
 
 				<div className="grid grid-cols-2 gap-1   aspect-square   h-full">
 
-					<img src={props.imagesUrls[0]} alt="Images for new Spot" className="h-full   object-cover rounded-s-xl   bg-blue-200" />
-					<img src={props.imagesUrls[1]} alt="Images for new Spot" className="h-full   object-cover rounded-e-xl   bg-blue-200" />
+					<img src={props.imagesUrls[0]} alt="Images for new Spot" className="h-full   object-cover rounded-s-xl   bg-gray-200" />
+					<img src={props.imagesUrls[1]} alt="Images for new Spot" className="h-full   object-cover rounded-e-xl   bg-gray-200" />
 				</div>
 			}
 
