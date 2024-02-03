@@ -8,6 +8,8 @@ import PickableMap from "./PickableMap"
 interface Props {
 	location: number[] | null
 	onPick: (Location: number[]) => void
+
+	className?: string
 }
 
 
@@ -21,18 +23,24 @@ function PickLocationButton(props: Props) {
 
 		<>
 
-			<button onClick={() => setIsOpenModal(true)} className="mt-4   w-full rounded-xl">
+			<div className={props.className}>
 
-				{props.location === null &&
-					<div className="w-full aspect-video   rounded-xl border border-gray-300   flex justify-center items-center   hover:bg-gray-100 transition">
-						<TbMapPinPlus className="text-4xl text-gray-400" />
-					</div>
-				}
+				<div className="flex">
 
-				{props.location !== null &&
-					<Map location={props.location} className="hover:brightness-90 transition"/>
-				}
-			</button>
+					<button onClick={() => setIsOpenModal(true)} className="w-full rounded-xl">
+
+						{props.location === null &&
+							<div className="w-full aspect-video   rounded-xl border border-gray-300   flex justify-center items-center   hover:bg-gray-100 transition">
+								<TbMapPinPlus className="text-4xl text-gray-400" />
+							</div>
+						}
+
+						{props.location !== null &&
+							<Map location={props.location} className="hover:brightness-90 transition" />
+						}
+					</button>
+				</div>
+			</div>
 
 
 

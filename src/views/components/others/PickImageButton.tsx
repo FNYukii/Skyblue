@@ -42,22 +42,27 @@ function PickImagesButton(props: Props) {
 
 		<div className={props.className}>
 
-			<button type="button" onClick={() => inputRef.current?.click()} className="w-full rounded-xl">
+			<div className="flex">
 
-				{props.images.length === 0 &&
+				<button type="button" onClick={() => inputRef.current?.click()} className="w-full rounded-xl">
 
-					<div className="w-full aspect-square   rounded-xl border border-gray-300   flex justify-center items-center   hover:bg-gray-100 transition">
-						<BiImageAdd className="text-4xl text-gray-400" />
-					</div>
-				}
+					{props.images.length === 0 &&
 
-				{props.images.length !== 0 &&
+						<div className="w-full aspect-square   rounded-xl border border-gray-300   flex justify-center items-center   hover:bg-gray-100 transition">
+							<BiImageAdd className="text-4xl text-gray-400" />
+						</div>
+					}
 
-					<div className="w-full aspect-square   border rounded-xl   hover:brightness-90 transition">
-						<ImageFileGrid images={props.images} />
-					</div>
-				}
-			</button>
+					{props.images.length !== 0 &&
+
+						<div className="w-full aspect-square   border rounded-xl   hover:brightness-90 transition">
+							<ImageFileGrid images={props.images} />
+						</div>
+					}
+				</button>
+			</div>
+
+
 
 			<input hidden ref={inputRef} type="file" multiple accept=".jpg,.png,.gif" onChange={onFileInputChange} />
 		</div>
