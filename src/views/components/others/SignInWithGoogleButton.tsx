@@ -21,7 +21,7 @@ function SignInWithGoogleButton() {
 	}
 
 	return (
-		<button onClick={signIn} className="px-4 py-1 bg-black text-white rounded-full   hover:bg-gray-600 transition">Googleでサインイン</button>
+		<button onClick={signIn} className="px-6 py-2   bg-black text-white font-bold rounded-full   hover:bg-gray-600 transition">Googleでサインイン</button>
 	)
 }
 

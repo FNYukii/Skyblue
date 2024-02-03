@@ -50,10 +50,10 @@ function Header() {
 			}
 
 			{isLoaded && isSignedIn &&
-				<div className="flex gap-6">
+				<div className="flex gap-4 items-center">
 
-					<NavLinkToModal to="new" className="hover:underline">新しいスポット</NavLinkToModal>
-					<NavLink to={`/users/${AuthService.uidQuickly()}`} className="hover:underline">プロフィール</NavLink>
+					<NavLink to={`/users/${AuthService.uidQuickly()}`} className="px-6 py-1   rounded-full   hover:bg-gray-100 transition">プロフィール</NavLink>
+					<NavLinkToModal to="new" className="px-6 py-2   bg-black text-white font-bold rounded-full   hover:bg-gray-600 transition">新しいスポット</NavLinkToModal>
 				</div>
 			}
 		</header>

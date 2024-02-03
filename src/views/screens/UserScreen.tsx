@@ -85,8 +85,8 @@ function UserScreen() {
 
 					<div className="w-full border-b border-gray-200">
 
-						<button onClick={() => setTab(0)} className={`px-16 py-2   hover:bg-gray-100 transition    ${tab === 0 && "border-b-2 border-black"}`}>投稿</button>
-						<button onClick={() => setTab(1)} className={`px-16 py-2   hover:bg-gray-100 transition    ${tab === 1 && "border-b-2 border-black"}`}>いいね</button>
+						<button onClick={() => setTab(0)} className={`px-16 py-2   hover:bg-gray-100 transition    ${tab === 0 && "border-b-2 border-black font-bold"}`}>投稿</button>
+						<button onClick={() => setTab(1)} className={`px-16 py-2   hover:bg-gray-100 transition    ${tab === 1 && "border-b-2 border-black font-bold"}`}>いいね</button>
 					</div>
 
 					<div>
