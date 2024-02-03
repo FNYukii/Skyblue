@@ -64,7 +64,7 @@ function NewSpotScreen() {
 			<h1 className="text-2xl font-bold">新しいスポット</h1>
 
 			<PickImagesButton onPick={(images) => setImages(images)} images={images} className="mt-4" />
-			<PickLocationButton location={location}/>
+			<PickLocationButton location={location} onPick={(location) => setLocation(location)}/>
 
 			<input type="text" value={title} onChange={(e) => setTitle(e.target.value)} placeholder="タイトル" className="block   mt-6 w-full pb-2   bg-transparent border-b border-gray-300   focus:outline-none focus:border-blue-500    placeholder:text-gray-400" />
 			<DynamicTextarea value={comment} onChange={(e) => setComment(e.target.value)} placeholder="コメント" className="block   mt-6 w-full pb-2   bg-transparent border-b border-gray-300   focus:outline-none focus:border-blue-500   placeholder:text-gray-400" />
