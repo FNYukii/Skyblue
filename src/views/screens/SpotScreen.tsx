@@ -56,13 +56,21 @@ function SpotScreen() {
 
 						<ImageGrid imagesUrls={spot.imageUrls} className="h-auto sm:h-[90%] max-h-full max-w-full   aspect-square" />
 
-						<div className="mt-2 flex justify-between items-center">
+						<div className="mt-2">
 
-							<p className="text-gray-300">{spot.text}</p>
+							<div className="flex justify-between items-center">
 
-							<NavLink to={`/users/${spot.userId}`} className="rounded-full   hover:brightness-90 transition">
-								<UserIcon userId={spot.userId} className="w-8 rounded-full" />
-							</NavLink>
+								<p className="text-white">{spot.name}</p>
+
+								<NavLink to={`/users/${spot.userId}`} className="rounded-full   hover:brightness-90 transition">
+									<UserIcon userId={spot.userId} className="w-8 rounded-full" />
+								</NavLink>
+							</div>
+
+							{spot.detail &&
+								<p className="text-gray-400">{spot.detail}</p>
+							}
+
 						</div>
 					</div>
 				}

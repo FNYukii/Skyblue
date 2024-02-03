@@ -6,7 +6,8 @@ type Spot = {
 	imageUrls: string[]
 	location: number[]
 
-	text: string
+	name: string
+	detail: string
 }
 
 export default Spot

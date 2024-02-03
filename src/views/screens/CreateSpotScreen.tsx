@@ -18,13 +18,15 @@ function CreateSpotScreen() {
 
 	const [images, setImages] = useState<File[]>([])
 	const [location, setLocation] = useState<number[] | null>(null)
-	const [text, setText] = useState("")
+
+	const [name, setName] = useState("")
+	const [detail, setDetail] = useState("")
 
 	const [isLoading, setIsLoading] = useState(false)
 
 	const navigate = useNavigate()
 
-	
+
 
 	async function create() {
 
@@ -44,7 +46,7 @@ function CreateSpotScreen() {
 		}
 
 		// Spotを投稿
-		const spotId = await SpotService.createSpot(imageUrls, location, text)
+		const spotId = await SpotService.createSpot(imageUrls, location, name, detail)
 
 		// 失敗した場合
 		if (!spotId) {
@@ -73,7 +75,9 @@ function CreateSpotScreen() {
 
 				<div>
 					<PickLocationButton location={location} onPick={location => setLocation(location)} />
-					<DynamicTextarea value={text} onChange={e => setText(e.target.value)} placeholder={SpotService.textPlaceholder()} className="block   mt-6 w-full pb-2   bg-transparent border-b border-gray-300   focus:outline-none focus:border-blue-500   placeholder:text-gray-400" />
+
+					<input value={name} onChange={e => setName(e.target.value)} placeholder="スポット名" className="block   mt-6 w-full pb-2   bg-transparent border-b border-gray-300   focus:outline-none focus:border-blue-500   placeholder:text-gray-400" />
+					<DynamicTextarea value={detail} onChange={e => setDetail(e.target.value)} placeholder="詳細・感想" className="block   mt-6 w-full pb-2   bg-transparent border-b border-gray-300   focus:outline-none focus:border-blue-500   placeholder:text-gray-400" />
 				</div>
 			</div>
 
@@ -84,7 +88,7 @@ function CreateSpotScreen() {
 
 					<button
 						className="mt-4 mr-[-1rem] mb-[-0.25rem]  px-4 py-1 font-bold rounded-full   disabled:text-gray-400   enabled:hover:bg-gray-100 transition"
-						disabled={images.length === 0 || location === null}
+						disabled={images.length === 0 || location === null || name === ""}
 						onClick={create}
 					>
 						投稿
