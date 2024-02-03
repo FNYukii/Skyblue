@@ -66,7 +66,7 @@ function App() {
 
 					<main className="mx-auto   w-full lg:w-[1024px]   px-4 lg:px-0">
 
-						<Routes location={currentPath === "/new" ? prevPath : currentPath}>
+						<Routes location={currentPath === "/new" || currentPath.match(/^\/spots\/\w{20}$/) ? prevPath : currentPath}>
 
 							<Route path="*" element={<NotFoundScreen />} />
 							<Route path="/" element={<TopScreen />} />

@@ -3,8 +3,8 @@ import Spot from "../../../entities/Spot"
 import SpotService from "../../../utils/SpotService"
 import LoadingIcon from "../others/LoadingIcon"
 import ImageGrid from "./ImageGrid"
-import { NavLink } from "react-router-dom"
 import { Unsubscribe } from "firebase/firestore"
+import NavLinkToModal from "../others/NavLinkToModal"
 
 
 
@@ -70,10 +70,10 @@ function UserSpotList(props: Props) {
 
 					{spots.map((spot, index) => (
 
-						<NavLink key={index} to={`/spots/${spot.id}`} className="hover:brightness-90 transition">
+						<NavLinkToModal key={index} to={`/spots/${spot.id}`} className="hover:brightness-90 transition">
 
 							<ImageGrid imagesUrls={spot.imageUrls} />
-						</NavLink>
+						</NavLinkToModal>
 					))}
 				</div>
 			}
