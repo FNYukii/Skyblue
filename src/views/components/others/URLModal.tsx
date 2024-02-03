@@ -3,7 +3,6 @@ import { useNavigate } from "react-router-dom"
 
 interface Props {
 	children: JSX.Element | JSX.Element[]
-	widthOnDesktop: number
 }
 
 function URLModal(props: Props) {
@@ -52,7 +51,7 @@ function URLModal(props: Props) {
 
 				<div className="overflow-hidden rounded-xl">
 					
-					<div className={`w-[95vw] max-w-[${props.widthOnDesktop}px]   sm:w-[${props.widthOnDesktop}px] sm:max-w-[95vw]   max-h-[95vh]   overflow-y-scroll scrollbar-styled   py-8 pl-8 pr-6 bg-white`}>
+					<div className="w-[95vw] max-w-[700px]   sm:w-[700px] sm:max-w-[95vw]   max-h-[95vh]   overflow-y-scroll scrollbar-styled   py-8 pl-8 pr-6 bg-white">
 
 						{props.children}
 					</div>

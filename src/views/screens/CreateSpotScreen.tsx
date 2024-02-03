@@ -62,7 +62,7 @@ function CreateSpotScreen() {
 
 	return (
 
-		<URLModal widthOnDesktop={700}>
+		<URLModal>
 
 			<h1 className="text-2xl font-bold">新しいスポット</h1>
 
