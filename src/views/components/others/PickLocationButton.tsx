@@ -51,8 +51,12 @@ function PickLocationButton(props: Props) {
 					<div onClick={() => setIsOpenModal(false)} className="w-screen h-screen bg-black/30"></div>
 
 					<div className="absolute">
-
+						
 						<PickableMap location={props.location} onPick={location => props.onPick(location)} className="w-[90vw] h-[90vh]" />
+
+						{props.location !== null &&
+							<button onClick={() => setIsOpenModal(false)} className="absolute top-0 right-0 mt-4 mr-4   px-8 py-1 bg-black text-white rounded-full   hover:bg-gray-600 transition">完了</button>
+						}
 					</div>
 				</div>
 			}
