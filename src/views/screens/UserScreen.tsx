@@ -72,7 +72,7 @@ function UserScreen() {
 						position="anchor"
 					>
 						<MenuItem>
-							<button onClick={() => AuthService.signOut()}>Sign Out</button>
+							<button onClick={() => AuthService.signOut()} className="text-red-500">サインアウト</button>
 						</MenuItem>
 					</Menu>
 
