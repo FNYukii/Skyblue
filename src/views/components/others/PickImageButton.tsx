@@ -5,15 +5,15 @@ import ImageFileGrid from "../sections/ImageFileGrid"
 
 
 interface Props {
-	onPick: (images: File[]) => void
 	images: File[]
+	onPick: (images: File[]) => void
 
 	className?: string
 }
 
 
 
-function PickImagesButtonL(props: Props) {
+function PickImagesButton(props: Props) {
 
 	const inputRef = useRef<HTMLInputElement>(null)
 
@@ -64,4 +64,4 @@ function PickImagesButtonL(props: Props) {
 	)
 }
 
-export default PickImagesButtonL
+export default PickImagesButton
