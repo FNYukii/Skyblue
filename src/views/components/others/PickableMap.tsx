@@ -31,8 +31,8 @@ function PickableMap(props: Props) {
 				zoom={14}
 
 				doubleClickZoom={false}
-
-				className='aspect-video border rounded-xl'
+				
+				className='w-full h-full   border rounded-xl'
 			>
 
 				{props.location &&

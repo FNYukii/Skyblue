@@ -52,13 +52,7 @@ function PickLocationButton(props: Props) {
 
 					<div className="absolute">
 
-						<div className="overflow-hidden rounded-xl">
-
-							<div className="max-w-[95vw] sm:w-[900px]   max-h-[95vh]">
-
-								<PickableMap location={props.location} onPick={location => props.onPick(location)} className="mt-4" />
-							</div>
-						</div>
+						<PickableMap location={props.location} onPick={location => props.onPick(location)} className="w-[90vw] h-[90vh]" />
 					</div>
 				</div>
 			}
