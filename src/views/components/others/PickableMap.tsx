@@ -40,7 +40,11 @@ function PickableMap(props: Props) {
 					url="https://mt1.google.com/vt/lyrs=r&x={x}&y={y}&z={z}"
 				/>
 
-				<MapEvents location={props.location} onPick={(location) => props.onPick(location)} />
+				<MapEvents onPick={(location) => props.onPick(location)} />
+
+				{props.location !== null &&
+					<Marker position={[props.location[0]!, props.location[1]!]} />
+				}
 			</MapContainer>
 		</div>
 	)
@@ -48,7 +52,7 @@ function PickableMap(props: Props) {
 
 
 
-function MapEvents(props: { location: number[] | null, onPick: (location: number[]) => void }) {
+function MapEvents(props: { onPick: (location: number[]) => void }) {
 
 	// マップをダブルクリックしたら、配列locationにその座標を格納
 	useMapEvents({
@@ -60,13 +64,7 @@ function MapEvents(props: { location: number[] | null, onPick: (location: number
 		}
 	})
 
-	return (
-		<>
-			{props.location !== null &&
-				<Marker position={[props.location[0]!, props.location[1]!]} />
-			}
-		</>
-	)
+	return null
 }
 
 
