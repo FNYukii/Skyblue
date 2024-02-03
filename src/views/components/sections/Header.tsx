@@ -3,6 +3,7 @@ import AuthService from "../../../utils/AuthService"
 import { onAuthStateChanged } from "firebase/auth"
 import { useState, useEffect } from "react"
 import { auth } from "../../../utils/firebase"
+import SignInWithGoogleButton from "../others/SignInWithGoogleButton"
 
 function Header() {
 
@@ -44,7 +45,7 @@ function Header() {
 			}
 
 			{isLoaded && !isSignedIn &&
-				<button onClick={() => AuthService.signInWithGoogle()} className="hover:underline">Sign In</button>
+				<SignInWithGoogleButton />
 			}
 
 			{isLoaded && isSignedIn &&

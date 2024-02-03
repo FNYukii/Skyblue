@@ -12,15 +12,15 @@ class SpotService {
 		const doc: DocumentSnapshot = from
 
 		// ドキュメントの各フィールドの値を取り出す
-		const id: string = doc.id ?? ""
-		const userId: string = doc.get("userId") ?? ""
-		const createdAt: Date = doc.get("createdAt") ? doc.get("createdAt").toDate() : new Date()
+		const id: string = doc.id
+		const userId: string = doc.get("userId")
+		const createdAt: Date = doc.get("createdAt").toDate() 
 
-		const imageUrls: string[] = doc.get("imageUrls") ?? []
-		const location: number[] = doc.get("location") ?? []
+		const imageUrls: string[] = doc.get("imageUrls")
+		const location: number[] = doc.get("location")
 
-		const title: string = doc.get("title") ?? ""
-		const comment: string = doc.get("comment") ?? ""
+		const title: string = doc.get("title")
+		const comment: string = doc.get("comment")
 
 		// 値を使ってSpotオブジェクトを作成
 		const spot: Spot = {
