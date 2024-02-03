@@ -21,6 +21,8 @@ function UserIcon(props: Props) {
 			setUser(user)
 			setIsLoaded(true)
 		})()
+
+		// eslint-disable-next-line
 	}, [])
 
 

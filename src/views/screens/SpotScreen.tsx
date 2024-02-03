@@ -29,6 +29,8 @@ function SpotScreen() {
 			setSpot(spot)
 			setIsLoaded(true)
 		})()
+
+		// eslint-disable-next-line
 	}, [])
 
 
