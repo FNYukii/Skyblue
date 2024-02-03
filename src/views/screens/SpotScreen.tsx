@@ -58,7 +58,7 @@ function SpotScreen() {
 
 						<div className="mt-2 flex justify-between items-center">
 
-							<p className="text-gray-400">{spot.text}</p>
+							<p className="text-gray-300">{spot.text}</p>
 
 							<NavLink to={`/users/${spot.userId}`} className="rounded-full   hover:brightness-90 transition">
 								<UserIcon userId={spot.userId} className="w-8 rounded-full" />
