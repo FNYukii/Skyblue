@@ -40,7 +40,7 @@ function PickableMap(props: Props) {
 					url="https://mt1.google.com/vt/lyrs=r&x={x}&y={y}&z={z}"
 				/>
 
-				<MapEvents onPick={(location) => props.onPick(location)} />
+				<MapEvents onPick={location => props.onPick(location)} />
 
 				{props.location !== null &&
 					<Marker position={[props.location[0]!, props.location[1]!]} />

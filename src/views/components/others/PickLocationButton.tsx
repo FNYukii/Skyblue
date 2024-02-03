@@ -56,7 +56,7 @@ function PickLocationButton(props: Props) {
 
 							<div className="max-w-[95vw] sm:w-[900px]   max-h-[95vh]">
 
-								<PickableMap location={props.location} onPick={(location) => props.onPick(location)} className="mt-4" />
+								<PickableMap location={props.location} onPick={location => props.onPick(location)} className="mt-4" />
 							</div>
 						</div>
 					</div>
