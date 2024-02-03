@@ -18,7 +18,7 @@ interface Props {
 
 function PickableMap(props: Props) {
 
-	const defaultCenter = [34.686834235230265, 135.52812788280627]
+	const defaultCenter = [35.1706763855153, 136.88172646669815]
 
 
 
@@ -28,7 +28,7 @@ function PickableMap(props: Props) {
 
 			<MapContainer
 				center={[defaultCenter[0]!, defaultCenter[1]!]}
-				zoom={14}
+				zoom={7}
 
 				doubleClickZoom={false}
 				
