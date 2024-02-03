@@ -1,4 +1,4 @@
-import { MapContainer, Marker, TileLayer } from 'react-leaflet'
+import { MapContainer, Marker, TileLayer, useMap } from 'react-leaflet'
 import "../../styles/leaflet.css"
 
 // 正しいMap表示に必要なファイルをインポート
@@ -34,6 +34,8 @@ function Map(props: Props) {
 				className='aspect-video border rounded-xl'
 			>
 
+				<MapChanger center={props.location}/>
+
 				<TileLayer
 					attribution="GoogleMaps"
 					url="https://mt1.google.com/vt/lyrs=r&x={x}&y={y}&z={z}"
@@ -44,5 +46,15 @@ function Map(props: Props) {
 		</div>
 	)
 }
+
+
+
+function MapChanger(props: { center:number[] }) {
+  const map = useMap()
+  map.setView([props.center[0]!, props.center[1]!])
+  return null
+}
+
+
 
 export default Map

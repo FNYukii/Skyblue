@@ -1,4 +1,4 @@
-import { MapContainer, Marker, TileLayer, useMapEvents } from 'react-leaflet'
+import { MapContainer, Marker, TileLayer, useMap, useMapEvents } from 'react-leaflet'
 
 // 正しいMap表示に必要なファイルをインポート
 import L from "leaflet"
@@ -35,6 +35,11 @@ function PickableMap(props: Props) {
 				className='aspect-video border rounded-xl'
 			>
 
+				{props.location &&
+					<MapChanger center={props.location} />
+				}
+
+
 				<TileLayer
 					attribution="GoogleMaps"
 					url="https://mt1.google.com/vt/lyrs=r&x={x}&y={y}&z={z}"
@@ -48,6 +53,14 @@ function PickableMap(props: Props) {
 			</MapContainer>
 		</div>
 	)
+}
+
+
+
+function MapChanger(props: { center: number[] }) {
+	const map = useMap()
+	map.setView([props.center[0]!, props.center[1]!])
+	return null
 }
 
 
