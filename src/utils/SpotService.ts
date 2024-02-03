@@ -1,4 +1,4 @@
-import { DocumentSnapshot, QueryDocumentSnapshot, addDoc, collection, doc, getDoc, getDocs, limit, query, serverTimestamp } from "firebase/firestore"
+import { DocumentSnapshot, QueryDocumentSnapshot, Unsubscribe, addDoc, collection, doc, getDoc, getDocs, limit, onSnapshot, orderBy, query, serverTimestamp, where } from "firebase/firestore"
 import Spot from "../entities/Spot"
 import { db } from "./firebase"
 import AuthService from "./AuthService"
@@ -97,6 +97,46 @@ class SpotService {
 			console.log(`FAIL! Spots reading failed. ${error}`)
 			return null
 		}
+	}
+
+
+
+	static async onSpotsByUserChanged(
+		userId: string,
+		callback: (payments: Spot[]) => unknown,
+		cancelCallback: (error: Error) => unknown,
+	): Promise<Unsubscribe> {
+
+		// 読み取りクエリを作成
+		const q = query(
+			collection(db, "spots"),
+			where("userId", "==", userId),
+			orderBy("createdAt", "desc"),
+			limit(100)
+		)
+
+		// リアルタイムリスナーを設定
+		return onSnapshot(q, async (querySnapshot) => {
+
+			// 成功
+			console.log(`SUCCESS! Read ${querySnapshot.size} spots.`)
+
+			// Spotの配列を作成
+			let spots: Spot[] = []
+			querySnapshot.forEach((doc) => {
+
+				const spot = this.toSpot(doc)
+				spots.push(spot)
+			})
+
+			// Stateを更新
+			callback(spots)
+
+		}, (error) => {
+
+			console.log(`FAIL! Error listening spots. ${error}`)
+			cancelCallback(error)
+		})
 	}
 
 
