@@ -11,7 +11,7 @@ function ImageFileGrid(props: Props) {
 
 			{props.images.length === 1 &&
 
-				<img src={window.URL.createObjectURL(props.images[0])} alt="Image for new Spot" className="aspect-square object-cover rounded-xl" />
+				<img src={window.URL.createObjectURL(props.images[0])} alt="For new Spot" className="aspect-square object-cover rounded-xl" />
 			}
 
 
@@ -20,8 +20,8 @@ function ImageFileGrid(props: Props) {
 
 				<div className="grid grid-cols-2 gap-1 aspect-square">
 
-					<img src={window.URL.createObjectURL(props.images[0])} alt="Image for new Spot" className="h-full   object-cover rounded-s-xl" />
-					<img src={window.URL.createObjectURL(props.images[1])} alt="Image for new Spot" className="h-full   object-cover rounded-e-xl" />
+					<img src={window.URL.createObjectURL(props.images[0])} alt="For new Spot" className="h-full   object-cover rounded-s-xl" />
+					<img src={window.URL.createObjectURL(props.images[1])} alt="For new Spot" className="h-full   object-cover rounded-e-xl" />
 				</div>
 			}
 
@@ -31,12 +31,12 @@ function ImageFileGrid(props: Props) {
 
 				<div className="grid grid-cols-2 gap-1   aspect-square">
 
-					<img src={window.URL.createObjectURL(props.images[0])} alt="Image for new Spot" className="h-full   object-cover rounded-s-xl" />
+					<img src={window.URL.createObjectURL(props.images[0])} alt="For new Spot" className="h-full   object-cover rounded-s-xl" />
 
 					<div className="grid grid-rows-2 gap-1">
 
-						<img src={window.URL.createObjectURL(props.images[1])} alt="Image for new Spot" className="aspect-square   object-cover rounded-tr-xl" />
-						<img src={window.URL.createObjectURL(props.images[2])} alt="Image for new Spot" className="aspect-square   object-cover rounded-br-xl" />
+						<img src={window.URL.createObjectURL(props.images[1])} alt="For new Spot" className="aspect-square   object-cover rounded-tr-xl" />
+						<img src={window.URL.createObjectURL(props.images[2])} alt="For new Spot" className="aspect-square   object-cover rounded-br-xl" />
 					</div>
 				</div>
 			}
@@ -47,10 +47,10 @@ function ImageFileGrid(props: Props) {
 
 				<div className="grid grid-cols-2 gap-1">
 
-					<img src={window.URL.createObjectURL(props.images[0])} alt="Image for new Spot" className="aspect-square object-cover rounded-tl-xl" />
-					<img src={window.URL.createObjectURL(props.images[1])} alt="Image for new Spot" className="aspect-square object-cover rounded-tr-xl" />
-					<img src={window.URL.createObjectURL(props.images[2])} alt="Image for new Spot" className="aspect-square object-cover rounded-bl-xl" />
-					<img src={window.URL.createObjectURL(props.images[3])} alt="Image for new Spot" className="aspect-square object-cover rounded-br-xl" />
+					<img src={window.URL.createObjectURL(props.images[0])} alt="For new Spot" className="aspect-square object-cover rounded-tl-xl" />
+					<img src={window.URL.createObjectURL(props.images[1])} alt="For new Spot" className="aspect-square object-cover rounded-tr-xl" />
+					<img src={window.URL.createObjectURL(props.images[2])} alt="For new Spot" className="aspect-square object-cover rounded-bl-xl" />
+					<img src={window.URL.createObjectURL(props.images[3])} alt="For new Spot" className="aspect-square object-cover rounded-br-xl" />
 				</div>
 			}
 		</div>
