@@ -51,7 +51,7 @@ function URLModal(props: Props) {
 
 				<div className="overflow-hidden rounded-xl">
 					
-					<div className="max-w-[95vw] sm:w-[500px]   max-h-[95vh]    overflow-y-scroll scrollbar-styled   py-8 pl-8 pr-6 bg-white">
+					<div className="max-w-[95vw] sm:w-[400px]   max-h-[95vh]    overflow-y-scroll scrollbar-styled   py-8 pl-8 pr-6 bg-white">
 
 						{props.children}
 					</div>
