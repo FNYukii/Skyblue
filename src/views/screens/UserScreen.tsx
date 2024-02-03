@@ -66,7 +66,13 @@ function UserScreen() {
 
 					<div>
 						{tab === 0 &&
-							<UserSpotList userId={userId!} className="mt-4"/>
+							<UserSpotList userId={userId!} className="mt-4" />
+						}
+
+						{tab === 1 &&
+							<div>
+								<p className="mt-8   text-center text-gray-500">いいねしたスポットはありません</p>
+							</div>
 						}
 					</div>
 				</div>
