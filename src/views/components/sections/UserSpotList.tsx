@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react"
 import Spot from "../../../entities/Spot"
 import SpotService from "../../../utils/SpotService"
-import LoadingIcon from "../others/LoadingIcon"
 import ImageGrid from "./ImageGrid"
 import { Unsubscribe } from "firebase/firestore"
 import NavLinkToModal from "../others/NavLinkToModal"
+import LoadingSpotGrid from "../others/LoadingSpotGrid"
 
 
 
@@ -53,7 +53,7 @@ function UserSpotList(props: Props) {
 		<div className={props.className}>
 
 			{!isLoaded &&
-				<LoadingIcon center className="mt-16" />
+				<LoadingSpotGrid />
 			}
 
 			{isLoaded && spots === null &&
