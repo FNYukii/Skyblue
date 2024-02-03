@@ -58,7 +58,7 @@ function SpotScreen() {
 
 						<div className="mt-2 flex justify-between items-center">
 
-							<p className="text-white">{spot.title}</p>
+							<p className="text-gray-400">{spot.text}</p>
 							<UserIcon userId={spot.userId} className="w-8" />
 						</div>
 					</div>

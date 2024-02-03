@@ -19,8 +19,7 @@ class SpotService {
 		const imageUrls: string[] = doc.get("imageUrls")
 		const location: number[] = doc.get("location")
 
-		const title: string = doc.get("title")
-		const comment: string = doc.get("comment")
+		const text: string = doc.get("text")
 
 		// 値を使ってSpotオブジェクトを作成
 		const spot: Spot = {
@@ -31,8 +30,7 @@ class SpotService {
 			imageUrls: imageUrls,
 			location: location,
 
-			title: title,
-			comment: comment,
+			text: text
 		}
 
 		return spot
@@ -106,13 +104,11 @@ class SpotService {
 	static async createSpot(
 		imageUrls: string[],
 		location: number[],
-		title: string,
-		comment: string
+		text: string
 	): Promise<string | null> {
 
 		// 値チェック
 		if (imageUrls.length === 0 || imageUrls.length > 4) return null
-		if (title === "" || !title.match(/\S/g)) return null
 		if (location.length !== 2) return null
 
 		// UIDを取得
@@ -130,8 +126,7 @@ class SpotService {
 				imageUrls: imageUrls,
 				location: location,
 
-				title: title,
-				comment: comment
+				text: text,
 			})
 
 			console.log(`SUCCESS! Created 1 Spot.`)
@@ -144,6 +139,31 @@ class SpotService {
 			console.log(`FAIL! Error to Spot creation. ${error}`)
 			return null
 		}
+	}
+
+
+
+	static textPlaceholder(): string {
+
+		const placeholders = [
+			"なんて美しい外観!",
+			"それはとても巨大に見えます",
+			"見ていると首が痛くなりそう",
+			"重厚感のある柱!",
+			"よく設計された壮麗な意匠",
+			"頑丈そうですね",
+			"建設中の頃から見てました",
+			"いつの間にか竣工してました",
+			"一番好きな建物です!",
+			"歴史的な建造物と評価されています",
+			"環境負荷の低い設計がなされています",
+			"よく見に行きます",
+			"(｀・ω・´)つ"
+		]
+
+		const num = Math.floor(Math.random() * placeholders.length)
+
+		return placeholders[num]
 	}
 }
 
