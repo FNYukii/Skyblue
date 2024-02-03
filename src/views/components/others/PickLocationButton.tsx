@@ -36,7 +36,7 @@ function PickLocationButton(props: Props) {
 						}
 
 						{props.location !== null &&
-							<Map location={props.location} className="hover:brightness-90 transition" />
+							<Map location={props.location} className="w-full aspect-video   hover:brightness-90 transition" />
 						}
 					</button>
 				</div>

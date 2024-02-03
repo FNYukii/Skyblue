@@ -2,7 +2,7 @@ import ReactLoading from "react-loading"
 
 interface Props {
 	center?: boolean
-	black?: boolean
+	color?: string
 
 	className?: string
 }
@@ -17,7 +17,7 @@ function LoadingIcon(props: Props) {
 
 				<ReactLoading
 					type="spin"
-					color={!props.black ? "#94A3B8" : "#000"}
+					color={props.color ?? "#94A3B8"}
 					height="20px"
 					width="20px"
 				/>

@@ -55,7 +55,7 @@ function PickImagesButton(props: Props) {
 
 					{props.images.length !== 0 &&
 
-						<div className="w-full aspect-square   border rounded-xl   hover:brightness-90 transition">
+						<div className="w-full aspect-square   rounded-xl   hover:brightness-90 transition">
 							<ImageFileGrid images={props.images} />
 						</div>
 					}

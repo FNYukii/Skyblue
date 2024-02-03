@@ -8,6 +8,7 @@ import { onAuthStateChanged } from "firebase/auth"
 import { auth } from "./utils/firebase"
 import CreateSpotScreen from "./views/screens/CreateSpotScreen"
 import SplashScreen from "./views/screens/SplashScreen"
+import SpotScreen from "./views/screens/SpotScreen"
 
 function App() {
 
@@ -44,7 +45,7 @@ function App() {
 
 
 
-			{isLoaded && !isSignedIn &&
+			{isLoaded &&
 
 				<div className="h-full">
 
@@ -53,29 +54,13 @@ function App() {
 					<main className="mx-auto   w-full lg:w-[1024px]   px-4 lg:px-0">
 
 						<Routes>
-							<Route path="/" element={<TopScreen />} />
 							<Route path="*" element={<NotFoundScreen />} />
-						</Routes>
-					</main>
-
-					<Footer className="mt-16   sticky top-full" />
-				</div>
-			}
-
-
-
-			{isLoaded && isSignedIn &&
-
-				<div className="h-full">
-
-					<Header />
-
-					<main className="mx-auto   w-full lg:w-[1024px]   px-4 lg:px-0">
-
-						<Routes>
 							<Route path="/" element={<TopScreen />} />
-							<Route path="/new" element={<TopScreen />} />
-							<Route path="*" element={<NotFoundScreen />} />
+							<Route path="/spots/:spotId" element={<TopScreen />} />
+
+							{isSignedIn &&
+								<Route path="/new" element={<TopScreen />} />
+							}
 						</Routes>
 					</main>
 
@@ -84,8 +69,15 @@ function App() {
 
 
 					<Routes>
-						<Route path="/new" element={<CreateSpotScreen />} />
+
 						<Route path="*" element={<></>} />
+
+
+						{isSignedIn &&
+							<Route path="/new" element={<CreateSpotScreen />} />
+						}
+
+						<Route path="/spots/:spotId" element={<SpotScreen />} />
 					</Routes>
 				</div>
 			}
