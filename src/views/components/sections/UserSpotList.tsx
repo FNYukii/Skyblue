@@ -66,7 +66,7 @@ function UserSpotList(props: Props) {
 
 			{isLoaded && spots !== null && spots.length !== 0 &&
 
-				<div className="grid grid-cols-4 gap-1">
+				<div className="grid grid-cols-3 gap-2">
 
 					{spots.map((spot, index) => (
 
