@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
-import Spot from "../../entities/Spot"
-import SpotService from "../../utils/SpotService"
-import LoadingIcon from "./others/LoadingIcon"
+import Spot from "../../../entities/Spot"
+import SpotService from "../../../utils/SpotService"
+import LoadingIcon from "../others/LoadingIcon"
 import ImageGrid from "./ImageGrid"
 import { NavLink } from "react-router-dom"
 
