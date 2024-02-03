@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom"
 import User from "../../entities/User"
 import UserService from "../../utils/UserService"
 import LoadingIcon from "../components/others/LoadingIcon"
+import UserSpotList from "../components/sections/UserSpotList"
 function UserScreen() {
 
 	document.title = "ユーザー - Skyline"
@@ -57,10 +58,16 @@ function UserScreen() {
 						<p className="mt-2   text-2xl font-bold">{user.displayName}</p>
 					</div>
 
-					<div className="w-full border-b">
+					<div className="w-full border-b border-gray-200">
 
 						<button onClick={() => setTab(0)} className={`px-16 py-2   hover:bg-gray-100 transition    ${tab === 0 && "border-b-2 border-black"}`}>投稿</button>
 						<button onClick={() => setTab(1)} className={`px-16 py-2   hover:bg-gray-100 transition    ${tab === 1 && "border-b-2 border-black"}`}>いいね</button>
+					</div>
+
+					<div>
+						{tab === 0 &&
+							<UserSpotList userId={userId!} className="mt-4"/>
+						}
 					</div>
 				</div>
 			}
