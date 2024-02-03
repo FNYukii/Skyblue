@@ -9,6 +9,7 @@ import { auth } from "./utils/firebase"
 import CreateSpotScreen from "./views/screens/CreateSpotScreen"
 import SplashScreen from "./views/screens/SplashScreen"
 import SpotScreen from "./views/screens/SpotScreen"
+import UserScreen from "./views/screens/UserScreen"
 
 function App() {
 
@@ -57,6 +58,7 @@ function App() {
 							<Route path="*" element={<NotFoundScreen />} />
 							<Route path="/" element={<TopScreen />} />
 							<Route path="/spots/:spotId" element={<TopScreen />} />
+							<Route path="/users/:userId" element={<UserScreen />} />
 
 							{isSignedIn &&
 								<Route path="/new" element={<TopScreen />} />
@@ -71,13 +73,11 @@ function App() {
 					<Routes>
 
 						<Route path="*" element={<></>} />
-
+						<Route path="/spots/:spotId" element={<SpotScreen />} />
 
 						{isSignedIn &&
 							<Route path="/new" element={<CreateSpotScreen />} />
 						}
-
-						<Route path="/spots/:spotId" element={<SpotScreen />} />
 					</Routes>
 				</div>
 			}

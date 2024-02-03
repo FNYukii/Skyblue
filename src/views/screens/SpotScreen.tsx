@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { useParams } from "react-router-dom"
+import { NavLink, useParams } from "react-router-dom"
 import Spot from "../../entities/Spot"
 import SpotService from "../../utils/SpotService"
 import LoadingIcon from "../components/others/LoadingIcon"
@@ -59,7 +59,10 @@ function SpotScreen() {
 						<div className="mt-2 flex justify-between items-center">
 
 							<p className="text-gray-400">{spot.text}</p>
-							<UserIcon userId={spot.userId} className="w-8" />
+
+							<NavLink to={`/users/${spot.userId}`} className="rounded-full   hover:brightness-90 transition">
+								<UserIcon userId={spot.userId} className="w-8 rounded-full" />
+							</NavLink>
 						</div>
 					</div>
 				}
