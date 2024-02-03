@@ -62,15 +62,24 @@ function NewSpotScreen() {
 
 	return (
 
-		<URLModal widthOnDesktop={400}>
+		<URLModal widthOnDesktop={700}>
 
 			<h1 className="text-2xl font-bold">新しいスポット</h1>
 
-			<PickImagesButton onPick={images => setImages(images)} images={images} className="mt-4" />
-			<PickLocationButton location={location} onPick={location => setLocation(location)} className="mt-4"/>
+			<div className="mt-4   grid grid-cols-1 sm:grid-cols-2   gap-x-8 gap-y-4">
 
-			<input type="text" value={title} onChange={e => setTitle(e.target.value)} placeholder="タイトル" className="block   mt-6 w-full pb-2   bg-transparent border-b border-gray-300   focus:outline-none focus:border-blue-500    placeholder:text-gray-400" />
-			<DynamicTextarea value={comment} onChange={e => setComment(e.target.value)} placeholder="コメント" className="block   mt-6 w-full pb-2   bg-transparent border-b border-gray-300   focus:outline-none focus:border-blue-500   placeholder:text-gray-400" />
+				<div>
+					<PickImagesButton onPick={images => setImages(images)} images={images} />
+				</div>
+
+				<div>
+					<PickLocationButton location={location} onPick={location => setLocation(location)} />
+
+					<input type="text" value={title} onChange={e => setTitle(e.target.value)} placeholder="タイトル" className="block   mt-6 w-full pb-2   bg-transparent border-b border-gray-300   focus:outline-none focus:border-blue-500    placeholder:text-gray-400" />
+					<DynamicTextarea value={comment} onChange={e => setComment(e.target.value)} placeholder="コメント" className="block   mt-6 w-full pb-2   bg-transparent border-b border-gray-300   focus:outline-none focus:border-blue-500   placeholder:text-gray-400" />
+				</div>
+			</div>
+
 
 			<div className="flex justify-end">
 
