@@ -53,10 +53,7 @@ function Header() {
 				<div className="flex gap-6">
 
 					<NavLinkToModal to="new" className="hover:underline">新しいスポット</NavLinkToModal>
-					
 					<NavLink to={`/users/${AuthService.uidQuickly()}`} className="hover:underline">プロフィール</NavLink>
-
-					<button onClick={() => AuthService.signOut()} className="hover:underline">Sign Out</button>
 				</div>
 			}
 		</header>

@@ -4,6 +4,14 @@ import User from "../../entities/User"
 import UserService from "../../utils/UserService"
 import LoadingIcon from "../components/others/LoadingIcon"
 import UserSpotList from "../components/sections/UserSpotList"
+import { IoEllipsisHorizontal } from "react-icons/io5"
+import { Menu, MenuButton, MenuItem } from "@szhsin/react-menu"
+import AuthService from "../../utils/AuthService"
+import '@szhsin/react-menu/dist/index.css'
+import '@szhsin/react-menu/dist/transitions/slide.css'
+
+
+
 function UserScreen() {
 
 	document.title = "ユーザー - Skyline"
@@ -51,12 +59,29 @@ function UserScreen() {
 
 			{isLoaded && user !== null &&
 
-				<div>
+				<div className="relative">
+
+					<Menu
+						menuButton={
+							<MenuButton className="absolute top-0 right-0   mt-[-0.5rem] mr-[-0.5rem]   p-2 rounded-full   hover:bg-gray-100 transition">
+								<IoEllipsisHorizontal className="text-2xl text-gray-500" />
+							</MenuButton>
+						}
+						transition
+						arrow
+						position="anchor"
+					>
+						<MenuItem>
+							<button onClick={() => AuthService.signOut()}>Sign Out</button>
+						</MenuItem>
+					</Menu>
 
 					<div className="w-full   flex flex-col items-center">
 						<img src={user.iconUrl} alt="User icon" className=" w-28 aspect-square rounded-full bg-gray-200" />
 						<p className="mt-2   text-2xl font-bold">{user.displayName}</p>
 					</div>
+
+
 
 					<div className="w-full border-b border-gray-200">
 
