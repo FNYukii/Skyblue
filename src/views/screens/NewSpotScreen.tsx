@@ -6,6 +6,7 @@ import SpotService from "../../utils/SpotService"
 import { useNavigate } from "react-router-dom"
 import StorageService from "../../utils/StorageService"
 import LoadingIcon from "../components/others/LoadingIcon"
+import Map from "../components/others/Map"
 
 function NewSpotScreen() {
 
@@ -60,6 +61,8 @@ function NewSpotScreen() {
 			<h1 className="text-2xl font-bold">新しいスポット</h1>
 
 			<PickImagesButtonL onPick={(images) => setImages(images)} images={images} className="mt-4" />
+
+			<Map location={[34.68520782564965, 135.53237097432762]} className="mt-4"/>
 
 			<input type="text" value={title} onChange={(e) => setTitle(e.target.value)} placeholder="タイトル" className="block   mt-6 w-full pb-2   bg-transparent border-b border-gray-300   focus:outline-none focus:border-blue-500    placeholder:text-gray-400" />
 
