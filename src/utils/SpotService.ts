@@ -76,9 +76,9 @@ class SpotService {
 
 	static async createSpot(
 		imageUrls: string[],
+		location: number[],
 		title: string,
-		comment: string,
-		location: number[]
+		comment: string
 	): Promise<string | null> {
 
 		// 値チェック

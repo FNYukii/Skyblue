@@ -1,4 +1,4 @@
-import SpotList from "../components/SpotList"
+import SpotList from "../components/sections/SpotList"
 
 function TopScreen() {
 
