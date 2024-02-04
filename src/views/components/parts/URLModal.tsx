@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom"
 import { MdOutlineClose } from "react-icons/md"
 import Escaper from "./Escaper"
+import { useEffect } from "react"
 
 interface Props {
 	children: JSX.Element | JSX.Element[]
@@ -10,6 +11,18 @@ function URLModal(props: Props) {
 
 	// 画面遷移用Hooks
 	const navigate = useNavigate()
+
+
+
+	// 画面スクロール無効
+	useEffect(() => {
+		document.body.style.overflowY = "hidden"
+		
+		return () => {
+			document.body.style.overflowY = ""
+		}
+		// eslint-disable-next-line
+	}, [])
 
 
 

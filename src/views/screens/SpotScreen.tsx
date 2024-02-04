@@ -15,10 +15,22 @@ function SpotScreen() {
 
 	document.title = "スポット - Skyline"
 
+
+
+	// 画面スクロール無効
+	useEffect(() => {
+		document.body.style.overflowY = "hidden"
+
+		return () => {
+			document.body.style.overflowY = ""
+		}
+		// eslint-disable-next-line
+	}, [])
+
+
+
 	const { spotId } = useParams()
 	const { imageNumber } = useParams()
-
-
 
 	// 画面遷移用Hooks
 	const navigate = useNavigate()
@@ -27,9 +39,6 @@ function SpotScreen() {
 
 	// 画像のインデックス
 	const [imageIndex, setImageIndex] = useState(Number(imageNumber!) - 1)
-
-
-
 
 	// Spot
 	const [spot, setSpot] = useState<Spot | null>(null)

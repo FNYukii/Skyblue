@@ -18,14 +18,9 @@ function Escaper() {
 		// キーイベント設定
 		document.addEventListener("keydown", onKeyDown, false)
 
-		// 画面スクロール無効
-		document.body.style.overflowY = "hidden"
-
 		return () => {
 			document.removeEventListener("keydown", onKeyDown, false)
-			document.body.style.overflowY = ""
 		}
-
 		// eslint-disable-next-line
 	}, [])	
 
