@@ -28,13 +28,14 @@ function SpotScreen() {
 	// 画像のインデックス
 	const [imageIndex, setImageIndex] = useState(Number(imageNumber!) - 1)
 
+
+
+
 	// Spot
 	const [spot, setSpot] = useState<Spot | null>(null)
 	const [isLoaded, setIsLoaded] = useState(false)
 
-
-
-
+	// Spotを読み取る
 	useEffect(() => {
 
 		(async () => {
@@ -46,6 +47,17 @@ function SpotScreen() {
 
 		// eslint-disable-next-line
 	}, [])
+
+
+
+	// 表示する画像を切り替える
+	function switchImage(newImageIndex: number) {
+
+		setImageIndex(newImageIndex)
+
+		// アドレスバーのURLを置き換え
+		navigate(`/spots/${spotId}/images/${newImageIndex + 1}`, { replace: true })
+	}
 
 
 
@@ -74,13 +86,13 @@ function SpotScreen() {
 
 						<div className="h-[90%]   flex items-center gap-x-2">
 
-							<button onClick={() => setImageIndex(num => num - 1)} disabled={imageIndex === 0} className="h-fit w-fit   p-3 rounded-full   text-white   disabled:opacity-0 enabled:pointer-events-auto   enabled:hover:bg-white/20 transition">
+							<button onClick={() => switchImage(imageIndex - 1)} disabled={imageIndex === 0} className="h-fit w-fit   p-3 rounded-full   text-white   disabled:opacity-0 enabled:pointer-events-auto   enabled:hover:bg-white/20 transition">
 								<AiOutlineArrowLeft className="text-2xl" />
 							</button>
 
 							<img src={spot.imageUrls[imageIndex]} alt="Attached on Spot" className="h-full   pointer-events-auto" />
 
-							<button onClick={() => setImageIndex(num => num + 1)} disabled={imageIndex === spot.imageUrls.length - 1} className="h-fit w-fit   p-3 rounded-full   text-white   disabled:opacity-0 enabled:pointer-events-auto   enabled:hover:bg-white/20 transition">
+							<button onClick={() => switchImage(imageIndex + 1)} disabled={imageIndex === spot.imageUrls.length - 1} className="h-fit w-fit   p-3 rounded-full   text-white   disabled:opacity-0 enabled:pointer-events-auto   enabled:hover:bg-white/20 transition">
 								<AiOutlineArrowRight className="text-2xl" />
 							</button>
 						</div>
