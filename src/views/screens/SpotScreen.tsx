@@ -151,20 +151,23 @@ function SpotScreen() {
 
 
 
-						<div className="mx-auto  sm:min-w-[600px]   pointer-events-auto">
+						<div className="mx-auto min-w-full sm:min-w-[600px]   px-3">
 
-							<div className="flex justify-between items-center gap-x-2">
+							<div className="pointer-events-auto">
 
-								<p className="text-white">{spot.name}</p>
+								<div className="flex justify-between items-center gap-x-2">
 
-								<NavLink to={`/users/${spot.userId}`} className="rounded-full   hover:brightness-90 transition">
-									<UserIcon userId={spot.userId} className="w-8 rounded-full" />
-								</NavLink>
+									<p className="text-white">{spot.name}</p>
+
+									<NavLink to={`/users/${spot.userId}`} className="rounded-full   hover:brightness-90 transition">
+										<UserIcon userId={spot.userId} className="w-8 rounded-full" />
+									</NavLink>
+								</div>
+
+								{spot.detail &&
+									<p className="text-gray-400">{spot.detail}</p>
+								}
 							</div>
-
-							{spot.detail &&
-								<p className="text-gray-400">{spot.detail}</p>
-							}
 						</div>
 					</div>
 				}
