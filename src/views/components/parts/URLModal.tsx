@@ -1,6 +1,6 @@
-import { useEffect } from "react"
 import { useNavigate } from "react-router-dom"
 import { MdOutlineClose } from "react-icons/md"
+import Escaper from "./Escaper"
 
 interface Props {
 	children: JSX.Element | JSX.Element[]
@@ -13,34 +13,11 @@ function URLModal(props: Props) {
 
 
 
-	useEffect(() => {
-
-		// キーイベント設定
-		document.addEventListener("keydown", onKeyDown, false)
-
-		// 画面スクロール無効
-		document.body.style.overflowY = "hidden"
-
-		return () => {
-			document.removeEventListener("keydown", onKeyDown, false)
-			document.body.style.overflowY = ""
-		}
-
-		// eslint-disable-next-line
-	}, [])
-
-
-
-	// Escキーでモーダルを閉じる関数
-	function onKeyDown(event: KeyboardEvent) {
-		if (event.key === "Escape") navigate(-1)
-	}
-
-
-
 	return (
 
 		<div className="fixed   top-0 left-0 w-screen h-screen   flex justify-center items-center">
+
+			<Escaper />
 
 
 			{/* モーダルの影 */}
