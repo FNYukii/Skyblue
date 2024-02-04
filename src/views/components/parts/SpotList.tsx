@@ -24,7 +24,7 @@ function SpotList(props: Props) {
 
 					{Array(12).fill(0).map((_item, index) => (
 
-						<div>
+						<div key={index}>
 							{index % 2 === 0 &&
 								<div key={index} className="w-full aspect-square grid grid-cols-2 gap-2">
 									<div className="w-full h-full bg-gray-200"></div>
