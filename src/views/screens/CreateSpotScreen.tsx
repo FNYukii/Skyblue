@@ -87,7 +87,7 @@ function CreateSpotScreen() {
 				{!isLoading &&
 
 					<button
-						className="mt-4 mr-[-1rem] mb-[-0.25rem]  px-4 py-1 font-bold rounded-full   disabled:text-gray-400   enabled:hover:bg-gray-100 transition"
+						className="px-6 py-1   bg-black text-white font-bold rounded-full   disabled:bg-gray-400   enabled:hover:bg-gray-600 transition"
 						disabled={images.length === 0 || location === null || name === "" || name.length > 50 || detail.length > 300}
 						onClick={create}
 					>
