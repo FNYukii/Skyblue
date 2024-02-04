@@ -60,13 +60,51 @@ function SpotScreen() {
 
 
 	// 表示する画像を切り替える
-	function switchImage(newImageIndex: number) {
+	function prevImage() {
+
+		if (!isLoaded || spot === null) return
+		if (imageIndex === 0) return
+
+		const newImageIndex = imageIndex - 1
 
 		setImageIndex(newImageIndex)
-
-		// アドレスバーのURLを置き換え
 		navigate(`/spots/${spotId}/images/${newImageIndex + 1}`, { replace: true })
 	}
+
+	function nextImage() {
+
+		if (!isLoaded || spot === null) return
+		if (imageIndex === spot.imageUrls.length - 1) return
+
+		const newImageIndex = imageIndex + 1
+
+		setImageIndex(newImageIndex)
+		navigate(`/spots/${spotId}/images/${newImageIndex + 1}`, { replace: true })
+	}
+
+
+
+
+	// TODO: たまにしか動かないので直す
+	// 矢印キーが押されたら画像を切り替える
+	function onKeyDown(event: KeyboardEvent) {
+		if (event.keyCode === 37) {
+			prevImage()
+		}
+
+		if (event.keyCode === 39) {
+			nextImage()
+		}
+	}
+
+	useEffect(() => {
+		document.addEventListener("keydown", onKeyDown, false)
+
+		return () => {
+			document.removeEventListener("keydown", onKeyDown, false)
+		}
+		// eslint-disable-next-line
+	}, [])
 
 
 
@@ -82,7 +120,7 @@ function SpotScreen() {
 			<div className="absolute   h-[95vh] max-w-[95vw] max-h-[95vh]   pointer-events-none">
 
 				{!isLoaded &&
-					<LoadingIcon center large color="#fff" className="mt-[30vh]" />
+					<LoadingIcon center large color="#fff" className="mt-[40vh]" />
 				}
 
 				{isLoaded && spot === null &&
@@ -95,13 +133,13 @@ function SpotScreen() {
 
 						<div className="h-[90%]   flex items-center gap-x-2">
 
-							<button onClick={() => switchImage(imageIndex - 1)} disabled={imageIndex === 0} className="h-fit w-fit   p-3 rounded-full   text-white   disabled:opacity-0 enabled:pointer-events-auto   enabled:hover:bg-white/20 transition">
+							<button onClick={() => prevImage()} disabled={imageIndex === 0} className="h-fit w-fit   p-3 rounded-full   text-white   disabled:opacity-0 enabled:pointer-events-auto   enabled:hover:bg-white/20 transition">
 								<AiOutlineArrowLeft className="text-2xl" />
 							</button>
 
 							<img src={spot.imageUrls[imageIndex]} alt="Attached on Spot" className="h-full   pointer-events-auto" />
 
-							<button onClick={() => switchImage(imageIndex + 1)} disabled={imageIndex === spot.imageUrls.length - 1} className="h-fit w-fit   p-3 rounded-full   text-white   disabled:opacity-0 enabled:pointer-events-auto   enabled:hover:bg-white/20 transition">
+							<button onClick={() => nextImage()} disabled={imageIndex === spot.imageUrls.length - 1} className="h-fit w-fit   p-3 rounded-full   text-white   disabled:opacity-0 enabled:pointer-events-auto   enabled:hover:bg-white/20 transition">
 								<AiOutlineArrowRight className="text-2xl" />
 							</button>
 						</div>
