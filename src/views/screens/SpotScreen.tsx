@@ -3,10 +3,13 @@ import { NavLink, useNavigate, useParams } from "react-router-dom"
 import Spot from "../../entities/Spot"
 import SpotService from "../../utils/SpotService"
 import LoadingIcon from "../components/parts/LoadingIcon"
-import ImageGrid from "../components/sections/ImageGrid"
 import UserIcon from "../components/parts/UserIcon"
 import { MdOutlineClose } from "react-icons/md"
 import Escaper from "../components/parts/Escaper"
+import { AiOutlineArrowLeft } from "react-icons/ai"
+import { AiOutlineArrowRight } from "react-icons/ai"
+
+
 
 function SpotScreen() {
 
@@ -19,8 +22,12 @@ function SpotScreen() {
 
 
 
+	// Spot
 	const [spot, setSpot] = useState<Spot | null>(null)
 	const [isLoaded, setIsLoaded] = useState(false)
+
+	// 画像のインデックス
+	const [imageIndex, setImageIndex] = useState(0)
 
 
 
@@ -43,16 +50,14 @@ function SpotScreen() {
 		<div className="fixed   top-0 left-0 w-screen h-screen   flex justify-center items-center">
 
 			<Escaper />
-			<div onClick={() => navigate(-1)} className="w-screen h-screen bg-black/70"></div>
+			<div onClick={() => navigate(-1)} className="w-screen h-screen bg-black/90"></div>
 
 
 
-			<div className="absolute   h-[90vh] max-w-[95vw] max-h-[95vh]">
+			<div className="absolute   h-[95vh] max-w-[95vw] max-h-[95vh]   pointer-events-none">
 
 				{!isLoaded &&
-					<div className="h-[40%] flex flex-col justify-end">
-						<LoadingIcon center large color="#fff" />
-					</div>
+					<LoadingIcon center large color="#fff" className="mt-[30vh]" />
 				}
 
 				{isLoaded && spot === null &&
@@ -63,9 +68,20 @@ function SpotScreen() {
 
 					<div className="h-full">
 
-						<ImageGrid imagesUrls={spot.imageUrls} className="h-auto sm:h-[90%] max-h-full max-w-full   aspect-square" />
+						<div className="h-[90%]   flex items-center gap-x-2">
 
-						<div className="mt-2">
+							<button onClick={() => setImageIndex(num => num - 1)} disabled={imageIndex === 0} className="h-fit w-fit   p-3 rounded-full   text-white   disabled:opacity-0 enabled:pointer-events-auto   enabled:hover:bg-white/20 transition">
+								<AiOutlineArrowLeft className="text-2xl" />
+							</button>
+
+							<img src={spot.imageUrls[imageIndex]} alt="Attached on Spot" className="h-full   pointer-events-auto" />
+
+							<button onClick={() => setImageIndex(num => num + 1)} disabled={imageIndex === spot.imageUrls.length - 1} className="h-fit w-fit   p-3 rounded-full   text-white   disabled:opacity-0 enabled:pointer-events-auto   enabled:hover:bg-white/20 transition">
+								<AiOutlineArrowRight className="text-2xl" />
+							</button>
+						</div>
+
+						<div className="mt-2 mx-auto  w-[600px]   pointer-events-auto">
 
 							<div className="flex justify-between items-center">
 
@@ -79,7 +95,6 @@ function SpotScreen() {
 							{spot.detail &&
 								<p className="text-gray-400">{spot.detail}</p>
 							}
-
 						</div>
 					</div>
 				}
@@ -87,7 +102,7 @@ function SpotScreen() {
 
 
 
-			<button onClick={() => navigate(-1)} className="absolute top-0 left-0   m-2   p-4 rounded-full    hover:bg-white/10 transition">
+			<button onClick={() => navigate(-1)} className="absolute top-0 left-0   m-2   p-4 rounded-full    hover:bg-white/20 transition">
 				<MdOutlineClose className="text-2xl text-white" />
 			</button>
 		</div>
