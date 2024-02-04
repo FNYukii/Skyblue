@@ -1,4 +1,4 @@
-import { DocumentSnapshot, QueryDocumentSnapshot, doc, getDoc, serverTimestamp, setDoc } from "firebase/firestore"
+import { DocumentSnapshot, QueryDocumentSnapshot, doc, getDoc, getDocFromCache, serverTimestamp, setDoc } from "firebase/firestore"
 import { db } from "./firebase"
 import User from "../entities/User"
 
@@ -29,7 +29,7 @@ class UserService {
 
 
 
-	static async readUser(userId: string): Promise<User | null> {
+	static async readUser(userId: string, fromCache?: boolean): Promise<User | null> {
 
 		// 参照を取得
 		const docRef = doc(db, "users", userId)
@@ -37,7 +37,7 @@ class UserService {
 		try {
 
 			// データ読み取り
-			const doc = await getDoc(docRef)
+			const doc = !fromCache ? await getDoc(docRef) : await getDocFromCache(docRef)
 
 			// ドキュメントが無ければ失敗と扱う
 			if (!doc.exists()) {

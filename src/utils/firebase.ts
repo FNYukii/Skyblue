@@ -1,5 +1,5 @@
 import { initializeApp } from "firebase/app"
-import { getFirestore } from "firebase/firestore"
+import { initializeFirestore, persistentLocalCache, persistentMultipleTabManager } from "firebase/firestore"
 import { getAuth } from "firebase/auth"
 import { getStorage } from "firebase/storage"
 
@@ -16,11 +16,14 @@ const firebaseConfig = {
 }
 
 // 構成情報を元に、Firebaseを初期化
-initializeApp(firebaseConfig)
+const app = initializeApp(firebaseConfig)
 
-// AuthenticationとCloud Firestoreへの参照を取得
+// 各プロダクトへの参照を取得
 const auth = getAuth()
-const db = getFirestore()
 const storage = getStorage()
+
+const db = initializeFirestore(app, {
+	localCache: persistentLocalCache({ tabManager: persistentMultipleTabManager() })
+})
 
 export { auth, db, storage }

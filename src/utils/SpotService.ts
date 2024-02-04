@@ -1,4 +1,4 @@
-import { DocumentSnapshot, QueryDocumentSnapshot, Unsubscribe, addDoc, collection, doc, getDoc, getDocs, limit, onSnapshot, orderBy, query, serverTimestamp, where } from "firebase/firestore"
+import { DocumentSnapshot, QueryDocumentSnapshot, Unsubscribe, addDoc, collection, doc, getDoc, getDocFromCache, getDocs, limit, onSnapshot, orderBy, query, serverTimestamp, where } from "firebase/firestore"
 import Spot from "../entities/Spot"
 import { db } from "./firebase"
 import AuthService from "./AuthService"
@@ -14,7 +14,7 @@ class SpotService {
 		// ドキュメントの各フィールドの値を取り出す
 		const id: string = doc.id
 		const userId: string = doc.get("userId")
-		const createdAt: Date = doc.get("createdAt").toDate() 
+		const createdAt: Date = doc.get("createdAt").toDate()
 
 		const imageUrls: string[] = doc.get("imageUrls")
 		const location: number[] = doc.get("location")
@@ -40,7 +40,7 @@ class SpotService {
 
 
 
-	static async readSpot(spotId: string): Promise<Spot | null> {
+	static async readSpot(spotId: string, fromCache?: boolean): Promise<Spot | null> {
 
 		// 参照を取得
 		const docRef = doc(db, "spots", spotId)
@@ -48,7 +48,7 @@ class SpotService {
 		try {
 
 			// データ読み取り
-			const doc = await getDoc(docRef)
+			const doc = !fromCache ? await getDoc(docRef) : await getDocFromCache(docRef)
 
 			// ドキュメントが無ければ失敗と扱う
 			if (!doc.exists()) {

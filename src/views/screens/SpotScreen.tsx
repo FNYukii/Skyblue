@@ -49,7 +49,7 @@ function SpotScreen() {
 
 		(async () => {
 
-			const spot = await SpotService.readSpot(spotId ?? "")
+			const spot = await SpotService.readSpot(spotId ?? "", true)
 			setSpot(spot)
 			setIsLoaded(true)
 		})()

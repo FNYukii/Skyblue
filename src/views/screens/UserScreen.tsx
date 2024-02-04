@@ -28,7 +28,7 @@ function UserScreen() {
 
 		(async () => {
 
-			const user = await UserService.readUser(userId ?? "")
+			const user = await UserService.readUser(userId ?? "", true)
 			setUser(user)
 			setIsLoaded(true)
 		})()
