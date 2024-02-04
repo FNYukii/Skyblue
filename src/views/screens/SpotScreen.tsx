@@ -16,18 +16,22 @@ function SpotScreen() {
 	document.title = "スポット - Skyline"
 
 	const { spotId } = useParams()
+	const { imageNumber } = useParams()
+
+
 
 	// 画面遷移用Hooks
 	const navigate = useNavigate()
 
 
 
+	// 画像のインデックス
+	const [imageIndex, setImageIndex] = useState(Number(imageNumber!) - 1)
+
 	// Spot
 	const [spot, setSpot] = useState<Spot | null>(null)
 	const [isLoaded, setIsLoaded] = useState(false)
 
-	// 画像のインデックス
-	const [imageIndex, setImageIndex] = useState(0)
 
 
 

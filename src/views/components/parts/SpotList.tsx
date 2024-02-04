@@ -1,6 +1,5 @@
 import Spot from "../../../entities/Spot"
-import ImageGrid from "../sections/ImageGrid"
-import NavLinkToModal from "./NavLinkToModal"
+import ImageLinkGrid from "../sections/ImageLinkGrid"
 
 
 
@@ -60,11 +59,7 @@ function SpotList(props: Props) {
 				<div className="grid grid-cols-3 gap-2">
 
 					{props.spots.map((spot, index) => (
-
-						<NavLinkToModal key={index} to={`/spots/${spot.id}`} className="hover:brightness-90 transition">
-
-							<ImageGrid imagesUrls={spot.imageUrls} />
-						</NavLinkToModal>
+						<ImageLinkGrid key={index} imagesUrls={spot.imageUrls} spotId={spot.id} />
 					))}
 				</div>
 			}

@@ -66,7 +66,7 @@ function App() {
 
 					<main className="mx-auto   w-full lg:w-[1024px]   px-4 lg:px-0">
 
-						<Routes location={currentPath === "/new" || currentPath.match(/^\/spots\/\w{20}$/) ? prevPath : currentPath}>
+						<Routes location={currentPath === "/new" || currentPath.match(/^\/spots\/\w{20}\/images\/\d{1}$/) ? prevPath : currentPath}>
 
 							<Route path="*" element={<NotFoundScreen />} />
 							<Route path="/" element={<TopScreen />} />
@@ -86,7 +86,7 @@ function App() {
 					<Routes>
 
 						<Route path="*" element={<></>} />
-						<Route path="/spots/:spotId" element={<SpotScreen />} />
+						<Route path="/spots/:spotId/images/:imageNumber" element={<SpotScreen />} />
 
 						{isSignedIn &&
 							<Route path="/new" element={<CreateSpotScreen />} />
