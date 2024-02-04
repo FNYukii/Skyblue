@@ -59,22 +59,9 @@ function UserScreen() {
 
 			{isLoaded && user !== null &&
 
-				<div className="relative">
+				<div className="">
 
-					<Menu
-						menuButton={
-							<MenuButton className="absolute top-0 right-0   mt-[-0.5rem] mr-[-0.5rem]   p-2 rounded-full   hover:bg-gray-100 transition">
-								<IoEllipsisHorizontal className="text-2xl text-gray-500" />
-							</MenuButton>
-						}
-						transition
-						arrow
-						position="anchor"
-					>
-						<MenuItem>
-							<button onClick={() => AuthService.signOut()} className="text-red-500">サインアウト</button>
-						</MenuItem>
-					</Menu>
+
 
 					<div className="w-full   flex flex-col items-center">
 						<img src={user.iconUrl} alt="User icon" className=" w-28 aspect-square rounded-full bg-gray-200" />
@@ -83,10 +70,28 @@ function UserScreen() {
 
 
 
-					<div className="w-full   flex   border-b border-gray-200">
+					<div className="w-full   flex justify-between items-center   border-b border-gray-200">
 
-						<button onClick={() => setTab(0)} className={`block   px-16 py-2   hover:bg-gray-100 transition    ${tab === 0 && "border-b-2 border-black font-bold"}`}>投稿</button>
-						<button onClick={() => setTab(1)} className={`block   px-16 py-2   hover:bg-gray-100 transition    ${tab === 1 && "border-b-2 border-black font-bold"}`}>いいね</button>
+						<div className="flex">
+							<button onClick={() => setTab(0)} className={`block   px-16 py-2   hover:bg-gray-100 transition    ${tab === 0 && "border-b-2 border-black font-bold"}`}>投稿</button>
+							<button onClick={() => setTab(1)} className={`block   px-16 py-2   hover:bg-gray-100 transition    ${tab === 1 && "border-b-2 border-black font-bold"}`}>いいね</button>
+						</div>
+
+
+						<Menu
+							menuButton={
+								<MenuButton className="mr-[-0.5rem]   p-2 rounded-full   hover:bg-gray-100 transition">
+									<IoEllipsisHorizontal className="text-2xl text-gray-500" />
+								</MenuButton>
+							}
+							transition
+							arrow
+							position="anchor"
+						>
+							<MenuItem>
+								<button onClick={() => AuthService.signOut()} className="text-red-500">サインアウト</button>
+							</MenuItem>
+						</Menu>
 					</div>
 
 					<div>
