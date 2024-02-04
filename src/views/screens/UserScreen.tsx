@@ -49,7 +49,7 @@ function UserScreen() {
 
 			{!isLoaded &&
 				<div className="h-[40%] flex flex-col justify-end">
-					<LoadingIcon center className="mt-16" />
+					<LoadingIcon center large className="mt-16" />
 				</div>
 			}
 

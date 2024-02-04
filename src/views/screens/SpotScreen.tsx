@@ -42,7 +42,7 @@ function SpotScreen() {
 
 				{!isLoaded &&
 					<div className="h-[40%] flex flex-col justify-end">
-						<LoadingIcon center color="#fff" />
+						<LoadingIcon center large color="#fff" />
 					</div>
 				}
 
