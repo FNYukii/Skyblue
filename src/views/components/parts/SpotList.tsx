@@ -20,7 +20,7 @@ function SpotList(props: Props) {
 
 			{!props.isLoaded &&
 
-				<div className="grid grid-cols-3 gap-2">
+				<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3   gap-2">
 
 					{Array(12).fill(0).map((_item, index) => (
 
@@ -56,7 +56,7 @@ function SpotList(props: Props) {
 
 			{props.isLoaded && props.spots !== null && props.spots.length !== 0 &&
 
-				<div className="grid grid-cols-3 gap-2">
+				<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3   gap-2">
 
 					{props.spots.map((spot, index) => (
 						<ImageLinkGrid key={index} imagesUrls={spot.imageUrls} spotId={spot.id} />

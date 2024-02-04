@@ -5,10 +5,12 @@ import { useState, useEffect } from "react"
 import { auth } from "../../../utils/firebase"
 import SignInWithGoogleButton from "../parts/SignInWithGoogleButton"
 import NavLinkToModal from "../parts/NavLinkToModal"
+import { AiOutlineUser } from "react-icons/ai"
+import { AiOutlinePlus } from "react-icons/ai"
+
+
 
 function Header() {
-
-
 
 	// サインインしているかどうか
 	const [isSignedIn, setIsSignedIn] = useState(false)
@@ -50,10 +52,23 @@ function Header() {
 			}
 
 			{isLoaded && isSignedIn &&
-				<div className="flex gap-4 items-center">
+				<div>
 
-					<NavLink to={`/users/${AuthService.uidQuickly()}`} className="px-6 py-2   rounded-full   hover:bg-gray-100 transition">プロフィール</NavLink>
-					<NavLinkToModal to="new" className="px-6 py-2   bg-black text-white font-bold rounded-full   hover:bg-gray-600 transition">新しいスポット</NavLinkToModal>
+					<div className="sm:hidden   flex gap-4 items-center">
+
+						<NavLink to={`/users/${AuthService.uidQuickly()}`} className="p-2 rounded-full   hover:bg-gray-100 transition">
+							<AiOutlineUser className="text-2xl" />
+						</NavLink>
+
+						<NavLinkToModal to="new" className="p-2 bg-black text-white rounded-full   flex items-center gap-1   hover:bg-gray-600 transition">
+							<AiOutlinePlus className="text-2xl" />
+						</NavLinkToModal>
+					</div>
+
+					<div className="hidden sm:block   flex gap-4 items-center">
+						<NavLink to={`/users/${AuthService.uidQuickly()}`} className="px-6 py-2   rounded-full   hover:bg-gray-100 transition">プロフィール</NavLink>
+						<NavLinkToModal to="new" className="px-6 py-2   bg-black text-white font-bold rounded-full   hover:bg-gray-600 transition">新しいスポット</NavLinkToModal>
+					</div>
 				</div>
 			}
 		</header>
