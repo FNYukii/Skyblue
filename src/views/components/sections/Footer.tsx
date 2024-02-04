@@ -17,7 +17,7 @@ function Footer(props: Props) {
 					<div className="flex justify-between">
 
 						<div>
-							<NavLink to="/" className="text-4xl font-light">Skyblue</NavLink>
+							<NavLink to="/" className="text-3xl font-light">Skyblue</NavLink>
 							<p className="mt-1 text-gray-400">ビルの写真が集まるサイト</p>
 						</div>
 
