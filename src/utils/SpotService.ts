@@ -69,11 +69,12 @@ class SpotService {
 
 
 
-	static async readSpots(): Promise<Spot[] | null> {
+	static async readRecentlySpots(): Promise<Spot[] | null> {
 
 		// クエリを用意
 		const q = query(
 			collection(db, "spots"),
+			orderBy("createdAt", "desc"),
 			limit(100)
 		)
 

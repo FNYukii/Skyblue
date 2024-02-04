@@ -18,7 +18,7 @@ function SpotList() {
 
 		(async () => {
 
-			const spots = await SpotService.readSpots()
+			const spots = await SpotService.readRecentlySpots()
 
 			setSpots(spots)
 			setIsLoaded(true)
