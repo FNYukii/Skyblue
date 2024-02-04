@@ -88,7 +88,7 @@ function CreateSpotScreen() {
 
 					<button
 						className="px-6 py-1   bg-black text-white font-bold rounded-full   disabled:bg-gray-400   enabled:hover:bg-gray-600 transition"
-						disabled={images.length === 0 || location === null || name === "" || name.length > 50 || detail.length > 300}
+						disabled={images.length === 0 || location === null || name === "" || name.length > 50 || detail.length > 100}
 						onClick={create}
 					>
 						投稿

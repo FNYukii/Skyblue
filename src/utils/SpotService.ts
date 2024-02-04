@@ -157,7 +157,7 @@ class SpotService {
 
 		if (name === "" || !name.match(/\S/g)) return null
 		if (name.length > 50) return null
-		if (detail.length > 300) return null
+		if (detail.length > 100) return null
 
 		// UIDを取得
 		const uid = await AuthService.uid()

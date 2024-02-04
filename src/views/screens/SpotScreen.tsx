@@ -129,22 +129,25 @@ function SpotScreen() {
 
 				{isLoaded && spot !== null &&
 
-					<div className="h-full">
+					<div className="h-full   flex flex-col gap-y-2">
 
-						<div className="h-[90%]   flex items-center gap-x-2">
+						<div className="min-h-0 w-fit mx-auto">
 
-							<button onClick={() => prevImage()} disabled={imageIndex === 0} className="h-fit w-fit   p-3 rounded-full   text-white   disabled:opacity-0 enabled:pointer-events-auto   enabled:hover:bg-white/20 transition">
-								<AiOutlineArrowLeft className="text-2xl" />
-							</button>
+							<div className="h-full   flex items-center gap-x-2">
 
-							<img src={spot.imageUrls[imageIndex]} alt="Attached on Spot" className="h-full   pointer-events-auto" />
+								<button onClick={() => prevImage()} disabled={imageIndex === 0} className="h-fit w-fit   p-3 rounded-full   text-white   disabled:opacity-0 enabled:pointer-events-auto   enabled:hover:bg-white/20 transition">
+									<AiOutlineArrowLeft className="text-2xl" />
+								</button>
 
-							<button onClick={() => nextImage()} disabled={imageIndex === spot.imageUrls.length - 1} className="h-fit w-fit   p-3 rounded-full   text-white   disabled:opacity-0 enabled:pointer-events-auto   enabled:hover:bg-white/20 transition">
-								<AiOutlineArrowRight className="text-2xl" />
-							</button>
+								<img src={spot.imageUrls[imageIndex]} alt="Attached on Spot" className="h-full   pointer-events-auto" />
+
+								<button onClick={() => nextImage()} disabled={imageIndex === spot.imageUrls.length - 1} className="h-fit w-fit   p-3 rounded-full   text-white   disabled:opacity-0 enabled:pointer-events-auto   enabled:hover:bg-white/20 transition">
+									<AiOutlineArrowRight className="text-2xl" />
+								</button>
+							</div>
 						</div>
 
-						<div className="mt-2 mx-auto  w-[600px]   pointer-events-auto">
+						<div className="mx-auto  min-w-[600px]   pointer-events-auto">
 
 							<div className="flex justify-between items-center">
 
