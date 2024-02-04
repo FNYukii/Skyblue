@@ -152,8 +152,11 @@ class SpotService {
 
 		// 値チェック
 		if (imageUrls.length === 0 || imageUrls.length > 4) return null
-		if (name === "" || !name.match(/\S/g)) return null
 		if (location.length !== 2) return null
+
+		if (name === "" || !name.match(/\S/g)) return null
+		if (name.length > 50) return null
+		if (detail.length > 300) return null
 
 		// UIDを取得
 		const uid = await AuthService.uid()
