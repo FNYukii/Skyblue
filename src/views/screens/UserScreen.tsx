@@ -65,7 +65,7 @@ function UserScreen() {
 
 					<div className="w-full   flex flex-col items-center">
 						<img src={user.iconUrl} alt="User icon" className=" w-28 aspect-square rounded-full bg-gray-200" />
-						<p className="mt-2   text-2xl font-bold">{user.displayName}</p>
+						<p className="mt-2   text-2xl font-bold   max-w-full   overflow-hidden whitespace-nowrap text-ellipsis">{user.displayName}</p>
 					</div>
 
 
@@ -73,8 +73,8 @@ function UserScreen() {
 					<div className="w-full   flex justify-between items-center   border-b border-gray-200">
 
 						<div className="flex">
-							<button onClick={() => setTab(0)} className={`block   px-16 py-2   hover:bg-gray-100 transition    ${tab === 0 && "border-b-2 border-black font-bold"}`}>投稿</button>
-							<button onClick={() => setTab(1)} className={`block   px-16 py-2   hover:bg-gray-100 transition    ${tab === 1 && "border-b-2 border-black font-bold"}`}>いいね</button>
+							<button onClick={() => setTab(0)} className={`block   px-8 sm:px-16 py-2   hover:bg-gray-100 transition    ${tab === 0 && "border-b-2 border-black font-bold"}`}>投稿</button>
+							<button onClick={() => setTab(1)} className={`block   px-8 sm:px-16 py-2   hover:bg-gray-100 transition    ${tab === 1 && "border-b-2 border-black font-bold"}`}>いいね</button>
 						</div>
 
 
