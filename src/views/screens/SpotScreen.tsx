@@ -1,17 +1,21 @@
 import { useEffect, useState } from "react"
-import { NavLink, useParams } from "react-router-dom"
+import { NavLink, useNavigate, useParams } from "react-router-dom"
 import Spot from "../../entities/Spot"
 import SpotService from "../../utils/SpotService"
 import LoadingIcon from "../components/parts/LoadingIcon"
 import ImageGrid from "../components/sections/ImageGrid"
-import URLSpotModal from "../components/parts/URLSpotModal"
 import UserIcon from "../components/parts/UserIcon"
+import { MdOutlineClose } from "react-icons/md"
+import Escaper from "../components/parts/Escaper"
 
 function SpotScreen() {
 
 	document.title = "スポット - Skyline"
 
 	const { spotId } = useParams()
+
+	// 画面遷移用Hooks
+	const navigate = useNavigate()
 
 
 
@@ -36,9 +40,14 @@ function SpotScreen() {
 
 	return (
 
-		<URLSpotModal>
+		<div className="fixed   top-0 left-0 w-screen h-screen   flex justify-center items-center">
 
-			<div className="h-full">
+			<Escaper />
+			<div onClick={() => navigate(-1)} className="w-screen h-screen bg-black/70"></div>
+
+
+
+			<div className="absolute   h-[90vh] max-w-[95vw] max-h-[95vh]">
 
 				{!isLoaded &&
 					<div className="h-[40%] flex flex-col justify-end">
@@ -75,7 +84,13 @@ function SpotScreen() {
 					</div>
 				}
 			</div>
-		</URLSpotModal>
+
+
+
+			<button onClick={() => navigate(-1)} className="absolute top-0 left-0   m-2   p-4 rounded-full    hover:bg-white/10 transition">
+				<MdOutlineClose className="text-2xl text-white" />
+			</button>
+		</div>
 	)
 }
 
