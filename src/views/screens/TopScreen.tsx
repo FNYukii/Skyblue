@@ -1,4 +1,4 @@
-import SpotList from "../components/sections/SpotList"
+import RecentlySpotList from "../components/sections/RecentlySpotList"
 
 function TopScreen() {
 
@@ -7,7 +7,7 @@ function TopScreen() {
 	return (
 
 		<div>
-			<SpotList />
+			<RecentlySpotList />
 		</div>
 	)
 }

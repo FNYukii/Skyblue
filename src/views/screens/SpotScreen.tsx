@@ -2,10 +2,10 @@ import { useEffect, useState } from "react"
 import { NavLink, useParams } from "react-router-dom"
 import Spot from "../../entities/Spot"
 import SpotService from "../../utils/SpotService"
-import LoadingIcon from "../components/others/LoadingIcon"
+import LoadingIcon from "../components/parts/LoadingIcon"
 import ImageGrid from "../components/sections/ImageGrid"
-import URLSpotModal from "../components/others/URLSpotModal"
-import UserIcon from "../components/others/UserIcon"
+import URLSpotModal from "../components/parts/URLSpotModal"
+import UserIcon from "../components/parts/UserIcon"
 
 function SpotScreen() {
 

@@ -3,8 +3,8 @@ import AuthService from "../../../utils/AuthService"
 import { onAuthStateChanged } from "firebase/auth"
 import { useState, useEffect } from "react"
 import { auth } from "../../../utils/firebase"
-import SignInWithGoogleButton from "../others/SignInWithGoogleButton"
-import NavLinkToModal from "../others/NavLinkToModal"
+import SignInWithGoogleButton from "../parts/SignInWithGoogleButton"
+import NavLinkToModal from "../parts/NavLinkToModal"
 
 function Header() {
 

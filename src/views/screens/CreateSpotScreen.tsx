@@ -1,12 +1,12 @@
 import { useState } from "react"
-import URLModal from "../components/others/URLModal"
-import DynamicTextarea from "../components/others/DynamicTextarea"
-import PickImagesButton from "../components/others/PickImageButton"
+import URLModal from "../components/parts/URLModal"
+import DynamicTextarea from "../components/parts/DynamicTextarea"
+import PickImagesButton from "../components/parts/PickImageButton"
 import SpotService from "../../utils/SpotService"
 import { useNavigate } from "react-router-dom"
 import StorageService from "../../utils/StorageService"
-import LoadingIcon from "../components/others/LoadingIcon"
-import PickLocationButton from "../components/others/PickLocationButton"
+import LoadingIcon from "../components/parts/LoadingIcon"
+import PickLocationButton from "../components/parts/PickLocationButton"
 
 
 

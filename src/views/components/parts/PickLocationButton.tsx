@@ -1,5 +1,5 @@
 import { TbMapPinPlus } from "react-icons/tb"
-import Map from "../others/Map"
+import Map from "./Map"
 import { useState } from "react"
 import PickableMap from "./PickableMap"
 
