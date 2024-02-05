@@ -7,6 +7,7 @@ import LoadingIcon from "./LoadingIcon"
 import { AiOutlineExclamationCircle } from "react-icons/ai"
 import { onAuthStateChanged } from "firebase/auth"
 import { auth } from "../../../utils/firebase"
+import UserService from "../../../utils/UserService"
 
 
 
@@ -22,8 +23,8 @@ interface Props {
 function LikeButton(props: Props) {
 
 	// 該当のSpot
-	const [spot, setSpot] = useState<Spot | null>(null)
-	const [isLoadedSpot, setIsLoadedSpot] = useState(false)
+	const [userIds, setUserIds] = useState<string[] | null>(null)
+	const [isLoadedUserIds, setIsLoadedUserIds] = useState(false)
 
 	// Spotを監視して最新のSpotを取得
 	useEffect(() => {
@@ -32,13 +33,13 @@ function LikeButton(props: Props) {
 
 		(async () => {
 
-			unsubscribe = await SpotService.onSpotChanged(props.spotId, spot => {
+			unsubscribe = await UserService.onUserIdsLikeSpotChanged(props.spotId, userIds => {
 
-				setSpot(spot)
-				setIsLoadedSpot(true)
+				setUserIds(userIds)
+				setIsLoadedUserIds(true)
 
 			}, (error) => {
-				setIsLoadedSpot(true)
+				setIsLoadedUserIds(true)
 			})
 		})()
 
@@ -71,15 +72,15 @@ function LikeButton(props: Props) {
 
 		<div className={props.className}>
 
-			{!isLoadedSpot &&
+			{!isLoadedUserIds &&
 				<LoadingIcon />
 			}
 
-			{isLoadedSpot && spot === null &&
+			{isLoadedUserIds && userIds === null &&
 				<AiOutlineExclamationCircle className="text-gray-400 text-xl" />
 			}
 
-			{isLoadedSpot && spot !== null &&
+			{isLoadedUserIds && userIds !== null &&
 
 				<div>
 
@@ -92,27 +93,27 @@ function LikeButton(props: Props) {
 						<div className="m-[-0.5rem]   p-2 rounded-full   flex items-center gap-1">
 							<AiOutlineHeart className="text-white text-xl" />
 							{props.showLikeCount &&
-								<p className="text-white">{spot.likedUserIds.length}</p>
+								<p className="text-white">{userIds.length}</p>
 							}
 						</div>
 					}
 
-					{isLoadedUid && uid !== null && !spot.likedUserIds.includes(uid) &&
+					{isLoadedUid && uid !== null && !userIds.includes(uid) &&
 
-						<button onClick={() => SpotService.likeSpot(spot.id)} className="m-[-0.5rem]   p-2 rounded-full   flex items-center gap-1   hover:bg-white/20 transition">
+						<button className="m-[-0.5rem]   p-2 rounded-full   flex items-center gap-1   hover:bg-white/20 transition">
 							<AiOutlineHeart className="text-white text-xl" />
 							{props.showLikeCount &&
-								<p className="text-white">{spot.likedUserIds.length}</p>
+								<p className="text-white">{userIds.length}</p>
 							}
 						</button>
 					}
 
-					{isLoadedUid && uid !== null && spot.likedUserIds.includes(uid) &&
+					{isLoadedUid && uid !== null && userIds.includes(uid) &&
 
-						<button onClick={() => SpotService.unlikeSpot(spot.id)} className="m-[-0.5rem]   p-2 rounded-full   flex items-center gap-1   hover:bg-white/20 transition">
+						<button className="m-[-0.5rem]   p-2 rounded-full   flex items-center gap-1   hover:bg-white/20 transition">
 							<AiFillHeart className="text-white text-xl" />
 							{props.showLikeCount &&
-								<p className="text-white">{spot.likedUserIds.length}</p>
+								<p className="text-white">{userIds.length}</p>
 							}
 						</button>
 					}

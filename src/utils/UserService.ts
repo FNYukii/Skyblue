@@ -1,6 +1,8 @@
-import { DocumentSnapshot, QueryDocumentSnapshot, doc, getDoc, getDocFromCache, serverTimestamp, setDoc } from "firebase/firestore"
+import { DocumentSnapshot, QueryDocumentSnapshot, Unsubscribe, collection, doc, getDoc, getDocFromCache, limit, onSnapshot, query, serverTimestamp, setDoc, where } from "firebase/firestore"
 import { db } from "./firebase"
 import User from "../entities/User"
+
+
 
 class UserService {
 
@@ -12,9 +14,11 @@ class UserService {
 
 		// ドキュメントの各フィールドの値を取り出す
 		const id: string = doc.id
-		const createdAt: Date = doc.get("createdAt").toDate()
+		const createdAt: Date = doc.get("createdAt")?.toDate() ?? undefined
 		const displayName: string = doc.get("displayName")
 		const iconUrl: string = doc.get("iconUrl")
+
+		const likes: string[] = doc.get("likes")
 
 		// 値を使ってUserオブジェクトを作成
 		const user: User = {
@@ -22,6 +26,7 @@ class UserService {
 			createdAt: createdAt,
 			displayName: displayName,
 			iconUrl: iconUrl,
+			likes: likes
 		}
 
 		return user
@@ -58,6 +63,46 @@ class UserService {
 
 
 
+	// 特定のスポットをいいねしたユーザーのIDの配列
+	static async onUserIdsLikeSpotChanged(
+		spotId: string,
+		callback: (userIds: string[]) => unknown,
+		cancelCallback: (error: Error) => unknown,
+	): Promise<Unsubscribe> {
+
+		// 読み取りクエリを作成
+		const q = query(
+			collection(db, "users"),
+			where("likes", "array-contains", spotId),
+			limit(100)
+		)
+
+		// リアルタイムリスナーを設定
+		return onSnapshot(q, async (querySnapshot) => {
+
+			// 成功
+			console.log(`SUCCESS! Read ${querySnapshot.size} users.`)
+
+			// userIdの配列を作成
+			let userIds: string[] = []
+			querySnapshot.forEach((doc) => {
+
+				const userId = doc.id
+				userIds.push(userId)
+			})
+
+			// Stateを更新
+			callback(userIds)
+
+		}, (error) => {
+
+			console.log(`FAIL! Error listening users. ${error}`)
+			cancelCallback(error)
+		})
+	}
+
+
+
 	static async createUser(userId: string): Promise<string | null> {
 
 		try {
@@ -65,8 +110,9 @@ class UserService {
 			// 新しいUserを作成
 			await setDoc(doc(db, "users", userId), {
 				createdAt: serverTimestamp(),
-				displayName: "名無しさん",
-				iconUrl: "https://firebasestorage.googleapis.com/v0/b/skyblue-32fbd.appspot.com/o/icons%2Fdefault_icon.png?alt=media&token=7972a568-e171-4865-bbc4-1b014a43de85"
+				displayName: "Guest",
+				iconUrl: "https://firebasestorage.googleapis.com/v0/b/skyblue-32fbd.appspot.com/o/icons%2Fdefault_icon.png?alt=media&token=7972a568-e171-4865-bbc4-1b014a43de85",
+				likes: []
 			})
 			console.log(`SUCCESS! Created 1 User.`)
 
