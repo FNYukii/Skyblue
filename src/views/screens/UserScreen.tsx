@@ -14,7 +14,7 @@ import '@szhsin/react-menu/dist/transitions/slide.css'
 
 function UserScreen() {
 
-	document.title = "ユーザー - Skyline"
+	// document.title = "ユーザー - Skyline"
 
 	const { userId } = useParams()
 
@@ -29,6 +29,9 @@ function UserScreen() {
 		(async () => {
 
 			const user = await UserService.readUser(userId ?? "", true)
+
+			document.title = `${user?.displayName ?? "ユーザー"} - Skyblue`
+
 			setUser(user)
 			setIsLoaded(true)
 		})()

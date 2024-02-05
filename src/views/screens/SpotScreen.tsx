@@ -13,10 +13,6 @@ import { AiOutlineArrowRight } from "react-icons/ai"
 
 function SpotScreen() {
 
-	document.title = "スポット - Skyline"
-
-
-
 	// 画面スクロール無効
 	useEffect(() => {
 		document.body.style.overflowY = "hidden"
@@ -50,6 +46,8 @@ function SpotScreen() {
 		(async () => {
 
 			const spot = await SpotService.readSpot(spotId ?? "", true)
+
+			document.title = `${spot?.name ?? "スポット"} - Skyblue`
 			setSpot(spot)
 			setIsLoaded(true)
 		})()
@@ -124,7 +122,7 @@ function SpotScreen() {
 				}
 
 				{isLoaded && spot === null &&
-					<p className="mt-16   text-center text-gray-500">読み取りに失敗しました</p>
+					<p className="mt-[40vh]   text-center text-gray-400">読み取りに失敗しました</p>
 				}
 
 				{isLoaded && spot !== null &&

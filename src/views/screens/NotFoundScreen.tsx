@@ -2,6 +2,8 @@ import { NavLink } from "react-router-dom"
 
 function NotFoundScreen() {
 
+	document.title = "404 - Skyblue"
+
 	return (
 
 		<div className="text-center">
