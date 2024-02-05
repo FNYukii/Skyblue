@@ -1,4 +1,4 @@
-import { DocumentSnapshot, QueryDocumentSnapshot, Unsubscribe, addDoc, collection, doc, getDoc, getDocFromCache, getDocs, limit, onSnapshot, orderBy, query, serverTimestamp, where } from "firebase/firestore"
+import { DocumentSnapshot, QueryDocumentSnapshot, Unsubscribe, addDoc, arrayRemove, arrayUnion, collection, doc, getDoc, getDocFromCache, getDocs, limit, onSnapshot, orderBy, query, serverTimestamp, updateDoc, where } from "firebase/firestore"
 import Spot from "../entities/Spot"
 import { db } from "./firebase"
 import AuthService from "./AuthService"
@@ -14,13 +14,14 @@ class SpotService {
 		// ドキュメントの各フィールドの値を取り出す
 		const id: string = doc.id
 		const userId: string = doc.get("userId")
-		const createdAt: Date = doc.get("createdAt").toDate() ?? new Date() // Spot作成直後にオフラインデータベースがSpotを読み取る際、serverTimestampがまだ設定されていないことがあるので"?? new Date()"が必要
+		const createdAt: Date = doc.get("createdAt")?.toDate() ?? undefined // Spot作成直後にオフラインデータベースがSpotを読み取る際、serverTimestampがまだ設定されていないことがあるので"??"が必要
 
 		const imageUrls: string[] = doc.get("imageUrls")
 		const location: number[] = doc.get("location")
-
 		const name: string = doc.get("name")
 		const detail: string = doc.get("detail")
+
+		const likedUserIds: string[] = doc.get("likedUserIds")
 
 		// 値を使ってSpotオブジェクトを作成
 		const spot: Spot = {
@@ -30,9 +31,10 @@ class SpotService {
 
 			imageUrls: imageUrls,
 			location: location,
-
 			name: name,
-			detail: detail
+			detail: detail,
+
+			likedUserIds: likedUserIds
 		}
 
 		return spot
@@ -104,9 +106,40 @@ class SpotService {
 
 
 
+	static async onSpotChanged(
+		spotId: string,
+		callback: (spot: Spot) => unknown,
+		cancelCallback: (error: Error) => unknown,
+	): Promise<Unsubscribe> {
+
+		return onSnapshot(doc(db, "spots", spotId), (doc) => {
+
+			// ドキュメントがなかった場合
+			if (!doc.exists) {
+
+				const error = new Error("Document does not exists.")
+
+				console.error(`FAIL! Error to listen Spot. ${error}`)
+				cancelCallback(error)
+				return
+			}
+
+			// ドキュメントがあった場合
+			const spot = this.toSpot(doc)
+			callback(spot)
+
+		}, (error) => {
+
+			console.error(`FAIL! Error to listen Spot. ${error}`)
+			cancelCallback(error)
+		})
+	}
+
+
+
 	static async onSpotsByUserChanged(
 		userId: string,
-		callback: (payments: Spot[]) => unknown,
+		callback: (spots: Spot[]) => unknown,
 		cancelCallback: (error: Error) => unknown,
 	): Promise<Unsubscribe> {
 
@@ -114,6 +147,46 @@ class SpotService {
 		const q = query(
 			collection(db, "spots"),
 			where("userId", "==", userId),
+			orderBy("createdAt", "desc"),
+			limit(100)
+		)
+
+		// リアルタイムリスナーを設定
+		return onSnapshot(q, async (querySnapshot) => {
+
+			// 成功
+			console.log(`SUCCESS! Read ${querySnapshot.size} spots.`)
+
+			// Spotの配列を作成
+			let spots: Spot[] = []
+			querySnapshot.forEach((doc) => {
+
+				const spot = this.toSpot(doc)
+				spots.push(spot)
+			})
+
+			// Stateを更新
+			callback(spots)
+
+		}, (error) => {
+
+			console.log(`FAIL! Error listening spots. ${error}`)
+			cancelCallback(error)
+		})
+	}
+
+
+
+	static async onSpotsLikedByUserChanged(
+		userId: string,
+		callback: (spots: Spot[]) => unknown,
+		cancelCallback: (error: Error) => unknown,
+	): Promise<Unsubscribe> {
+
+		// 読み取りクエリを作成
+		const q = query(
+			collection(db, "spots"),
+			where("likedUserIds", "array-contains", userId),
 			orderBy("createdAt", "desc"),
 			limit(100)
 		)
@@ -173,9 +246,10 @@ class SpotService {
 
 				imageUrls: imageUrls,
 				location: location,
-
 				name: name,
 				detail: detail,
+
+				likedUserIds: []
 			})
 
 			console.log(`SUCCESS! Created 1 Spot ${ref.id}.`)
@@ -192,28 +266,59 @@ class SpotService {
 
 
 
-	// static detailPlaceholder(): string {
+	static async likeSpot(spotId: string): Promise<string | null> {
 
-	// 	const placeholders = [
-	// 		"なんて美しい外観!",
-	// 		"それはとても巨大に見えます",
-	// 		"見ていると首が痛くなりそう",
-	// 		"重厚感のある柱!",
-	// 		"よく設計された壮麗な意匠",
-	// 		"頑丈そうですね",
-	// 		"建設中の頃から見てました",
-	// 		"いつの間にか竣工してました",
-	// 		"一番好きな建物です!",
-	// 		"歴史的な建造物と評価されています",
-	// 		"環境負荷の低い設計がなされています",
-	// 		"よく見に行きます",
-	// 		"(｀・ω・´)つ"
-	// 	]
+		// 自分のuserId
+		const userId = await AuthService.uid()
+		if (!userId) return null
 
-	// 	const num = Math.floor(Math.random() * placeholders.length)
+		// Spotへの参照
+		const ref = doc(db, "spots", spotId)
 
-	// 	return placeholders[num]
-	// }
+		// 配列型であるSpotのlikedUserIdsフィールドに、userIdを追加
+		try {
+
+			await updateDoc(ref, {
+				likedUserIds: arrayUnion(userId),
+			})
+
+			console.log(`SUCCESS! Like 1 Spot.`)
+			return spotId
+
+		} catch (error) {
+
+			console.log(`FAIL! Failed to like spot. ${error}`)
+			return null
+		}
+	}
+
+
+
+	static async unlikeSpot(spotId: string): Promise<string | null> {
+
+		// 自分のuserId
+		const userId = await AuthService.uid()
+		if (!userId) return null
+
+		// Spotへの参照
+		const ref = doc(db, "spots", spotId)
+
+		// 配列型であるSpotのlikedUserIdsフィールドから、userIdを削除
+		try {
+
+			await updateDoc(ref, {
+				likedUserIds: arrayRemove(userId),
+			})
+
+			console.log(`SUCCESS! Unlike 1 Spot.`)
+			return spotId
+
+		} catch (error) {
+
+			console.log(`FAIL! Failed to unlike spot. ${error}`)
+			return null
+		}
+	}
 }
 
 export default SpotService
