@@ -98,8 +98,8 @@ function ImageLink(props: { spotId: string, imageIndex: number, imageUrls: strin
 function LikeBar(props: { spotId: string }) {
 
 	return (
-		<div className="absolute bottom-0 right-0   w-full pt-4  flex justify-end   bg-gradient-to-t from-black/60 to-transparent">
-			<LikeButton spotId={props.spotId} className="m-3" />
+		<div className="absolute bottom-0 right-0   w-full pt-4  flex justify-end   bg-gradient-to-t from-black/60 to-transparent   pointer-events-none">
+			<LikeButton spotId={props.spotId} className="m-3   pointer-events-auto" />
 		</div>
 	)
 }
