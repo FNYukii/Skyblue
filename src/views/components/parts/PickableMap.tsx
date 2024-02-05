@@ -32,7 +32,7 @@ function PickableMap(props: Props) {
 			<MapContainer
 				center={[defaultCenter[0]!, defaultCenter[1]!]}
 				zoom={7}
-				className='w-full h-full   border rounded-xl'
+				className='w-full h-full   outline-none rounded-xl'
 			>
 
 				{location &&
