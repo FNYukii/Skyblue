@@ -178,7 +178,7 @@ class SpotService {
 				detail: detail,
 			})
 
-			console.log(`SUCCESS! Created 1 Spot.`)
+			console.log(`SUCCESS! Created 1 Spot ${ref.id}.`)
 
 			// 成功したらドキュメントIDをメソッド呼び出し元に返す
 			return ref.id
