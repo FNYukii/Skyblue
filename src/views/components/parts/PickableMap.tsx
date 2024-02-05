@@ -3,13 +3,14 @@ import { MapContainer, Marker, TileLayer, useMap, useMapEvents } from 'react-lea
 // 正しいMap表示に必要なファイルをインポート
 import "leaflet/dist/leaflet.css"
 import L from "leaflet"
+import { useState } from 'react'
 L.Icon.Default.imagePath = 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/'
 
 
 
 interface Props {
-	location: number[] | null
 	onPick: (location: number[]) => void
+	defaultLocation?: number[]
 
 	className?: string
 }
@@ -19,7 +20,9 @@ interface Props {
 function PickableMap(props: Props) {
 
 	const defaultCenter = [35.1706763855153, 136.88172646669815]
-
+	
+	const [location, setLocation] = useState<number[] | null>(props.defaultLocation ?? null)
+	
 
 
 	return (
@@ -29,12 +32,11 @@ function PickableMap(props: Props) {
 			<MapContainer
 				center={[defaultCenter[0]!, defaultCenter[1]!]}
 				zoom={7}
-
 				className='w-full h-full   border rounded-xl'
 			>
 
-				{props.location &&
-					<MapChanger center={props.location} />
+				{location &&
+					<MapChanger center={location} />
 				}
 
 
@@ -43,12 +45,16 @@ function PickableMap(props: Props) {
 					url="https://mt1.google.com/vt/lyrs=r&x={x}&y={y}&z={z}"
 				/>
 
-				<MapEvents onPick={location => props.onPick(location)} />
+				<MapEvents onPick={location => setLocation(location)} />
 
-				{props.location !== null &&
-					<Marker position={[props.location[0]!, props.location[1]!]} />
+				{location !== null &&
+					<Marker position={[location[0]!, location[1]!]} />
 				}
 			</MapContainer>
+
+			{location !== null &&
+				<button onClick={() => props.onPick(location)} className="absolute top-0 right-0 mt-4 mr-4   px-8 py-1 bg-black text-white font-bold rounded-full   hover:bg-gray-600 transition">完了</button>
+			}
 		</div>
 	)
 }
