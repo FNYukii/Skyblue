@@ -1,8 +1,6 @@
 import { Unsubscribe } from "firebase/firestore"
 import { useState, useEffect } from "react"
 import { AiFillHeart, AiOutlineHeart } from "react-icons/ai"
-import Spot from "../../../entities/Spot"
-import SpotService from "../../../utils/SpotService"
 import LoadingIcon from "./LoadingIcon"
 import { AiOutlineExclamationCircle } from "react-icons/ai"
 import { onAuthStateChanged } from "firebase/auth"
@@ -88,6 +86,8 @@ function LikeButton(props: Props) {
 						<LoadingIcon />
 					}
 
+
+
 					{isLoadedUid && uid === null &&
 
 						<div className="m-[-0.5rem]   p-2 rounded-full   flex items-center gap-1">
@@ -98,9 +98,11 @@ function LikeButton(props: Props) {
 						</div>
 					}
 
+
+
 					{isLoadedUid && uid !== null && !userIds.includes(uid) &&
 
-						<button className="m-[-0.5rem]   p-2 rounded-full   flex items-center gap-1   hover:bg-white/20 transition">
+						<button onClick={() => UserService.likeSpot(props.spotId)} className="m-[-0.5rem]   p-2 rounded-full   flex items-center gap-1   hover:bg-white/20 transition">
 							<AiOutlineHeart className="text-white text-xl" />
 							{props.showLikeCount &&
 								<p className="text-white">{userIds.length}</p>
@@ -108,9 +110,11 @@ function LikeButton(props: Props) {
 						</button>
 					}
 
+
+
 					{isLoadedUid && uid !== null && userIds.includes(uid) &&
 
-						<button className="m-[-0.5rem]   p-2 rounded-full   flex items-center gap-1   hover:bg-white/20 transition">
+						<button onClick={() => UserService.unlikeSpot(props.spotId)} className="m-[-0.5rem]   p-2 rounded-full   flex items-center gap-1   hover:bg-white/20 transition">
 							<AiFillHeart className="text-white text-xl" />
 							{props.showLikeCount &&
 								<p className="text-white">{userIds.length}</p>

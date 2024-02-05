@@ -1,6 +1,7 @@
-import { DocumentSnapshot, QueryDocumentSnapshot, Unsubscribe, collection, doc, getDoc, getDocFromCache, limit, onSnapshot, query, serverTimestamp, setDoc, where } from "firebase/firestore"
+import { DocumentSnapshot, QueryDocumentSnapshot, Unsubscribe, arrayRemove, arrayUnion, collection, doc, getDoc, getDocFromCache, limit, onSnapshot, query, serverTimestamp, setDoc, updateDoc, where } from "firebase/firestore"
 import { db } from "./firebase"
 import User from "../entities/User"
+import AuthService from "./AuthService"
 
 
 
@@ -122,6 +123,62 @@ class UserService {
 		} catch (error) {
 
 			console.log(`FAIL! Error to User creation. ${error}`)
+			return null
+		}
+	}
+
+
+
+	static async likeSpot(spotId: string): Promise<string | null> {
+
+		// 自分のuserId
+		const userId = await AuthService.uid()
+		if (!userId) return null
+
+		// 自分のUserへの参照
+		const ref = doc(db, "users", userId)
+
+		// likesフィールドにSpotのIDを追加
+		try {
+
+			await updateDoc(ref, {
+				likes: arrayUnion(spotId),
+			})
+
+			console.log(`SUCCESS! Liked 1 Spot.`)
+			return userId
+
+		} catch (error) {
+
+			console.log(`FAIL! Failed to like spot. ${error}`)
+			return null
+		}
+	}
+
+
+
+	static async unlikeSpot(spotId: string): Promise<string | null> {
+
+		// 自分のuserId
+		const userId = await AuthService.uid()
+		if (!userId) return null
+
+		// 自分のUserへの参照
+		const ref = doc(db, "users", userId)
+
+		// likesフィールドからSpotのIDを削除
+		try {
+
+			await updateDoc(ref, {
+				likes: arrayRemove(spotId),
+			})
+
+			console.log(`SUCCESS! Unliked 1 Spot.`)
+			return userId
+
+		} catch (error) {
+
+			console.log(`FAIL! Failed to unlike spot. ${error}`)
 			return null
 		}
 	}
