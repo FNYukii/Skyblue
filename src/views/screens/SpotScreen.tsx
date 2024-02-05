@@ -128,11 +128,11 @@ function SpotScreen() {
 
 				{isLoaded && spot !== null &&
 
-					<div className="h-full   flex flex-col gap-y-2">
+					<div className="h-full   flex flex-col gap-2">
 
 						<div className="min-h-0 w-fit mx-auto">
 
-							<div className="h-full    max-w-screen   flex items-center gap-x-2">
+							<div className="h-full    max-w-screen   flex items-center gap-2">
 
 								<button onClick={() => prevImage()} disabled={imageIndex === 0} className="h-fit w-fit   p-3 rounded-full   text-white   disabled:opacity-0 enabled:pointer-events-auto   enabled:hover:bg-white/20 transition">
 									<AiOutlineArrowLeft className="text-2xl" />
@@ -154,11 +154,11 @@ function SpotScreen() {
 
 							<div className="pointer-events-auto">
 
-								<div className="flex justify-between items-center gap-x-4">
+								<div className="flex justify-between items-center gap-4">
 
 									<p className="text-white">{spot.name}</p>
 
-									<div className="flex items-center gap-x-4">
+									<div className="flex items-center gap-4">
 
 										<LikeButton spotId={spot.id} showLikeCount/>
 
