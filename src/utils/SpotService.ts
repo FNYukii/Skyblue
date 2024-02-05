@@ -14,7 +14,7 @@ class SpotService {
 		// ドキュメントの各フィールドの値を取り出す
 		const id: string = doc.id
 		const userId: string = doc.get("userId")
-		const createdAt: Date = doc.get("createdAt").toDate() ?? undefined // Spot作成直後にオフラインデータベースがSpotを読み取る際、serverTimestampがまだ設定されていないことがあるので"??"が必要
+		const createdAt: Date = doc.get("createdAt")?.toDate() ?? undefined // Spot作成直後にオフラインデータベースがSpotを読み取る際、serverTimestampがまだ設定されていないことがあるので"??"が必要
 
 		const imageUrls: string[] = doc.get("imageUrls")
 		const location: number[] = doc.get("location")
