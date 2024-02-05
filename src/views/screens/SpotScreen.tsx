@@ -160,7 +160,7 @@ function SpotScreen() {
 
 									<div className="flex items-center gap-x-4">
 
-										<LikeButton spotId={spot.id}/>
+										<LikeButton spotId={spot.id} showLikeCount/>
 
 										<NavLink to={`/users/${spot.userId}`} className="rounded-full   hover:brightness-90 transition">
 											<UserIcon userId={spot.userId} className="w-8 rounded-full" />

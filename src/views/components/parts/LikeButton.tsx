@@ -12,6 +12,9 @@ import { auth } from "../../../utils/firebase"
 
 interface Props {
 	spotId: string
+	showLikeCount?: boolean
+
+	className?: string
 }
 
 
@@ -66,7 +69,8 @@ function LikeButton(props: Props) {
 
 	return (
 
-		<div>
+		<div className={props.className}>
+
 			{!isLoadedSpot &&
 				<LoadingIcon />
 			}
@@ -87,7 +91,9 @@ function LikeButton(props: Props) {
 
 						<div className="my-[-0.25rem] mx-[-0.5rem]   py-1 px-2 rounded-full   flex items-center gap-1">
 							<AiOutlineHeart className="text-white text-xl" />
-							<p className="text-white">{spot.likedUserIds.length}</p>
+							{props.showLikeCount &&
+								<p className="text-white">{spot.likedUserIds.length}</p>
+							}
 						</div>
 					}
 
@@ -95,7 +101,9 @@ function LikeButton(props: Props) {
 
 						<button onClick={() => SpotService.likeSpot(spot.id)} className="my-[-0.25rem] mx-[-0.5rem]   py-1 px-2 rounded-full   flex items-center gap-1   hover:bg-white/20 transition">
 							<AiOutlineHeart className="text-white text-xl" />
-							<p className="text-white">{spot.likedUserIds.length}</p>
+							{props.showLikeCount &&
+								<p className="text-white">{spot.likedUserIds.length}</p>
+							}
 						</button>
 					}
 
@@ -103,7 +111,9 @@ function LikeButton(props: Props) {
 
 						<button onClick={() => SpotService.unlikeSpot(spot.id)} className="my-[-0.25rem] mx-[-0.5rem]   py-1 px-2 rounded-full   flex items-center gap-1   hover:bg-white/20 transition">
 							<AiFillHeart className="text-white text-xl" />
-							<p className="text-white">{spot.likedUserIds.length}</p>
+							{props.showLikeCount &&
+								<p className="text-white">{spot.likedUserIds.length}</p>
+							}
 						</button>
 					}
 				</div>
