@@ -14,13 +14,14 @@ class SpotService {
 		// ドキュメントの各フィールドの値を取り出す
 		const id: string = doc.id
 		const userId: string = doc.get("userId")
-		const createdAt: Date = doc.get("createdAt").toDate() ?? new Date() // Spot作成直後にオフラインデータベースがSpotを読み取る際、serverTimestampがまだ設定されていないことがあるので"?? new Date()"が必要
+		const createdAt: Date = doc.get("createdAt").toDate() ?? undefined // Spot作成直後にオフラインデータベースがSpotを読み取る際、serverTimestampがまだ設定されていないことがあるので"??"が必要
 
 		const imageUrls: string[] = doc.get("imageUrls")
 		const location: number[] = doc.get("location")
-
 		const name: string = doc.get("name")
 		const detail: string = doc.get("detail")
+
+		const likedUserIds: string[] = doc.get("likedUserIds")
 
 		// 値を使ってSpotオブジェクトを作成
 		const spot: Spot = {
@@ -30,9 +31,10 @@ class SpotService {
 
 			imageUrls: imageUrls,
 			location: location,
-
 			name: name,
-			detail: detail
+			detail: detail,
+
+			likedUserIds: likedUserIds
 		}
 
 		return spot
@@ -173,9 +175,10 @@ class SpotService {
 
 				imageUrls: imageUrls,
 				location: location,
-
 				name: name,
 				detail: detail,
+
+				likedUserIds: []
 			})
 
 			console.log(`SUCCESS! Created 1 Spot ${ref.id}.`)
