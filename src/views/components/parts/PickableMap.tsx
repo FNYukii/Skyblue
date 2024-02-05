@@ -30,8 +30,6 @@ function PickableMap(props: Props) {
 				center={[defaultCenter[0]!, defaultCenter[1]!]}
 				zoom={7}
 
-				doubleClickZoom={false}
-				
 				className='w-full h-full   border rounded-xl'
 			>
 
@@ -67,13 +65,15 @@ function MapChanger(props: { center: number[] }) {
 
 function MapEvents(props: { onPick: (location: number[]) => void }) {
 
-	// マップをダブルクリックしたら、配列locationにその座標を格納
 	useMapEvents({
 
-		async dblclick(e) {
+		async contextmenu(e) {
+
 			const lat = e.latlng.lat
 			const lng = e.latlng.lng
-			props.onPick([lat, lng])
+			const clickedLocation = [lat, lng]
+
+			props.onPick(clickedLocation)
 		}
 	})
 
