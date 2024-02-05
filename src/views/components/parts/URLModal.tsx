@@ -1,10 +1,10 @@
 import { useNavigate } from "react-router-dom"
 import { MdOutlineClose } from "react-icons/md"
 import Escaper from "./Escaper"
-import { useEffect } from "react"
+import { ReactNode, useEffect } from "react"
 
 interface Props {
-	children: JSX.Element | JSX.Element[]
+	children: ReactNode
 }
 
 function URLModal(props: Props) {

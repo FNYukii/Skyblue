@@ -1,8 +1,9 @@
+import { ReactNode } from "react"
 import { Link, useLocation } from "react-router-dom"
 
 interface Props {
 	to: string
-	children: JSX.Element | JSX.Element[] | string
+	children: ReactNode
 
 	className?: string
 }
