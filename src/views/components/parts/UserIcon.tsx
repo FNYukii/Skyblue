@@ -17,7 +17,7 @@ function UserIcon(props: Props) {
 	useEffect(() => {
 		(async () => {
 
-			const user = await UserService.readUser(props.userId)
+			const user = await UserService.readUser(props.userId, true)
 			setUser(user)
 			setIsLoaded(true)
 		})()
