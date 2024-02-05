@@ -65,9 +65,9 @@ function Header() {
 						</NavLinkToModal>
 					</div>
 
-					<div className="hidden sm:block   flex gap-4 items-center">
+					<div className="hidden sm:block   flex items-center">
 						<NavLink to={`/users/${AuthService.uidQuickly()}`} className="px-6 py-2   rounded-full   hover:bg-gray-100 transition">プロフィール</NavLink>
-						<NavLinkToModal to="new" className="px-6 py-2   bg-black text-white font-bold rounded-full   hover:bg-gray-600 transition">新しいスポット</NavLinkToModal>
+						<NavLinkToModal to="new" className="ml-2   px-6 py-2   bg-black text-white font-bold rounded-full   hover:bg-gray-600 transition">新しいスポット</NavLinkToModal>
 					</div>
 				</div>
 			}
