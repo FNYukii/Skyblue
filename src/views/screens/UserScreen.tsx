@@ -9,6 +9,7 @@ import { Menu, MenuButton, MenuItem } from "@szhsin/react-menu"
 import AuthService from "../../utils/AuthService"
 import '@szhsin/react-menu/dist/index.css'
 import '@szhsin/react-menu/dist/transitions/slide.css'
+import LikeSpotList from "../components/sections/LikeSpotList"
 
 
 
@@ -28,7 +29,7 @@ function UserScreen() {
 
 		(async () => {
 
-			const user = await UserService.readUser(userId ?? "", true)
+			const user = await UserService.readUser(userId ?? "---", true)
 
 			document.title = `${user?.displayName ?? "ユーザー"} - Skyblue`
 
@@ -103,9 +104,7 @@ function UserScreen() {
 						}
 
 						{tab === 1 &&
-							<div>
-								<p className="mt-8   text-center text-gray-500">いいねしたスポットはありません</p>
-							</div>
+							<LikeSpotList userId={userId!} className="mt-4" />
 						}
 					</div>
 				</div>

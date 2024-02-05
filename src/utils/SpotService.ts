@@ -177,6 +177,46 @@ class SpotService {
 
 
 
+	static async onSpotsLikedByUserChanged(
+		userId: string,
+		callback: (spots: Spot[]) => unknown,
+		cancelCallback: (error: Error) => unknown,
+	): Promise<Unsubscribe> {
+
+		// 読み取りクエリを作成
+		const q = query(
+			collection(db, "spots"),
+			where("likedUserIds", "array-contains", userId),
+			orderBy("createdAt", "desc"),
+			limit(100)
+		)
+
+		// リアルタイムリスナーを設定
+		return onSnapshot(q, async (querySnapshot) => {
+
+			// 成功
+			console.log(`SUCCESS! Read ${querySnapshot.size} spots.`)
+
+			// Spotの配列を作成
+			let spots: Spot[] = []
+			querySnapshot.forEach((doc) => {
+
+				const spot = this.toSpot(doc)
+				spots.push(spot)
+			})
+
+			// Stateを更新
+			callback(spots)
+
+		}, (error) => {
+
+			console.log(`FAIL! Error listening spots. ${error}`)
+			cancelCallback(error)
+		})
+	}
+
+
+
 	static async createSpot(
 		imageUrls: string[],
 		location: number[],

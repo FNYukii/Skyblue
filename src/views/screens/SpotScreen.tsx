@@ -46,7 +46,7 @@ function SpotScreen() {
 
 		(async () => {
 
-			const spot = await SpotService.readSpot(spotId ?? "", true)
+			const spot = await SpotService.readSpot(spotId ?? "---", true)
 
 			document.title = `${spot?.name ?? "スポット"} - Skyblue`
 			setSpot(spot)
