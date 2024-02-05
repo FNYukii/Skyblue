@@ -3,7 +3,7 @@ import NavLinkToModal from "../parts/NavLinkToModal"
 
 interface Props {
 	spotId: string
-	imagesUrls: string[]
+	imageUrls: string[]
 	className?: string
 }
 
@@ -15,34 +15,26 @@ function ImageLinkGrid(props: Props) {
 
 			<div>
 
-				{props.imagesUrls.length === 1 &&
+				{props.imageUrls.length === 1 &&
 
 					<div className="w-full relative">
 
-						<NavLinkToModal to={`/spots/${props.spotId}/images/1`} className="block   w-full aspect-square   hover:brightness-90 transition">
-							<img src={props.imagesUrls[0]} alt="Attached on Spot" className="h-full w-full   object-cover bg-gray-200" />
-						</NavLinkToModal>
-
+						<ImageLink spotId={props.spotId} imageUrls={props.imageUrls} imageIndex={0} />
 						<LikeBar spotId={props.spotId} />
 					</div>
 				}
 
 
 
-				{props.imagesUrls.length === 2 &&
+				{props.imageUrls.length === 2 &&
 
 					<div className="w-full aspect-square   grid grid-cols-2 gap-2">
 
-						<NavLinkToModal to={`/spots/${props.spotId}/images/1`} className="hover:brightness-90 transition">
-							<img src={props.imagesUrls[0]} alt="Attached on Spot" className="h-full w-full   object-cover bg-gray-200" />
-						</NavLinkToModal>
+						<ImageLink spotId={props.spotId} imageUrls={props.imageUrls} imageIndex={0} />
 
 						<div className="w-full relative">
 
-							<NavLinkToModal to={`/spots/${props.spotId}/images/2`} className="hover:brightness-90 transition">
-								<img src={props.imagesUrls[1]} alt="Attached on Spot" className="h-full w-full   object-cover bg-gray-200" />
-							</NavLinkToModal>
-
+							<ImageLink spotId={props.spotId} imageUrls={props.imageUrls} imageIndex={1} />
 							<LikeBar spotId={props.spotId} />
 						</div>
 					</div>
@@ -50,26 +42,19 @@ function ImageLinkGrid(props: Props) {
 
 
 
-				{props.imagesUrls.length === 3 &&
+				{props.imageUrls.length === 3 &&
 
 					<div className="w-full aspect-square   grid grid-cols-2 gap-2">
 
-						<NavLinkToModal to={`/spots/${props.spotId}/images/1`} className="hover:brightness-90 transition">
-							<img src={props.imagesUrls[0]} alt="Attached on Spot" className="h-full w-full  object-cover bg-gray-200" />
-						</NavLinkToModal>
+						<ImageLink spotId={props.spotId} imageUrls={props.imageUrls} imageIndex={0} />
 
 						<div className="grid grid-rows-2 gap-2">
 
-							<NavLinkToModal to={`/spots/${props.spotId}/images/2`} className="hover:brightness-90 transition">
-								<img src={props.imagesUrls[1]} alt="Attached on Spot" className="w-full h-full aspect-square   object-cover bg-gray-200" />
-							</NavLinkToModal>
+							<ImageLink spotId={props.spotId} imageUrls={props.imageUrls} imageIndex={1} />
 
 							<div className="w-full relative">
 
-								<NavLinkToModal to={`/spots/${props.spotId}/images/3`} className="hover:brightness-90 transition">
-									<img src={props.imagesUrls[2]} alt="Attached on Spot" className="w-full h-full aspect-square   object-cover bg-gray-200" />
-								</NavLinkToModal>
-
+								<ImageLink spotId={props.spotId} imageUrls={props.imageUrls} imageIndex={2} />
 								<LikeBar spotId={props.spotId} />
 							</div>
 						</div>
@@ -78,34 +63,33 @@ function ImageLinkGrid(props: Props) {
 
 
 
-				{props.imagesUrls.length === 4 &&
+				{props.imageUrls.length === 4 &&
 
 					<div className="w-full aspect-square   grid grid-cols-2 gap-2">
 
-						<NavLinkToModal to={`/spots/${props.spotId}/images/1`} className="hover:brightness-90 transition">
-							<img src={props.imagesUrls[0]} alt="Attached on Spot" className="w-full h-full aspect-square   object-cover bg-gray-200" />
-						</NavLinkToModal>
-
-						<NavLinkToModal to={`/spots/${props.spotId}/images/2`} className="hover:brightness-90 transition">
-							<img src={props.imagesUrls[1]} alt="Attached on Spot" className="w-full h-full aspect-square   object-cover bg-gray-200" />
-						</NavLinkToModal>
-
-						<NavLinkToModal to={`/spots/${props.spotId}/images/3`} className="hover:brightness-90 transition">
-							<img src={props.imagesUrls[2]} alt="Attached on Spot" className="w-full h-full aspect-square   object-cover bg-gray-200" />
-						</NavLinkToModal>
+						<ImageLink spotId={props.spotId} imageUrls={props.imageUrls} imageIndex={0} />
+						<ImageLink spotId={props.spotId} imageUrls={props.imageUrls} imageIndex={1} />
+						<ImageLink spotId={props.spotId} imageUrls={props.imageUrls} imageIndex={2} />
 
 						<div className="w-full relative">
 
-							<NavLinkToModal to={`/spots/${props.spotId}/images/4`} className="hover:brightness-90 transition">
-								<img src={props.imagesUrls[3]} alt="Attached on Spot" className="w-full h-full aspect-square   object-cover bg-gray-200" />
-							</NavLinkToModal>
-
+							<ImageLink spotId={props.spotId} imageUrls={props.imageUrls} imageIndex={3} />
 							<LikeBar spotId={props.spotId} />
 						</div>
 					</div>
 				}
 			</div>
 		</div>
+	)
+}
+
+
+function ImageLink(props: { spotId: string, imageIndex: number, imageUrls: string[] }) {
+
+	return (
+		<NavLinkToModal to={`/spots/${props.spotId}/images/${props.imageIndex + 1}`} className="hover:brightness-90 transition">
+			<img src={props.imageUrls[props.imageIndex]} alt="Attached on Spot" className="w-full h-full aspect-square   object-cover bg-gray-200" />
+		</NavLinkToModal>
 	)
 }
 
