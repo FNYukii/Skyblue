@@ -73,7 +73,7 @@ function MapEventListener(props: { onPick: (location: number[]) => void }) {
 
 	useMapEvents({
 
-		async contextmenu(e) {
+		async click(e) {
 
 			const lat = e.latlng.lat
 			const lng = e.latlng.lng
