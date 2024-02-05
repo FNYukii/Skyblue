@@ -14,8 +14,8 @@ function ImageLinkGrid(props: Props) {
 
 			{props.imagesUrls.length === 1 &&
 
-				<NavLinkToModal to={`/spots/${props.spotId}/images/1`} className="hover:brightness-90 transition">
-					<img src={props.imagesUrls[0]} alt="Attached on Spot" className="h-full w-full   aspect-square object-cover   bg-gray-200" />
+				<NavLinkToModal to={`/spots/${props.spotId}/images/1`} className="block   w-full aspect-square   hover:brightness-90 transition">
+					<img src={props.imagesUrls[0]} alt="Attached on Spot" className="h-full w-full   object-cover bg-gray-200" />
 				</NavLinkToModal>
 			}
 
@@ -23,7 +23,7 @@ function ImageLinkGrid(props: Props) {
 
 			{props.imagesUrls.length === 2 &&
 
-				<div className="grid grid-cols-2 gap-2   aspect-square   h-full">
+				<div className="w-full aspect-square   grid grid-cols-2 gap-2">
 
 					<NavLinkToModal to={`/spots/${props.spotId}/images/1`} className="hover:brightness-90 transition">
 						<img src={props.imagesUrls[0]} alt="Attached on Spot" className="h-full w-full   object-cover bg-gray-200" />
@@ -39,7 +39,7 @@ function ImageLinkGrid(props: Props) {
 
 			{props.imagesUrls.length === 3 &&
 
-				<div className="grid grid-cols-2 gap-2   aspect-square h-full">
+				<div className="w-full aspect-square   grid grid-cols-2 gap-2">
 
 					<NavLinkToModal to={`/spots/${props.spotId}/images/1`} className="hover:brightness-90 transition">
 						<img src={props.imagesUrls[0]} alt="Attached on Spot" className="h-full w-full  object-cover bg-gray-200" />
@@ -62,7 +62,7 @@ function ImageLinkGrid(props: Props) {
 
 			{props.imagesUrls.length === 4 &&
 
-				<div className="grid grid-cols-2 gap-2   aspect-square h-full">
+				<div className="w-full aspect-square   grid grid-cols-2 gap-2">
 
 					<NavLinkToModal to={`/spots/${props.spotId}/images/1`} className="hover:brightness-90 transition">
 						<img src={props.imagesUrls[0]} alt="Attached on Spot" className="w-full h-full aspect-square   object-cover bg-gray-200" />
