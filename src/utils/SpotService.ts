@@ -106,9 +106,40 @@ class SpotService {
 
 
 
+	static async onSpotChanged(
+		spotId: string,
+		callback: (spot: Spot) => unknown,
+		cancelCallback: (error: Error) => unknown,
+	): Promise<Unsubscribe> {
+
+		return onSnapshot(doc(db, "spots", spotId), (doc) => {
+
+			// ドキュメントがなかった場合
+			if (!doc.exists) {
+
+				const error = new Error("Document does not exists.")
+
+				console.error(`FAIL! Error to listen Spot. ${error}`)
+				cancelCallback(error)
+				return
+			}
+
+			// ドキュメントがあった場合
+			const spot = this.toSpot(doc)
+			callback(spot)
+
+		}, (error) => {
+
+			console.error(`FAIL! Error to listen Spot. ${error}`)
+			cancelCallback(error)
+		})
+	}
+
+
+
 	static async onSpotsByUserChanged(
 		userId: string,
-		callback: (payments: Spot[]) => unknown,
+		callback: (spots: Spot[]) => unknown,
 		cancelCallback: (error: Error) => unknown,
 	): Promise<Unsubscribe> {
 

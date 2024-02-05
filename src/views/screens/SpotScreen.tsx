@@ -8,6 +8,7 @@ import { MdOutlineClose } from "react-icons/md"
 import Escaper from "../components/parts/Escaper"
 import { AiOutlineArrowLeft } from "react-icons/ai"
 import { AiOutlineArrowRight } from "react-icons/ai"
+import LikeButton from "../components/parts/LikeButton"
 
 
 
@@ -153,13 +154,18 @@ function SpotScreen() {
 
 							<div className="pointer-events-auto">
 
-								<div className="flex justify-between items-center gap-x-2">
+								<div className="flex justify-between items-center gap-x-4">
 
 									<p className="text-white">{spot.name}</p>
 
-									<NavLink to={`/users/${spot.userId}`} className="rounded-full   hover:brightness-90 transition">
-										<UserIcon userId={spot.userId} className="w-8 rounded-full" />
-									</NavLink>
+									<div className="flex items-center gap-x-4">
+
+										<LikeButton spotId={spot.id}/>
+
+										<NavLink to={`/users/${spot.userId}`} className="rounded-full   hover:brightness-90 transition">
+											<UserIcon userId={spot.userId} className="w-8 rounded-full" />
+										</NavLink>
+									</div>
 								</div>
 
 								{spot.detail &&
