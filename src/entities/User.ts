@@ -4,6 +4,8 @@ type User = {
 
 	displayName: string
 	iconUrl: string
+
+	likes: string[]
 }
 
 export default User
