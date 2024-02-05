@@ -64,6 +64,37 @@ class UserService {
 
 
 
+	static async onUserChanged(
+		userId: string,
+		callback: (user: User) => unknown,
+		cancelCallback: (error: Error) => unknown,
+	): Promise<Unsubscribe> {
+
+		return onSnapshot(doc(db, "users", userId), (doc) => {
+
+			// ドキュメントがなかった場合
+			if (!doc.exists) {
+
+				const error = new Error("Document does not exists.")
+
+				console.error(`FAIL! Error to listen User. ${error}`)
+				cancelCallback(error)
+				return
+			}
+
+			// ドキュメントがあった場合
+			const user = this.toUser(doc)
+			callback(user)
+
+		}, (error) => {
+
+			console.error(`FAIL! Error to listen User. ${error}`)
+			cancelCallback(error)
+		})
+	}
+
+
+
 	// 特定のスポットをいいねしたユーザーのIDの配列
 	static async onUserIdsLikeSpotChanged(
 		spotId: string,

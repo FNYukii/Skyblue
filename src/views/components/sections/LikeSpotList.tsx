@@ -1,6 +1,8 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import Spot from "../../../entities/Spot"
 import SpotList from "../parts/SpotList"
+import SpotService from "../../../utils/SpotService"
+import { Unsubscribe } from "firebase/firestore"
 
 
 
@@ -18,8 +20,29 @@ function LikeSpotList(props: Props) {
 
 
 
-	
+	useEffect(() => {
 
+		let unsubscribe: Unsubscribe
+
+		(async () => {
+
+			unsubscribe = await SpotService.onLikesByUserChanged(props.userId, spots => {
+
+				setSpots(spots)
+				setIsLoaded(true)
+
+			}, (error) => {
+
+				setIsLoaded(true)
+			})
+		})()
+
+		return () => {
+			if (unsubscribe) unsubscribe()
+		}
+
+		// eslint-disable-next-line
+	}, [])
 
 
 	return (

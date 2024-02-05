@@ -2,6 +2,7 @@ import { DocumentSnapshot, QueryDocumentSnapshot, Unsubscribe, addDoc, collectio
 import Spot from "../entities/Spot"
 import { db } from "./firebase"
 import AuthService from "./AuthService"
+import UserService from "./UserService"
 
 class SpotService {
 
@@ -76,7 +77,6 @@ class SpotService {
 			limit(100)
 		)
 
-		// データ読み取り
 		try {
 
 			// サーバーorキャッシュから読み取り
@@ -98,37 +98,6 @@ class SpotService {
 			console.log(`FAIL! Spots reading failed. ${error}`)
 			return null
 		}
-	}
-
-
-
-	static async onSpotChanged(
-		spotId: string,
-		callback: (spot: Spot) => unknown,
-		cancelCallback: (error: Error) => unknown,
-	): Promise<Unsubscribe> {
-
-		return onSnapshot(doc(db, "spots", spotId), (doc) => {
-
-			// ドキュメントがなかった場合
-			if (!doc.exists) {
-
-				const error = new Error("Document does not exists.")
-
-				console.error(`FAIL! Error to listen Spot. ${error}`)
-				cancelCallback(error)
-				return
-			}
-
-			// ドキュメントがあった場合
-			const spot = this.toSpot(doc)
-			callback(spot)
-
-		}, (error) => {
-
-			console.error(`FAIL! Error to listen Spot. ${error}`)
-			cancelCallback(error)
-		})
 	}
 
 
@@ -167,6 +136,50 @@ class SpotService {
 		}, (error) => {
 
 			console.log(`FAIL! Error listening spots. ${error}`)
+			cancelCallback(error)
+		})
+	}
+
+
+
+	static async onLikesByUserChanged(
+		userId: string,
+		callback: (spots: Spot[]) => unknown,
+		cancelCallback: (error: Error) => unknown,
+	): Promise<Unsubscribe> {
+
+		return await UserService.onUserChanged(userId, async user => {
+
+			// いいねしたspotIds
+			const likeSpotIds = user.likes
+
+			// 0件だったら[]を返す
+			if (likeSpotIds.length === 0) {
+				callback([])
+			}
+
+			// likeSpotIdsの要素の数だけ、そのSpotを読み取る
+			let spots: Spot[] = []
+			await Promise.all(likeSpotIds.map(async (likeSpotId) => {
+
+				// Spotを読み取る
+				const spot = await SpotService.readSpot(likeSpotId)
+
+				// 失敗
+				if (spot === null) {
+					return
+				}
+
+				// 成功
+				spots.push(spot)
+			}))
+
+			// いいね日時が降順になるように並べ替え
+			spots = spots.reverse()
+
+			callback(spots)
+
+		}, (error) => {
 			cancelCallback(error)
 		})
 	}
