@@ -6,6 +6,7 @@ function TopScreen() {
 	return (
 
 		<Screen title="Skyline">
+
 			<RecentlySpotList />
 		</Screen>
 	)
