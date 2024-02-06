@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom"
 import { MdOutlineClose } from "react-icons/md"
 import Escaper from "./Escaper"
-import { ReactNode, useEffect } from "react"
+import { ReactNode } from "react"
 import Fixer from "./Fixer"
 
 interface Props {
