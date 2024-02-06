@@ -12,6 +12,7 @@ import '@szhsin/react-menu/dist/transitions/slide.css'
 import LikeSpotList from "../components/sections/LikeSpotList"
 import NavLinkToModal from "../components/parts/NavLinkToModal"
 import Screen from "../components/parts/Screen"
+import { Unsubscribe } from "firebase/firestore"
 
 
 
@@ -29,15 +30,25 @@ function UserScreen() {
 
 	useEffect(() => {
 
+		let unsubscribe: Unsubscribe
+
 		(async () => {
 
-			const user = await UserService.readUser(userId ?? "---", true)
+			unsubscribe = await UserService.onUserChanged(userId ?? "---", user => {
 
-			setPageTitle(`${user?.displayName ?? "ユーザー"} - Skyblue`)
-			setUser(user)
-			setIsLoaded(true)
+				setPageTitle(`${user?.displayName ?? "ユーザー"} - Skyblue`)
+				setUser(user)
+				setIsLoaded(true)
+
+			}, (error) => {
+
+				setIsLoaded(true)
+			})
 		})()
 
+		return () => {
+			if (unsubscribe) unsubscribe()
+		}
 		// eslint-disable-next-line
 	}, [])
 
