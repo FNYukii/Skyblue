@@ -6,6 +6,8 @@ import LoadingIcon from "../components/parts/LoadingIcon"
 import UserService from "../../utils/UserService"
 import User from "../../entities/User"
 import { useNavigate } from "react-router-dom"
+import PickIconButton from "../components/parts/PickIconButton"
+import StorageService from "../../utils/StorageService"
 
 
 
@@ -14,6 +16,7 @@ function EditUserScreen() {
 	const navigate = useNavigate()
 
 	// 入力内容
+	const [iconFile, setIconFile] = useState<File | null>(null)
 	const [displayName, setDisplayName] = useState("")
 
 	// 現在のUser
@@ -41,7 +44,21 @@ function EditUserScreen() {
 
 		setIsLoading(true)
 
-		const result = await UserService.editProfile(displayName)
+		let iconUrl: string | null = null
+
+		// 画像が選択されたらならアップロード
+		if (iconFile) {
+			iconUrl = await StorageService.uploadImage(iconFile, "/icons")
+
+			if (!iconUrl) {
+				alert("プロフィールの更新に失敗しました")
+				setIsLoading(false)
+				return
+			}
+		}
+
+		// ドキュメントを更新
+		const result = await UserService.editProfile(displayName, iconUrl ?? undefined)
 		if (!result) {
 			alert("プロフィールの更新に失敗しました")
 			setIsLoading(false)
@@ -62,7 +79,7 @@ function EditUserScreen() {
 				<div className="w-full sm:w-[400px] ">
 
 					{!isLoadedUser &&
-						<LoadingIcon  center />
+						<LoadingIcon center />
 					}
 
 					{isLoadedUser && user === null &&
@@ -74,7 +91,7 @@ function EditUserScreen() {
 						<div>
 							<h1 className="text-2xl font-bold">プロフィールを編集</h1>
 
-							<img src={user.iconUrl} alt="User icon" className="mt-4 mx-auto   w-32 aspect-square rounded-full   bg-gray/50" />
+							<PickIconButton iconUrl={user.iconUrl} file={iconFile ?? undefined} onPick={file => setIconFile(file)} className="mt-4 mx-auto w-fit" />
 							<input value={displayName} onChange={e => setDisplayName(e.target.value)} placeholder="ディスプレイネーム" className="block   mt-6 w-full pb-2   bg-transparent border-b border-gray-300   focus:outline-none focus:border-blue-500   placeholder:text-gray-400" />
 
 							<div className="mt-4   flex justify-end">

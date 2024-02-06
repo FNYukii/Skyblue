@@ -13,7 +13,7 @@ import Screen from "../components/parts/Screen"
 
 function CreateSpotScreen() {
 
-	const [images, setImages] = useState<File[]>([])
+	const [imageFiles, setImageFiles] = useState<File[]>([])
 	const [location, setLocation] = useState<number[] | null>(null)
 
 	const [name, setName] = useState("")
@@ -33,7 +33,7 @@ function CreateSpotScreen() {
 		if (location === null) return
 
 		// 画像をアップロード
-		const imageUrls = await StorageService.uploadImages(images, "/images")
+		const imageUrls = await StorageService.uploadImages(imageFiles, "/images")
 
 		// 失敗した場合
 		if (!imageUrls) {
@@ -71,7 +71,7 @@ function CreateSpotScreen() {
 					<div className="mt-4   grid grid-cols-1 sm:grid-cols-2   gap-x-8 gap-y-4">
 
 						<div>
-							<PickImagesButton onPick={images => setImages(images)} images={images} />
+							<PickImagesButton onPick={files => setImageFiles(files)} files={imageFiles} />
 						</div>
 
 						<div>
@@ -89,7 +89,7 @@ function CreateSpotScreen() {
 
 							<button
 								className="px-6 py-1   bg-black text-white font-bold rounded-full   disabled:bg-gray-400   enabled:hover:bg-gray-600 transition"
-								disabled={images.length === 0 || location === null || name === "" || name.length > 50 || detail.length > 100}
+								disabled={imageFiles.length === 0 || location === null || name === "" || name.length > 50 || detail.length > 100}
 								onClick={create}
 							>
 								投稿

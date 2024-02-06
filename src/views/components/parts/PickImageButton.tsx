@@ -5,8 +5,8 @@ import ImageFileGrid from "./ImageFileGrid"
 
 
 interface Props {
-	images: File[]
-	onPick: (images: File[]) => void
+	files: File[]
+	onPick: (files: File[]) => void
 
 	className?: string
 }
@@ -46,17 +46,17 @@ function PickImagesButton(props: Props) {
 
 				<button type="button" onClick={() => inputRef.current?.click()} className="w-full rounded-xl">
 
-					{props.images.length === 0 &&
+					{props.files.length === 0 &&
 
 						<div className="w-full aspect-square   rounded-xl border border-gray-300   flex justify-center items-center   hover:bg-gray-100 transition">
 							<BiImageAdd className="text-4xl text-gray-400" />
 						</div>
 					}
 
-					{props.images.length !== 0 &&
+					{props.files.length !== 0 &&
 
 						<div className="w-full aspect-square   rounded-xl   hover:brightness-90 transition">
-							<ImageFileGrid images={props.images} />
+							<ImageFileGrid images={props.files} />
 						</div>
 					}
 				</button>
