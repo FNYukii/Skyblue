@@ -1,6 +1,6 @@
 import { useRef } from "react"
 import { BiImageAdd } from "react-icons/bi"
-import ImageFileGrid from "../sections/ImageFileGrid"
+import ImageFileGrid from "./ImageFileGrid"
 
 
 
