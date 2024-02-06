@@ -8,7 +8,7 @@ interface Props {
 	children: ReactNode
 }
 
-function URLModal(props: Props) {
+function FormModal(props: Props) {
 
 	// 画面遷移用Hooks
 	const navigate = useNavigate()
@@ -48,4 +48,4 @@ function URLModal(props: Props) {
 	)
 }
 
-export default URLModal
+export default FormModal

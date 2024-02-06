@@ -1,5 +1,5 @@
 import { useState } from "react"
-import URLModal from "../components/parts/URLModal"
+import FormModal from "../components/parts/FormModal"
 import DynamicTextarea from "../components/parts/DynamicTextarea"
 import PickImagesButton from "../components/parts/PickImageButton"
 import SpotService from "../../utils/SpotService"
@@ -62,7 +62,7 @@ function CreateSpotScreen() {
 
 		<Screen title="新しいスポット - Skyblue">
 
-			<URLModal>
+			<FormModal>
 
 				<h1 className="text-2xl font-bold">新しいスポット</h1>
 
@@ -98,7 +98,7 @@ function CreateSpotScreen() {
 						<LoadingIcon className="mt-5" color="#000" />
 					}
 				</div>
-			</URLModal>
+			</FormModal>
 		</Screen>
 	)
 }
