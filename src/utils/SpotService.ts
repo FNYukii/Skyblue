@@ -6,8 +6,6 @@ import UserService from "./UserService"
 
 class SpotService {
 
-
-
 	static toSpot(from: DocumentSnapshot | QueryDocumentSnapshot): Spot {
 
 		const doc: DocumentSnapshot = from
@@ -54,7 +52,6 @@ class SpotService {
 				console.log(`FAIL! Spot "${spotId}" is not exist.`)
 				return null
 			}
-			console.log(`SUCCESS! Read 1 Spot.`)
 
 			const spot = this.toSpot(doc)
 			return spot
@@ -81,7 +78,6 @@ class SpotService {
 
 			// サーバーorキャッシュから読み取り
 			const querySnapshot = await getDocs(q)
-			console.log(`SUCCESS! Read ${querySnapshot.size} Spots.`)
 
 			// 読み取ったdocumentsをspotsに変換
 			let spots: Spot[] = []
@@ -118,9 +114,6 @@ class SpotService {
 
 		// リアルタイムリスナーを設定
 		return onSnapshot(q, async (querySnapshot) => {
-
-			// 成功
-			console.log(`SUCCESS! Read ${querySnapshot.size} spots.`)
 
 			// Spotの配列を作成
 			let spots: Spot[] = []
@@ -220,8 +213,6 @@ class SpotService {
 
 				likedUserIds: []
 			})
-
-			console.log(`SUCCESS! Created 1 Spot ${ref.id}.`)
 
 			// 成功したらドキュメントIDをメソッド呼び出し元に返す
 			return ref.id

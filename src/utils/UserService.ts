@@ -7,8 +7,6 @@ import AuthService from "./AuthService"
 
 class UserService {
 
-
-
 	static toUser(from: DocumentSnapshot | QueryDocumentSnapshot): User {
 
 		const doc: DocumentSnapshot = from
@@ -50,7 +48,6 @@ class UserService {
 				console.log(`FAIL! User "${userId}" is not exist.`)
 				return null
 			}
-			console.log(`SUCCESS! Read 1 User.`)
 
 			const user = this.toUser(doc)
 			return user
@@ -112,9 +109,6 @@ class UserService {
 		// リアルタイムリスナーを設定
 		return onSnapshot(q, async (querySnapshot) => {
 
-			// 成功
-			console.log(`SUCCESS! Read ${querySnapshot.size} users.`)
-
 			// userIdの配列を作成
 			let userIds: string[] = []
 			querySnapshot.forEach((doc) => {
@@ -146,7 +140,6 @@ class UserService {
 				iconUrl: "https://firebasestorage.googleapis.com/v0/b/skyblue-32fbd.appspot.com/o/icons%2Fdefault_icon.png?alt=media&token=7972a568-e171-4865-bbc4-1b014a43de85",
 				likes: []
 			})
-			console.log(`SUCCESS! Created 1 User.`)
 
 			// 成功したらドキュメントIDをメソッド呼び出し元に返す
 			return userId
@@ -176,7 +169,6 @@ class UserService {
 				likes: arrayUnion(spotId),
 			})
 
-			console.log(`SUCCESS! Liked 1 Spot.`)
 			return userId
 
 		} catch (error) {
@@ -204,7 +196,6 @@ class UserService {
 				likes: arrayRemove(spotId),
 			})
 
-			console.log(`SUCCESS! Unliked 1 Spot.`)
 			return userId
 
 		} catch (error) {
