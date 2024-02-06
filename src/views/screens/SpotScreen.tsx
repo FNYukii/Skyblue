@@ -130,6 +130,8 @@ function SpotScreen() {
 
 					<div className="h-full   flex flex-col gap-2">
 
+
+
 						<div className="min-h-0 w-fit mx-auto">
 
 							<div className="h-full    max-w-screen   flex items-center gap-2">
@@ -139,8 +141,6 @@ function SpotScreen() {
 								</button>
 
 								<img src={spot.imageUrls[imageIndex]} alt="Attached on Spot" className="h-full   pointer-events-auto   min-w-0" />
-
-								{/* <div className="bg-blue-500/20 w-[400px] h-[400px]"></div> */}
 
 								<button onClick={() => nextImage()} disabled={imageIndex === spot.imageUrls.length - 1} className="h-fit w-fit   p-3 rounded-full   text-white   disabled:opacity-0 enabled:pointer-events-auto   enabled:hover:bg-white/20 transition">
 									<AiOutlineArrowRight className="text-2xl" />
@@ -160,7 +160,7 @@ function SpotScreen() {
 
 									<div className="flex items-center gap-4">
 
-										<LikeButton spotId={spot.id} showLikeCount/>
+										<LikeButton spotId={spot.id} showLikeCount />
 
 										<NavLink to={`/users/${spot.userId}`} className="rounded-full   hover:brightness-90 transition">
 											<UserIcon userId={spot.userId} className="w-8 rounded-full" />
