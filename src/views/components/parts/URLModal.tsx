@@ -2,6 +2,7 @@ import { useNavigate } from "react-router-dom"
 import { MdOutlineClose } from "react-icons/md"
 import Escaper from "./Escaper"
 import { ReactNode, useEffect } from "react"
+import Fixer from "./Fixer"
 
 interface Props {
 	children: ReactNode
@@ -14,23 +15,12 @@ function URLModal(props: Props) {
 
 
 
-	// 画面スクロール無効
-	useEffect(() => {
-		document.body.style.overflowY = "hidden"
-		
-		return () => {
-			document.body.style.overflowY = ""
-		}
-		// eslint-disable-next-line
-	}, [])
-
-
-
 	return (
 
 		<div className="fixed   top-0 left-0 w-screen h-screen   flex justify-center items-center">
 
 			<Escaper />
+			<Fixer />
 
 
 			{/* モーダルの影 */}

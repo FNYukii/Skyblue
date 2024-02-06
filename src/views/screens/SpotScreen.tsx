@@ -10,22 +10,11 @@ import { AiOutlineArrowLeft } from "react-icons/ai"
 import { AiOutlineArrowRight } from "react-icons/ai"
 import LikeButton from "../components/parts/LikeButton"
 import Screen from "../components/parts/Screen"
+import Fixer from "../components/parts/Fixer"
 
 
 
 function SpotScreen() {
-
-	// 画面スクロール無効
-	useEffect(() => {
-		document.body.style.overflowY = "hidden"
-
-		return () => {
-			document.body.style.overflowY = ""
-		}
-		// eslint-disable-next-line
-	}, [])
-
-
 
 	// Params
 	const { spotId } = useParams()
@@ -116,9 +105,11 @@ function SpotScreen() {
 
 		<Screen title={pageTitle ?? "スポット - Skyline"}>
 
+			<Escaper />
+			<Fixer />
+
 			<div className="fixed   top-0 left-0 w-screen h-screen   flex justify-center items-center">
 
-				<Escaper />
 				<div onClick={() => navigate(-1)} className="w-screen h-screen bg-black/90"></div>
 
 

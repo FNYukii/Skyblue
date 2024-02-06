@@ -24,7 +24,7 @@ function Escaper() {
 		// eslint-disable-next-line
 	}, [])	
 
-	return <></>
+	return null
 }
 
 export default Escaper
