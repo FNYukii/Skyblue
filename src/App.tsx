@@ -75,6 +75,7 @@ function App() {
 					<Footer className="mt-16   sticky top-full" />
 
 					<Routes>
+						<Route path="*" element={<></>} />
 						<Route path="/spots/:spotId/images/:imageNumber" element={<SpotScreen />} />
 					</Routes>
 				</div>
@@ -101,6 +102,7 @@ function App() {
 
 					<Routes>
 
+						<Route path="*" element={<></>} />
 						<Route path="/spots/:spotId/images/:imageNumber" element={<SpotScreen />} />
 						<Route path="/new" element={<CreateSpotScreen />} />
 						<Route path="/edit-profile" element={<EditUserScreen />} />
