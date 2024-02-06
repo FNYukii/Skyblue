@@ -90,10 +90,13 @@ function LikeButton(props: Props) {
 
 					{isLoadedUid && uid === null &&
 
-						<div className="m-[-0.5rem]   p-2 rounded-full   flex items-center gap-1">
-							<AiOutlineHeart className="text-white text-xl" />
+						<div>
 							{props.showLikeCount &&
-								<p className="text-white">{userIds.length}</p>
+
+								<div className="m-[-0.5rem]   p-2 rounded-full   flex items-center gap-1">
+									<AiOutlineHeart className="text-white text-xl" />
+									<p className="text-white">{userIds.length}</p>
+								</div>
 							}
 						</div>
 					}
