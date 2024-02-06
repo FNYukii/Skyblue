@@ -1,5 +1,5 @@
-import LikeButton from "../parts/LikeButton"
-import NavLinkToModal from "../parts/NavLinkToModal"
+import LikeButton from "./LikeButton"
+import NavLinkToModal from "./NavLinkToModal"
 
 interface Props {
 	spotId: string

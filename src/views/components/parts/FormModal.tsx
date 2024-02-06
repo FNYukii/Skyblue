@@ -1,28 +1,17 @@
 import { useNavigate } from "react-router-dom"
 import { MdOutlineClose } from "react-icons/md"
 import Escaper from "./Escaper"
-import { ReactNode, useEffect } from "react"
+import { ReactNode } from "react"
+import Fixer from "./Fixer"
 
 interface Props {
 	children: ReactNode
 }
 
-function URLModal(props: Props) {
+function FormModal(props: Props) {
 
 	// 画面遷移用Hooks
 	const navigate = useNavigate()
-
-
-
-	// 画面スクロール無効
-	useEffect(() => {
-		document.body.style.overflowY = "hidden"
-		
-		return () => {
-			document.body.style.overflowY = ""
-		}
-		// eslint-disable-next-line
-	}, [])
 
 
 
@@ -31,6 +20,7 @@ function URLModal(props: Props) {
 		<div className="fixed   top-0 left-0 w-screen h-screen   flex justify-center items-center">
 
 			<Escaper />
+			<Fixer />
 
 
 			{/* モーダルの影 */}
@@ -42,13 +32,13 @@ function URLModal(props: Props) {
 
 				<div className="overflow-hidden rounded-xl">
 
-					<div className="w-[95vw] max-w-[700px]   sm:w-[700px] sm:max-w-[95vw]   max-h-[95vh]   overflow-y-scroll scrollbar-styled   py-8 pl-8 pr-6 bg-white">
+					<div className="w-[95vw] sm:w-fit   max-h-[95vh]   overflow-y-scroll scrollbar-styled   py-8 pl-8 pr-6 bg-white">
 
 						<button onClick={() => navigate(-1)} className="mt-[-1rem] ml-[-1rem]   p-4 rounded-full   hover:bg-zinc-100 transition">
 							<MdOutlineClose className="text-2xl text-zinc-500" />
 						</button>
 
-						<div className="mt-2">
+						<div className="w-full mt-2">
 							{props.children}
 						</div>
 					</div>
@@ -58,4 +48,4 @@ function URLModal(props: Props) {
 	)
 }
 
-export default URLModal
+export default FormModal

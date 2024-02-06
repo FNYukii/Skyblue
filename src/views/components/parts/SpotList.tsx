@@ -1,5 +1,5 @@
 import Spot from "../../../entities/Spot"
-import ImageLinkGrid from "../sections/ImageLinkGrid"
+import ImageLinkGrid from "./ImageLinkGrid"
 
 
 

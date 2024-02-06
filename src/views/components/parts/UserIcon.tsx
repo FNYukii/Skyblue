@@ -42,7 +42,7 @@ function UserIcon(props: Props) {
 				}
 
 				{isLoaded && user !== null &&
-					<img src={user.iconUrl} alt="User icon" className="w-full h-full   bg-gray-700" />
+					<img src={user.iconUrl} alt="User icon" className="w-full h-full   object-cover   bg-gray/50" />
 				}
 			</div>
 		</div>

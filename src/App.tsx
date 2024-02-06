@@ -7,9 +7,10 @@ import { useEffect, useState } from "react"
 import { onAuthStateChanged } from "firebase/auth"
 import { auth } from "./utils/firebase"
 import CreateSpotScreen from "./views/screens/CreateSpotScreen"
-import SplashScreen from "./views/screens/SplashScreen"
+import Splash from "./views/components/sections/Splash"
 import SpotScreen from "./views/screens/SpotScreen"
 import UserScreen from "./views/screens/UserScreen"
+import EditUserScreen from "./views/screens/EditUserScreen"
 
 function App() {
 
@@ -53,44 +54,58 @@ function App() {
 		<div className="h-full">
 
 			{!isLoaded &&
-				<SplashScreen />
+				<Splash />
 			}
 
 
 
-			{isLoaded &&
+			{isLoaded && !isSignedIn &&
 
 				<div className="h-full">
 
 					<Header />
 
-					<main className="mx-auto   w-full xl:w-[1280px]   px-4 xl:px-0">
+					<Routes location={currentPath.match(/^\/spots\/\w{20}\/images\/\d{1}$/) ? prevPath : currentPath}>
 
-						<Routes location={currentPath === "/new" || currentPath.match(/^\/spots\/\w{20}\/images\/\d{1}$/) ? prevPath : currentPath}>
-
-							<Route path="*" element={<NotFoundScreen />} />
-							<Route path="/" element={<TopScreen />} />
-							<Route path="/spots/:spotId" element={<TopScreen />} />
-							<Route path="/users/:userId" element={<UserScreen />} />
-
-							{isSignedIn &&
-								<Route path="/new" element={<TopScreen />} />
-							}
-						</Routes>
-					</main>
+						<Route path="*" element={<NotFoundScreen />} />
+						<Route path="/" element={<TopScreen />} />
+						<Route path="/users/:userId" element={<UserScreen />} />
+					</Routes>
 
 					<Footer className="mt-16   sticky top-full" />
 
-					
+					<Routes>
+						<Route path="*" element={<></>} />
+						<Route path="/spots/:spotId/images/:imageNumber" element={<SpotScreen />} />
+					</Routes>
+				</div>
+			}
+
+
+
+			{isLoaded && isSignedIn &&
+
+				<div className="h-full">
+
+					<Header />
+
+					<Routes location={currentPath === "/new" || currentPath.match(/^\/spots\/\w{20}\/images\/\d{1}$/) || currentPath === "/edit-profile" ? prevPath : currentPath}>
+
+						<Route path="*" element={<NotFoundScreen />} />
+						<Route path="/" element={<TopScreen />} />
+						<Route path="/users/:userId" element={<UserScreen />} />
+
+						<Route path="/new" element={<TopScreen />} />
+					</Routes>
+
+					<Footer className="mt-16   sticky top-full" />
 
 					<Routes>
 
 						<Route path="*" element={<></>} />
 						<Route path="/spots/:spotId/images/:imageNumber" element={<SpotScreen />} />
-
-						{isSignedIn &&
-							<Route path="/new" element={<CreateSpotScreen />} />
-						}
+						<Route path="/new" element={<CreateSpotScreen />} />
+						<Route path="/edit-profile" element={<EditUserScreen />} />
 					</Routes>
 				</div>
 			}

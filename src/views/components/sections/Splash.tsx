@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
-import LoadingIcon from "../components/parts/LoadingIcon"
+import LoadingIcon from "../parts/LoadingIcon"
 
-function SplashScreen() {
+function Splash() {
 
 	// ロードサークルを表示するかどうか
 	const [isShowLoading, setIsShowLoading] = useState(false)
@@ -13,18 +13,7 @@ function SplashScreen() {
 		}, 1000)
 	}, [])
 
-
-
-	// 画面スクロール無効
-	useEffect(() => {
-
-		document.body.style.overflowY = "hidden"
-
-		return () => {
-			document.body.style.overflowY = ""
-		}
-		// eslint-disable-next-line
-	}, [])
+	
 
 	return (
 
@@ -40,4 +29,4 @@ function SplashScreen() {
 	)
 }
 
-export default SplashScreen
+export default Splash
