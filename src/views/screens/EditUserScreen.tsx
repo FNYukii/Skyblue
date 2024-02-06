@@ -5,10 +5,13 @@ import { useEffect, useState } from "react"
 import LoadingIcon from "../components/parts/LoadingIcon"
 import UserService from "../../utils/UserService"
 import User from "../../entities/User"
+import { useNavigate } from "react-router-dom"
 
 
 
 function EditUserScreen() {
+
+	const navigate = useNavigate()
 
 	// 入力内容
 	const [displayName, setDisplayName] = useState("")
@@ -35,8 +38,17 @@ function EditUserScreen() {
 	const [isLoading, setIsLoading] = useState(false)
 
 	async function edit() {
+
 		setIsLoading(true)
-		setIsLoading(false)
+
+		const result = await UserService.editProfile(displayName)
+		if (!result) {
+			alert("プロフィールの更新に失敗しました")
+			setIsLoading(false)
+			return
+		}
+
+		navigate(-1)
 	}
 
 

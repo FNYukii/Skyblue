@@ -173,7 +173,7 @@ class UserService {
 
 		} catch (error) {
 
-			console.log(`FAIL! Failed to like spot. ${error}`)
+			console.log(`FAIL! Failed to update user. ${error}`)
 			return null
 		}
 	}
@@ -200,7 +200,37 @@ class UserService {
 
 		} catch (error) {
 
-			console.log(`FAIL! Failed to unlike spot. ${error}`)
+			console.log(`FAIL! Failed to update user. ${error}`)
+			return null
+		}
+	}
+
+
+
+	static async editProfile(displayName: string): Promise<string | null> {
+
+		// 値チェック
+		if (displayName === "" || displayName.length > 50) return null
+
+		// 自分のuserId
+		const userId = await AuthService.uid()
+		if (!userId) return null
+
+		// 自分のUserへの参照
+		const ref = doc(db, "users", userId)
+
+		// likesフィールドからSpotのIDを削除
+		try {
+
+			await updateDoc(ref, {
+				displayName: displayName
+			})
+
+			return userId
+
+		} catch (error) {
+
+			console.log(`FAIL! Failed to update user. ${error}`)
 			return null
 		}
 	}
