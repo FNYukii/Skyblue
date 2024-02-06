@@ -59,7 +59,33 @@ function App() {
 
 
 
-			{isLoaded &&
+			{isLoaded && !isSignedIn &&
+
+				<div className="h-full">
+
+					<Header />
+
+					<main className="mx-auto   w-full xl:w-[1280px]   px-4 xl:px-0">
+
+						<Routes location={currentPath.match(/^\/spots\/\w{20}\/images\/\d{1}$/) ? prevPath : currentPath}>
+
+							<Route path="*" element={<NotFoundScreen />} />
+							<Route path="/" element={<TopScreen />} />
+							<Route path="/users/:userId" element={<UserScreen />} />
+						</Routes>
+					</main>
+
+					<Footer className="mt-16   sticky top-full" />
+
+					<Routes>
+						<Route path="/spots/:spotId/images/:imageNumber" element={<SpotScreen />} />
+					</Routes>
+				</div>
+			}
+
+
+
+			{isLoaded && isSignedIn &&
 
 				<div className="h-full">
 
@@ -73,27 +99,17 @@ function App() {
 							<Route path="/" element={<TopScreen />} />
 							<Route path="/users/:userId" element={<UserScreen />} />
 
-							{isSignedIn &&
-								<Route path="/new" element={<TopScreen />} />
-							}
+							<Route path="/new" element={<TopScreen />} />
 						</Routes>
 					</main>
 
 					<Footer className="mt-16   sticky top-full" />
 
-
-
 					<Routes>
 
-						<Route path="*" element={<></>} />
 						<Route path="/spots/:spotId/images/:imageNumber" element={<SpotScreen />} />
-
-						{isSignedIn &&
-							<>
-								<Route path="/new" element={<CreateSpotScreen />} />
-								<Route path="/edit-profile" element={<EditUserScreen />} />
-							</>
-						}
+						<Route path="/new" element={<CreateSpotScreen />} />
+						<Route path="/edit-profile" element={<EditUserScreen />} />
 					</Routes>
 				</div>
 			}
