@@ -132,7 +132,7 @@ function SpotScreen() {
 
 
 
-						<div className="min-h-0 w-fit mx-auto">
+						<div className="min-h-0 grow    w-fit mx-auto">
 
 							<div className="h-full    max-w-screen   flex items-center gap-2">
 
