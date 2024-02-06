@@ -13,6 +13,7 @@ function GMap(props: Props) {
 	const { isLoaded } = useJsApiLoader({
 		id: 'google-map-script',
 		googleMapsApiKey: `${process.env.REACT_APP_GOOGLE_MAPS_PLATFORM_API_KEY}`,
+		language: "ja"
 	})
 
 
