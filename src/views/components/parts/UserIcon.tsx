@@ -34,15 +34,15 @@ function UserIcon(props: Props) {
 			<div className="w-full aspect-square rounded-full    overflow-hidden">
 
 				{!isLoaded &&
-					<div className="w-full h-full   bg-gray-700"></div>
+					<div className="w-full h-full   bg-gray-500/50"></div>
 				}
 
 				{isLoaded && user === null &&
-					<div className="w-full h-full   bg-gray-700"></div>
+					<div className="w-full h-full   bg-gray-500/50"></div>
 				}
 
 				{isLoaded && user !== null &&
-					<img src={user.iconUrl} alt="User icon" className="w-full h-full   object-cover   bg-gray/50" />
+					<img src={user.iconUrl} alt="User icon" className="w-full h-full   object-cover   bg-gray-500/50" />
 				}
 			</div>
 		</div>
