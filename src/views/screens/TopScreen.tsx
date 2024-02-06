@@ -7,7 +7,7 @@ function TopScreen() {
 
 		<Screen title="Skyline">
 
-			<GMap className="w-full aspect-video"/>
+			<GMap location={[34.70381868213214, 135.49635528380549]} className="w-full aspect-video"/>
 		</Screen>
 	)
 }
