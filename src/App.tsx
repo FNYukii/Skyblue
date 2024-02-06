@@ -64,7 +64,7 @@ function App() {
 
 					<Header />
 
-					<main className="mx-auto   w-full lg:w-[1024px]   px-4 lg:px-0">
+					<main className="mx-auto   w-full xl:w-[1280px]   px-4 xl:px-0">
 
 						<Routes location={currentPath === "/new" || currentPath.match(/^\/spots\/\w{20}\/images\/\d{1}$/) ? prevPath : currentPath}>
 
