@@ -32,13 +32,13 @@ function FormModal(props: Props) {
 
 				<div className="overflow-hidden rounded-xl">
 
-					<div className="w-[95vw] max-w-[700px]   sm:w-[700px] sm:max-w-[95vw]   max-h-[95vh]   overflow-y-scroll scrollbar-styled   py-8 pl-8 pr-6 bg-white">
+					<div className="w-[95vw] sm:w-fit   max-h-[95vh]   overflow-y-scroll scrollbar-styled   py-8 pl-8 pr-6 bg-white">
 
 						<button onClick={() => navigate(-1)} className="mt-[-1rem] ml-[-1rem]   p-4 rounded-full   hover:bg-zinc-100 transition">
 							<MdOutlineClose className="text-2xl text-zinc-500" />
 						</button>
 
-						<div className="mt-2">
+						<div className="w-full mt-2">
 							{props.children}
 						</div>
 					</div>
