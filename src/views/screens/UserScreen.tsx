@@ -61,7 +61,7 @@ function UserScreen() {
 
 	return (
 
-		<Screen title={pageTitle ?? "ユーザー - Skyline"}>
+		<Screen title={pageTitle ?? "ユーザー - Skyblue"}>
 
 			<div className="h-full">
 

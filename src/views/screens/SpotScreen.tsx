@@ -103,7 +103,7 @@ function SpotScreen() {
 
 	return (
 
-		<Screen title={pageTitle ?? "スポット - Skyline"}>
+		<Screen title={pageTitle ?? "スポット - Skyblue"}>
 
 			<Escaper />
 			<Fixer />
