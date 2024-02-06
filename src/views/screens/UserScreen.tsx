@@ -10,6 +10,7 @@ import AuthService from "../../utils/AuthService"
 import '@szhsin/react-menu/dist/index.css'
 import '@szhsin/react-menu/dist/transitions/slide.css'
 import LikeSpotList from "../components/sections/LikeSpotList"
+import NavLinkToModal from "../components/parts/NavLinkToModal"
 
 
 
@@ -92,6 +93,10 @@ function UserScreen() {
 							arrow
 							position="anchor"
 						>
+							<MenuItem>
+								<NavLinkToModal to="/edit-profile">プロフィールを編集</NavLinkToModal>
+							</MenuItem>
+
 							<MenuItem>
 								<button onClick={() => AuthService.signOut()} className="text-red-500">サインアウト</button>
 							</MenuItem>

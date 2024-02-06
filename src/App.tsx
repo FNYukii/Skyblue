@@ -10,6 +10,7 @@ import CreateSpotScreen from "./views/screens/CreateSpotScreen"
 import SplashScreen from "./views/screens/SplashScreen"
 import SpotScreen from "./views/screens/SpotScreen"
 import UserScreen from "./views/screens/UserScreen"
+import EditUserScreen from "./views/screens/EditUserScreen"
 
 function App() {
 
@@ -66,11 +67,10 @@ function App() {
 
 					<main className="mx-auto   w-full xl:w-[1280px]   px-4 xl:px-0">
 
-						<Routes location={currentPath === "/new" || currentPath.match(/^\/spots\/\w{20}\/images\/\d{1}$/) ? prevPath : currentPath}>
+						<Routes location={currentPath === "/new" || currentPath.match(/^\/spots\/\w{20}\/images\/\d{1}$/) || currentPath === "/edit-profile" ? prevPath : currentPath}>
 
 							<Route path="*" element={<NotFoundScreen />} />
 							<Route path="/" element={<TopScreen />} />
-							<Route path="/spots/:spotId" element={<TopScreen />} />
 							<Route path="/users/:userId" element={<UserScreen />} />
 
 							{isSignedIn &&
@@ -81,7 +81,7 @@ function App() {
 
 					<Footer className="mt-16   sticky top-full" />
 
-					
+
 
 					<Routes>
 
@@ -89,7 +89,10 @@ function App() {
 						<Route path="/spots/:spotId/images/:imageNumber" element={<SpotScreen />} />
 
 						{isSignedIn &&
-							<Route path="/new" element={<CreateSpotScreen />} />
+							<>
+								<Route path="/new" element={<CreateSpotScreen />} />
+								<Route path="/edit-profile" element={<EditUserScreen />} />
+							</>
 						}
 					</Routes>
 				</div>
