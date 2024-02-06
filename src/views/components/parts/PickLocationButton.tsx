@@ -1,7 +1,7 @@
 import { TbMapPinPlus } from "react-icons/tb"
-import Map from "./Map"
 import { useState } from "react"
 import PickableMap from "./PickableMap"
+import GMap from "./GMap"
 
 
 
@@ -36,7 +36,7 @@ function PickLocationButton(props: Props) {
 						}
 
 						{props.location !== null &&
-							<Map location={props.location} className="w-full aspect-video   hover:brightness-90 transition" />
+							<GMap location={props.location} className="w-full aspect-video rounded-xl overflow-hidden   hover:brightness-90 transition" />
 						}
 					</button>
 				</div>

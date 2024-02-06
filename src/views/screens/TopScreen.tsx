@@ -1,5 +1,5 @@
-import GMap from "../components/parts/GMap"
 import Screen from "../components/parts/Screen"
+import RecentlySpotList from "../components/sections/RecentlySpotList"
 
 function TopScreen() {
 
@@ -7,7 +7,7 @@ function TopScreen() {
 
 		<Screen title="Skyline">
 
-			<GMap location={[34.70381868213214, 135.49635528380549]} className="w-full aspect-video"/>
+			<RecentlySpotList />
 		</Screen>
 	)
 }

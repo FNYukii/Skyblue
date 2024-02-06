@@ -1,4 +1,5 @@
 import { MapContainer, Marker, TileLayer, useMap, useMapEvents } from 'react-leaflet'
+import "../../styles/leaflet.css"
 
 // 正しいMap表示に必要なファイルをインポート
 import "leaflet/dist/leaflet.css"
