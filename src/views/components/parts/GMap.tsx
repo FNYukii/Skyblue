@@ -1,4 +1,4 @@
-import { GoogleMap, LoadScript } from "@react-google-maps/api"
+import { GoogleMap, LoadScript, MarkerF } from "@react-google-maps/api"
 
 
 interface Props {
@@ -9,8 +9,6 @@ interface Props {
 
 
 function GMap(props: Props) {
-
-	const defaultCenter = [34.70381868213214, 135.49635528380549]
 
 	return (
 
@@ -32,7 +30,10 @@ function GMap(props: Props) {
 					center={{ lat: props.location[0], lng: props.location[1] }}
 					zoom={14}
 					mapContainerClassName="w-full h-full   min-w-40 min-h-40"
-				/>
+				>
+
+					<MarkerF position={{ lat: props.location[0], lng: props.location[1] }} />
+				</GoogleMap>
 			</LoadScript>
 		</div>
 	)
