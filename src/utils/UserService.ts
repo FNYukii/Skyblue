@@ -207,10 +207,10 @@ class UserService {
 
 
 
-	static async editProfile(displayName: string): Promise<string | null> {
+	static async editProfile(displayName?: string, iconUrl?: string): Promise<string | null> {
 
 		// 値チェック
-		if (displayName === "" || displayName.length > 50) return null
+		if (displayName && (displayName === "" || displayName.length > 50)) return null
 
 		// 自分のuserId
 		const userId = await AuthService.uid()
@@ -219,13 +219,18 @@ class UserService {
 		// 自分のUserへの参照
 		const ref = doc(db, "users", userId)
 
-		// likesフィールドからSpotのIDを削除
+		// 更新内容をオブジェクトで作成
+		let docObject: {
+			[prop: string]: any
+		} = {}
+
+		if (displayName) docObject.displayName = displayName
+		if (iconUrl) docObject.iconUrl = iconUrl
+
+		// ドキュメントを更新
 		try {
 
-			await updateDoc(ref, {
-				displayName: displayName
-			})
-
+			await updateDoc(ref, docObject)
 			return userId
 
 		} catch (error) {
