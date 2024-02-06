@@ -1,21 +1,18 @@
+import Screen from "../components/parts/Screen"
 import URLModal from "../components/parts/URLModal"
 
 
 
 function EditUserScreen() {
 
-	document.title = "プロフィールを編集 - Skyblue"
-
-
-
 	return (
 
-		<URLModal>
+		<Screen title="プロフィールを編集 - Skyblue">
 
-			<h1 className="text-2xl font-bold">プロフィールを編集</h1>
-
-
-		</URLModal>
+			<URLModal>
+				<h1 className="text-2xl font-bold">プロフィールを編集</h1>
+			</URLModal>
+		</Screen>
 	)
 }
 

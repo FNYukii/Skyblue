@@ -11,14 +11,15 @@ import '@szhsin/react-menu/dist/index.css'
 import '@szhsin/react-menu/dist/transitions/slide.css'
 import LikeSpotList from "../components/sections/LikeSpotList"
 import NavLinkToModal from "../components/parts/NavLinkToModal"
+import Screen from "../components/parts/Screen"
 
 
 
 function UserScreen() {
 
-	// document.title = "ユーザー - Skyline"
-
 	const { userId } = useParams()
+
+	const [pageTitle, setPageTitle] = useState<string | null>(null)
 
 
 
@@ -32,8 +33,7 @@ function UserScreen() {
 
 			const user = await UserService.readUser(userId ?? "---", true)
 
-			document.title = `${user?.displayName ?? "ユーザー"} - Skyblue`
-
+			setPageTitle(`${user?.displayName ?? "ユーザー"} - Skyblue`)
 			setUser(user)
 			setIsLoaded(true)
 		})()
@@ -50,71 +50,74 @@ function UserScreen() {
 
 	return (
 
-		<div className="h-full">
+		<Screen title={pageTitle ?? "ユーザー - Skyline"}>
 
-			{!isLoaded &&
-				<div className="h-[40%] flex flex-col justify-end">
-					<LoadingIcon center large className="mt-16" />
-				</div>
-			}
+			<div className="h-full">
 
-			{isLoaded && user === null &&
-				<p className="mt-16   text-center text-gray-500">読み取りに失敗しました</p>
-			}
-
-			{isLoaded && user !== null &&
-
-				<div className="">
-
-
-
-					<div className="w-full   flex flex-col items-center">
-						<img src={user.iconUrl} alt="User icon" className=" w-28 aspect-square rounded-full bg-gray-200" />
-						<p className="mt-2   text-2xl font-bold   max-w-full   overflow-hidden whitespace-nowrap text-ellipsis">{user.displayName}</p>
+				{!isLoaded &&
+					<div className="h-[40%] flex flex-col justify-end">
+						<LoadingIcon center large className="mt-16" />
 					</div>
+				}
+
+				{isLoaded && user === null &&
+					<p className="mt-16   text-center text-gray-500">読み取りに失敗しました</p>
+				}
+
+				{isLoaded && user !== null &&
+
+					<div className="">
 
 
 
-					<div className="w-full   flex justify-between items-center   border-b border-gray-200">
-
-						<div className="flex">
-							<button onClick={() => setTab(0)} className={`block   px-8 sm:px-16 py-2   hover:bg-gray-100 transition    ${tab === 0 && "border-b-2 border-black font-bold"}`}>投稿</button>
-							<button onClick={() => setTab(1)} className={`block   px-8 sm:px-16 py-2   hover:bg-gray-100 transition    ${tab === 1 && "border-b-2 border-black font-bold"}`}>いいね</button>
+						<div className="w-full   flex flex-col items-center">
+							<img src={user.iconUrl} alt="User icon" className=" w-28 aspect-square rounded-full bg-gray-200" />
+							<p className="mt-2   text-2xl font-bold   max-w-full   overflow-hidden whitespace-nowrap text-ellipsis">{user.displayName}</p>
 						</div>
 
 
-						<Menu
-							menuButton={
-								<MenuButton className="mr-[-0.5rem]   p-2 rounded-full   hover:bg-gray-100 transition">
-									<IoEllipsisHorizontal className="text-2xl text-gray-500" />
-								</MenuButton>
+
+						<div className="w-full   flex justify-between items-center   border-b border-gray-200">
+
+							<div className="flex">
+								<button onClick={() => setTab(0)} className={`block   px-8 sm:px-16 py-2   hover:bg-gray-100 transition    ${tab === 0 && "border-b-2 border-black font-bold"}`}>投稿</button>
+								<button onClick={() => setTab(1)} className={`block   px-8 sm:px-16 py-2   hover:bg-gray-100 transition    ${tab === 1 && "border-b-2 border-black font-bold"}`}>いいね</button>
+							</div>
+
+
+							<Menu
+								menuButton={
+									<MenuButton className="mr-[-0.5rem]   p-2 rounded-full   hover:bg-gray-100 transition">
+										<IoEllipsisHorizontal className="text-2xl text-gray-500" />
+									</MenuButton>
+								}
+								transition
+								arrow
+								position="anchor"
+							>
+								<MenuItem>
+									<NavLinkToModal to="/edit-profile">プロフィールを編集</NavLinkToModal>
+								</MenuItem>
+
+								<MenuItem>
+									<button onClick={() => AuthService.signOut()} className="text-red-500">サインアウト</button>
+								</MenuItem>
+							</Menu>
+						</div>
+
+						<div>
+							{tab === 0 &&
+								<UserSpotList userId={userId!} className="mt-4" />
 							}
-							transition
-							arrow
-							position="anchor"
-						>
-							<MenuItem>
-								<NavLinkToModal to="/edit-profile">プロフィールを編集</NavLinkToModal>
-							</MenuItem>
 
-							<MenuItem>
-								<button onClick={() => AuthService.signOut()} className="text-red-500">サインアウト</button>
-							</MenuItem>
-						</Menu>
+							{tab === 1 &&
+								<LikeSpotList userId={userId!} className="mt-4" />
+							}
+						</div>
 					</div>
-
-					<div>
-						{tab === 0 &&
-							<UserSpotList userId={userId!} className="mt-4" />
-						}
-
-						{tab === 1 &&
-							<LikeSpotList userId={userId!} className="mt-4" />
-						}
-					</div>
-				</div>
-			}
-		</div>
+				}
+			</div>
+		</Screen>
 	)
 }
 

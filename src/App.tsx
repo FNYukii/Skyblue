@@ -65,15 +65,12 @@ function App() {
 
 					<Header />
 
-					<main className="mx-auto   w-full xl:w-[1280px]   px-4 xl:px-0">
+					<Routes location={currentPath.match(/^\/spots\/\w{20}\/images\/\d{1}$/) ? prevPath : currentPath}>
 
-						<Routes location={currentPath.match(/^\/spots\/\w{20}\/images\/\d{1}$/) ? prevPath : currentPath}>
-
-							<Route path="*" element={<NotFoundScreen />} />
-							<Route path="/" element={<TopScreen />} />
-							<Route path="/users/:userId" element={<UserScreen />} />
-						</Routes>
-					</main>
+						<Route path="*" element={<NotFoundScreen />} />
+						<Route path="/" element={<TopScreen />} />
+						<Route path="/users/:userId" element={<UserScreen />} />
+					</Routes>
 
 					<Footer className="mt-16   sticky top-full" />
 
@@ -91,17 +88,14 @@ function App() {
 
 					<Header />
 
-					<main className="mx-auto   w-full xl:w-[1280px]   px-4 xl:px-0">
+					<Routes location={currentPath === "/new" || currentPath.match(/^\/spots\/\w{20}\/images\/\d{1}$/) || currentPath === "/edit-profile" ? prevPath : currentPath}>
 
-						<Routes location={currentPath === "/new" || currentPath.match(/^\/spots\/\w{20}\/images\/\d{1}$/) || currentPath === "/edit-profile" ? prevPath : currentPath}>
+						<Route path="*" element={<NotFoundScreen />} />
+						<Route path="/" element={<TopScreen />} />
+						<Route path="/users/:userId" element={<UserScreen />} />
 
-							<Route path="*" element={<NotFoundScreen />} />
-							<Route path="/" element={<TopScreen />} />
-							<Route path="/users/:userId" element={<UserScreen />} />
-
-							<Route path="/new" element={<TopScreen />} />
-						</Routes>
-					</main>
+						<Route path="/new" element={<TopScreen />} />
+					</Routes>
 
 					<Footer className="mt-16   sticky top-full" />
 
