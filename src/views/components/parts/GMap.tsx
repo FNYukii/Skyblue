@@ -18,12 +18,6 @@ function GMap(props: Props) {
 
 				<GoogleMap
 					options={{
-						// fullscreenControl: false,
-						// mapTypeControl: false,
-						// streetViewControl: false,
-						// zoomControl: false,
-						// gestureHandling: "greedy"
-
 						disableDefaultUI: true,
 						draggable: false
 					}}
