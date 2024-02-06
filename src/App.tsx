@@ -7,7 +7,7 @@ import { useEffect, useState } from "react"
 import { onAuthStateChanged } from "firebase/auth"
 import { auth } from "./utils/firebase"
 import CreateSpotScreen from "./views/screens/CreateSpotScreen"
-import SplashScreen from "./views/screens/SplashScreen"
+import Splash from "./views/components/sections/Splash"
 import SpotScreen from "./views/screens/SpotScreen"
 import UserScreen from "./views/screens/UserScreen"
 import EditUserScreen from "./views/screens/EditUserScreen"
@@ -54,7 +54,7 @@ function App() {
 		<div className="h-full">
 
 			{!isLoaded &&
-				<SplashScreen />
+				<Splash />
 			}
 
 
