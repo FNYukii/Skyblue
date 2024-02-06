@@ -1,4 +1,4 @@
-import { GoogleMap, LoadScript, MarkerF } from "@react-google-maps/api"
+import { GoogleMap, MarkerF } from "@react-google-maps/api"
 import { useState } from "react"
 
 
@@ -23,36 +23,33 @@ function PickableGMap(props: Props) {
 
 			<div className="w-full h-full bg-gray-300">
 
-				<LoadScript googleMapsApiKey={`${process.env.REACT_APP_GOOGLE_MAPS_PLATFORM_API_KEY}`}>
+				<GoogleMap
+					options={{
+						fullscreenControl: false,
+						mapTypeControl: false,
+						streetViewControl: false,
+						zoomControl: false,
+						gestureHandling: "greedy"
+					}}
+					center={{ lat: defaultCenter[0], lng: defaultCenter[1] }}
+					zoom={7}
 
-					<GoogleMap
-						options={{
-							fullscreenControl: false,
-							mapTypeControl: false,
-							streetViewControl: false,
-							zoomControl: false,
-							gestureHandling: "greedy"
-						}}
-						center={{ lat: defaultCenter[0], lng: defaultCenter[1] }}
-						zoom={7}
+					onClick={e => {
 
-						onClick={e => {
+						if (!e.latLng) return
 
-							if (!e.latLng) return
+						const lat = e.latLng.lat()
+						const lng = e.latLng.lng()
+						setLocation([lat, lng])
+					}}
 
-							const lat = e.latLng.lat()
-							const lng = e.latLng.lng()
-							setLocation([lat, lng])
-						}}
+					mapContainerClassName="w-full h-full   min-w-40 min-h-40"
+				>
 
-						mapContainerClassName="w-full h-full   min-w-40 min-h-40"
-					>
-
-						{location !== null &&
-							<MarkerF position={{ lat: location[0], lng: location[1] }} />
-						}
-					</GoogleMap>
-				</LoadScript>
+					{location !== null &&
+						<MarkerF position={{ lat: location[0], lng: location[1] }} />
+					}
+				</GoogleMap>
 			</div>
 
 
