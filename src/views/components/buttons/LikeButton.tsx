@@ -10,7 +10,7 @@ import UserService from "../../../utils/UserService"
 
 
 interface Props {
-	spotId: string
+	postId: string
 	showLikeCount?: boolean
 
 	className?: string
@@ -20,18 +20,18 @@ interface Props {
 
 function LikeButton(props: Props) {
 
-	// 該当のSpot
+	// 該当のPost
 	const [userIds, setUserIds] = useState<string[] | null>(null)
 	const [isLoadedUserIds, setIsLoadedUserIds] = useState(false)
 
-	// Spotを監視して最新のSpotを取得
+	// このPostをいいねしたUserを監視する
 	useEffect(() => {
 
 		let unsubscribe: Unsubscribe
 
 		(async () => {
 
-			unsubscribe = await UserService.onUserIdsLikeSpotChanged(props.spotId, userIds => {
+			unsubscribe = await UserService.onUserIdsLikePostChanged(props.postId, userIds => {
 
 				setUserIds(userIds)
 				setIsLoadedUserIds(true)
@@ -105,7 +105,7 @@ function LikeButton(props: Props) {
 
 					{isLoadedUid && uid !== null && !userIds.includes(uid) &&
 
-						<button onClick={() => UserService.likeSpot(props.spotId)} className="m-[-0.5rem]   p-2 rounded-full   flex items-center gap-1   hover:bg-white/20 transition">
+						<button onClick={() => UserService.likePost(props.postId)} className="m-[-0.5rem]   p-2 rounded-full   flex items-center gap-1   hover:bg-white/20 transition">
 							<AiOutlineHeart className="text-white text-xl" />
 							{props.showLikeCount &&
 								<p className="text-white">{userIds.length}</p>
@@ -117,7 +117,7 @@ function LikeButton(props: Props) {
 
 					{isLoadedUid && uid !== null && userIds.includes(uid) &&
 
-						<button onClick={() => UserService.unlikeSpot(props.spotId)} className="m-[-0.5rem]   p-2 rounded-full   flex items-center gap-1   hover:bg-white/20 transition">
+						<button onClick={() => UserService.unlikePost(props.postId)} className="m-[-0.5rem]   p-2 rounded-full   flex items-center gap-1   hover:bg-white/20 transition">
 							<AiFillHeart className="text-white text-xl" />
 							{props.showLikeCount &&
 								<p className="text-white">{userIds.length}</p>

@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react"
 import { NavLink, useLocation, useNavigate, useParams } from "react-router-dom"
-import Spot from "../../entities/Spot"
-import SpotService from "../../utils/SpotService"
+import Post from "../../entities/Post"
+import PostService from "../../utils/PostService"
 import LoadingIcon from "../components/others/LoadingIcon"
 import UserIcon from "../components/others/UserIcon"
 import { MdOutlineClose } from "react-icons/md"
@@ -20,10 +20,10 @@ import "@szhsin/react-menu/dist/theme-dark.css"
 
 
 
-function SpotScreen() {
+function PostScreen() {
 
 	// Params
-	const { spotId } = useParams()
+	const { postId } = useParams()
 	const { imageNumber } = useParams()
 
 	// 画面のタイトル
@@ -45,25 +45,25 @@ function SpotScreen() {
 
 
 
-	// Spot
-	const [spot, setSpot] = useState<Spot | null>(null)
+	// Post
+	const [post, setPost] = useState<Post | null>(null)
 	const [isLoaded, setIsLoaded] = useState(false)
 
-	// Spotを読み取る
+	// Postを読み取る
 	useEffect(() => {
 
 		(async () => {
 
 			// キャッシュから読み取る
-			let spot = await SpotService.readSpotFromCache(spotId ?? "---")
+			let post = await PostService.readPostFromCache(postId ?? "---")
 
 			// 失敗したらサーバーからも読み取る
-			if (!spot) {
-				spot = await SpotService.readSpot(spotId ?? "---")
+			if (!post) {
+				post = await PostService.readPost(postId ?? "---")
 			}
 
-			setPageTitle(`${spot?.name ?? "投稿"} - Skyblue`)
-			setSpot(spot)
+			setPageTitle(`${post?.name ?? "投稿"} - Skyblue`)
+			setPost(post)
 			setIsLoaded(true)
 		})()
 
@@ -75,22 +75,22 @@ function SpotScreen() {
 	// 表示する画像を切り替える
 	function prevImage() {
 
-		if (!isLoaded || spot === null) return
+		if (!isLoaded || post === null) return
 
 		const newImageIndex = imageIndex - 1
 
 		setImageIndex(newImageIndex)
-		navigate(`/posts/${spotId}/images/${newImageIndex + 1}`, { replace: true })
+		navigate(`/posts/${postId}/images/${newImageIndex + 1}`, { replace: true })
 	}
 
 	function nextImage() {
 
-		if (!isLoaded || spot === null) return
+		if (!isLoaded || post === null) return
 
 		const newImageIndex = imageIndex + 1
 
 		setImageIndex(newImageIndex)
-		navigate(`/posts/${spotId}/images/${newImageIndex + 1}`, { replace: true })
+		navigate(`/posts/${postId}/images/${newImageIndex + 1}`, { replace: true })
 	}
 
 
@@ -136,11 +136,11 @@ function SpotScreen() {
 						<LoadingIcon center large color="#fff" className="mt-[40vh]" />
 					}
 
-					{isLoaded && spot === null &&
+					{isLoaded && post === null &&
 						<p className="mt-[40vh]   text-center text-gray-400">読み取りに失敗しました</p>
 					}
 
-					{isLoaded && spot !== null &&
+					{isLoaded && post !== null &&
 
 						<div className="h-full   flex flex-col gap-2">
 
@@ -154,9 +154,9 @@ function SpotScreen() {
 										<AiOutlineArrowLeft className="text-2xl" />
 									</button>
 
-									<img src={spot.imageUrls[imageIndex]} alt="Attached on Spot" className="h-full   pointer-events-auto   min-w-0" />
+									<img src={post.imageUrls[imageIndex]} alt="Attached on Post" className="h-full   pointer-events-auto   min-w-0" />
 
-									<button onClick={() => nextImage()} disabled={imageIndex === spot.imageUrls.length - 1} ref={nextButtonRef} className="h-fit w-fit   p-3 rounded-full   text-white   disabled:opacity-0 enabled:pointer-events-auto   enabled:hover:bg-white/20 transition">
+									<button onClick={() => nextImage()} disabled={imageIndex === post.imageUrls.length - 1} ref={nextButtonRef} className="h-fit w-fit   p-3 rounded-full   text-white   disabled:opacity-0 enabled:pointer-events-auto   enabled:hover:bg-white/20 transition">
 										<AiOutlineArrowRight className="text-2xl" />
 									</button>
 								</div>
@@ -167,24 +167,24 @@ function SpotScreen() {
 							<div className="mx-auto min-w-[95%] sm:min-w-[600px] sm:max-w-[800px]   flex justify-between items-start gap-4   pointer-events-auto">
 
 								<div>
-									<p className="text-white font-bold">{spot.name}</p>
+									<p className="text-white font-bold">{post.name}</p>
 
-									{spot.detail &&
-										<p className="mt-1 text-gray-400">{spot.detail}</p>
+									{post.detail &&
+										<p className="mt-1 text-gray-400">{post.detail}</p>
 									}
 								</div>
 
 								<div className="flex items-center gap-4">
 
-									<NavLink to={`/users/${spot.userId}`} className="rounded-full   hover:brightness-90 transition">
-										<UserIcon userId={spot.userId} className="w-8 rounded-full" />
+									<NavLink to={`/users/${post.userId}`} className="rounded-full   hover:brightness-90 transition">
+										<UserIcon userId={post.userId} className="w-8 rounded-full" />
 									</NavLink>
 
-									<LikeButton spotId={spot.id} showLikeCount />
+									<LikeButton postId={post.id} showLikeCount />
 
 
 
-									{AuthService.uidQuickly() === spot.userId &&
+									{AuthService.uidQuickly() === post.userId &&
 										<Menu
 											menuButton={
 												<MenuButton className="m-[-0.5rem] p-2   rounded-full   hover:bg-gray-500/50 transition">
@@ -210,8 +210,8 @@ function SpotScreen() {
 											onClose={() => setIsShowDeleteModal(false)}
 											onAccept={async () => {
 
-												// Spotを削除
-												SpotService.deleteSpot(spot.id)
+												// Postを削除
+												PostService.deletePost(post.id)
 
 												// 成功したら前の画面に戻る
 												if (location.key === "default") navigate("/")
@@ -242,4 +242,4 @@ function SpotScreen() {
 	)
 }
 
-export default SpotScreen
+export default PostScreen

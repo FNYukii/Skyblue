@@ -1,4 +1,4 @@
-type Spot = {
+type Post = {
 	id: string
 	userId: string
 	createdAt: Date
@@ -9,4 +9,4 @@ type Spot = {
 	detail: string
 }
 
-export default Spot
+export default Post

@@ -1,10 +1,10 @@
-import Spot from "../../../entities/Spot"
+import Post from "../../../entities/Post"
 import ImageLinkGrid from "./ImageLinkGrid"
 
 
 
 interface Props {
-	spots: Spot[] | null
+	posts: Post[] | null
 	isLoaded: boolean
 
 	className?: string
@@ -12,7 +12,7 @@ interface Props {
 
 
 
-function SpotList(props: Props) {
+function PostList(props: Props) {
 
 	return (
 
@@ -75,22 +75,22 @@ function SpotList(props: Props) {
 
 
 
-			{props.isLoaded && props.spots === null &&
+			{props.isLoaded && props.posts === null &&
 				<p className="mt-16   text-center text-gray-500">読み取りに失敗しました</p>
 			}
 
-			{props.isLoaded && props.spots !== null && props.spots.length === 0 &&
+			{props.isLoaded && props.posts !== null && props.posts.length === 0 &&
 				<p className="mt-16   text-center text-gray-500">投稿はありません</p>
 			}
 
 
 
-			{props.isLoaded && props.spots !== null && props.spots.length !== 0 &&
+			{props.isLoaded && props.posts !== null && props.posts.length !== 0 &&
 
 				<div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4   gap-2">
 
-					{props.spots.map((spot, index) => (
-						<ImageLinkGrid key={index} imageUrls={spot.imageUrls} spotId={spot.id} />
+					{props.posts.map((post, index) => (
+						<ImageLinkGrid key={index} imageUrls={post.imageUrls} postId={post.id} />
 					))}
 				</div>
 			}
@@ -98,7 +98,7 @@ function SpotList(props: Props) {
 	)
 }
 
-export default SpotList
+export default PostList
 
 
 
