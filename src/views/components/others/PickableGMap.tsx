@@ -44,7 +44,8 @@ function PickableGMap(props: Props) {
 							mapTypeControl: false,
 							streetViewControl: false,
 							zoomControl: false,
-							gestureHandling: "greedy"
+							gestureHandling: "greedy",
+							clickableIcons: false
 						}}
 						center={!isClicked ? (props.defaultLocation ?? defaultCenter) : undefined}
 						zoom={7}
@@ -63,7 +64,7 @@ function PickableGMap(props: Props) {
 					>
 
 						{location !== null &&
-							<MarkerF position={location} />
+							<MarkerF position={location} options={{ clickable: false }} />
 						}
 					</GoogleMap>
 				}

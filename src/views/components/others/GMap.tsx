@@ -26,14 +26,15 @@ function GMap(props: Props) {
 				<GoogleMap
 					options={{
 						disableDefaultUI: true,
-						draggable: false
+						draggable: false,
+						clickableIcons: false
 					}}
 					center={props.location}
 					zoom={14}
 					mapContainerClassName="w-full h-full   min-w-40 min-h-40"
 				>
 
-					<MarkerF position={props.location} />
+					<MarkerF position={props.location} options={{clickable: false}} />
 				</GoogleMap>
 			}
 		</div>
