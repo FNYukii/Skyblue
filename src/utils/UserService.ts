@@ -119,9 +119,9 @@ class UserService {
 
 
 
-	// 特定のスポットをいいねしたユーザーのIDの配列
-	static async onUserIdsLikeSpotChanged(
-		spotId: string,
+	// 特定のPostをいいねしたユーザーのIDの配列
+	static async onUserIdsLikePostChanged(
+		postId: string,
 		callback: (userIds: string[]) => unknown,
 		cancelCallback: (error: Error) => unknown,
 	): Promise<Unsubscribe> {
@@ -129,7 +129,7 @@ class UserService {
 		// 読み取りクエリを作成
 		const q = query(
 			collection(db, "users"),
-			where("likes", "array-contains", spotId),
+			where("likes", "array-contains", postId),
 			limit(100)
 		)
 
@@ -180,7 +180,7 @@ class UserService {
 
 
 
-	static async likeSpot(spotId: string): Promise<string | null> {
+	static async likePost(postId: string): Promise<string | null> {
 
 		// 自分のuserId
 		const userId = await AuthService.uid()
@@ -189,11 +189,11 @@ class UserService {
 		// 自分のUserへの参照
 		const ref = doc(db, "users", userId)
 
-		// likesフィールドにSpotのIDを追加
+		// likesフィールドにpostIdを追加
 		try {
 
 			await updateDoc(ref, {
-				likes: arrayUnion(spotId),
+				likes: arrayUnion(postId),
 			})
 
 			return userId
@@ -207,7 +207,7 @@ class UserService {
 
 
 
-	static async unlikeSpot(spotId: string): Promise<string | null> {
+	static async unlikePost(postId: string): Promise<string | null> {
 
 		// 自分のuserId
 		const userId = await AuthService.uid()
@@ -216,11 +216,11 @@ class UserService {
 		// 自分のUserへの参照
 		const ref = doc(db, "users", userId)
 
-		// likesフィールドからSpotのIDを削除
+		// likesフィールドからpostIdを削除
 		try {
 
 			await updateDoc(ref, {
-				likes: arrayRemove(spotId),
+				likes: arrayRemove(postId),
 			})
 
 			return userId

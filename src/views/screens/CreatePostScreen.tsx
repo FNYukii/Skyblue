@@ -2,7 +2,7 @@ import { useState } from "react"
 import FormModal from "../components/others/FormModal"
 import DynamicTextarea from "../components/others/DynamicTextarea"
 import PickImagesButton from "../components/buttons/PickImageButton"
-import SpotService from "../../utils/SpotService"
+import PostService from "../../utils/PostService"
 import { useNavigate } from "react-router-dom"
 import StorageService from "../../utils/StorageService"
 import LoadingIcon from "../components/others/LoadingIcon"
@@ -11,7 +11,7 @@ import Screen from "../components/others/Screen"
 
 
 
-function CreateSpotScreen() {
+function CreatePostScreen() {
 
 	const [imageFiles, setImageFiles] = useState<File[]>([])
 	const [location, setLocation] = useState<{lat: number, lng: number} | null>(null)
@@ -42,11 +42,11 @@ function CreateSpotScreen() {
 			return
 		}
 
-		// Spotを投稿
-		const spotId = await SpotService.createSpot(imageUrls, location, name, detail)
+		// postを投稿
+		const result = await PostService.createPost(imageUrls, location, name, detail)
 
 		// 失敗した場合
-		if (!spotId) {
+		if (!result) {
 			alert("投稿に失敗しました。")
 			setIsLoading(false)
 			return
@@ -106,4 +106,4 @@ function CreateSpotScreen() {
 	)
 }
 
-export default CreateSpotScreen
+export default CreatePostScreen

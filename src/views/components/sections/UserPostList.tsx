@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react"
-import Spot from "../../../entities/Spot"
-import SpotList from "../others/SpotList"
-import SpotService from "../../../utils/SpotService"
+import Post from "../../../entities/Post"
+import PostService from "../../../utils/PostService"
 import { Unsubscribe } from "firebase/firestore"
+import PostList from "../others/PostList"
 
 
 
@@ -13,9 +13,9 @@ interface Props {
 
 
 
-function LikeSpotList(props: Props) {
+function UserPostList(props: Props) {
 
-	const [spots, setSpots] = useState<Spot[] | null>(null)
+	const [posts, setPosts] = useState<Post[] | null>(null)
 	const [isLoaded, setIsLoaded] = useState(false)
 
 
@@ -26,9 +26,9 @@ function LikeSpotList(props: Props) {
 
 		(async () => {
 
-			unsubscribe = await SpotService.onLikesByUserChanged(props.userId, spots => {
+			unsubscribe = await PostService.onPostsByUserChanged(props.userId, posts => {
 
-				setSpots(spots)
+				setPosts(posts)
 				setIsLoaded(true)
 
 			}, (error) => {
@@ -45,9 +45,10 @@ function LikeSpotList(props: Props) {
 	}, [])
 
 
+
 	return (
-		<SpotList spots={spots} isLoaded={isLoaded} className="mt-4" />
+		<PostList posts={posts} isLoaded={isLoaded} className="mt-4"/>
 	)
 }
 
-export default LikeSpotList
+export default UserPostList

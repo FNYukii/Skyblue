@@ -6,9 +6,9 @@ import Footer from "./views/components/sections/Footer"
 import { useEffect, useState } from "react"
 import { onAuthStateChanged } from "firebase/auth"
 import { auth } from "./utils/firebase"
-import CreateSpotScreen from "./views/screens/CreateSpotScreen"
+import CreatePostScreen from "./views/screens/CreatePostScreen"
 import Splash from "./views/components/sections/Splash"
-import SpotScreen from "./views/screens/SpotScreen"
+import PostScreen from "./views/screens/PostScreen"
 import UserScreen from "./views/screens/UserScreen"
 import EditUserScreen from "./views/screens/EditUserScreen"
 
@@ -77,7 +77,7 @@ function App() {
 
 					<Routes>
 						<Route path="*" element={<></>} />
-						<Route path="/posts/:spotId/images/:imageNumber" element={<SpotScreen />} />
+						<Route path="/posts/:postId/images/:imageNumber" element={<PostScreen />} />
 					</Routes>
 				</div>
 			}
@@ -107,8 +107,8 @@ function App() {
 					<Routes>
 
 						<Route path="*" element={<></>} />
-						<Route path="/posts/:spotId/images/:imageNumber" element={<SpotScreen />} />
-						<Route path="/new" element={<CreateSpotScreen />} />
+						<Route path="/posts/:postId/images/:imageNumber" element={<PostScreen />} />
+						<Route path="/new" element={<CreatePostScreen />} />
 						<Route path="/edit-profile" element={<EditUserScreen />} />
 					</Routes>
 				</div>

@@ -3,13 +3,13 @@ import { useParams } from "react-router-dom"
 import User from "../../entities/User"
 import UserService from "../../utils/UserService"
 import LoadingIcon from "../components/others/LoadingIcon"
-import UserSpotList from "../components/sections/UserSpotList"
+import UserPostList from "../components/sections/UserPostList"
 import { IoEllipsisHorizontal } from "react-icons/io5"
 import { Menu, MenuButton, MenuItem } from "@szhsin/react-menu"
 import AuthService from "../../utils/AuthService"
 import '@szhsin/react-menu/dist/index.css'
 import '@szhsin/react-menu/dist/transitions/slide.css'
-import LikeSpotList from "../components/sections/LikeSpotList"
+import LikePostList from "../components/sections/LikePostList"
 import NavLinkToModal from "../components/others/NavLinkToModal"
 import Screen from "../components/others/Screen"
 import { Unsubscribe } from "firebase/firestore"
@@ -135,11 +135,11 @@ function UserScreen() {
 
 						<div>
 							{tab === 0 &&
-								<UserSpotList userId={userId!} className="mt-4" />
+								<UserPostList userId={userId!} className="mt-4" />
 							}
 
 							{tab === 1 &&
-								<LikeSpotList userId={userId!} className="mt-4" />
+								<LikePostList userId={userId!} className="mt-4" />
 							}
 						</div>
 					</div>

@@ -2,7 +2,7 @@ import LikeButton from "../buttons/LikeButton"
 import NavLinkToModal from "./NavLinkToModal"
 
 interface Props {
-	spotId: string
+	postId: string
 	imageUrls: string[]
 	className?: string
 }
@@ -19,8 +19,8 @@ function ImageLinkGrid(props: Props) {
 
 					<div className="w-full relative">
 
-						<ImageLink spotId={props.spotId} imageUrls={props.imageUrls} imageIndex={0} />
-						<LikeBar spotId={props.spotId} />
+						<ImageLink postId={props.postId} imageUrls={props.imageUrls} imageIndex={0} />
+						<LikeBar postId={props.postId} />
 					</div>
 				}
 
@@ -30,12 +30,12 @@ function ImageLinkGrid(props: Props) {
 
 					<div className="w-full aspect-square   grid grid-cols-2 gap-2">
 
-						<ImageLink spotId={props.spotId} imageUrls={props.imageUrls} imageIndex={0} />
+						<ImageLink postId={props.postId} imageUrls={props.imageUrls} imageIndex={0} />
 
 						<div className="w-full relative">
 
-							<ImageLink spotId={props.spotId} imageUrls={props.imageUrls} imageIndex={1} />
-							<LikeBar spotId={props.spotId} />
+							<ImageLink postId={props.postId} imageUrls={props.imageUrls} imageIndex={1} />
+							<LikeBar postId={props.postId} />
 						</div>
 					</div>
 				}
@@ -46,16 +46,16 @@ function ImageLinkGrid(props: Props) {
 
 					<div className="w-full aspect-square   grid grid-cols-2 gap-2">
 
-						<ImageLink spotId={props.spotId} imageUrls={props.imageUrls} imageIndex={0} />
+						<ImageLink postId={props.postId} imageUrls={props.imageUrls} imageIndex={0} />
 
 						<div className="grid grid-rows-2 gap-2">
 
-							<ImageLink spotId={props.spotId} imageUrls={props.imageUrls} imageIndex={1} />
+							<ImageLink postId={props.postId} imageUrls={props.imageUrls} imageIndex={1} />
 
 							<div className="w-full relative">
 
-								<ImageLink spotId={props.spotId} imageUrls={props.imageUrls} imageIndex={2} />
-								<LikeBar spotId={props.spotId} />
+								<ImageLink postId={props.postId} imageUrls={props.imageUrls} imageIndex={2} />
+								<LikeBar postId={props.postId} />
 							</div>
 						</div>
 					</div>
@@ -67,14 +67,14 @@ function ImageLinkGrid(props: Props) {
 
 					<div className="w-full aspect-square   grid grid-cols-2 gap-2">
 
-						<ImageLink spotId={props.spotId} imageUrls={props.imageUrls} imageIndex={0} />
-						<ImageLink spotId={props.spotId} imageUrls={props.imageUrls} imageIndex={1} />
-						<ImageLink spotId={props.spotId} imageUrls={props.imageUrls} imageIndex={2} />
+						<ImageLink postId={props.postId} imageUrls={props.imageUrls} imageIndex={0} />
+						<ImageLink postId={props.postId} imageUrls={props.imageUrls} imageIndex={1} />
+						<ImageLink postId={props.postId} imageUrls={props.imageUrls} imageIndex={2} />
 
 						<div className="w-full relative">
 
-							<ImageLink spotId={props.spotId} imageUrls={props.imageUrls} imageIndex={3} />
-							<LikeBar spotId={props.spotId} />
+							<ImageLink postId={props.postId} imageUrls={props.imageUrls} imageIndex={3} />
+							<LikeBar postId={props.postId} />
 						</div>
 					</div>
 				}
@@ -87,22 +87,22 @@ export default ImageLinkGrid
 
 
 
-function ImageLink(props: { spotId: string, imageIndex: number, imageUrls: string[] }) {
+function ImageLink(props: { postId: string, imageIndex: number, imageUrls: string[] }) {
 
 	return (
-		<NavLinkToModal to={`/posts/${props.spotId}/images/${props.imageIndex + 1}`} className="hover:brightness-90 transition">
-			<img src={props.imageUrls[props.imageIndex]} alt="Attached on Spot" className="w-full h-full aspect-square   object-cover bg-gray-200" />
+		<NavLinkToModal to={`/posts/${props.postId}/images/${props.imageIndex + 1}`} className="hover:brightness-90 transition">
+			<img src={props.imageUrls[props.imageIndex]} alt="Attached on Post" className="w-full h-full aspect-square   object-cover bg-gray-200" />
 		</NavLinkToModal>
 	)
 }
 
 
 
-function LikeBar(props: { spotId: string }) {
+function LikeBar(props: { postId: string }) {
 
 	return (
 		<div className="absolute bottom-0 right-0   w-full pt-4  flex justify-end   bg-gradient-to-t from-black/60 to-transparent   pointer-events-none">
-			<LikeButton spotId={props.spotId} className="m-3   pointer-events-auto" />
+			<LikeButton postId={props.postId} className="m-3   pointer-events-auto" />
 		</div>
 	)
 }

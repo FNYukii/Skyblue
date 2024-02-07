@@ -1,5 +1,5 @@
 import Screen from "../components/others/Screen"
-import RecentlySpotList from "../components/sections/RecentlySpotList"
+import RecentlyPostList from "../components/sections/RecentlyPostList"
 
 function TopScreen() {
 
@@ -7,7 +7,7 @@ function TopScreen() {
 
 		<Screen title="Skyblue">
 
-			<RecentlySpotList />
+			<RecentlyPostList />
 		</Screen>
 	)
 }

@@ -1,27 +1,27 @@
 import { DocumentSnapshot, QueryDocumentSnapshot, Unsubscribe, addDoc, collection, deleteDoc, doc, getDoc, getDocFromCache, getDocs, limit, onSnapshot, orderBy, query, serverTimestamp, where } from "firebase/firestore"
-import Spot from "../entities/Spot"
+import Post from "../entities/Post"
 import { db } from "./firebase"
 import AuthService from "./AuthService"
 import UserService from "./UserService"
 
-class SpotService {
+class PostService {
 
-	static toSpot(from: DocumentSnapshot | QueryDocumentSnapshot): Spot {
+	static toPost(from: DocumentSnapshot | QueryDocumentSnapshot): Post {
 
 		const doc: DocumentSnapshot = from
 
 		// ドキュメントの各フィールドの値を取り出す
 		const id: string = doc.id
 		const userId: string = doc.get("userId")
-		const createdAt: Date = doc.get("createdAt")?.toDate() ?? undefined // Spot作成直後にオフラインデータベースがSpotを読み取る際、serverTimestampがまだ設定されていないことがあるので"??"が必要
+		const createdAt: Date = doc.get("createdAt")?.toDate() ?? undefined // Post作成直後にオフラインデータベースがドキュメントを読み取る際、serverTimestampがまだ設定されていないことがあるので"??"が必要
 
 		const imageUrls: string[] = doc.get("imageUrls")
 		const location: { lat: number, lng: number } = doc.get("location")
 		const name: string = doc.get("name")
 		const detail: string = doc.get("detail")
 
-		// 値を使ってSpotオブジェクトを作成
-		const spot: Spot = {
+		// 値を使ってPostオブジェクトを作成
+		const post: Post = {
 			id: id,
 			userId: userId,
 			createdAt: createdAt,
@@ -32,15 +32,15 @@ class SpotService {
 			detail: detail,
 		}
 
-		return spot
+		return post
 	}
 
 
 
-	static async readSpot(spotId: string): Promise<Spot | null> {
+	static async readPost(postId: string): Promise<Post | null> {
 
 		// 参照を取得
-		const docRef = doc(db, "spots", spotId)
+		const docRef = doc(db, "posts", postId)
 
 		try {
 
@@ -49,24 +49,24 @@ class SpotService {
 
 			// ドキュメントが無ければ失敗と扱う
 			if (!doc.exists()) {
-				console.log(`FAIL! Spot "${spotId}" is not exist.`)
+				console.log(`FAIL! Post "${postId}" is not exist.`)
 				return null
 			}
 
-			const spot = this.toSpot(doc)
-			return spot
+			const post = this.toPost(doc)
+			return post
 
 		} catch (error) {
 
-			console.log(`FAIL! Error reading Spot. ${error}`)
+			console.log(`FAIL! Error to read Post. ${error}`)
 			return null
 		}
 	}
 
-	static async readSpotFromCache(spotId: string): Promise<Spot | null> {
+	static async readPostFromCache(postId: string): Promise<Post | null> {
 
 		// 参照を取得
-		const docRef = doc(db, "spots", spotId)
+		const docRef = doc(db, "posts", postId)
 
 		try {
 
@@ -76,27 +76,27 @@ class SpotService {
 			// ドキュメントが無ければ失敗と扱う
 			if (!doc.exists()) {
 
-				console.log(`FAIL! Spot "${spotId}" is not exist from cache.`)
+				console.log(`FAIL! Post "${postId}" is not exist from cache.`)
 				return null
 			}
 
-			const spot = this.toSpot(doc)
-			return spot
+			const post = this.toPost(doc)
+			return post
 
 		} catch (error) {
 
-			console.log(`FAIL! Error reading Spot from cache. ${error}`)
+			console.log(`FAIL! Error to read Post from cache. ${error}`)
 			return null
 		}
 	}
 
 
 
-	static async readRecentlySpots(): Promise<Spot[] | null> {
+	static async readPosts(): Promise<Post[] | null> {
 
 		// クエリを用意
 		const q = query(
-			collection(db, "spots"),
+			collection(db, "posts"),
 			orderBy("createdAt", "desc"),
 			limit(100)
 		)
@@ -106,34 +106,34 @@ class SpotService {
 			// サーバーorキャッシュから読み取り
 			const querySnapshot = await getDocs(q)
 
-			// 読み取ったdocumentsをspotsに変換
-			let spots: Spot[] = []
+			// 読み取ったdocumentsをオブジェクト配列に変換
+			let posts: Post[] = []
 			querySnapshot.forEach(document => {
-				const spot = this.toSpot(document)
-				spots.push(spot)
+				const post = this.toPost(document)
+				posts.push(post)
 			})
 
-			return spots
+			return posts
 
 		} catch (error) {
 
 			// 失敗
-			console.log(`FAIL! Spots reading failed. ${error}`)
+			console.log(`FAIL! Error to read posts. ${error}`)
 			return null
 		}
 	}
 
 
 
-	static async onSpotsByUserChanged(
+	static async onPostsByUserChanged(
 		userId: string,
-		callback: (spots: Spot[]) => unknown,
+		callback: (posts: Post[]) => unknown,
 		cancelCallback: (error: Error) => unknown,
 	): Promise<Unsubscribe> {
 
 		// 読み取りクエリを作成
 		const q = query(
-			collection(db, "spots"),
+			collection(db, "posts"),
 			where("userId", "==", userId),
 			orderBy("createdAt", "desc"),
 			limit(100)
@@ -145,20 +145,20 @@ class SpotService {
 			// まだバックエンドに書き込まれていないローカル変更は無視
 			if (querySnapshot.metadata.hasPendingWrites) return
 
-			// Spotの配列を作成
-			let spots: Spot[] = []
+			// Postの配列を作成
+			let posts: Post[] = []
 			querySnapshot.forEach((doc) => {
 
-				const spot = this.toSpot(doc)
-				spots.push(spot)
+				const post = this.toPost(doc)
+				posts.push(post)
 			})
 
 			// Stateを更新
-			callback(spots)
+			callback(posts)
 
 		}, (error) => {
 
-			console.log(`FAIL! Error listening spots. ${error}`)
+			console.log(`FAIL! Error to listen posts. ${error}`)
 			cancelCallback(error)
 		})
 	}
@@ -167,40 +167,40 @@ class SpotService {
 
 	static async onLikesByUserChanged(
 		userId: string,
-		callback: (spots: Spot[]) => unknown,
+		callback: (posts: Post[]) => unknown,
 		cancelCallback: (error: Error) => unknown,
 	): Promise<Unsubscribe> {
 
 		return await UserService.onUserChanged(userId, async user => {
 
-			// いいねしたspotIds
-			const likeSpotIds = user.likes
+			// いいねしたpostのid
+			const likeIds = user.likes
 
 			// 0件だったら[]を返す
-			if (likeSpotIds.length === 0) {
+			if (likeIds.length === 0) {
 				callback([])
 			}
 
-			// likeSpotIdsの要素の数だけ、そのSpotを読み取る
-			let spots: Spot[] = []
-			await Promise.all(likeSpotIds.map(async (likeSpotId) => {
+			// likeIdsの要素の数だけ、そのPostを読み取る
+			let posts: Post[] = []
+			await Promise.all(likeIds.map(async (likeId) => {
 
-				// Spotを読み取る
-				const spot = await SpotService.readSpot(likeSpotId)
+				// Postを読み取る
+				const post = await PostService.readPost(likeId)
 
 				// 失敗
-				if (spot === null) {
+				if (post === null) {
 					return
 				}
 
 				// 成功
-				spots.push(spot)
+				posts.push(post)
 			}))
 
 			// いいね日時が降順になるように並べ替え
-			spots = spots.reverse()
+			posts = posts.reverse()
 
-			callback(spots)
+			callback(posts)
 
 		}, (error) => {
 			cancelCallback(error)
@@ -209,7 +209,7 @@ class SpotService {
 
 
 
-	static async createSpot(
+	static async createPost(
 		imageUrls: string[],
 		location: { lat: number, lng: number },
 		name: string,
@@ -229,8 +229,8 @@ class SpotService {
 
 		try {
 
-			// 新しいSpotを追加
-			const ref = await addDoc(collection(db, "spots"), {
+			// 新しいPostを追加
+			const ref = await addDoc(collection(db, "posts"), {
 
 				userId: uid,
 				createdAt: serverTimestamp(),
@@ -248,26 +248,26 @@ class SpotService {
 
 		} catch (error) {
 
-			console.log(`FAIL! Error to Spot creation. ${error}`)
+			console.log(`FAIL! Error to create post. ${error}`)
 			return null
 		}
 	}
 
 
 
-	static async deleteSpot(spotId: string): Promise<string | null> {
+	static async deletePost(postId: string): Promise<string | null> {
 
-		return deleteDoc(doc(db, "spots", spotId))
+		return deleteDoc(doc(db, "posts", postId))
 			.then(() => {
 
-				return spotId
+				return postId
 			})
 			.catch((error) => {
 
-				console.log(`FAIL! Error to delete spot. ${error}`)
+				console.log(`FAIL! Error to delete post. ${error}`)
 				return null
 			})
 	}
 }
 
-export default SpotService
+export default PostService
