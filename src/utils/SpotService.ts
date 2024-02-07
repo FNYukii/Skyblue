@@ -142,6 +142,9 @@ class SpotService {
 		// リアルタイムリスナーを設定
 		return onSnapshot(q, async (querySnapshot) => {
 
+			// まだバックエンドに書き込まれていないローカル変更は無視
+			if (querySnapshot.metadata.hasPendingWrites) return
+
 			// Spotの配列を作成
 			let spots: Spot[] = []
 			querySnapshot.forEach((doc) => {
