@@ -90,7 +90,7 @@ export default ImageLinkGrid
 function ImageLink(props: { spotId: string, imageIndex: number, imageUrls: string[] }) {
 
 	return (
-		<NavLinkToModal to={`/spots/${props.spotId}/images/${props.imageIndex + 1}`} className="hover:brightness-90 transition">
+		<NavLinkToModal to={`/posts/${props.spotId}/images/${props.imageIndex + 1}`} className="hover:brightness-90 transition">
 			<img src={props.imageUrls[props.imageIndex]} alt="Attached on Spot" className="w-full h-full aspect-square   object-cover bg-gray-200" />
 		</NavLinkToModal>
 	)

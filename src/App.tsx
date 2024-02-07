@@ -67,7 +67,7 @@ function App() {
 
 						<Header />
 
-						<Routes location={currentPath.match(/^\/spots\/\w{20}\/images\/\d{1}$/) ? prevPath : currentPath}>
+						<Routes location={currentPath.match(/^\/posts\/\w{20}\/images\/\d{1}$/) ? prevPath : currentPath}>
 
 							<Route path="*" element={<NotFoundScreen />} />
 							<Route path="/" element={<TopScreen />} />
@@ -79,7 +79,7 @@ function App() {
 
 					<Routes>
 						<Route path="*" element={<></>} />
-						<Route path="/spots/:spotId/images/:imageNumber" element={<SpotScreen />} />
+						<Route path="/posts/:spotId/images/:imageNumber" element={<SpotScreen />} />
 					</Routes>
 				</div>
 			}
@@ -94,7 +94,7 @@ function App() {
 
 						<Header />
 
-						<Routes location={currentPath === "/new" || currentPath.match(/^\/spots\/\w{20}\/images\/\d{1}$/) || currentPath === "/edit-profile" ? prevPath : currentPath}>
+						<Routes location={currentPath === "/new" || currentPath.match(/^\/posts\/\w{20}\/images\/\d{1}$/) || currentPath === "/edit-profile" ? prevPath : currentPath}>
 
 							<Route path="*" element={<NotFoundScreen />} />
 							<Route path="/" element={<TopScreen />} />
@@ -109,7 +109,7 @@ function App() {
 					<Routes>
 
 						<Route path="*" element={<></>} />
-						<Route path="/spots/:spotId/images/:imageNumber" element={<SpotScreen />} />
+						<Route path="/posts/:spotId/images/:imageNumber" element={<SpotScreen />} />
 						<Route path="/new" element={<CreateSpotScreen />} />
 						<Route path="/edit-profile" element={<EditUserScreen />} />
 					</Routes>

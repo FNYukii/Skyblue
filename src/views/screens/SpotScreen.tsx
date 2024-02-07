@@ -53,7 +53,7 @@ function SpotScreen() {
 				spot = await SpotService.readSpot(spotId ?? "---")
 			}
 
-			setPageTitle(`${spot?.name ?? "スポット"} - Skyblue`)
+			setPageTitle(`${spot?.name ?? "投稿"} - Skyblue`)
 			setSpot(spot)
 			setIsLoaded(true)
 		})()
@@ -71,7 +71,7 @@ function SpotScreen() {
 		const newImageIndex = imageIndex - 1
 
 		setImageIndex(newImageIndex)
-		navigate(`/spots/${spotId}/images/${newImageIndex + 1}`, { replace: true })
+		navigate(`/posts/${spotId}/images/${newImageIndex + 1}`, { replace: true })
 	}
 
 	function nextImage() {
@@ -81,7 +81,7 @@ function SpotScreen() {
 		const newImageIndex = imageIndex + 1
 
 		setImageIndex(newImageIndex)
-		navigate(`/spots/${spotId}/images/${newImageIndex + 1}`, { replace: true })
+		navigate(`/posts/${spotId}/images/${newImageIndex + 1}`, { replace: true })
 	}
 
 
@@ -105,7 +105,7 @@ function SpotScreen() {
 
 	return (
 
-		<Screen title={pageTitle ?? "スポット - Skyblue"}>
+		<Screen title={pageTitle ?? "投稿 - Skyblue"}>
 
 			<Escaper />
 
