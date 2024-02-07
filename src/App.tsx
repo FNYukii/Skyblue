@@ -18,8 +18,6 @@ function App() {
 	const [isSignedIn, setIsSignedIn] = useState(false)
 	const [isLoaded, setIsLoaded] = useState(false)
 
-
-
 	// ログイン状態を取得
 	useEffect(() => {
 
@@ -45,7 +43,7 @@ function App() {
 
 	// ひとつ前のパス or "/"
 	const state = location.state as { previousPath?: string }
-	const prevPath: string | null = state?.previousPath ?? "/"
+	const prevPath = state?.previousPath ?? "/"
 
 
 
