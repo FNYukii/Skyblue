@@ -142,7 +142,7 @@ function SpotScreen() {
 
 					{isLoaded && spot !== null &&
 
-						<div className="h-full   flex flex-col gap-2-">
+						<div className="h-full   flex flex-col gap-2">
 
 
 
@@ -164,68 +164,62 @@ function SpotScreen() {
 
 
 
-							<div className="mx-auto min-w-full sm:min-w-[600px]   px-3">
+							<div className="mx-auto min-w-[95%] sm:min-w-[600px] sm:max-w-[800px]   flex justify-between items-start gap-4   pointer-events-auto">
 
-								<div className="pointer-events-auto">
+								<div>
+									<p className="text-white font-bold">{spot.name}</p>
 
-									<div className="flex justify-between items-center gap-4">
+									{spot.detail &&
+										<p className="mt-1 text-gray-400">{spot.detail}</p>
+									}
+								</div>
 
-										<div className="mt-2">
-											<p className="text-white font-bold">{spot.name}</p>
+								<div className="flex items-center gap-4">
 
-											{spot.detail &&
-												<p className="text-gray-400">{spot.detail}</p>
+									<NavLink to={`/users/${spot.userId}`} className="rounded-full   hover:brightness-90 transition">
+										<UserIcon userId={spot.userId} className="w-8 rounded-full" />
+									</NavLink>
+
+									<LikeButton spotId={spot.id} showLikeCount />
+
+
+
+									{AuthService.uidQuickly() === spot.userId &&
+										<Menu
+											menuButton={
+												<MenuButton className="m-[-0.5rem] p-2   rounded-full   hover:bg-gray-500/50 transition">
+													<IoEllipsisHorizontal className="text-xl text-white" />
+												</MenuButton>
 											}
-										</div>
+											transition
+											arrow
+											position="anchor"
+											theming="dark"
+										>
+											<MenuItem>
+												<button onClick={() => setIsShowDeleteModal(true)} className="text-red-500">削除</button>
+											</MenuItem>
+										</Menu>
+									}
 
-										<div className="flex items-center gap-4">
+									{isShowDeleteModal &&
+										<ConfirmModal
+											title="この投稿を削除してもよろしいですか?"
+											acceptLabel="削除"
+											destructive
+											onClose={() => setIsShowDeleteModal(false)}
+											onAccept={async () => {
 
-											<NavLink to={`/users/${spot.userId}`} className="rounded-full   hover:brightness-90 transition">
-												<UserIcon userId={spot.userId} className="w-8 rounded-full" />
-											</NavLink>
+												// Spotを削除
+												SpotService.deleteSpot(spot.id)
 
-											<LikeButton spotId={spot.id} showLikeCount />
+												// 成功したら前の画面に戻る
+												if (location.key === "default") navigate("/")
+												if (location.key !== "default") navigate(-1)
+											}}
+										/>
+									}
 
-
-
-											{AuthService.uidQuickly() === spot.userId &&
-												<Menu
-													menuButton={
-														<MenuButton className="m-[-0.5rem] p-2   rounded-full   hover:bg-gray-500/50 transition">
-															<IoEllipsisHorizontal className="text-xl text-white" />
-														</MenuButton>
-													}
-													transition
-													arrow
-													position="anchor"
-													theming="dark"
-												>
-													<MenuItem>
-														<button onClick={() => setIsShowDeleteModal(true)} className="text-red-500">削除</button>
-													</MenuItem>
-												</Menu>
-											}
-
-											{isShowDeleteModal &&
-												<ConfirmModal
-													title="この投稿を削除してもよろしいですか?"
-													acceptLabel="削除"
-													destructive
-													onClose={() => setIsShowDeleteModal(false)}
-													onAccept={async () => {
-
-														// Spotを削除
-														SpotService.deleteSpot(spot.id)
-
-														// 成功したら前の画面に戻る
-														if (location.key === "default") navigate("/")
-														if (location.key !== "default") navigate(-1)
-													}}
-												/>
-											}
-
-										</div>
-									</div>
 								</div>
 							</div>
 						</div>
