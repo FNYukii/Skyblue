@@ -40,7 +40,13 @@ function SpotScreen() {
 
 		(async () => {
 
-			const spot = await SpotService.readSpot(spotId ?? "---", true)
+			// キャッシュから読み取る
+			let spot = await SpotService.readSpotFromCache(spotId ?? "---")
+
+			// 失敗したらサーバーからも読み取る
+			if (!spot) {
+				spot = await SpotService.readSpot(spotId ?? "---")
+			}
 
 			setPageTitle(`${spot?.name ?? "スポット"} - Skyblue`)
 			setSpot(spot)

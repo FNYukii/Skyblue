@@ -37,7 +37,7 @@ class SpotService {
 
 
 
-	static async readSpot(spotId: string, fromCache?: boolean): Promise<Spot | null> {
+	static async readSpot(spotId: string): Promise<Spot | null> {
 
 		// 参照を取得
 		const docRef = doc(db, "spots", spotId)
@@ -45,7 +45,7 @@ class SpotService {
 		try {
 
 			// データ読み取り
-			const doc = !fromCache ? await getDoc(docRef) : await getDocFromCache(docRef)
+			const doc = await getDoc(docRef)
 
 			// ドキュメントが無ければ失敗と扱う
 			if (!doc.exists()) {
@@ -59,6 +59,33 @@ class SpotService {
 		} catch (error) {
 
 			console.log(`FAIL! Error reading Spot. ${error}`)
+			return null
+		}
+	}
+
+	static async readSpotFromCache(spotId: string): Promise<Spot | null> {
+
+		// 参照を取得
+		const docRef = doc(db, "spots", spotId)
+
+		try {
+
+			// データ読み取り
+			const doc = await getDocFromCache(docRef)
+
+			// ドキュメントが無ければ失敗と扱う
+			if (!doc.exists()) {
+
+				console.log(`FAIL! Spot "${spotId}" is not exist from cache.`)
+				return null
+			}
+
+			const spot = this.toSpot(doc)
+			return spot
+
+		} catch (error) {
+
+			console.log(`FAIL! Error reading Spot from cache. ${error}`)
 			return null
 		}
 	}

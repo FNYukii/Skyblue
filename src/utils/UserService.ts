@@ -33,7 +33,7 @@ class UserService {
 
 
 
-	static async readUser(userId: string, fromCache?: boolean): Promise<User | null> {
+	static async readUser(userId: string): Promise<User | null> {
 
 		// 参照を取得
 		const docRef = doc(db, "users", userId)
@@ -41,7 +41,7 @@ class UserService {
 		try {
 
 			// データ読み取り
-			const doc = !fromCache ? await getDoc(docRef) : await getDocFromCache(docRef)
+			const doc = await getDoc(docRef)
 
 			// ドキュメントが無ければ失敗と扱う
 			if (!doc.exists()) {
@@ -58,6 +58,33 @@ class UserService {
 			return null
 		}
 	}
+
+	static async readUserFromCache(userId: string): Promise<User | null> {
+
+		// 参照を取得
+		const docRef = doc(db, "users", userId)
+
+		try {
+
+			// データ読み取り
+			const doc = await getDocFromCache(docRef)
+
+			// ドキュメントが無ければ失敗と扱う
+			if (!doc.exists()) {
+				console.log(`FAIL! User "${userId}" is not exist from cache.`)
+				return null
+			}
+
+			const user = this.toUser(doc)
+			return user
+
+		} catch (error) {
+
+			console.log(`FAIL! Error reading user from cache. ${error}`)
+			return null
+		}
+	}
+
 
 
 

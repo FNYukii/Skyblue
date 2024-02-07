@@ -17,7 +17,13 @@ function UserIcon(props: Props) {
 	useEffect(() => {
 		(async () => {
 
-			const user = await UserService.readUser(props.userId, true)
+			let user = await UserService.readUserFromCache(props.userId)
+
+			// 失敗したらサーバーからも読み取る
+			if (!user) {
+				user = await UserService.readUser(props.userId ?? "---")
+			}
+
 			setUser(user)
 			setIsLoaded(true)
 		})()
