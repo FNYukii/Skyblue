@@ -41,9 +41,9 @@ function PickableGMap(props: Props) {
 							zoomControl: false,
 							gestureHandling: "greedy"
 						}}
-						center={{ lat: defaultCenter[0], lng: defaultCenter[1] }}
+						center={!location ? { lat: defaultCenter[0], lng: defaultCenter[1] } : undefined}
 						zoom={7}
-
+						
 						onClick={e => {
 
 							if (!e.latLng) return
