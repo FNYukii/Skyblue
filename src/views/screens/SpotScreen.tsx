@@ -15,6 +15,9 @@ import { Menu, MenuButton, MenuItem } from "@szhsin/react-menu"
 import { IoEllipsisHorizontal } from "react-icons/io5"
 import ConfirmModal from "../components/others/ConfirmModal"
 
+import '@szhsin/react-menu/dist/index.css'
+import "@szhsin/react-menu/dist/theme-dark.css"
+
 
 
 function SpotScreen() {
@@ -195,6 +198,7 @@ function SpotScreen() {
 													transition
 													arrow
 													position="anchor"
+													theming="dark"
 												>
 													<MenuItem>
 														<button onClick={() => setIsShowDeleteModal(true)} className="text-red-500">削除</button>
