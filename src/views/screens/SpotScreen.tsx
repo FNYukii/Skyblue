@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import { NavLink, useNavigate, useParams } from "react-router-dom"
 import Spot from "../../entities/Spot"
 import SpotService from "../../utils/SpotService"
@@ -24,6 +24,11 @@ function SpotScreen() {
 
 	// 画面遷移用Hooks
 	const navigate = useNavigate()
+
+	// 左右ボタンのRef
+	const prevButtonRef = useRef<HTMLButtonElement>(null)
+	const nextButtonRef = useRef<HTMLButtonElement>(null)
+
 
 
 
@@ -61,7 +66,6 @@ function SpotScreen() {
 	function prevImage() {
 
 		if (!isLoaded || spot === null) return
-		if (imageIndex === 0) return
 
 		const newImageIndex = imageIndex - 1
 
@@ -72,7 +76,6 @@ function SpotScreen() {
 	function nextImage() {
 
 		if (!isLoaded || spot === null) return
-		if (imageIndex === spot.imageUrls.length - 1) return
 
 		const newImageIndex = imageIndex + 1
 
@@ -82,17 +85,10 @@ function SpotScreen() {
 
 
 
-
-	// TODO: たまにしか動かないので直す
 	// 矢印キーが押されたら画像を切り替える
 	function onKeyDown(event: KeyboardEvent) {
-		if (event.keyCode === 37) {
-			prevImage()
-		}
-
-		if (event.keyCode === 39) {
-			nextImage()
-		}
+		if (event.keyCode === 37) prevButtonRef.current?.click()
+		if (event.keyCode === 39) nextButtonRef.current?.click()
 	}
 
 	useEffect(() => {
@@ -138,13 +134,13 @@ function SpotScreen() {
 
 								<div className="h-full    max-w-screen   flex items-center gap-2">
 
-									<button onClick={() => prevImage()} disabled={imageIndex === 0} className="h-fit w-fit   p-3 rounded-full   text-white   disabled:opacity-0 enabled:pointer-events-auto   enabled:hover:bg-white/20 transition">
+									<button onClick={() => prevImage()} disabled={imageIndex === 0} ref={prevButtonRef} className="h-fit w-fit   p-3 rounded-full   text-white   disabled:opacity-0 enabled:pointer-events-auto   enabled:hover:bg-white/20 transition">
 										<AiOutlineArrowLeft className="text-2xl" />
 									</button>
 
 									<img src={spot.imageUrls[imageIndex]} alt="Attached on Spot" className="h-full   pointer-events-auto   min-w-0" />
 
-									<button onClick={() => nextImage()} disabled={imageIndex === spot.imageUrls.length - 1} className="h-fit w-fit   p-3 rounded-full   text-white   disabled:opacity-0 enabled:pointer-events-auto   enabled:hover:bg-white/20 transition">
+									<button onClick={() => nextImage()} disabled={imageIndex === spot.imageUrls.length - 1} ref={nextButtonRef} className="h-fit w-fit   p-3 rounded-full   text-white   disabled:opacity-0 enabled:pointer-events-auto   enabled:hover:bg-white/20 transition">
 										<AiOutlineArrowRight className="text-2xl" />
 									</button>
 								</div>
