@@ -20,25 +20,56 @@ function SpotList(props: Props) {
 
 			{!props.isLoaded &&
 
-				<div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4   gap-2">
+				<div>
 
-					{Array(12).fill(0).map((_item, index) => (
+					<div className="grid md:hidden   grid-cols-2 gap-2">
 
-						<div key={index}>
-							{index % 2 === 0 &&
-								<div key={index} className="w-full aspect-square grid grid-cols-2 gap-2">
-									<div className="w-full h-full bg-gray-200"></div>
-									<div className="w-full h-full bg-gray-200"></div>
-									<div className="w-full h-full bg-gray-200"></div>
-									<div className="w-full h-full bg-gray-200"></div>
-								</div>
-							}
+						<GrayBox fourBoxes />
+						<GrayBox />
 
-							{index % 2 !== 0 &&
-								<div className="w-full aspect-square bg-gray-200"></div>
-							}
-						</div>
-					))}
+						<GrayBox />
+						<GrayBox fourBoxes />
+
+						<GrayBox fourBoxes />
+						<GrayBox />
+
+						<GrayBox />
+						<GrayBox fourBoxes />
+					</div>
+
+					<div className="hidden md:grid lg:hidden   grid-cols-3 gap-2">
+
+						{Array(12).fill(0).map((_item, index) => (
+
+							<div key={index}>
+								{index % 2 === 0 &&
+									<GrayBox fourBoxes />
+								}
+
+								{index % 2 !== 0 &&
+									<GrayBox />
+								}
+							</div>
+						))}
+					</div>
+
+					<div className="hidden lg:grid   grid-cols-4 gap-2">
+
+						<GrayBox fourBoxes />
+						<GrayBox />
+						<GrayBox fourBoxes />
+						<GrayBox />
+
+						<GrayBox />
+						<GrayBox fourBoxes />
+						<GrayBox />
+						<GrayBox fourBoxes />
+
+						<GrayBox fourBoxes />
+						<GrayBox />
+						<GrayBox fourBoxes />
+						<GrayBox />
+					</div>
 				</div>
 			}
 
@@ -68,3 +99,27 @@ function SpotList(props: Props) {
 }
 
 export default SpotList
+
+
+
+function GrayBox(props: { fourBoxes?: boolean }) {
+
+	return (
+
+		<div className="w-full aspect-square">
+
+			{!props.fourBoxes &&
+				<div className="w-full h-full   bg-gray-200" />
+			}
+
+			{props.fourBoxes &&
+				<div className="w-full h-full   grid grid-cols-2 gap-2">
+					<div className="w-full h-full   bg-gray-200" />
+					<div className="w-full h-full   bg-gray-200" />
+					<div className="w-full h-full   bg-gray-200" />
+					<div className="w-full h-full   bg-gray-200" />
+				</div>
+			}
+		</div>
+	)
+}
