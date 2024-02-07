@@ -13,6 +13,7 @@ import LikeSpotList from "../components/sections/LikeSpotList"
 import NavLinkToModal from "../components/others/NavLinkToModal"
 import Screen from "../components/others/Screen"
 import { Unsubscribe } from "firebase/firestore"
+import ConfirmModal from "../components/others/ConfirmModal"
 
 
 
@@ -57,6 +58,9 @@ function UserScreen() {
 	// タブバーの状態
 	const [tab, setTab] = useState(0)
 
+	// サインアウト確認大ログ
+	const [isShowSignOutModal, setIsShowSignOutModal] = useState(false)
+
 
 
 	return (
@@ -77,7 +81,7 @@ function UserScreen() {
 
 				{isLoaded && user !== null &&
 
-					<div className="">
+					<div>
 
 
 
@@ -95,7 +99,6 @@ function UserScreen() {
 								<button onClick={() => setTab(1)} className={`block   px-8 sm:px-16 py-2   hover:bg-gray-100 transition    ${tab === 1 && "border-b-2 border-black font-bold"}`}>いいね</button>
 							</div>
 
-
 							<Menu
 								menuButton={
 									<MenuButton className="mr-[-0.5rem]   p-2 rounded-full   hover:bg-gray-100 transition">
@@ -111,10 +114,24 @@ function UserScreen() {
 								</MenuItem>
 
 								<MenuItem>
-									<button onClick={() => AuthService.signOut()} className="text-red-500">サインアウト</button>
+									<button onClick={() => setIsShowSignOutModal(true)} className="text-red-500">サインアウト</button>
 								</MenuItem>
 							</Menu>
 						</div>
+
+
+
+						{isShowSignOutModal &&
+							<ConfirmModal
+								title="サインアウトしてもよろしいですか?"
+								acceptLabel="サインアウト"
+								destructive
+								onClose={() => setIsShowSignOutModal(false)}
+								onAccept={() => AuthService.signOut()}
+							/>
+						}
+						
+
 
 						<div>
 							{tab === 0 &&
