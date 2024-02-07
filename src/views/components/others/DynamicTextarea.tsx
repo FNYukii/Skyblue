@@ -1,5 +1,7 @@
 import { useEffect, useRef } from "react"
 
+
+
 interface Props {
 	value: string
 	onChange: (e: React.ChangeEvent<HTMLTextAreaElement>) => void
@@ -7,6 +9,8 @@ interface Props {
 
 	className?: string 
 }
+
+
 
 function DynamicTextarea(props: Props) {
 
@@ -23,6 +27,8 @@ function DynamicTextarea(props: Props) {
 		/>
 	)
 }
+
+export default DynamicTextarea
 
 
 
@@ -43,5 +49,3 @@ function useResizeTextArea(value: string) {
 
 	return ref
 }
-
-export default DynamicTextarea

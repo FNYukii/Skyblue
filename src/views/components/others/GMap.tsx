@@ -40,7 +40,4 @@ function GMap(props: Props) {
 	)
 }
 
-
-
-
 export default GMap

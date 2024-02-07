@@ -83,6 +83,9 @@ function ImageLinkGrid(props: Props) {
 	)
 }
 
+export default ImageLinkGrid
+
+
 
 function ImageLink(props: { spotId: string, imageIndex: number, imageUrls: string[] }) {
 
@@ -103,6 +106,3 @@ function LikeBar(props: { spotId: string }) {
 		</div>
 	)
 }
-
-
-export default ImageLinkGrid

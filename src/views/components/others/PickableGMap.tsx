@@ -72,7 +72,4 @@ function PickableGMap(props: Props) {
 	)
 }
 
-
-
-
 export default PickableGMap

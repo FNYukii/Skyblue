@@ -1,6 +1,8 @@
 import { useEffect } from "react"
 import { useNavigate } from "react-router-dom"
 
+
+
 function Escaper() {
 
 	// 画面遷移用Hooks
