@@ -10,8 +10,10 @@ import { AiOutlineArrowLeft } from "react-icons/ai"
 import { AiOutlineArrowRight } from "react-icons/ai"
 import LikeButton from "../components/buttons/LikeButton"
 import Screen from "../components/others/Screen"
-import { Menu, MenuButton } from "@szhsin/react-menu"
+import AuthService from "../../utils/AuthService"
+import { Menu, MenuButton, MenuItem } from "@szhsin/react-menu"
 import { IoEllipsisHorizontal } from "react-icons/io5"
+import ConfirmModal from "../components/others/ConfirmModal"
 
 
 
@@ -32,11 +34,13 @@ function SpotScreen() {
 	const prevButtonRef = useRef<HTMLButtonElement>(null)
 	const nextButtonRef = useRef<HTMLButtonElement>(null)
 
-
-
+	// 削除モーダルの状態
+	const [isShowDeleteModal, setIsShowDeleteModal] = useState(false)
 
 	// 画像のインデックス
 	const [imageIndex, setImageIndex] = useState(Number(imageNumber!) - 1)
+
+
 
 	// Spot
 	const [spot, setSpot] = useState<Spot | null>(null)
@@ -171,8 +175,6 @@ function SpotScreen() {
 											}
 										</div>
 
-
-
 										<div className="flex items-center gap-4">
 
 											<NavLink to={`/users/${spot.userId}`} className="rounded-full   hover:brightness-90 transition">
@@ -181,21 +183,50 @@ function SpotScreen() {
 
 											<LikeButton spotId={spot.id} showLikeCount />
 
-											<Menu
-												menuButton={
-													<MenuButton className="m-[-0.5rem]   p-2 rounded-full   hover:bg-gray-500/50 transition">
-														<IoEllipsisHorizontal className="text-xl text-white" />
-													</MenuButton>
-												}
-												transition
-												arrow
-												position="anchor"
-											>
-											</Menu>
+
+
+											{AuthService.uidQuickly() === spot.userId &&
+												<Menu
+													menuButton={
+														<MenuButton className="m-[-0.5rem] p-2   rounded-full   hover:bg-gray-500/50 transition">
+															<IoEllipsisHorizontal className="text-xl text-white" />
+														</MenuButton>
+													}
+													transition
+													arrow
+													position="anchor"
+												>
+													<MenuItem>
+														<button onClick={() => setIsShowDeleteModal(true)} className="text-red-500">削除</button>
+													</MenuItem>
+												</Menu>
+											}
+
+											{isShowDeleteModal &&
+												<ConfirmModal
+													title="この投稿を削除してもよろしいですか?"
+													acceptLabel="削除"
+													destructive
+													onClose={() => setIsShowDeleteModal(false)}
+													onAccept={async () => {
+
+														// Spotを削除
+														const result = await SpotService.deleteSpot(spot.id)
+
+														if (!result) {
+															alert("投稿の削除に失敗しました")
+															return
+														}
+
+														// 成功したら前の画面に戻る
+														if (location.key === "default") navigate("/")
+														if (location.key !== "default") navigate(-1)
+													}}
+												/>
+											}
+
 										</div>
 									</div>
-
-
 								</div>
 							</div>
 						</div>

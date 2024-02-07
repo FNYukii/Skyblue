@@ -1,4 +1,4 @@
-import { DocumentSnapshot, QueryDocumentSnapshot, Unsubscribe, addDoc, collection, doc, getDoc, getDocFromCache, getDocs, limit, onSnapshot, orderBy, query, serverTimestamp, where } from "firebase/firestore"
+import { DocumentSnapshot, QueryDocumentSnapshot, Unsubscribe, addDoc, collection, deleteDoc, doc, getDoc, getDocFromCache, getDocs, limit, onSnapshot, orderBy, query, serverTimestamp, where } from "firebase/firestore"
 import Spot from "../entities/Spot"
 import { db } from "./firebase"
 import AuthService from "./AuthService"
@@ -251,6 +251,22 @@ class SpotService {
 			console.log(`FAIL! Error to Spot creation. ${error}`)
 			return null
 		}
+	}
+
+
+
+	static async deleteSpot(spotId: string): Promise<string | null> {
+
+		return deleteDoc(doc(db, "spots", spotId))
+			.then(() => {
+
+				return spotId
+			})
+			.catch((error) => {
+
+				console.log(`FAIL! Error to delete spot. ${error}`)
+				return null
+			})
 	}
 }
 
