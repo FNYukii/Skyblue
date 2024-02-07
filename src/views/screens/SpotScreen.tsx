@@ -10,6 +10,8 @@ import { AiOutlineArrowLeft } from "react-icons/ai"
 import { AiOutlineArrowRight } from "react-icons/ai"
 import LikeButton from "../components/buttons/LikeButton"
 import Screen from "../components/others/Screen"
+import { Menu, MenuButton } from "@szhsin/react-menu"
+import { IoEllipsisHorizontal } from "react-icons/io5"
 
 
 
@@ -133,7 +135,7 @@ function SpotScreen() {
 
 					{isLoaded && spot !== null &&
 
-						<div className="h-full   flex flex-col gap-2">
+						<div className="h-full   flex flex-col gap-2-">
 
 
 
@@ -161,21 +163,39 @@ function SpotScreen() {
 
 									<div className="flex justify-between items-center gap-4">
 
-										<p className="text-white font-bold">{spot.name}</p>
+										<div className="mt-2">
+											<p className="text-white font-bold">{spot.name}</p>
+
+											{spot.detail &&
+												<p className="text-gray-400">{spot.detail}</p>
+											}
+										</div>
+
+
 
 										<div className="flex items-center gap-4">
-
-											<LikeButton spotId={spot.id} showLikeCount />
 
 											<NavLink to={`/users/${spot.userId}`} className="rounded-full   hover:brightness-90 transition">
 												<UserIcon userId={spot.userId} className="w-8 rounded-full" />
 											</NavLink>
+
+											<LikeButton spotId={spot.id} showLikeCount />
+
+											<Menu
+												menuButton={
+													<MenuButton className="m-[-0.5rem]   p-2 rounded-full   hover:bg-gray-500/50 transition">
+														<IoEllipsisHorizontal className="text-xl text-white" />
+													</MenuButton>
+												}
+												transition
+												arrow
+												position="anchor"
+											>
+											</Menu>
 										</div>
 									</div>
 
-									{spot.detail &&
-										<p className="text-gray-400">{spot.detail}</p>
-									}
+
 								</div>
 							</div>
 						</div>
