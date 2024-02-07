@@ -1,4 +1,4 @@
-import LikeButton from "./LikeButton"
+import LikeButton from "../buttons/LikeButton"
 import NavLinkToModal from "./NavLinkToModal"
 
 interface Props {

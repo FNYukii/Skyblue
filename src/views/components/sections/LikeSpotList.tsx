@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import Spot from "../../../entities/Spot"
-import SpotList from "../parts/SpotList"
+import SpotList from "../others/SpotList"
 import SpotService from "../../../utils/SpotService"
 import { Unsubscribe } from "firebase/firestore"
 

@@ -1,12 +1,12 @@
-import Screen from "../components/parts/Screen"
-import FormModal from "../components/parts/FormModal"
+import Screen from "../components/others/Screen"
+import FormModal from "../components/others/FormModal"
 import AuthService from "../../utils/AuthService"
 import { useEffect, useState } from "react"
-import LoadingIcon from "../components/parts/LoadingIcon"
+import LoadingIcon from "../components/others/LoadingIcon"
 import UserService from "../../utils/UserService"
 import User from "../../entities/User"
 import { useNavigate } from "react-router-dom"
-import PickIconButton from "../components/parts/PickIconButton"
+import PickIconButton from "../components/buttons/PickIconButton"
 import StorageService from "../../utils/StorageService"
 
 

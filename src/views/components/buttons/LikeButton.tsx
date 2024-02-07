@@ -1,7 +1,7 @@
 import { Unsubscribe } from "firebase/firestore"
 import { useState, useEffect } from "react"
 import { AiFillHeart, AiOutlineHeart } from "react-icons/ai"
-import LoadingIcon from "./LoadingIcon"
+import LoadingIcon from "../others/LoadingIcon"
 import { AiOutlineExclamationCircle } from "react-icons/ai"
 import { onAuthStateChanged } from "firebase/auth"
 import { auth } from "../../../utils/firebase"

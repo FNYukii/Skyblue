@@ -2,7 +2,7 @@ import { useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
 import User from "../../entities/User"
 import UserService from "../../utils/UserService"
-import LoadingIcon from "../components/parts/LoadingIcon"
+import LoadingIcon from "../components/others/LoadingIcon"
 import UserSpotList from "../components/sections/UserSpotList"
 import { IoEllipsisHorizontal } from "react-icons/io5"
 import { Menu, MenuButton, MenuItem } from "@szhsin/react-menu"
@@ -10,8 +10,8 @@ import AuthService from "../../utils/AuthService"
 import '@szhsin/react-menu/dist/index.css'
 import '@szhsin/react-menu/dist/transitions/slide.css'
 import LikeSpotList from "../components/sections/LikeSpotList"
-import NavLinkToModal from "../components/parts/NavLinkToModal"
-import Screen from "../components/parts/Screen"
+import NavLinkToModal from "../components/others/NavLinkToModal"
+import Screen from "../components/others/Screen"
 import { Unsubscribe } from "firebase/firestore"
 
 

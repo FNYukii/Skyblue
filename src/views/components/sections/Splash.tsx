@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import LoadingIcon from "../parts/LoadingIcon"
+import LoadingIcon from "../others/LoadingIcon"
 
 function Splash() {
 

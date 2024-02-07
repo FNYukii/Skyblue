@@ -1,5 +1,5 @@
 import { NavLink } from "react-router-dom"
-import Screen from "../components/parts/Screen"
+import Screen from "../components/others/Screen"
 
 function NotFoundScreen() {
 

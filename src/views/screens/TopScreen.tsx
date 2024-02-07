@@ -1,4 +1,4 @@
-import Screen from "../components/parts/Screen"
+import Screen from "../components/others/Screen"
 import RecentlySpotList from "../components/sections/RecentlySpotList"
 
 function TopScreen() {

@@ -1,7 +1,7 @@
 import { TbMapPinPlus } from "react-icons/tb"
 import { useState } from "react"
-import GMap from "./GMap"
-import PickableGMap from "./PickableGMap"
+import GMap from "../others/GMap"
+import PickableGMap from "../others/PickableGMap"
 
 
 
