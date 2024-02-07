@@ -211,12 +211,7 @@ function SpotScreen() {
 													onAccept={async () => {
 
 														// Spotを削除
-														const result = await SpotService.deleteSpot(spot.id)
-
-														if (!result) {
-															alert("投稿の削除に失敗しました")
-															return
-														}
+														SpotService.deleteSpot(spot.id)
 
 														// 成功したら前の画面に戻る
 														if (location.key === "default") navigate("/")
