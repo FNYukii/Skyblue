@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react"
-import { NavLink, useNavigate, useParams } from "react-router-dom"
+import { NavLink, useLocation, useNavigate, useParams } from "react-router-dom"
 import Spot from "../../entities/Spot"
 import SpotService from "../../utils/SpotService"
 import LoadingIcon from "../components/others/LoadingIcon"
@@ -24,6 +24,7 @@ function SpotScreen() {
 
 	// 画面遷移用Hooks
 	const navigate = useNavigate()
+	const location = useLocation()
 
 	// 左右ボタンのRef
 	const prevButtonRef = useRef<HTMLButtonElement>(null)
@@ -110,7 +111,13 @@ function SpotScreen() {
 
 			<div className="fixed   top-0 left-0 w-screen h-screen   flex justify-center items-center">
 
-				<div onClick={() => navigate(-1)} className="w-screen h-screen bg-black/90"></div>
+				<div
+					onClick={() => {
+						if (location.key === "default") navigate("/")
+						if (location.key !== "default") navigate(-1)
+					}}
+					className="w-screen h-screen bg-black/90"
+				/>
 
 
 
@@ -177,7 +184,13 @@ function SpotScreen() {
 
 
 
-				<button onClick={() => navigate(-1)} className="absolute top-0 left-0   m-2   p-4 rounded-full    hover:bg-white/20 transition">
+				<button
+					onClick={() => {
+						if (location.key === "default") navigate("/")
+						if (location.key !== "default") navigate(-1)
+					}}
+					className="absolute top-0 left-0   m-2   p-4 rounded-full    hover:bg-white/20 transition"
+				>
 					<MdOutlineClose className="text-2xl text-white" />
 				</button>
 			</div>

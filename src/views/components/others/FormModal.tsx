@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom"
+import { useLocation, useNavigate } from "react-router-dom"
 import { MdOutlineClose } from "react-icons/md"
 import Escaper from "./Escaper"
 import { ReactNode } from "react"
@@ -11,6 +11,7 @@ function FormModal(props: Props) {
 
 	// 画面遷移用Hooks
 	const navigate = useNavigate()
+	const location = useLocation()
 
 
 
@@ -22,7 +23,13 @@ function FormModal(props: Props) {
 
 
 			{/* モーダルの影 */}
-			<div onClick={() => navigate(-1)} className="w-screen h-screen bg-black/30"></div>
+			<div
+				onClick={() => {
+					if (location.key === "default") navigate("/")
+					if (location.key !== "default") navigate(-1)
+				}}
+				className="w-screen h-screen bg-black/30"
+			/>
 
 
 			{/* モーダル */}
@@ -32,7 +39,13 @@ function FormModal(props: Props) {
 
 					<div className="w-[95vw] sm:w-fit   max-h-[95vh]   overflow-y-scroll scrollbar-styled   py-8 pl-8 pr-6 bg-white">
 
-						<button onClick={() => navigate(-1)} className="mt-[-1rem] ml-[-1rem]   p-4 rounded-full   hover:bg-zinc-100 transition">
+						<button
+							onClick={() => {
+								if (location.key === "default") navigate("/")
+								if (location.key !== "default") navigate(-1)
+							}}
+							className="mt-[-1rem] ml-[-1rem]   p-4 rounded-full   hover:bg-zinc-100 transition"
+						>
 							<MdOutlineClose className="text-2xl text-zinc-500" />
 						</button>
 
