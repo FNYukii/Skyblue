@@ -16,7 +16,7 @@ class SpotService {
 		const createdAt: Date = doc.get("createdAt")?.toDate() ?? undefined // Spot作成直後にオフラインデータベースがSpotを読み取る際、serverTimestampがまだ設定されていないことがあるので"??"が必要
 
 		const imageUrls: string[] = doc.get("imageUrls")
-		const location: number[] = doc.get("location")
+		const location: { lat: number, lng: number } = doc.get("location")
 		const name: string = doc.get("name")
 		const detail: string = doc.get("detail")
 
@@ -181,14 +181,13 @@ class SpotService {
 
 	static async createSpot(
 		imageUrls: string[],
-		location: number[],
+		location: { lat: number, lng: number },
 		name: string,
 		detail: string
 	): Promise<string | null> {
 
 		// 値チェック
 		if (imageUrls.length === 0 || imageUrls.length > 4) return null
-		if (location.length !== 2) return null
 
 		if (name === "" || !name.match(/\S/g)) return null
 		if (name.length > 50) return null

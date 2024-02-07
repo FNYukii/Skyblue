@@ -14,7 +14,7 @@ import Screen from "../components/others/Screen"
 function CreateSpotScreen() {
 
 	const [imageFiles, setImageFiles] = useState<File[]>([])
-	const [location, setLocation] = useState<number[] | null>(null)
+	const [location, setLocation] = useState<{lat: number, lng: number} | null>(null)
 
 	const [name, setName] = useState("")
 	const [detail, setDetail] = useState("")

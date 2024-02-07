@@ -4,7 +4,7 @@ type Spot = {
 	createdAt: Date
 
 	imageUrls: string[]
-	location: number[]
+	location: {lat: number, lng: number}
 	name: string
 	detail: string
 }

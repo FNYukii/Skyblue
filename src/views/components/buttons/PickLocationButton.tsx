@@ -6,8 +6,8 @@ import PickableGMap from "../others/PickableGMap"
 
 
 interface Props {
-	location: number[] | null
-	onPick: (location: number[]) => void
+	location: {lat: number, lng: number} | null
+	onPick: (location: {lat: number, lng: number}) => void
 
 	className?: string
 }
@@ -36,7 +36,7 @@ function PickLocationButton(props: Props) {
 						}
 
 						{props.location !== null &&
-							<GMap coordinate={{ lat: props.location[0], lng: props.location[1] }} className="w-full aspect-video rounded-xl overflow-hidden   hover:brightness-90 transition" />
+							<GMap location={props.location} className="w-full aspect-video rounded-xl overflow-hidden   hover:brightness-90 transition" />
 						}
 					</button>
 				</div>
@@ -55,11 +55,11 @@ function PickLocationButton(props: Props) {
 						<PickableGMap
 							onPick={location => {
 
-								props.onPick([location.lat, location.lng])
+								props.onPick(location)
 								setIsOpenModal(false)
 							}}
 
-							defaultCoordinate={props.location ? { lat: props.location[0], lng: props.location[1] } : undefined}
+							defaultLocation={props.location ?? undefined}
 
 							className="w-[90vw] h-[90vh]   rounded-xl overflow-hidden"
 						/>

@@ -3,8 +3,8 @@ import { useState } from "react"
 
 
 interface Props {
-	onPick: (latLng: { lat: number, lng: number }) => void
-	defaultCoordinate?: { lat: number, lng: number }
+	onPick: (location: { lat: number, lng: number }) => void
+	defaultLocation?: { lat: number, lng: number }
 
 	className?: string
 }
@@ -24,7 +24,7 @@ function PickableGMap(props: Props) {
 
 	const defaultCenter = { lat: 35.1706763855153, lng: 136.88172646669815 }
 
-	const [coordinate, setCoordinate] = useState<{ lat: number, lng: number } | null>(props.defaultCoordinate ?? null)
+	const [location, setLocation] = useState<{ lat: number, lng: number } | null>(props.defaultLocation ?? null)
 
 	const [isClicked, setIsClicked] = useState(false)
 
@@ -46,7 +46,7 @@ function PickableGMap(props: Props) {
 							zoomControl: false,
 							gestureHandling: "greedy"
 						}}
-						center={!isClicked ? (props.defaultCoordinate ?? defaultCenter) : undefined}
+						center={!isClicked ? (props.defaultLocation ?? defaultCenter) : undefined}
 						zoom={7}
 
 						onClick={e => {
@@ -56,14 +56,14 @@ function PickableGMap(props: Props) {
 							if (!e.latLng) return
 							const lat = e.latLng.lat()
 							const lng = e.latLng.lng()
-							setCoordinate({ lat: lat, lng: lng })
+							setLocation({ lat: lat, lng: lng })
 						}}
 
 						mapContainerClassName="w-full h-full   min-w-40 min-h-40"
 					>
 
-						{coordinate !== null &&
-							<MarkerF position={coordinate} />
+						{location !== null &&
+							<MarkerF position={location} />
 						}
 					</GoogleMap>
 				}
@@ -71,8 +71,8 @@ function PickableGMap(props: Props) {
 
 
 
-			{coordinate !== null &&
-				<button onClick={() => props.onPick(coordinate)} className="absolute top-0 right-0 mt-4 mr-4   px-8 py-1 bg-black text-white font-bold rounded-full   hover:bg-gray-600 transition">完了</button>
+			{location !== null &&
+				<button onClick={() => props.onPick(location)} className="absolute top-0 right-0 mt-4 mr-4   px-8 py-1 bg-black text-white font-bold rounded-full   hover:bg-gray-600 transition">完了</button>
 			}
 		</div>
 	)

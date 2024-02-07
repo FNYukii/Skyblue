@@ -2,7 +2,7 @@ import { GoogleMap, MarkerF, useJsApiLoader } from "@react-google-maps/api"
 
 
 interface Props {
-	coordinate: {lat: number, lng: number}
+	location: {lat: number, lng: number}
 	className?: string
 }
 
@@ -28,12 +28,12 @@ function GMap(props: Props) {
 						disableDefaultUI: true,
 						draggable: false
 					}}
-					center={props.coordinate}
+					center={props.location}
 					zoom={14}
 					mapContainerClassName="w-full h-full   min-w-40 min-h-40"
 				>
 
-					<MarkerF position={props.coordinate} />
+					<MarkerF position={props.location} />
 				</GoogleMap>
 			}
 		</div>
