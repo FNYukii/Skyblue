@@ -160,7 +160,7 @@ function SpotScreen() {
 
 									<div className="flex justify-between items-center gap-4">
 
-										<p className="text-white">{spot.name}</p>
+										<p className="text-white font-bold">{spot.name}</p>
 
 										<div className="flex items-center gap-4">
 
