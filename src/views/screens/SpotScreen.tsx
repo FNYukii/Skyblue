@@ -10,7 +10,6 @@ import { AiOutlineArrowLeft } from "react-icons/ai"
 import { AiOutlineArrowRight } from "react-icons/ai"
 import LikeButton from "../components/buttons/LikeButton"
 import Screen from "../components/others/Screen"
-import Fixer from "../components/others/Fixer"
 
 
 
@@ -112,7 +111,6 @@ function SpotScreen() {
 		<Screen title={pageTitle ?? "スポット - Skyblue"}>
 
 			<Escaper />
-			<Fixer />
 
 			<div className="fixed   top-0 left-0 w-screen h-screen   flex justify-center items-center">
 

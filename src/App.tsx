@@ -51,7 +51,7 @@ function App() {
 
 	return (
 
-		<div className="h-full">
+		<div>
 
 			{!isLoaded &&
 				<Splash />
@@ -61,18 +61,21 @@ function App() {
 
 			{isLoaded && !isSignedIn &&
 
-				<div className="h-full">
+				<div>
 
-					<Header />
+					<div className="h-screen overflow-y-scroll">
 
-					<Routes location={currentPath.match(/^\/spots\/\w{20}\/images\/\d{1}$/) ? prevPath : currentPath}>
+						<Header />
 
-						<Route path="*" element={<NotFoundScreen />} />
-						<Route path="/" element={<TopScreen />} />
-						<Route path="/users/:userId" element={<UserScreen />} />
-					</Routes>
+						<Routes location={currentPath.match(/^\/spots\/\w{20}\/images\/\d{1}$/) ? prevPath : currentPath}>
 
-					<Footer className="mt-16   sticky top-full" />
+							<Route path="*" element={<NotFoundScreen />} />
+							<Route path="/" element={<TopScreen />} />
+							<Route path="/users/:userId" element={<UserScreen />} />
+						</Routes>
+
+						<Footer className="mt-16   sticky top-full" />
+					</div>
 
 					<Routes>
 						<Route path="*" element={<></>} />
@@ -85,20 +88,23 @@ function App() {
 
 			{isLoaded && isSignedIn &&
 
-				<div className="h-full">
+				<div>
 
-					<Header />
+					<div className="h-screen overflow-y-scroll">
 
-					<Routes location={currentPath === "/new" || currentPath.match(/^\/spots\/\w{20}\/images\/\d{1}$/) || currentPath === "/edit-profile" ? prevPath : currentPath}>
+						<Header />
 
-						<Route path="*" element={<NotFoundScreen />} />
-						<Route path="/" element={<TopScreen />} />
-						<Route path="/users/:userId" element={<UserScreen />} />
+						<Routes location={currentPath === "/new" || currentPath.match(/^\/spots\/\w{20}\/images\/\d{1}$/) || currentPath === "/edit-profile" ? prevPath : currentPath}>
 
-						<Route path="/new" element={<TopScreen />} />
-					</Routes>
+							<Route path="*" element={<NotFoundScreen />} />
+							<Route path="/" element={<TopScreen />} />
+							<Route path="/users/:userId" element={<UserScreen />} />
 
-					<Footer className="mt-16   sticky top-full" />
+							<Route path="/new" element={<TopScreen />} />
+						</Routes>
+
+						<Footer className="mt-16   sticky top-full" />
+					</div>
 
 					<Routes>
 

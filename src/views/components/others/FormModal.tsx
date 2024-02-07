@@ -2,7 +2,6 @@ import { useNavigate } from "react-router-dom"
 import { MdOutlineClose } from "react-icons/md"
 import Escaper from "./Escaper"
 import { ReactNode } from "react"
-import Fixer from "./Fixer"
 
 interface Props {
 	children: ReactNode
@@ -20,7 +19,6 @@ function FormModal(props: Props) {
 		<div className="fixed   top-0 left-0 w-screen h-screen   flex justify-center items-center">
 
 			<Escaper />
-			<Fixer />
 
 
 			{/* モーダルの影 */}
