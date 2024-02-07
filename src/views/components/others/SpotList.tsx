@@ -80,7 +80,7 @@ function SpotList(props: Props) {
 			}
 
 			{props.isLoaded && props.spots !== null && props.spots.length === 0 &&
-				<p className="mt-16   text-center text-gray-500">スポットはありません</p>
+				<p className="mt-16   text-center text-gray-500">投稿はありません</p>
 			}
 
 
