@@ -25,6 +25,10 @@ function PickableGMap(props: Props) {
 
 	const [location, setLocation] = useState<number[] | null>(props.defaultLocation ?? null)
 
+	const [isClicked, setIsClicked] = useState(false)
+
+
+
 	return (
 
 		<div className={props.className}>
@@ -41,10 +45,11 @@ function PickableGMap(props: Props) {
 							zoomControl: false,
 							gestureHandling: "greedy"
 						}}
-						center={!location ? { lat: defaultCenter[0], lng: defaultCenter[1] } : undefined}
+						center={!isClicked ? (props.defaultLocation ? { lat: props.defaultLocation[0], lng: props.defaultLocation[1] } : { lat: defaultCenter[0], lng: defaultCenter[1] }) : undefined}
 						zoom={7}
-						
+
 						onClick={e => {
+							setIsClicked(true)
 
 							if (!e.latLng) return
 
