@@ -3,8 +3,8 @@ import { useState } from "react"
 
 
 interface Props {
-	onPick: (location: number[]) => void
-	defaultLocation?: number[]
+	onPick: (latLng: { lat: number, lng: number }) => void
+	defaultCoordinate?: { lat: number, lng: number }
 
 	className?: string
 }
@@ -13,6 +13,7 @@ interface Props {
 
 function PickableGMap(props: Props) {
 
+	// Mapのスクリプトをロード
 	const { isLoaded } = useJsApiLoader({
 		id: 'google-map-script',
 		googleMapsApiKey: `${process.env.REACT_APP_GOOGLE_MAPS_PLATFORM_API_KEY}`,
@@ -21,9 +22,9 @@ function PickableGMap(props: Props) {
 
 
 
-	const defaultCenter = [35.1706763855153, 136.88172646669815]
+	const defaultCenter = { lat: 35.1706763855153, lng: 136.88172646669815 }
 
-	const [location, setLocation] = useState<number[] | null>(props.defaultLocation ?? null)
+	const [coordinate, setCoordinate] = useState<{ lat: number, lng: number } | null>(props.defaultCoordinate ?? null)
 
 	const [isClicked, setIsClicked] = useState(false)
 
@@ -45,24 +46,24 @@ function PickableGMap(props: Props) {
 							zoomControl: false,
 							gestureHandling: "greedy"
 						}}
-						center={!isClicked ? (props.defaultLocation ? { lat: props.defaultLocation[0], lng: props.defaultLocation[1] } : { lat: defaultCenter[0], lng: defaultCenter[1] }) : undefined}
+						center={!isClicked ? (props.defaultCoordinate ?? defaultCenter) : undefined}
 						zoom={7}
 
 						onClick={e => {
+
 							setIsClicked(true)
 
 							if (!e.latLng) return
-
 							const lat = e.latLng.lat()
 							const lng = e.latLng.lng()
-							setLocation([lat, lng])
+							setCoordinate({ lat: lat, lng: lng })
 						}}
 
 						mapContainerClassName="w-full h-full   min-w-40 min-h-40"
 					>
 
-						{location !== null &&
-							<MarkerF position={{ lat: location[0], lng: location[1] }} />
+						{coordinate !== null &&
+							<MarkerF position={coordinate} />
 						}
 					</GoogleMap>
 				}
@@ -70,8 +71,8 @@ function PickableGMap(props: Props) {
 
 
 
-			{location !== null &&
-				<button onClick={() => props.onPick(location)} className="absolute top-0 right-0 mt-4 mr-4   px-8 py-1 bg-black text-white font-bold rounded-full   hover:bg-gray-600 transition">完了</button>
+			{coordinate !== null &&
+				<button onClick={() => props.onPick(coordinate)} className="absolute top-0 right-0 mt-4 mr-4   px-8 py-1 bg-black text-white font-bold rounded-full   hover:bg-gray-600 transition">完了</button>
 			}
 		</div>
 	)
