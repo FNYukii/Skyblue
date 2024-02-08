@@ -44,12 +44,12 @@ function FormModal(props: Props) {
 								if (location.key === "default") navigate("/")
 								if (location.key !== "default") navigate(-1)
 							}}
-							className="mt-[-1rem] ml-[-1rem]   p-4 rounded-full   hover:bg-zinc-100 transition"
+							className="m-[-1rem] p-4   rounded-full   hover:bg-zinc-100 transition"
 						>
 							<MdOutlineClose className="text-2xl text-zinc-500" />
 						</button>
 
-						<div className="w-full mt-2">
+						<div className="w-full mt-4">
 							{props.children}
 						</div>
 					</div>
