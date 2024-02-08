@@ -237,6 +237,7 @@ function Display(props: { post: Post, imageIndex: number }) {
 							title="この投稿を削除してもよろしいですか?"
 							acceptLabel="削除"
 							destructive
+							dark
 							onClose={() => setIsShowDeleteModal(false)}
 							onAccept={async () => {
 
