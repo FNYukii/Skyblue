@@ -90,7 +90,7 @@ function PostList(props: Props) {
 				<div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4   gap-2">
 
 					{props.posts.map((post, index) => (
-						<ImageLinkGrid key={index} imageUrls={post.imageUrls} postId={post.id} />
+						<ImageLinkGrid key={index} imageUrls={post.images.map(image => image.url)} postId={post.id} />
 					))}
 				</div>
 			}

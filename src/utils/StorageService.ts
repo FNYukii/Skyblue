@@ -1,12 +1,19 @@
-import { getDownloadURL, ref, uploadBytes } from "firebase/storage"
+import { deleteObject, getDownloadURL, ref, uploadBytes } from "firebase/storage"
 import { storage } from "./firebase"
 import { v4 } from "uuid"
+import Image from "../entities/Image"
 
 class StorageService {
 
-	
 
-	static async uploadImage(file: File, folderName: string): Promise<string | null> {
+
+	static defaultIconUrl(): string {
+		return "https://firebasestorage.googleapis.com/v0/b/skyblue-32fbd.appspot.com/o/icons%2Fdefault.png?alt=media&token=c0c2384a-2fa7-4081-bdb8-f14e64116c47"
+	}
+
+
+
+	static async uploadImage(file: File, folderName: string): Promise<Image | null> {
 
 		// ファイルサイズが10MB未満かどうかを確認
 		const fileSizeMax = 10485760
@@ -27,39 +34,79 @@ class StorageService {
 		return await uploadBytes(storageRef, file)
 			.then(async () => {
 
-				// DownloadURLを取得
-				const downloadURL = await getDownloadURL(storageRef)
+				// ファイルのパスとURL
+				const path = storageRef.fullPath
+				const url = await getDownloadURL(storageRef)
+				const image: Image = { path: path, url: url }
 
-				return downloadURL
+				return image
 			})
 			.catch((error: any) => {
 
-				console.log(`File uploading failed. ${error}`)
+				console.log(`FAIL! Error uploading file. ${error}`)
 				return null
 			})
 	}
 
 
 
-	static async uploadImages(files: File[], folderName: string): Promise<string[] | null> {
+	static async uploadImages(files: File[], folderName: string): Promise<Image[] | null> {
 
-		let imageUrls: string[] = []
+		let images: Image[] = []
 
-		// 画像を順にアップロードしていく
-		for (let file of files) {
+		await Promise.all(files.map(async (file) => {
 
 			// 画像をアップロード
-			const imageUrl = await this.uploadImage(file, folderName)
+			const image = await this.uploadImage(file, folderName)
 
 			// 失敗
-			if (!imageUrl)
+			if (!image)
 				return null
 
 			// 成功
-			imageUrls.push(imageUrl)
-		}
+			images.push(image)
+		}))
 
-		return imageUrls
+		return images
+	}
+
+
+
+	static async deleteImage(path: string): Promise<string | null> {
+
+		const storageRef = ref(storage, path)
+
+		return deleteObject(storageRef).then(() => {
+
+			return path
+
+		}).catch((error) => {
+
+			console.log(`FAIL! Error deleting file. ${error}`)
+			return null
+		})
+	}
+
+
+
+	static async deleteImages(paths: string[]): Promise<string[] | null> {
+
+		let donePaths: string[] = []
+
+		await Promise.all(paths.map(async (path) => {
+
+			// 画像を削除
+			const result = await this.deleteImage(path)
+
+			// 失敗
+			if (!result)
+				return null
+
+			// 成功
+			donePaths.push(result)
+		}))
+
+		return donePaths
 	}
 }
 

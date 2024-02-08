@@ -14,6 +14,7 @@ import NavLinkToModal from "../components/others/NavLinkToModal"
 import Screen from "../components/others/Screen"
 import { Unsubscribe } from "firebase/firestore"
 import ConfirmModal from "../components/others/ConfirmModal"
+import StorageService from "../../utils/StorageService"
 
 
 
@@ -86,7 +87,7 @@ function UserScreen() {
 
 
 						<div className="w-full   flex flex-col items-center">
-							<img src={user.iconUrl} alt="User icon" className=" w-28 aspect-square rounded-full   object-cover bg-gray-200" />
+							<img src={user.icon?.url ?? StorageService.defaultIconUrl()} alt="User icon" className=" w-28 aspect-square rounded-full   object-cover bg-gray-200" />
 							<p className="mt-2   text-2xl font-bold   max-w-full   overflow-hidden whitespace-nowrap text-ellipsis">{user.displayName}</p>
 						</div>
 

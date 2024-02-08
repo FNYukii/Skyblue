@@ -154,9 +154,9 @@ function PostScreen() {
 										<AiOutlineArrowLeft className="text-2xl" />
 									</button>
 
-									<img src={post.imageUrls[imageIndex]} alt="Attached on Post" className="h-full   pointer-events-auto   min-w-0" />
+									<img src={post.images[imageIndex].url} alt="Attached on Post" className="h-full   pointer-events-auto   min-w-0" />
 
-									<button onClick={() => nextImage()} disabled={imageIndex === post.imageUrls.length - 1} ref={nextButtonRef} className="h-fit w-fit   p-3 rounded-full   text-white   disabled:opacity-0 enabled:pointer-events-auto   enabled:hover:bg-white/20 transition">
+									<button onClick={() => nextImage()} disabled={imageIndex === post.images.length - 1} ref={nextButtonRef} className="h-fit w-fit   p-3 rounded-full   text-white   disabled:opacity-0 enabled:pointer-events-auto   enabled:hover:bg-white/20 transition">
 										<AiOutlineArrowRight className="text-2xl" />
 									</button>
 								</div>
@@ -211,7 +211,7 @@ function PostScreen() {
 											onAccept={async () => {
 
 												// Postを削除
-												PostService.deletePost(post.id)
+												PostService.deletePost(post.id, post.images.map(image => image.path))
 
 												// 成功したら前の画面に戻る
 												if (location.key === "default") navigate("/")
