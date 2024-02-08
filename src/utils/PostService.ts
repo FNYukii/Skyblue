@@ -4,6 +4,7 @@ import { db } from "./firebase"
 import AuthService from "./AuthService"
 import UserService from "./UserService"
 import Image from "../entities/Image"
+import StorageService from "./StorageService"
 
 class PostService {
 
@@ -254,8 +255,13 @@ class PostService {
 
 
 
-	static async deletePost(postId: string): Promise<string | null> {
+	static async deletePost(postId: string, imagePaths: string[]): Promise<string | null> {
 
+		// 画像を削除
+		const result = await StorageService.deleteImages(imagePaths)
+		if (!result) return null
+
+		// ドキュメントを削除
 		return deleteDoc(doc(db, "posts", postId))
 			.then(() => {
 

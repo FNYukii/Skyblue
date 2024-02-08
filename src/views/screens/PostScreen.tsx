@@ -211,7 +211,7 @@ function PostScreen() {
 											onAccept={async () => {
 
 												// Postを削除
-												PostService.deletePost(post.id)
+												PostService.deletePost(post.id, post.images.map(image => image.path))
 
 												// 成功したら前の画面に戻る
 												if (location.key === "default") navigate("/")
