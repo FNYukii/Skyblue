@@ -15,9 +15,9 @@ function AccountScreen() {
 
 					<h1 className="text-2xl font-bold">設定</h1>
 
-					<NavLink to="/settings/account" className="my-[-0.5rem] mx-[-1.5rem] py-2 px-6 rounded-full whitespace-nowrap   hover:bg-gray-100 transition">アカウント</NavLink>
-					<NavLink to="" className="my-[-0.5rem] mx-[-1.5rem] py-2 px-6 rounded-full whitespace-nowrap   hover:bg-gray-100 transition">インターフェース</NavLink>
-					<NavLink to="" className="my-[-0.5rem] mx-[-1.5rem] py-2 px-6 rounded-full whitespace-nowrap   hover:bg-gray-100 transition">お問い合わせ</NavLink>
+					<NavLink to="/settings/account" className="my-[-0.5rem] mx-[-1.5rem]   py-2 px-6 rounded-full whitespace-nowrap   hover:bg-gray-100 transition">アカウント</NavLink>
+					<NavLink to="" className="my-[-0.5rem] mx-[-1.5rem]   py-2 px-6 rounded-full whitespace-nowrap   hover:bg-gray-100 transition">インターフェース</NavLink>
+					<NavLink to="" className="my-[-0.5rem] mx-[-1.5rem]   py-2 px-6 rounded-full whitespace-nowrap   hover:bg-gray-100 transition">お問い合わせ</NavLink>
 				</div>
 
 				<div className="grow">
