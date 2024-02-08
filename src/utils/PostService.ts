@@ -239,8 +239,6 @@ class PostService {
 				location: location,
 				name: name,
 				detail: detail,
-
-				likedUserIds: []
 			})
 
 			// 成功したらドキュメントIDをメソッド呼び出し元に返す
