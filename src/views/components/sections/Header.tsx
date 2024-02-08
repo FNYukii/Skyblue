@@ -57,11 +57,11 @@ function Header() {
 
 					<div className="sm:hidden   flex gap-6 items-center">
 
-						<NavLink to={`/users/${AuthService.uidQuickly()}`} className="m-[-0.5rem]   p-2 rounded-full   hover:bg-gray-100 transition">
+						<NavLink to={`/users/${AuthService.uidQuickly()}`} className="m-[-0.5rem] p-2   rounded-full   hover:bg-gray-100 transition">
 							<AiOutlineUser className="text-2xl" />
 						</NavLink>
 
-						<NavLink to="/settings/account" className="m-[-0.5rem]   p-2 rounded-full   hover:bg-gray-100 transition">
+						<NavLink to="/settings/account" className="m-[-0.5rem] p-2   rounded-full   hover:bg-gray-100 transition">
 							<AiOutlineSetting className="text-2xl" />
 						</NavLink>
 
@@ -70,10 +70,10 @@ function Header() {
 						</NavLinkToModal>
 					</div>
 
-					<div className="hidden sm:block   flex items-center">
-						<NavLink to={`/users/${AuthService.uidQuickly()}`} className="px-6 py-2   rounded-full   hover:bg-gray-100 transition">プロフィール</NavLink>
-						<NavLink to="/settings/account" className="px-6 py-2   rounded-full   hover:bg-gray-100 transition">設定</NavLink>
-						<NavLinkToModal to="new" className="ml-2   px-6 py-2   bg-black text-white font-bold rounded-full   hover:bg-gray-600 transition">新しい投稿</NavLinkToModal>
+					<div className="hidden sm:flex items-center gap-12">
+						<NavLink to={`/users/${AuthService.uidQuickly()}`} className="my-[-0.5rem] mx-[-1.5rem] py-2 px-6   rounded-full   hover:bg-gray-100 transition">プロフィール</NavLink>
+						<NavLink to="/settings/account" className="my-[-0.5rem] mx-[-1.5rem] py-2 px-6   rounded-full   hover:bg-gray-100 transition">設定</NavLink>
+						<NavLinkToModal to="new" className="px-6 py-2   bg-black text-white font-bold rounded-full   hover:bg-gray-600 transition">新しい投稿</NavLinkToModal>
 					</div>
 				</div>
 			}
