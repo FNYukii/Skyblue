@@ -16,7 +16,7 @@ class UserService {
 		const id: string = doc.id
 		const createdAt: Date = doc.get("createdAt")?.toDate() ?? undefined
 		const displayName: string = doc.get("displayName")
-		const icon: Image = doc.get("icon")
+		const icon: Image | null = doc.get("icon") ?? null
 
 		const likes: string[] = doc.get("likes")
 
@@ -159,15 +159,13 @@ class UserService {
 
 	static async createUser(userId: string): Promise<string | null> {
 
-		const defaultIcon: Image = {path: "icons/default.png", url: "https://firebasestorage.googleapis.com/v0/b/skyblue-32fbd.appspot.com/o/icons%2Fdefault.png?alt=media&token=c0c2384a-2fa7-4081-bdb8-f14e64116c47"}
-
 		try {
 
 			// 新しいUserを作成
 			await setDoc(doc(db, "users", userId), {
 				createdAt: serverTimestamp(),
 				displayName: "Guest",
-				icon: defaultIcon,
+				icon: null,
 				likes: []
 			})
 

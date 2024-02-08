@@ -7,6 +7,12 @@ class StorageService {
 
 
 
+	static defaultIconUrl(): string {
+		return "https://firebasestorage.googleapis.com/v0/b/skyblue-32fbd.appspot.com/o/icons%2Fdefault.png?alt=media&token=c0c2384a-2fa7-4081-bdb8-f14e64116c47"
+	}
+
+
+
 	static async uploadImage(file: File, folderName: string): Promise<Image | null> {
 
 		// ファイルサイズが10MB未満かどうかを確認
@@ -70,7 +76,7 @@ class StorageService {
 
 		const storageRef = ref(storage, path)
 
-		deleteObject(storageRef).then(() => {
+		return deleteObject(storageRef).then(() => {
 
 			return path
 
@@ -79,8 +85,6 @@ class StorageService {
 			console.log(`FAIL! Error deleting file. ${error}`)
 			return null
 		})
-
-		return null
 	}
 
 

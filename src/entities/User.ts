@@ -5,7 +5,7 @@ type User = {
 	createdAt: Date
 
 	displayName: string
-	icon: Image
+	icon: Image | null
 
 	likes: string[]
 }

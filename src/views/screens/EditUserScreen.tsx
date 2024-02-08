@@ -86,17 +86,17 @@ function Editor(props: { user: User }) {
 			iconImage = await StorageService.uploadImage(iconFile, "/icons")
 
 			if (!iconImage) {
-				alert("プロフィールの更新に失敗しました")
+				alert("新しいアイコンのアップロードに失敗しました")
 				setIsLoading(false)
 				return
 			}
 		}
 
 		// 画像が選択されたなら古い画像は削除
-		if (iconFile) {
-			const result = await StorageService.deleteImage(props.user.icon.path ?? "---")
+		if (iconFile && props.user.icon) {
+			const result = await StorageService.deleteImage(props.user.icon.path)
 			if (!result) {
-				alert("プロフィールの更新に失敗しました")
+				alert("古いアイコンの削除に失敗しました")
 				setIsLoading(false)
 				return
 			}
@@ -119,7 +119,7 @@ function Editor(props: { user: User }) {
 		<div>
 			<h1 className="text-2xl font-bold">プロフィールを編集</h1>
 
-			<PickIconButton iconUrl={props.user.icon.url} file={iconFile ?? undefined} onPick={file => setIconFile(file)} className="mt-4 mx-auto w-fit" />
+			<PickIconButton iconUrl={props.user.icon?.url ?? StorageService.defaultIconUrl()} file={iconFile ?? undefined} onPick={file => setIconFile(file)} className="mt-4 mx-auto w-fit" />
 			<input value={displayName} onChange={e => setDisplayName(e.target.value)} placeholder="ディスプレイネーム" className="block   mt-6 w-full pb-2   bg-transparent border-b border-gray-300   focus:outline-none focus:border-blue-500   placeholder:text-gray-400" />
 
 			<div className="mt-4   flex justify-end">
