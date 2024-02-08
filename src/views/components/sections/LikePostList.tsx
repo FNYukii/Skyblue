@@ -46,7 +46,7 @@ function LikePostList(props: Props) {
 
 
 	return (
-		<PostList posts={posts} isLoaded={isLoaded} className="mt-4" />
+		<PostList posts={posts} isLoaded={isLoaded} noResultMessage="いいねした投稿はありません" className="mt-4" />
 	)
 }
 

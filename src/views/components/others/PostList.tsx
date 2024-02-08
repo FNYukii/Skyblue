@@ -7,6 +7,8 @@ interface Props {
 	posts: Post[] | null
 	isLoaded: boolean
 
+	noResultMessage?: string
+
 	className?: string
 }
 
@@ -80,7 +82,15 @@ function PostList(props: Props) {
 			}
 
 			{props.isLoaded && props.posts !== null && props.posts.length === 0 &&
-				<p className="mt-16   text-center text-gray-500">投稿はありません</p>
+				<p className="mt-16   text-center text-gray-500">
+					{!props.noResultMessage &&
+						<span>投稿はありません</span>
+					}
+
+					{props.noResultMessage &&
+						<span>{props.noResultMessage}</span>
+					}
+				</p>
 			}
 
 
