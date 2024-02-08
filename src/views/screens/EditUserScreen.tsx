@@ -14,12 +14,6 @@ import Image from "../../entities/Image"
 
 function EditUserScreen() {
 
-	const navigate = useNavigate()
-
-	// 入力内容
-	const [iconFile, setIconFile] = useState<File | null>(null)
-	const [displayName, setDisplayName] = useState("")
-
 	// 現在のUser
 	const [user, setUser] = useState<User | null>(null)
 	const [isLoadedUser, setIsLoadedUser] = useState(false)
@@ -32,42 +26,8 @@ function EditUserScreen() {
 
 			setUser(user)
 			setIsLoadedUser(true)
-
-			if (user) setDisplayName(user.displayName)
 		})()
 	}, [])
-
-
-
-	const [isLoading, setIsLoading] = useState(false)
-
-	async function edit() {
-
-		setIsLoading(true)
-
-		let iconImage: Image | null = null
-
-		// 画像が選択されたらならアップロード
-		if (iconFile) {
-			iconImage = await StorageService.uploadImage(iconFile, "/icons")
-
-			if (!iconImage) {
-				alert("プロフィールの更新に失敗しました")
-				setIsLoading(false)
-				return
-			}
-		}
-
-		// ドキュメントを更新
-		const result = await UserService.editProfile(displayName, iconImage ?? undefined)
-		if (!result) {
-			alert("プロフィールの更新に失敗しました")
-			setIsLoading(false)
-			return
-		}
-
-		navigate(-1)
-	}
 
 
 
@@ -89,30 +49,7 @@ function EditUserScreen() {
 
 					{isLoadedUser && user !== null &&
 
-						<div>
-							<h1 className="text-2xl font-bold">プロフィールを編集</h1>
-
-							<PickIconButton iconUrl={user.icon.url} file={iconFile ?? undefined} onPick={file => setIconFile(file)} className="mt-4 mx-auto w-fit" />
-							<input value={displayName} onChange={e => setDisplayName(e.target.value)} placeholder="ディスプレイネーム" className="block   mt-6 w-full pb-2   bg-transparent border-b border-gray-300   focus:outline-none focus:border-blue-500   placeholder:text-gray-400" />
-
-							<div className="mt-4   flex justify-end">
-
-								{!isLoading &&
-
-									<button
-										onClick={edit}
-										disabled={displayName === ""}
-										className="px-6 py-1   bg-black text-white font-bold rounded-full   disabled:bg-gray-400   enabled:hover:bg-gray-600 transition"
-									>
-										完了
-									</button>
-								}
-
-								{isLoading &&
-									<LoadingIcon className="mt-5" color="#000" />
-								}
-							</div>
-						</div>
+						<Editor user={user} />
 					}
 				</div>
 			</FormModal>
@@ -121,3 +58,87 @@ function EditUserScreen() {
 }
 
 export default EditUserScreen
+
+
+
+function Editor(props: { user: User }) {
+
+
+	const navigate = useNavigate()
+
+	// 入力内容
+	const [iconFile, setIconFile] = useState<File | null>(null)
+	const [displayName, setDisplayName] = useState(props.user.displayName)
+
+	// 更新中かどうか
+	const [isLoading, setIsLoading] = useState(false)
+
+
+
+	async function edit() {
+
+		setIsLoading(true)
+
+		let iconImage: Image | null = null
+
+		// 画像が選択されたらならアップロード
+		if (iconFile) {
+			iconImage = await StorageService.uploadImage(iconFile, "/icons")
+
+			if (!iconImage) {
+				alert("プロフィールの更新に失敗しました")
+				setIsLoading(false)
+				return
+			}
+		}
+
+		// 画像が選択されたなら古い画像は削除
+		if (iconFile) {
+			const result = await StorageService.deleteImage(props.user.icon.path ?? "---")
+			if (!result) {
+				alert("プロフィールの更新に失敗しました")
+				setIsLoading(false)
+				return
+			}
+		}
+
+		// ドキュメントを更新
+		const result = await UserService.editProfile(displayName, iconImage ?? undefined)
+		if (!result) {
+			alert("プロフィールの更新に失敗しました")
+			setIsLoading(false)
+			return
+		}
+
+		navigate(-1)
+	}
+
+
+
+	return (
+		<div>
+			<h1 className="text-2xl font-bold">プロフィールを編集</h1>
+
+			<PickIconButton iconUrl={props.user.icon.url} file={iconFile ?? undefined} onPick={file => setIconFile(file)} className="mt-4 mx-auto w-fit" />
+			<input value={displayName} onChange={e => setDisplayName(e.target.value)} placeholder="ディスプレイネーム" className="block   mt-6 w-full pb-2   bg-transparent border-b border-gray-300   focus:outline-none focus:border-blue-500   placeholder:text-gray-400" />
+
+			<div className="mt-4   flex justify-end">
+
+				{!isLoading &&
+
+					<button
+						onClick={edit}
+						disabled={displayName === ""}
+						className="px-6 py-1   bg-black text-white font-bold rounded-full   disabled:bg-gray-400   enabled:hover:bg-gray-600 transition"
+					>
+						完了
+					</button>
+				}
+
+				{isLoading &&
+					<LoadingIcon className="mt-5" color="#000" />
+				}
+			</div>
+		</div>
+	)
+}
