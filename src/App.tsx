@@ -11,6 +11,7 @@ import Splash from "./views/components/sections/Splash"
 import PostScreen from "./views/screens/PostScreen"
 import UserScreen from "./views/screens/UserScreen"
 import EditUserScreen from "./views/screens/EditUserScreen"
+import AccountScreen from "./views/screens/AccountScreen"
 
 function App() {
 
@@ -61,7 +62,7 @@ function App() {
 
 				<div>
 
-					<div className="h-screen overflow-y-scroll">
+					<div className="h-screen">
 
 						<Header />
 
@@ -88,7 +89,7 @@ function App() {
 
 				<div>
 
-					<div className="h-screen overflow-y-scroll">
+					<div className="h-screen">
 
 						<Header />
 
@@ -97,8 +98,7 @@ function App() {
 							<Route path="*" element={<NotFoundScreen />} />
 							<Route path="/" element={<TopScreen />} />
 							<Route path="/users/:userId" element={<UserScreen />} />
-
-							<Route path="/new" element={<TopScreen />} />
+							<Route path="/settings/account" element={<AccountScreen />} />
 						</Routes>
 
 						<Footer className="mt-16   sticky top-full" />
