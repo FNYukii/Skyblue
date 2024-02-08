@@ -1,9 +1,11 @@
+import Image from "./Image"
+
 type Post = {
 	id: string
 	userId: string
 	createdAt: Date
 
-	imageUrls: string[]
+	images: Image[]
 	location: {lat: number, lng: number}
 	name: string
 	detail: string

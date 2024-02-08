@@ -3,6 +3,7 @@ import Post from "../entities/Post"
 import { db } from "./firebase"
 import AuthService from "./AuthService"
 import UserService from "./UserService"
+import Image from "../entities/Image"
 
 class PostService {
 
@@ -15,7 +16,7 @@ class PostService {
 		const userId: string = doc.get("userId")
 		const createdAt: Date = doc.get("createdAt")?.toDate() ?? undefined // Post作成直後にオフラインデータベースがドキュメントを読み取る際、serverTimestampがまだ設定されていないことがあるので"??"が必要
 
-		const imageUrls: string[] = doc.get("imageUrls")
+		const images: Image[] = doc.get("images")
 		const location: { lat: number, lng: number } = doc.get("location")
 		const name: string = doc.get("name")
 		const detail: string = doc.get("detail")
@@ -26,7 +27,7 @@ class PostService {
 			userId: userId,
 			createdAt: createdAt,
 
-			imageUrls: imageUrls,
+			images: images,
 			location: location,
 			name: name,
 			detail: detail,
@@ -210,14 +211,14 @@ class PostService {
 
 
 	static async createPost(
-		imageUrls: string[],
+		images: Image[],
 		location: { lat: number, lng: number },
 		name: string,
 		detail: string
 	): Promise<string | null> {
 
 		// 値チェック
-		if (imageUrls.length === 0 || imageUrls.length > 4) return null
+		if (images.length === 0 || images.length > 4) return null
 
 		if (name === "" || !name.match(/\S/g)) return null
 		if (name.length > 50) return null
@@ -235,7 +236,7 @@ class PostService {
 				userId: uid,
 				createdAt: serverTimestamp(),
 
-				imageUrls: imageUrls,
+				images: images,
 				location: location,
 				name: name,
 				detail: detail,

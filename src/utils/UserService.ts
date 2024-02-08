@@ -2,6 +2,7 @@ import { DocumentSnapshot, QueryDocumentSnapshot, Unsubscribe, arrayRemove, arra
 import { db } from "./firebase"
 import User from "../entities/User"
 import AuthService from "./AuthService"
+import Image from "../entities/Image"
 
 
 
@@ -15,7 +16,7 @@ class UserService {
 		const id: string = doc.id
 		const createdAt: Date = doc.get("createdAt")?.toDate() ?? undefined
 		const displayName: string = doc.get("displayName")
-		const iconUrl: string = doc.get("iconUrl")
+		const icon: Image = doc.get("icon")
 
 		const likes: string[] = doc.get("likes")
 
@@ -24,7 +25,7 @@ class UserService {
 			id: id,
 			createdAt: createdAt,
 			displayName: displayName,
-			iconUrl: iconUrl,
+			icon: icon,
 			likes: likes
 		}
 
@@ -158,13 +159,15 @@ class UserService {
 
 	static async createUser(userId: string): Promise<string | null> {
 
+		const defaultIcon: Image = {path: "icons/default.png", url: "https://firebasestorage.googleapis.com/v0/b/skyblue-32fbd.appspot.com/o/icons%2Fdefault.png?alt=media&token=c0c2384a-2fa7-4081-bdb8-f14e64116c47"}
+
 		try {
 
 			// 新しいUserを作成
 			await setDoc(doc(db, "users", userId), {
 				createdAt: serverTimestamp(),
 				displayName: "Guest",
-				iconUrl: "https://firebasestorage.googleapis.com/v0/b/skyblue-32fbd.appspot.com/o/icons%2Fdefault_icon.png?alt=media&token=7972a568-e171-4865-bbc4-1b014a43de85",
+				icon: defaultIcon,
 				likes: []
 			})
 
@@ -234,7 +237,7 @@ class UserService {
 
 
 
-	static async editProfile(displayName?: string, iconUrl?: string): Promise<string | null> {
+	static async editProfile(displayName?: string, image?: Image): Promise<string | null> {
 
 		// 値チェック
 		if (displayName && (displayName === "" || displayName.length > 50)) return null
@@ -252,7 +255,7 @@ class UserService {
 		} = {}
 
 		if (displayName) docObject.displayName = displayName
-		if (iconUrl) docObject.iconUrl = iconUrl
+		if (image) docObject.icon = {path: image.path, url: image.url}
 
 		// ドキュメントを更新
 		try {

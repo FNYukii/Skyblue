@@ -33,17 +33,17 @@ function CreatePostScreen() {
 		if (location === null) return
 
 		// 画像をアップロード
-		const imageUrls = await StorageService.uploadImages(imageFiles, "/images")
+		const images = await StorageService.uploadImages(imageFiles, "/images")
 
 		// 失敗した場合
-		if (!imageUrls) {
+		if (!images) {
 			alert("画像のアップロードに失敗しました。")
 			setIsLoading(false)
 			return
 		}
 
 		// postを投稿
-		const result = await PostService.createPost(imageUrls, location, name, detail)
+		const result = await PostService.createPost(images, location, name, detail)
 
 		// 失敗した場合
 		if (!result) {
