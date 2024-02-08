@@ -217,7 +217,7 @@ function Display(props: { post: Post, imageIndex: number }) {
 					{AuthService.uidQuickly() === props.post.userId &&
 						<Menu
 							menuButton={
-								<MenuButton className="m-[-0.5rem] p-2   rounded-full   hover:bg-gray-500/50 transition">
+								<MenuButton className="-m-2 p-2   rounded-full   hover:bg-gray-500/50 transition">
 									<IoEllipsisHorizontal className="text-xl text-white" />
 								</MenuButton>
 							}

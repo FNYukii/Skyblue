@@ -93,7 +93,7 @@ function LikeButton(props: Props) {
 						<div>
 							{props.showLikeCount &&
 
-								<div className="m-[-0.5rem]   p-2 rounded-full   flex items-center gap-1">
+								<div className="-m-2 p-2   rounded-full   flex items-center gap-1">
 									<AiOutlineHeart className="text-white text-xl" />
 									<p className="text-white">{userIds.length}</p>
 								</div>
@@ -105,7 +105,7 @@ function LikeButton(props: Props) {
 
 					{isLoadedUid && uid !== null && !userIds.includes(uid) &&
 
-						<button onClick={() => UserService.likePost(props.postId)} className="m-[-0.5rem]   p-2 rounded-full   flex items-center gap-1   hover:bg-white/20 transition">
+						<button onClick={() => UserService.likePost(props.postId)} className="-m-2 p-2   rounded-full   flex items-center gap-1   hover:bg-white/20 transition">
 							<AiOutlineHeart className="text-white text-xl" />
 							{props.showLikeCount &&
 								<p className="text-white">{userIds.length}</p>
@@ -117,7 +117,7 @@ function LikeButton(props: Props) {
 
 					{isLoadedUid && uid !== null && userIds.includes(uid) &&
 
-						<button onClick={() => UserService.unlikePost(props.postId)} className="m-[-0.5rem]   p-2 rounded-full   flex items-center gap-1   hover:bg-white/20 transition">
+						<button onClick={() => UserService.unlikePost(props.postId)} className="-m-2 p-2   rounded-full   flex items-center gap-1   hover:bg-white/20 transition">
 							<AiFillHeart className="text-white text-xl" />
 							{props.showLikeCount &&
 								<p className="text-white">{userIds.length}</p>

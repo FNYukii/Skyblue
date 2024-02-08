@@ -32,8 +32,8 @@ function ConfirmModal(props: Props) {
 
 				<div className="mt-5   flex justify-between">
 
-					<button type="button" onClick={props.onClose} className={`my-[-0.25rem] mx-[-1rem]   py-1 px-4 font-bold rounded-full   ${!props.dark ? "hover:bg-gray-100" : "hover:bg-gray-900"}  transition`}>キャンセル</button>
-					<button type="button" onClick={props.onAccept} className={`my-[-0.25rem] mx-[-1rem]   py-1 px-4 font-bold rounded-full   hover:bg-gray-100 transition   ${props.dark && "hover:bg-gray-900"}   ${props.destructive && "text-red-500 hover:bg-red-100"}   ${props.destructive && props.dark && "text-red-500 hover:bg-red-950"}`}>{props.acceptLabel}</button>
+					<button type="button" onClick={props.onClose} className={`-my-1 -mx-4   py-1 px-4 font-bold rounded-full   ${!props.dark ? "hover:bg-gray-100" : "hover:bg-gray-900"}  transition`}>キャンセル</button>
+					<button type="button" onClick={props.onAccept} className={`-my-1 -mx-4   py-1 px-4 font-bold rounded-full   hover:bg-gray-100 transition   ${props.dark && "hover:bg-gray-900"}   ${props.destructive && "text-red-500 hover:bg-red-100"}   ${props.destructive && props.dark && "text-red-500 hover:bg-red-950"}`}>{props.acceptLabel}</button>
 				</div>
 			</div>
 		</div>

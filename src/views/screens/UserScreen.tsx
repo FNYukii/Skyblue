@@ -101,7 +101,7 @@ function UserScreen() {
 
 							<Menu
 								menuButton={
-									<MenuButton className="m-[-0.5rem]   p-2 rounded-full   hover:bg-gray-100 transition">
+									<MenuButton className="-m-2 p-2 rounded-full   hover:bg-gray-100 transition">
 										<IoEllipsisHorizontal className="text-2xl text-gray-500" />
 									</MenuButton>
 								}
