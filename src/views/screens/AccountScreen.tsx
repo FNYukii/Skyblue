@@ -31,7 +31,7 @@ function AccountScreen() {
 					<div className="mt-8   flex justify-between items-center gap-8">
 						<div>
 							<p className="text-lg font-bold">メールアドレスを変更</p>
-							<p className="text-gray-500">アカウントに登録されているメールアドレスを変更します。変更後は古いメールアドレスではログインできなくなります。Googleアカウントでログインしている場合は利用できません。</p>
+							<p className="text-gray-500">アカウントに登録されているメールアドレスを変更します。変更後は古いメールアドレスではログインできなくなります。メールアドレス/パスワードでログインしていない場合は利用できません。</p>
 						</div>
 
 						<button className="py-2 px-6 border rounded-full   whitespace-nowrap   hover:bg-gray-100 transition">変更する</button>
@@ -40,7 +40,7 @@ function AccountScreen() {
 					<div className="mt-8   flex justify-between items-center gap-8">
 						<div>
 							<p className="text-lg font-bold">パスワードを変更</p>
-							<p className="text-gray-500">アカウントに登録されているパスワードを変更します。変更後は古いパスワードではログインできなくなります。Googleアカウントでログインしている場合は利用できません。</p>
+							<p className="text-gray-500">アカウントに登録されているパスワードを変更します。変更後は古いパスワードではログインできなくなります。メールアドレス/パスワードでログインしていない場合は利用できません。</p>
 						</div>
 
 						<button className="py-2 px-6 border rounded-full   whitespace-nowrap   hover:bg-gray-100 transition">変更する</button>
