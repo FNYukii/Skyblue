@@ -93,7 +93,7 @@ function App() {
 
 						<Header />
 
-						<Routes location={currentPath === "/new" || currentPath.match(/^\/posts\/\w{20}\/images\/\d{1}$/) || currentPath === "/edit-profile" ? prevPath : currentPath}>
+						<Routes location={currentPath === "/new" || currentPath.match(/^\/posts\/\w{20}\/images\/\d{1}$/) || currentPath === "/settings/profile" ? prevPath : currentPath}>
 
 							<Route path="*" element={<NotFoundScreen />} />
 							<Route path="/" element={<TopScreen />} />
@@ -109,7 +109,7 @@ function App() {
 						<Route path="*" element={<></>} />
 						<Route path="/posts/:postId/images/:imageNumber" element={<PostScreen />} />
 						<Route path="/new" element={<CreatePostScreen />} />
-						<Route path="/edit-profile" element={<EditUserScreen />} />
+						<Route path="/settings/profile" element={<EditUserScreen />} />
 					</Routes>
 				</div>
 			}

@@ -110,7 +110,7 @@ function UserScreen() {
 								position="anchor"
 							>
 								<MenuItem>
-									<NavLinkToModal to="/edit-profile">プロフィールを編集</NavLinkToModal>
+									<NavLinkToModal to="/settings/profile">プロフィールを編集</NavLinkToModal>
 								</MenuItem>
 
 								<MenuItem>
