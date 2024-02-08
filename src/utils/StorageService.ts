@@ -31,7 +31,7 @@ class StorageService {
 				// ファイルのパスとURL
 				const path = storageRef.fullPath
 				const url = await getDownloadURL(storageRef)
-				const image: Image = {path: path, url: url}
+				const image: Image = { path: path, url: url }
 
 				return image
 			})
@@ -48,8 +48,7 @@ class StorageService {
 
 		let images: Image[] = []
 
-		// 画像を順にアップロードしていく
-		for (let file of files) {
+		await Promise.all(files.map(async (file) => {
 
 			// 画像をアップロード
 			const image = await this.uploadImage(file, folderName)
@@ -60,7 +59,7 @@ class StorageService {
 
 			// 成功
 			images.push(image)
-		}
+		}))
 
 		return images
 	}
@@ -82,6 +81,28 @@ class StorageService {
 		})
 
 		return null
+	}
+
+
+
+	static async deleteImages(paths: string[]): Promise<string[] | null> {
+
+		let donePaths: string[] = []
+
+		await Promise.all(paths.map(async (path) => {
+
+			// 画像を削除
+			const result = await this.deleteImage(path)
+
+			// 失敗
+			if (!result)
+				return null
+
+			// 成功
+			donePaths.push(result)
+		}))
+
+		return donePaths
 	}
 }
 
