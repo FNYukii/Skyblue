@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react"
 import UserService from "../../../utils/UserService"
 import User from "../../../entities/User"
-import StorageService from "../../../utils/StorageService"
 
 interface Props {
 	userId: string
@@ -49,7 +48,7 @@ function UserIcon(props: Props) {
 				}
 
 				{isLoaded && user !== null &&
-					<img src={user.icon?.url ?? StorageService.defaultIconUrl()} alt="User icon" className="w-full h-full   object-cover   bg-gray-500/50" />
+					<img src={user.icon?.url ?? "/images/default-icon.png"} alt="User icon" className="w-full h-full   object-cover   bg-gray-500/50" />
 				}
 			</div>
 		</div>

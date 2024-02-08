@@ -119,7 +119,7 @@ function Editor(props: { user: User }) {
 		<div>
 			<h1 className="text-2xl font-bold">プロフィールを編集</h1>
 
-			<PickIconButton iconUrl={props.user.icon?.url ?? StorageService.defaultIconUrl()} file={iconFile ?? undefined} onPick={file => setIconFile(file)} className="mt-4 mx-auto w-fit" />
+			<PickIconButton iconUrl={props.user.icon?.url ?? "/images/default-icon.png"} file={iconFile ?? undefined} onPick={file => setIconFile(file)} className="mt-4 mx-auto w-fit" />
 			<input value={displayName} onChange={e => setDisplayName(e.target.value)} placeholder="ディスプレイネーム" className="block   mt-6 w-full pb-2   bg-transparent border-b border-gray-300   focus:outline-none focus:border-blue-500   placeholder:text-gray-400" />
 
 			<div className="mt-4   flex justify-end">
