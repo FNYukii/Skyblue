@@ -114,10 +114,6 @@ function UserScreen() {
 								</MenuItem>
 
 								<MenuItem>
-									<NavLinkToModal to="/settings/account">設定</NavLinkToModal>
-								</MenuItem>
-
-								<MenuItem>
 									<button onClick={() => setIsShowSignOutModal(true)} className="text-red-500">サインアウト</button>
 								</MenuItem>
 							</Menu>
