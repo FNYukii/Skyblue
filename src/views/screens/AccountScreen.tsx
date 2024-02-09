@@ -1,6 +1,6 @@
-import { NavLink } from "react-router-dom"
 import AuthService from "../../utils/AuthService"
 import Screen from "../components/others/Screen"
+import SettingSideBar from "../components/sections/SettingSideBar"
 
 function AccountScreen() {
 
@@ -11,19 +11,10 @@ function AccountScreen() {
 
 			<div className="flex flex-col gap-8 sm:flex-row sm:gap-8 md:gap-16 lg:gap-32">
 
-				<div className="flex flex-col gap-4 items-start">
-
-					<h1 className="text-2xl font-bold">設定</h1>
-
-					<NavLink to="/settings/account" className="-my-2 -mx-6   py-2 px-6 rounded-full whitespace-nowrap   hover:bg-gray-100 transition">アカウント</NavLink>
-					<NavLink to="" className="-my-2 -mx-6   py-2 px-6 rounded-full whitespace-nowrap   hover:bg-gray-100 transition">フィードバック</NavLink>
-					<NavLink to="" className="-my-2 -mx-6   py-2 px-6 rounded-full whitespace-nowrap   hover:bg-gray-100 transition">このアプリについて</NavLink>
-				</div>
+				<SettingSideBar />
 
 				<div className="grow">
 					<p className="text-2xl font-bold">アカウント</p>
-
-
 
 					<p className="mt-8 text-lg font-bold">メールアドレス</p>
 					<p className="text-gray-500">{AuthService.email() ?? "---"}</p>
