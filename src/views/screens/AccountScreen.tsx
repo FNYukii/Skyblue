@@ -16,6 +16,9 @@ function AccountScreen() {
 				<div className="grow">
 					<p className="text-2xl font-bold">アカウント</p>
 
+					<p className="mt-8 text-lg font-bold">ユーザーID</p>
+					<p className="text-gray-500">{AuthService.uidQuickly() ?? "---"}</p>
+
 					<p className="mt-8 text-lg font-bold">メールアドレス</p>
 					<p className="text-gray-500">{AuthService.email() ?? "---"}</p>
 
