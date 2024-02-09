@@ -12,6 +12,8 @@ import PostScreen from "./views/screens/PostScreen"
 import UserScreen from "./views/screens/UserScreen"
 import EditUserScreen from "./views/screens/EditUserScreen"
 import AccountScreen from "./views/screens/AccountScreen"
+import FeedbackScreen from "./views/screens/FeedbackScreen"
+import CreateFeedbackScreen from "./views/screens/CreateFeedbackScreen"
 
 function App() {
 
@@ -93,12 +95,13 @@ function App() {
 
 						<Header />
 
-						<Routes location={currentPath === "/new" || currentPath.match(/^\/posts\/\w+\/images\/\w+$/) || currentPath === "/settings/profile" ? prevPath : currentPath}>
+						<Routes location={currentPath.match(/^\/posts\/\w+\/images\/\w+$/) || ["/new", "/settings/profile", "/settings/feedback/new"].includes(currentPath) ? prevPath : currentPath}>
 
 							<Route path="*" element={<NotFoundScreen />} />
 							<Route path="/" element={<TopScreen />} />
 							<Route path="/users/:userId" element={<UserScreen />} />
 							<Route path="/settings/account" element={<AccountScreen />} />
+							<Route path="/settings/feedback" element={<FeedbackScreen />} />
 						</Routes>
 
 						<Footer className="mt-16   sticky top-full" />
@@ -110,6 +113,7 @@ function App() {
 						<Route path="/posts/:postId/images/:imageNumber" element={<PostScreen />} />
 						<Route path="/new" element={<CreatePostScreen />} />
 						<Route path="/settings/profile" element={<EditUserScreen />} />
+						<Route path="/settings/feedback/new" element={<CreateFeedbackScreen />} />
 					</Routes>
 				</div>
 			}

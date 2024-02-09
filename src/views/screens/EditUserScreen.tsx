@@ -35,23 +35,20 @@ function EditUserScreen() {
 
 		<Screen title="プロフィールを編集 - Skyblue">
 
-			<FormModal>
+			<FormModal className="w-full sm:w-[400px]">
 
-				<div className="w-full sm:w-[400px] ">
+				{!isLoadedUser &&
+					<LoadingIcon center />
+				}
 
-					{!isLoadedUser &&
-						<LoadingIcon center />
-					}
+				{isLoadedUser && user === null &&
+					<p className="text-center text-gray-500">読み取りに失敗しました</p>
+				}
 
-					{isLoadedUser && user === null &&
-						<p className="text-center text-gray-500">読み取りに失敗しました</p>
-					}
+				{isLoadedUser && user !== null &&
 
-					{isLoadedUser && user !== null &&
-
-						<Editor user={user} />
-					}
-				</div>
+					<Editor user={user} />
+				}
 			</FormModal>
 		</Screen>
 	)

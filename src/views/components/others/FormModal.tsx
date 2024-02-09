@@ -4,7 +4,8 @@ import Escaper from "./Escaper"
 import { ReactNode } from "react"
 
 interface Props {
-	children: ReactNode
+	children?: ReactNode
+	className?: string
 }
 
 function FormModal(props: Props) {
@@ -49,8 +50,10 @@ function FormModal(props: Props) {
 							<MdOutlineClose className="text-2xl text-zinc-500" />
 						</button>
 
-						<div className="w-full mt-4">
-							{props.children}
+						<div className="mt-4">
+							<div className={props.className}>
+								{props.children}
+							</div>
 						</div>
 					</div>
 				</div>
