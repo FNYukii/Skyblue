@@ -2,6 +2,8 @@ import { useState } from "react"
 import FormModal from "../components/others/FormModal"
 import DynamicTextarea from "../components/others/DynamicTextarea"
 import LoadingIcon from "../components/others/LoadingIcon"
+import FeedbackService from "../../utils/FeedbackService"
+import { useNavigate } from "react-router-dom"
 
 function CreateFeedbackScreen() {
 
@@ -9,16 +11,23 @@ function CreateFeedbackScreen() {
 	const [detail, setDetail] = useState("")
 	const [isLoading, setIsLoading] = useState(false)
 
+	const navigate = useNavigate()
 
+	
 
 	async function create() {
+
 		setIsLoading(true)
 
-		//TODO: フィードバックを作成
-		await new Promise(resolve => setTimeout(resolve, 500))
-		alert("フィードバックの作成に失敗しました。この機能は未実装です。")
+		const result = await FeedbackService.createFeedback(title, detail)
+		if (!result) {
+			alert("フィードバックの作成に失敗しました")
+			setIsLoading(false)
 
-		setIsLoading(false)
+			return
+		}
+
+		navigate(-1)
 	}
 
 
