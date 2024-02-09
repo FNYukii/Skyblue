@@ -6,7 +6,7 @@ function AccountScreen() {
 
 	return (
 
-		<Screen title="設定 - Skyblue">
+		<Screen title="アカウント - Skyblue">
 
 
 			<div className="flex flex-col gap-8 sm:flex-row sm:gap-8 md:gap-16 lg:gap-32">
@@ -31,7 +31,7 @@ function AccountScreen() {
 					<div className="mt-8   flex justify-between items-center gap-2   flex-col sm:flex-row sm:gap-8">
 						<div>
 							<p className="text-lg font-bold">メールアドレスを変更</p>
-							<p className="text-gray-500">アカウントに登録されているメールアドレスを変更します。変更後は古いメールアドレスではログインできなくなります。メールアドレス/パスワードでログインしていない場合は利用できません。</p>
+							<p className="text-gray-500">アカウントに登録されているメールアドレスを変更します。変更後は古いメールアドレスではサインインできなくなります。メールアドレス/パスワード認証でサインインしているときのみ利用できます。</p>
 						</div>
 
 						<button disabled className="py-2 px-6 border font-bold rounded-full   whitespace-nowrap   disabled:text-gray-400   enabled:hover:bg-gray-100 transition">変更する</button>
@@ -40,7 +40,7 @@ function AccountScreen() {
 					<div className="mt-8   flex justify-between items-center gap-2   flex-col sm:flex-row sm:gap-8">
 						<div>
 							<p className="text-lg font-bold">パスワードを変更</p>
-							<p className="text-gray-500">アカウントに登録されているパスワードを変更します。変更後は古いパスワードではログインできなくなります。メールアドレス/パスワードでログインしていない場合は利用できません。</p>
+							<p className="text-gray-500">アカウントに登録されているパスワードを変更します。変更後は古いパスワードではサインインできなくなります。メールアドレス/パスワード認証でサインインしているときのみ利用できます。</p>
 						</div>
 
 						<button disabled className="py-2 px-6 border font-bold rounded-full   whitespace-nowrap   disabled:text-gray-400   enabled:hover:bg-gray-100 transition">変更する</button>
