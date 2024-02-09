@@ -14,6 +14,7 @@ import EditUserScreen from "./views/screens/EditUserScreen"
 import AccountScreen from "./views/screens/AccountScreen"
 import FeedbackScreen from "./views/screens/FeedbackScreen"
 import CreateFeedbackScreen from "./views/screens/CreateFeedbackScreen"
+import AboutScreen from "./views/screens/AboutScreen"
 
 function App() {
 
@@ -102,6 +103,7 @@ function App() {
 							<Route path="/users/:userId" element={<UserScreen />} />
 							<Route path="/settings/account" element={<AccountScreen />} />
 							<Route path="/settings/feedback" element={<FeedbackScreen />} />
+							<Route path="/settings/about" element={<AboutScreen />} />
 						</Routes>
 
 						<Footer className="mt-16   sticky top-full" />
