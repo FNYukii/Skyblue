@@ -14,6 +14,8 @@ import NavLinkToModal from "../components/others/NavLinkToModal"
 import Screen from "../components/others/Screen"
 import { Unsubscribe } from "firebase/firestore"
 import ConfirmModal from "../components/others/ConfirmModal"
+import { AiOutlineLogout } from "react-icons/ai"
+import { AiOutlineEdit } from "react-icons/ai"
 
 
 
@@ -110,11 +112,17 @@ function UserScreen() {
 								position="anchor"
 							>
 								<MenuItem>
-									<NavLinkToModal to="/settings/profile">プロフィールを編集</NavLinkToModal>
+									<NavLinkToModal to="/settings/profile" className="flex items-center gap-3">
+										<AiOutlineEdit className="text-xl" />
+										<p>プロフィールを編集</p>
+									</NavLinkToModal>
 								</MenuItem>
 
 								<MenuItem>
-									<button onClick={() => setIsShowSignOutModal(true)} className="text-red-500">サインアウト</button>
+									<button onClick={() => setIsShowSignOutModal(true)} className="text-red-500   flex items-center gap-3">
+										<AiOutlineLogout className="text-xl" />
+										<p>サインアウト</p>
+									</button>
 								</MenuItem>
 							</Menu>
 						</div>
@@ -130,7 +138,7 @@ function UserScreen() {
 								onAccept={() => AuthService.signOut()}
 							/>
 						}
-						
+
 
 
 						<div>
