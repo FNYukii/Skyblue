@@ -2,6 +2,9 @@ import { useState } from "react"
 import Screen from "../components/others/Screen"
 import FormModal from "../components/others/FormModal"
 import DoneButton from "../components/buttons/DoneButton"
+import AuthService from "../../utils/AuthService"
+import UserService from "../../utils/UserService"
+import { useNavigate } from "react-router-dom"
 
 function SignUpScreen() {
 
@@ -13,14 +16,36 @@ function SignUpScreen() {
 
 
 
+	const navigate = useNavigate()
+
+
+
 	async function signUp() {
 
 		setIsLoading(true)
 
-		// TODO: サインアップ
-		// TODO: navigate(-1)
-		alert("サインアップに失敗しました。")
-		setIsLoading(false)
+		// サインアップ
+		const newUid = await AuthService.signUp(email, password)
+
+		// サインアップに失敗したら終了
+		if (!newUid) {
+			alert("サインアップに失敗しました。")
+			setIsLoading(false)
+			return
+		}
+
+		// 新しいUserドキュメントを作成
+		const newUserId = await UserService.createUser(newUid)
+
+		// Userドキュメント作成に失敗したら終了
+		if (!newUserId) {
+			alert("ユーザーの作成に失敗しました。")
+			AuthService.signOut()
+			setIsLoading(false)
+			return
+		}
+
+		navigate(-1)
 	}
 
 

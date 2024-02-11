@@ -2,6 +2,8 @@ import { useState } from "react"
 import DoneButton from "../components/buttons/DoneButton"
 import FormModal from "../components/others/FormModal"
 import Screen from "../components/others/Screen"
+import AuthService from "../../utils/AuthService"
+import { useNavigate } from "react-router-dom"
 
 function SignInScreen() {
 
@@ -12,14 +14,25 @@ function SignInScreen() {
 
 
 
+	const navigate = useNavigate()
+
+
+
 	async function signUp() {
 
 		setIsLoading(true)
 
-		// TODO: サインイン
-		// TODO: navigate(-1)
-		alert("サインインに失敗しました。")
-		setIsLoading(false)
+		// サインイン
+		const result = await AuthService.signIn(email, password)
+
+		// サインインに失敗したら終了
+		if (!result) {
+			alert("サインインに失敗しました。")
+			setIsLoading(false)
+			return
+		}
+
+		navigate(-1)
 	}
 
 
