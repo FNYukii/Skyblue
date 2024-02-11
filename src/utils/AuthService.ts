@@ -1,4 +1,4 @@
-import { GoogleAuthProvider, signInWithPopup } from "firebase/auth"
+import { GoogleAuthProvider, createUserWithEmailAndPassword, signInWithEmailAndPassword, signInWithPopup } from "firebase/auth"
 import { auth } from "./firebase"
 
 class AuthService {
@@ -50,13 +50,51 @@ class AuthService {
 
 
 
+	static async signUp(email: string, password: string): Promise<string | null> {
+
+		return createUserWithEmailAndPassword(auth, email, password)
+			.then((userCredential) => {
+
+				// 成功
+				const uid = userCredential.user.uid
+				return uid
+			})
+			.catch((error) => {
+
+				// 失敗
+				console.log(`Failed to sign up. ${error}`)
+				return null
+			})
+	}
+
+
+
+	static async signIn(email: string, password: string): Promise<string | null> {
+
+		return signInWithEmailAndPassword(auth, email, password)
+			.then((userCredential) => {
+
+				// 成功
+				const uid = userCredential.user.uid
+				return uid
+			})
+			.catch((error) => {
+
+				// 失敗
+				console.log(`Failed to sign in. ${error}`)
+				return null
+			})
+	}
+
+
+
 	static async signInWithGoogle(): Promise<string | null> {
 
 		const provider = new GoogleAuthProvider()
 
 		return signInWithPopup(auth, provider)
 			.then((result) => {
-				
+
 				// サインインしたユーザーのUIDを取得
 				const uid = result.user.uid
 
@@ -76,7 +114,7 @@ class AuthService {
 			})
 	}
 
-	
+
 
 	static async signOut(): Promise<string | null> {
 
