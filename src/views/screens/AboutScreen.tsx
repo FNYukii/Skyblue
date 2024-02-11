@@ -7,7 +7,7 @@ function AboutScreen() {
 
 		<Screen title="このアプリについて - Skyblue">
 
-			<div className="flex flex-col gap-8 sm:flex-row sm:gap-8 md:gap-16 lg:gap-32">
+			<div className="flex flex-col gap-8 sm:flex-row sm:gap-8 md:gap-16">
 
 				<SettingSideBar />
 
