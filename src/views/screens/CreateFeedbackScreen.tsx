@@ -1,10 +1,10 @@
 import { useState } from "react"
 import FormModal from "../components/others/FormModal"
 import DynamicTextarea from "../components/others/DynamicTextarea"
-import LoadingIcon from "../components/others/LoadingIcon"
 import FeedbackService from "../../utils/FeedbackService"
 import { useNavigate } from "react-router-dom"
 import Screen from "../components/others/Screen"
+import DoneButton from "../components/buttons/DoneButton"
 
 function CreateFeedbackScreen() {
 
@@ -50,20 +50,12 @@ function CreateFeedbackScreen() {
 
 						<div className="mt-4   flex justify-end">
 
-							{!isLoading &&
-
-								<button
-									onClick={create}
-									disabled={title === "" || detail === ""}
-									className="px-6 py-1   bg-black text-white font-bold rounded-full   disabled:bg-gray-400   enabled:hover:bg-gray-600 transition"
-								>
-									完了
-								</button>
-							}
-
-							{isLoading &&
-								<LoadingIcon className="mt-5" color="#000" />
-							}
+							<DoneButton
+								onClick={create}
+								loading={isLoading}
+								disabled={title === "" || detail === ""}
+								label="完了"
+							/>
 						</div>
 					</>
 				}

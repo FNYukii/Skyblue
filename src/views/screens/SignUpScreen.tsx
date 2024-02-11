@@ -1,7 +1,7 @@
 import { useState } from "react"
 import Screen from "../components/others/Screen"
 import FormModal from "../components/others/FormModal"
-import LoadingIcon from "../components/others/LoadingIcon"
+import DoneButton from "../components/buttons/DoneButton"
 
 function SignUpScreen() {
 
@@ -42,20 +42,12 @@ function SignUpScreen() {
 
 				<div className="mt-4   flex justify-end">
 
-					{!isLoading &&
-
-						<button
-							onClick={signUp}
-							disabled={email === "" || password === "" || passwordConfirm === password}
-							className="px-6 py-1   bg-black text-white font-bold rounded-full   disabled:bg-gray-400   enabled:hover:bg-gray-600 transition"
-						>
-							完了
-						</button>
-					}
-
-					{isLoading &&
-						<LoadingIcon className="mt-5" color="#000" />
-					}
+					<DoneButton
+						onClick={signUp}
+						loading={isLoading}
+						disabled={email === "" || password === "" || password !== passwordConfirm}
+						label="完了"
+					/>
 				</div>
 			</FormModal>
 		</Screen>

@@ -9,6 +9,7 @@ import { useNavigate } from "react-router-dom"
 import PickIconButton from "../components/buttons/PickIconButton"
 import StorageService from "../../utils/StorageService"
 import Image from "../../entities/Image"
+import DoneButton from "../components/buttons/DoneButton"
 
 
 
@@ -121,20 +122,12 @@ function Editor(props: { user: User }) {
 
 			<div className="mt-4   flex justify-end">
 
-				{!isLoading &&
-
-					<button
-						onClick={edit}
-						disabled={displayName === ""}
-						className="px-6 py-1   bg-black text-white font-bold rounded-full   disabled:bg-gray-400   enabled:hover:bg-gray-600 transition"
-					>
-						完了
-					</button>
-				}
-
-				{isLoading &&
-					<LoadingIcon className="mt-5" color="#000" />
-				}
+				<DoneButton
+					onClick={edit}
+					loading={isLoading}
+					disabled={displayName === ""}
+					label="完了"
+				/>
 			</div>
 		</div>
 	)

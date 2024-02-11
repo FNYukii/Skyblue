@@ -5,9 +5,9 @@ import PickImagesButton from "../components/buttons/PickImageButton"
 import PostService from "../../utils/PostService"
 import { useNavigate } from "react-router-dom"
 import StorageService from "../../utils/StorageService"
-import LoadingIcon from "../components/others/LoadingIcon"
 import PickLocationButton from "../components/buttons/PickLocationButton"
 import Screen from "../components/others/Screen"
+import DoneButton from "../components/buttons/DoneButton"
 
 
 
@@ -79,25 +79,17 @@ function CreatePostScreen() {
 						<DynamicTextarea value={detail} onChange={e => setDetail(e.target.value)} placeholder="詳細・感想" className="block   mt-6 w-full pb-2   bg-transparent border-b border-gray-300   focus:outline-none focus:border-blue-500   placeholder:text-gray-400" />
 					</div>
 				</div>
-				
+
 
 
 				<div className="mt-4   flex justify-end">
 
-					{!isLoading &&
-
-						<button
-							className="px-6 py-1   bg-black text-white font-bold rounded-full   disabled:bg-gray-400   enabled:hover:bg-gray-600 transition"
-							disabled={imageFiles.length === 0 || location === null || name === "" || name.length > 50 || detail.length > 100}
-							onClick={create}
-						>
-							投稿する
-						</button>
-					}
-
-					{isLoading &&
-						<LoadingIcon className="mt-5" color="#000" />
-					}
+					<DoneButton
+						onClick={create}
+						loading={isLoading}
+						disabled={imageFiles.length === 0 || location === null || name === "" || name.length > 50 || detail.length > 100}
+						label="投稿する"
+					/>
 				</div>
 			</FormModal>
 		</Screen>
