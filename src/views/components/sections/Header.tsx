@@ -3,7 +3,6 @@ import AuthService from "../../../utils/AuthService"
 import { onAuthStateChanged } from "firebase/auth"
 import { useState, useEffect } from "react"
 import { auth } from "../../../utils/firebase"
-import SignInWithGoogleButton from "../buttons/SignInWithGoogleButton"
 import NavLinkToModal from "../others/NavLinkToModal"
 import { AiOutlineUser } from "react-icons/ai"
 import { AiOutlinePlus } from "react-icons/ai"
@@ -49,7 +48,10 @@ function Header() {
 			}
 
 			{isLoaded && !isSignedIn &&
-				<SignInWithGoogleButton />
+				<div className="flex gap-12 items-center">
+					<NavLinkToModal to="/sign-in" className="-my-2 -mx-6   py-2 px-6   rounded-full   hover:bg-gray-100 transition">サインイン</NavLinkToModal>
+					<NavLinkToModal to="/sign-up" className="px-6 py-2   bg-black text-white font-bold rounded-full   hover:bg-gray-600 transition">サインアップ</NavLinkToModal>
+				</div>
 			}
 
 			{isLoaded && isSignedIn &&

@@ -15,6 +15,8 @@ import AccountScreen from "./views/screens/AccountScreen"
 import FeedbackScreen from "./views/screens/FeedbackScreen"
 import CreateFeedbackScreen from "./views/screens/CreateFeedbackScreen"
 import AboutScreen from "./views/screens/AboutScreen"
+import SignUpScreen from "./views/screens/SignUpScreen"
+import SignInScreen from "./views/screens/SignInScreen"
 
 function App() {
 
@@ -69,7 +71,7 @@ function App() {
 
 						<Header />
 
-						<Routes location={currentPath.match(/^\/posts\/\w+\/images\/\w+$/) ? prevPath : currentPath}>
+						<Routes location={currentPath.match(/^\/posts\/\w+\/images\/\w+$/) || ["/sign-up", "/sign-in"].includes(currentPath) ? prevPath : currentPath}>
 
 							<Route path="*" element={<NotFoundScreen />} />
 							<Route path="/" element={<TopScreen />} />
@@ -82,6 +84,9 @@ function App() {
 					<Routes>
 						<Route path="*" element={<></>} />
 						<Route path="/posts/:postId/images/:imageNumber" element={<PostScreen />} />
+
+						<Route path="/sign-up" element={<SignUpScreen />} />
+						<Route path="/sign-in" element={<SignInScreen />} />
 					</Routes>
 				</div>
 			}
