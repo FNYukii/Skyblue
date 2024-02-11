@@ -1,4 +1,4 @@
-import { GoogleAuthProvider, createUserWithEmailAndPassword, signInWithEmailAndPassword, signInWithPopup } from "firebase/auth"
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth"
 import { auth } from "./firebase"
 
 class AuthService {
@@ -82,34 +82,6 @@ class AuthService {
 
 				// 失敗
 				console.log(`Failed to sign in. ${error}`)
-				return null
-			})
-	}
-
-
-
-	static async signInWithGoogle(): Promise<string | null> {
-
-		const provider = new GoogleAuthProvider()
-
-		return signInWithPopup(auth, provider)
-			.then((result) => {
-
-				// サインインしたユーザーのUIDを取得
-				const uid = result.user.uid
-
-				// UIDを返す
-				return uid
-
-			}).catch((error) => {
-
-				// エラーの詳細
-				const errorCode = error.code
-				const errorMessage = error.message
-				const email = error.customData.email
-
-				console.log(`FAIL! Error to sign in. ${errorCode}, ${errorMessage}, ${email}`)
-
 				return null
 			})
 	}
