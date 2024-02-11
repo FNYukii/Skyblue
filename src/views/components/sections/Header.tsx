@@ -48,14 +48,21 @@ function Header() {
 			}
 
 			{isLoaded && !isSignedIn &&
-				<div className="flex gap-12 items-center">
-					<NavLinkToModal to="/sign-in" className="-my-2 -mx-6   py-2 px-6   rounded-full   hover:bg-gray-100 transition">サインイン</NavLinkToModal>
-					<NavLinkToModal to="/sign-up" className="px-6 py-2   bg-black text-white font-bold rounded-full   hover:bg-gray-600 transition">サインアップ</NavLinkToModal>
-				</div>
+				<>
+					<div className="flex sm:hidden   gap-4 items-center">
+						<NavLinkToModal to="/sign-in" className="-my-2 -mx-4   py-2 px-4   rounded-full   hover:bg-gray-100 transition">サインイン</NavLinkToModal>
+						<NavLinkToModal to="/sign-up" className="py-2 px-4   bg-black text-white font-bold rounded-full   hover:bg-gray-600 transition">サインアップ</NavLinkToModal>
+					</div>
+
+					<div className="hidden sm:flex gap-12 items-center">
+						<NavLinkToModal to="/sign-in" className="-my-2 -mx-6   py-2 px-6   rounded-full   hover:bg-gray-100 transition">サインイン</NavLinkToModal>
+						<NavLinkToModal to="/sign-up" className="px-6 py-2   bg-black text-white font-bold rounded-full   hover:bg-gray-600 transition">サインアップ</NavLinkToModal>
+					</div>
+				</>
 			}
 
 			{isLoaded && isSignedIn &&
-				<div>
+				<>
 
 					<div className="sm:hidden   flex gap-6 items-center">
 
@@ -77,7 +84,7 @@ function Header() {
 						<NavLink to="/settings/account" className="-my-2 -mx-6   py-2 px-6   rounded-full   hover:bg-gray-100 transition">設定</NavLink>
 						<NavLinkToModal to="new" className="px-6 py-2   bg-black text-white font-bold rounded-full   hover:bg-gray-600 transition">新しい投稿</NavLinkToModal>
 					</div>
-				</div>
+				</>
 			}
 		</header>
 	)
