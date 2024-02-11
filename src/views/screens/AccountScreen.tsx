@@ -28,7 +28,7 @@ function AccountScreen() {
 							<p className="text-gray-500">アカウントに登録されているメールアドレスを変更します。変更後は古いメールアドレスではサインインできなくなります。新しいメールアドレスと現在のパスワードの入力が必要です。</p>
 						</div>
 
-						<button disabled className="py-2 px-6 border font-bold rounded-full   whitespace-nowrap   disabled:text-gray-400   enabled:hover:bg-gray-100 transition">変更する</button>
+						<button className="py-2 px-6 border rounded-full   whitespace-nowrap   hover:bg-gray-100 transition">変更する</button>
 					</div>
 
 					<div className="mt-8   flex justify-between items-center gap-2   flex-col sm:flex-row sm:gap-8">
@@ -37,7 +37,7 @@ function AccountScreen() {
 							<p className="text-gray-500">アカウントに登録されているパスワードを変更します。変更後は古いパスワードではサインインできなくなります。新しいパスワードと現在のパスワードの入力が必要です。</p>
 						</div>
 
-						<button disabled className="py-2 px-6 border font-bold rounded-full   whitespace-nowrap   disabled:text-gray-400   enabled:hover:bg-gray-100 transition">変更する</button>
+						<button className="py-2 px-6 border rounded-full   whitespace-nowrap   hover:bg-gray-100 transition">変更する</button>
 					</div>
 
 					<div className="mt-8   flex justify-between items-center gap-2   flex-col sm:flex-row sm:gap-8">
@@ -46,7 +46,7 @@ function AccountScreen() {
 							<p className="text-gray-500">アカウントを削除します。あなたのユーザーデータと投稿は自動的にすべて削除されます。</p>
 						</div>
 
-						<button className="py-2 px-6 border font-bold border-red-200 text-red-500 rounded-full   whitespace-nowrap   hover:bg-red-50 transition">削除する</button>
+						<button className="py-2 px-6 border border-red-200 text-red-500 rounded-full   whitespace-nowrap   hover:bg-red-50 transition">削除する</button>
 					</div>
 				</div>
 			</div>
