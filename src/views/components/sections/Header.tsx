@@ -49,7 +49,9 @@ function Header() {
 			}
 
 			{isLoaded && !isSignedIn &&
-				<SignInWithGoogleButton />
+				<div className="flex gap-12">
+					<NavLinkToModal to="/sign-up" className="-my-2 -mx-6   py-2 px-6   rounded-full   hover:bg-gray-100 transition">サインアップ</NavLinkToModal>
+				</div>
 			}
 
 			{isLoaded && isSignedIn &&
