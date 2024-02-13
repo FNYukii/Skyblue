@@ -6,6 +6,7 @@ import { auth } from "../../../utils/firebase"
 import NavLinkToModal from "../others/NavLinkToModal"
 import { AiOutlineMenu } from "react-icons/ai"
 import { AiOutlineClose } from "react-icons/ai"
+import Fixer from "../others/Fixer"
 
 
 
@@ -95,6 +96,8 @@ function HamburgerMenu(props: { isSignedIn: boolean, className?: string }) {
 			{isOpen &&
 
 				<div className="z-10   fixed top-0 left-0 w-screen h-screen   bg-black/50   flex justify-between items-start">
+
+					<Fixer />
 
 					<div onClick={() => setIsOpen(false)} className="absolute top-0 left-0 w-screen h-screen   flex justify-end items-start">
 
