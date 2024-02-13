@@ -143,14 +143,12 @@ function Display(props: { post: Post, imageIndex: number }) {
 
 		const newImageIndex = imageIndex - 1
 		setImageIndex(newImageIndex)
-		navigate(`/posts/${props.post.id}/images/${newImageIndex + 1}`, { replace: true })
 	}
 
 	function nextImage() {
 
 		const newImageIndex = imageIndex + 1
 		setImageIndex(newImageIndex)
-		navigate(`/posts/${props.post.id}/images/${newImageIndex + 1}`, { replace: true })
 	}
 
 
