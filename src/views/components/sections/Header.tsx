@@ -4,9 +4,8 @@ import { onAuthStateChanged } from "firebase/auth"
 import { useState, useEffect } from "react"
 import { auth } from "../../../utils/firebase"
 import NavLinkToModal from "../others/NavLinkToModal"
-import { AiOutlineUser } from "react-icons/ai"
-import { AiOutlinePlus } from "react-icons/ai"
-import { AiOutlineSetting } from "react-icons/ai"
+import { AiOutlineMenu } from "react-icons/ai"
+import { AiOutlineClose } from "react-icons/ai"
 
 
 
@@ -49,10 +48,7 @@ function Header() {
 
 			{isLoaded && !isSignedIn &&
 				<>
-					<div className="flex sm:hidden   gap-4 items-center">
-						<NavLinkToModal to="/sign-in" className="-my-2 -mx-4   py-2 px-4   rounded-full   hover:bg-gray-100 transition">サインイン</NavLinkToModal>
-						<NavLinkToModal to="/sign-up" className="py-2 px-4   bg-black text-white font-bold rounded-full   hover:bg-gray-600 transition">サインアップ</NavLinkToModal>
-					</div>
+					<HamburgerMenu className="sm:hidden" isSignedIn={false} />
 
 					<div className="hidden sm:flex gap-12 items-center">
 						<NavLinkToModal to="/sign-in" className="-my-2 -mx-6   py-2 px-6   rounded-full   hover:bg-gray-100 transition">サインイン</NavLinkToModal>
@@ -63,21 +59,7 @@ function Header() {
 
 			{isLoaded && isSignedIn &&
 				<>
-
-					<div className="sm:hidden   flex gap-6 items-center">
-
-						<NavLink to={`/users/${AuthService.uidQuickly()}`} className="-m-2 p-2   rounded-full   hover:bg-gray-100 transition">
-							<AiOutlineUser className="text-2xl" />
-						</NavLink>
-
-						<NavLink to="/settings/account" className="-m-2 p-2   rounded-full   hover:bg-gray-100 transition">
-							<AiOutlineSetting className="text-2xl" />
-						</NavLink>
-
-						<NavLinkToModal to="new" className="p-2 bg-black text-white rounded-full   flex items-center   hover:bg-gray-600 transition">
-							<AiOutlinePlus className="text-2xl" />
-						</NavLinkToModal>
-					</div>
+					<HamburgerMenu className="sm:hidden" isSignedIn={true} />
 
 					<div className="hidden sm:flex items-center gap-12">
 						<NavLink to={`/users/${AuthService.uidQuickly()}`} className="-my-2 -mx-6   py-2 px-6   rounded-full   hover:bg-gray-100 transition">プロフィール</NavLink>
@@ -91,3 +73,65 @@ function Header() {
 }
 
 export default Header
+
+
+
+
+function HamburgerMenu(props: { isSignedIn: boolean, className?: string }) {
+
+	const [isOpen, setIsOpen] = useState(false)
+
+
+
+	return (
+
+		<div className={props.className}>
+
+			<button className="-m-3 p-3   rounded-full   hover:bg-gray-100 transition" onClick={() => setIsOpen(true)}>
+				<AiOutlineMenu className="text-2xl" />
+			</button>
+
+
+			{isOpen &&
+
+				<div className="z-10   fixed top-0 left-0 w-screen h-screen   bg-black/50   flex justify-between items-start">
+
+					<div onClick={() => setIsOpen(false)} className="absolute top-0 left-0 w-screen h-screen   flex justify-end items-start">
+
+						<button className="mt-1 mr-1   p-3 rounded-full   hover:bg-white/10 transition">
+							<AiOutlineClose className="text-2xl text-white" />
+						</button>
+					</div>
+
+
+
+					<div className="absolute top-0 left-0   w-fit h-screen   bg-white px-4   flex flex-col items-start">
+
+						<NavLink onClick={() => setIsOpen(false)} to="/" className="mt-4   text-3xl font-light">Skyblue</NavLink>
+
+						{!props.isSignedIn &&
+							<div className="mt-8   flex flex-col items-   gap-4">
+
+								<NavLinkToModal onClick={() => setIsOpen(false)} to="/sign-in" className="-my-2 -mx-4   py-2 px-4   rounded-full   hover:bg-gray-100 transition">サインイン</NavLinkToModal>
+								<NavLinkToModal onClick={() => setIsOpen(false)} to="/sign-up" className="py-2 px-4   bg-black text-white font-bold rounded-full   hover:bg-gray-600 transition">サインアップ</NavLinkToModal>
+							</div>
+						}
+
+
+
+						{props.isSignedIn &&
+							<div className="mt-8   flex flex-col items-   gap-4">
+
+								<NavLink onClick={() => setIsOpen(false)} to={`/users/${AuthService.uidQuickly()}`} className="-my-2 -mx-4   py-2 px-4   rounded-full   hover:bg-gray-100 transition">プロフィール</NavLink>
+								<NavLink onClick={() => setIsOpen(false)} to="/settings/account" className="-my-2 -mx-4   py-2 px-4   rounded-full   hover:bg-gray-100 transition">設定</NavLink>
+
+								<NavLinkToModal onClick={() => setIsOpen(false)} to="new" className="px-6 py-2   bg-black text-white font-bold rounded-full   hover:bg-gray-600 transition">新しい投稿</NavLinkToModal>
+							</div>
+						}
+
+					</div>
+				</div>
+			}
+		</div>
+	)
+}
