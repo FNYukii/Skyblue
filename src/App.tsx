@@ -67,7 +67,7 @@ function App() {
 
 				<div>
 
-					<div className="h-screen">
+					<div className="h-screen   overflow-y-scroll">
 
 						<Header />
 
@@ -97,7 +97,7 @@ function App() {
 
 				<div>
 
-					<div className="h-screen">
+					<div className="h-screen   overflow-y-scroll">
 
 						<Header />
 
