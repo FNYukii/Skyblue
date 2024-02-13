@@ -4,6 +4,7 @@ import FormModal from "../components/others/FormModal"
 import Screen from "../components/others/Screen"
 import AuthService from "../../utils/AuthService"
 import { useNavigate } from "react-router-dom"
+import PasswordInput from "../components/others/PasswordInput"
 
 function SignInScreen() {
 
@@ -48,7 +49,7 @@ function SignInScreen() {
 					<p className="mt-4 text-2xl font-bold">サインイン</p>
 
 					<input value={email} onChange={e => setEmail(e.target.value)} placeholder="メールアドレス" className="block   mt-6 w-full pb-2   bg-transparent border-b border-gray-300   focus:outline-none focus:border-blue-500   placeholder:text-gray-400" />
-					<input value={password} onChange={e => setPassword(e.target.value)} placeholder="パスワード" className="block   mt-6 w-full pb-2   bg-transparent border-b border-gray-300   focus:outline-none focus:border-blue-500   placeholder:text-gray-400" />
+					<PasswordInput value={password} onChange={e => setPassword(e.target.value)} placeholder="パスワード" className="mt-6" inputClassName="w-full pb-2   bg-transparent border-b border-gray-300   focus:outline-none focus:border-blue-500   placeholder:text-gray-400"/>
 				</div>
 
 				<div className="mt-4   flex justify-end">
