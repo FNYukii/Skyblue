@@ -1,5 +1,4 @@
 import Screen from "../components/others/Screen"
-import RecentlyPostList from "../components/sections/RecentlyPostList"
 
 
 
@@ -22,7 +21,7 @@ function SearchScreen() {
 				<>
 					<h1 className="text-2xl font-bold">「{keyword}」の検索結果</h1>
 
-					<RecentlyPostList className="mt-2"/>
+					
 				</>
 			}
 		</Screen>
