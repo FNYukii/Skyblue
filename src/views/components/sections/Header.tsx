@@ -41,9 +41,9 @@ function Header() {
 
 	return (
 
-		<header className="mx-auto   w-full xl:w-[1280px]   px-4 xl:px-0   py-4   relative">
+		<header className="mx-auto   w-full xl:w-[1280px]   px-4 xl:px-0   h-16 flex items-center   relative">
 
-			<div className="flex justify-between items-center">
+			<div className="w-full flex justify-between items-center">
 
 				<NavLink to="/" className="text-3xl font-light">Skyblue</NavLink>
 
