@@ -55,7 +55,7 @@ function App() {
 
 	return (
 
-		<div>
+		<div className="h-full">
 
 			{!isLoaded &&
 				<Splash />
@@ -65,9 +65,9 @@ function App() {
 
 			{isLoaded && !isSignedIn &&
 
-				<div>
+				<div className="h-full">
 
-					<div>
+					<div className="h-full">
 
 						<Header />
 
@@ -95,9 +95,9 @@ function App() {
 
 			{isLoaded && isSignedIn &&
 
-				<div>
+				<div className="h-full">
 
-					<div>
+					<div className="h-full">
 
 						<Header />
 
