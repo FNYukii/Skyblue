@@ -1,4 +1,4 @@
-import { DocumentSnapshot, QueryDocumentSnapshot, Unsubscribe, addDoc, collection, deleteDoc, doc, getDoc, getDocFromCache, getDocs, limit, onSnapshot, orderBy, query, serverTimestamp, where } from "firebase/firestore"
+import { DocumentSnapshot, QueryDocumentSnapshot, Unsubscribe, addDoc, collection, deleteDoc, doc, endAt, getDoc, getDocFromCache, getDocs, limit, onSnapshot, orderBy, query, serverTimestamp, startAt, where } from "firebase/firestore"
 import Post from "../entities/Post"
 import { db } from "./firebase"
 import AuthService from "./AuthService"
@@ -100,6 +100,76 @@ class PostService {
 		const q = query(
 			collection(db, "posts"),
 			orderBy("createdAt", "desc"),
+			limit(100)
+		)
+
+		try {
+
+			// サーバーorキャッシュから読み取り
+			const querySnapshot = await getDocs(q)
+
+			// 読み取ったdocumentsをオブジェクト配列に変換
+			let posts: Post[] = []
+			querySnapshot.forEach(document => {
+				const post = this.toPost(document)
+				posts.push(post)
+			})
+
+			return posts
+
+		} catch (error) {
+
+			// 失敗
+			console.log(`FAIL! Error to read posts. ${error}`)
+			return null
+		}
+	}
+
+
+
+	static async readPostsByName(keyword: string): Promise<Post[] | null> {
+
+		// クエリを用意
+		const q = query(
+			collection(db, "posts"),
+			orderBy("name"),
+			startAt(keyword),
+			endAt(keyword + '\uf8ff'),
+			limit(100)
+		)
+
+		try {
+
+			// サーバーorキャッシュから読み取り
+			const querySnapshot = await getDocs(q)
+
+			// 読み取ったdocumentsをオブジェクト配列に変換
+			let posts: Post[] = []
+			querySnapshot.forEach(document => {
+				const post = this.toPost(document)
+				posts.push(post)
+			})
+
+			return posts
+
+		} catch (error) {
+
+			// 失敗
+			console.log(`FAIL! Error to read posts. ${error}`)
+			return null
+		}
+	}
+
+
+
+	static async readPostsByDetail(keyword: string): Promise<Post[] | null> {
+
+		// クエリを用意
+		const q = query(
+			collection(db, "posts"),
+			orderBy("detail"),
+			startAt(keyword),
+			endAt(keyword + '\uf8ff'),
 			limit(100)
 		)
 
