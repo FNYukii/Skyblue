@@ -10,7 +10,7 @@ interface Props {
 
 
 
-function SearchBar(props: Props) {
+function SearchBarL(props: Props) {
 
 	const [keyword, setKeyword] = useState("")
 	const navigate = useNavigate()
@@ -43,10 +43,10 @@ function SearchBar(props: Props) {
 			<div className="flex">
 
 				<form onSubmit={e => onSubmit(e)}>
-					<input value={keyword} onChange={e => setKeyword(e.target.value)} placeholder="検索" className="w-[300px]   py-2 px-4 border rounded-l-full" />
+					<input value={keyword} onChange={e => setKeyword(e.target.value)} placeholder="検索" className="lg:w-[250px] xl:w-[400px]   py-2 px-4 border-y border-l rounded-l-full   placeholder:text-gray-400" />
 				</form>
 
-				<button onClick={search} className="flex items-center   border-y border-r py-2 pl-2 pr-3 rounded-r-full   placeholder:text-gray-400   hover:bg-gray-100 transition">
+				<button onClick={search} className="flex items-center    py-2 pl-2 pr-3   md:border md:rounded-r-full   hover:bg-gray-100 transition">
 					<AiOutlineSearch className="text-2xl text-gray-400" />
 				</button>
 			</div>
@@ -54,4 +54,4 @@ function SearchBar(props: Props) {
 	)
 }
 
-export default SearchBar
+export default SearchBarL

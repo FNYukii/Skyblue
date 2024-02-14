@@ -7,7 +7,8 @@ import NavLinkToModal from "../others/NavLinkToModal"
 import { AiOutlineMenu } from "react-icons/ai"
 import { AiOutlineClose } from "react-icons/ai"
 import Fixer from "../others/Fixer"
-import SearchBar from "../others/SearchBar"
+import SearchBarL from "../others/SearchBarL"
+import SearchBarS from "../others/SearchBarS"
 
 
 
@@ -40,39 +41,52 @@ function Header() {
 
 	return (
 
-		<header className="mx-auto   w-full xl:w-[1280px]   px-4 xl:px-0   py-4   flex justify-between items-center">
+		<header className="mx-auto   w-full xl:w-[1280px]   px-4 xl:px-0   py-4   relative">
 
-			<NavLink to="/" className="text-3xl font-light">Skyblue</NavLink>
+			<div className="flex justify-between items-center">
 
-			{!isLoaded &&
-				<p>Loading...</p>
-			}
+				<NavLink to="/" className="text-3xl font-light">Skyblue</NavLink>
 
-			{isLoaded && !isSignedIn &&
-				<div className="flex items-center gap-12">
 
-					<SearchBar />
 
-					<HamburgerMenu className="sm:hidden" isSignedIn={false} />
+				{isLoaded && !isSignedIn &&
+					<div className="flex items-center   gap-4 sm:gap-8">
 
-					<div className="hidden sm:flex gap-12 items-center">
-						<NavLinkToModal to="/sign-in" className="-my-2 -mx-6   py-2 px-6   rounded-full   hover:bg-gray-100 transition">サインイン</NavLinkToModal>
-						<NavLinkToModal to="/sign-up" className="px-6 py-2   bg-black text-white font-bold rounded-full   hover:bg-gray-600 transition">サインアップ</NavLinkToModal>
+						<SearchBarL className="hidden md:block lg:hidden" />
+						<SearchBarS className="block md:hidden" />
+
+						<HamburgerMenu className="sm:hidden" isSignedIn={false} />
+
+						<div className="hidden sm:flex gap-12 items-center">
+							<NavLinkToModal to="/sign-in" className="-my-2 -mx-6   py-2 px-6   rounded-full   hover:bg-gray-100 transition">サインイン</NavLinkToModal>
+							<NavLinkToModal to="/sign-up" className="px-6 py-2   bg-black text-white font-bold rounded-full   hover:bg-gray-600 transition">サインアップ</NavLinkToModal>
+						</div>
 					</div>
-				</div>
-			}
+				}
 
-			{isLoaded && isSignedIn &&
-				<>
-					<HamburgerMenu className="sm:hidden" isSignedIn={true} />
+				{isLoaded && isSignedIn &&
+					<div className="flex items-center   gap-4 sm:gap-8">
 
-					<div className="hidden sm:flex items-center gap-12">
-						<NavLink to={`/users/${AuthService.uidQuickly()}`} className="-my-2 -mx-6   py-2 px-6   rounded-full   hover:bg-gray-100 transition">プロフィール</NavLink>
-						<NavLink to="/settings/account" className="-my-2 -mx-6   py-2 px-6   rounded-full   hover:bg-gray-100 transition">設定</NavLink>
-						<NavLinkToModal to="new" className="px-6 py-2   bg-black text-white font-bold rounded-full   hover:bg-gray-600 transition">新しい投稿</NavLinkToModal>
+						<SearchBarL className="hidden md:block lg:hidden" />
+						<SearchBarS className="block md:hidden" />
+						
+						<HamburgerMenu className="sm:hidden" isSignedIn={true} />
+
+						<div className="hidden sm:flex items-center gap-12">
+							<NavLink to={`/users/${AuthService.uidQuickly()}`} className="-my-2 -mx-6   py-2 px-6   rounded-full   hover:bg-gray-100 transition">プロフィール</NavLink>
+							<NavLink to="/settings/account" className="-my-2 -mx-6   py-2 px-6   rounded-full   hover:bg-gray-100 transition">設定</NavLink>
+							<NavLinkToModal to="new" className="px-6 py-2   bg-black text-white font-bold rounded-full   hover:bg-gray-600 transition">新しい投稿</NavLinkToModal>
+						</div>
 					</div>
-				</>
-			}
+				}
+			</div>
+
+
+
+			<div className="absolute top-0 bottom-0 left-0 w-full h-full   flex justify-center items-center   pointer-events-none">
+				<SearchBarL className="hidden lg:block   pointer-events-auto" />
+			</div>
+
 		</header>
 	)
 }
@@ -92,9 +106,11 @@ function HamburgerMenu(props: { isSignedIn: boolean, className?: string }) {
 
 		<div className={props.className}>
 
-			<button className="-m-3 p-3   rounded-full   hover:bg-gray-100 transition" onClick={() => setIsOpen(true)}>
-				<AiOutlineMenu className="text-2xl" />
-			</button>
+			<div className="flex items-center">
+				<button className="-m-3 p-3   rounded-full   hover:bg-gray-100 transition" onClick={() => setIsOpen(true)}>
+					<AiOutlineMenu className="text-2xl" />
+				</button>
+			</div>
 
 
 			{isOpen &&
