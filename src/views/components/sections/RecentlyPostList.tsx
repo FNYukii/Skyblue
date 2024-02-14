@@ -5,7 +5,13 @@ import PostList from "../others/PostList"
 
 
 
-function RecentlyPostList() {
+interface Props {
+	className?: string
+}
+
+
+
+function RecentlyPostList(props: Props) {
 
 	const [posts, setPosts] = useState<Post[] | null>(null)
 	const [isLoaded, setIsLoaded] = useState(false)
@@ -26,7 +32,7 @@ function RecentlyPostList() {
 
 
 	return (
-		<PostList posts={posts} isLoaded={isLoaded}/>
+		<PostList posts={posts} isLoaded={isLoaded} className={props.className} />
 	)
 }
 
