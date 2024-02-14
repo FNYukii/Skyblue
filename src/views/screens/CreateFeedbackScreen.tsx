@@ -45,8 +45,8 @@ function CreateFeedbackScreen() {
 					<>
 						<h1 className="text-2xl font-bold">フィードバックを作成</h1>
 
-						<input value={title} onChange={e => setTitle(e.target.value)} placeholder="件名" className="block   mt-6 w-full pb-2   bg-transparent border-b border-gray-300   focus:outline-none focus:border-blue-500   placeholder:text-gray-400" />
-						<DynamicTextarea value={detail} onChange={e => setDetail(e.target.value)} placeholder="詳細" className="block   mt-6 w-full pb-2   bg-transparent border-b border-gray-300   focus:outline-none focus:border-blue-500   placeholder:text-gray-400" />
+						<input value={title} onChange={e => setTitle(e.target.value)} placeholder="件名" className="block   mt-6 w-full pb-2   border-b border-gray-300   outline-none focus:border-blue-500   placeholder:text-gray-400" />
+						<DynamicTextarea value={detail} onChange={e => setDetail(e.target.value)} placeholder="詳細" className="block   mt-6 w-full pb-2   border-b border-gray-300   outline-none focus:border-blue-500   placeholder:text-gray-400" />
 
 						<div className="mt-4   flex justify-end">
 

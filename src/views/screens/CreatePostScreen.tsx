@@ -75,8 +75,8 @@ function CreatePostScreen() {
 					<div>
 						<PickLocationButton location={location} onPick={location => setLocation(location)} />
 
-						<input value={name} onChange={e => setName(e.target.value)} placeholder="建物名" className="block   mt-6 w-full pb-2   bg-transparent border-b border-gray-300   focus:outline-none focus:border-blue-500   placeholder:text-gray-400" />
-						<DynamicTextarea value={detail} onChange={e => setDetail(e.target.value)} placeholder="詳細・感想" className="block   mt-6 w-full pb-2   bg-transparent border-b border-gray-300   focus:outline-none focus:border-blue-500   placeholder:text-gray-400" />
+						<input value={name} onChange={e => setName(e.target.value)} placeholder="建物名" className="block   mt-6 w-full pb-2   border-b border-gray-300   outline-none focus:border-blue-500   placeholder:text-gray-400" />
+						<DynamicTextarea value={detail} onChange={e => setDetail(e.target.value)} placeholder="詳細・感想" className="block   mt-6 w-full pb-2   border-b border-gray-300   outline-none focus:border-blue-500   placeholder:text-gray-400" />
 					</div>
 				</div>
 
