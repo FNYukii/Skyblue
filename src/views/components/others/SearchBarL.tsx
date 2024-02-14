@@ -43,10 +43,10 @@ function SearchBarL(props: Props) {
 			<div className="flex">
 
 				<form onSubmit={e => onSubmit(e)}>
-					<input value={keyword} onChange={e => setKeyword(e.target.value)} placeholder="検索" className="lg:w-[250px] xl:w-[400px]   py-2 px-4 border-y border-l rounded-l-full   placeholder:text-gray-400" />
+					<input value={keyword} onChange={e => setKeyword(e.target.value)} placeholder="検索" className="lg:w-[250px] xl:w-[400px]   py-2 px-4 border rounded-l-full   outline-none focus:border-blue-500   placeholder:text-gray-400" />
 				</form>
 
-				<button onClick={search} className="flex items-center    py-2 pl-2 pr-3   md:border md:rounded-r-full   hover:bg-gray-100 transition">
+				<button onClick={search} className="flex items-center    py-2 pl-2 pr-3   border-y border-r rounded-r-full   hover:bg-gray-100 transition">
 					<AiOutlineSearch className="text-2xl text-gray-400" />
 				</button>
 			</div>
