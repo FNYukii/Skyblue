@@ -1,10 +1,14 @@
 import { useState, useEffect } from "react"
 import Post from "../../entities/Post"
 import PostService from "../../utils/PostService"
-import Screen from "../components/others/Screen"
 import GMap from "../components/others/GMap"
+import Fixer from "../components/others/Fixer"
+
+
 
 function MapScreen() {
+
+	document.title = "マップ - Skyblue"
 
 	const [posts, setPosts] = useState<Post[] | null>(null)
 	const [isLoaded, setIsLoaded] = useState(false)
@@ -26,7 +30,9 @@ function MapScreen() {
 
 	return (
 
-		<Screen title="マップ - Skyblue">
+		<div className="pt-2">
+
+			<Fixer />
 
 			{!isLoaded &&
 				<div className="w-full h-full bg-gray-100" />
@@ -50,10 +56,10 @@ function MapScreen() {
 					zoom={7}
 					draggable
 					scrollable
-					className="w-full aspect-video"
+					className="w-screen h-screen"
 				/>
 			}
-		</Screen>
+		</div>
 	)
 }
 
