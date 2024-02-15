@@ -38,7 +38,7 @@ function MapScreen() {
 			<div className="grow">
 
 				{!isLoaded &&
-					<div className="w-full h-full bg-gray-100" />
+					<div className="w-full h-full bg-gray-200" />
 				}
 
 				{isLoaded && posts === null &&
@@ -53,7 +53,7 @@ function MapScreen() {
 
 				{isLoaded && posts !== null && posts.length !== 0 &&
 
-					<PostMap posts={posts} className="w-full h-full" />
+					<PostMap posts={posts} className="w-full h-full   bg-gray-200" />
 				}
 			</div>
 		</div>
