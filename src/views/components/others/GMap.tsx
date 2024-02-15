@@ -2,7 +2,7 @@ import { GoogleMap, MarkerF, useJsApiLoader } from "@react-google-maps/api"
 
 
 interface Props {
-	location: {lat: number, lng: number}
+	locations: { lat: number, lng: number }[]
 	className?: string
 }
 
@@ -15,6 +15,8 @@ function GMap(props: Props) {
 		googleMapsApiKey: `${process.env.REACT_APP_GOOGLE_MAPS_PLATFORM_API_KEY}`,
 		language: "ja"
 	})
+
+	const defaultCenter = { lat: 35.1706763855153, lng: 136.88172646669815 }
 
 
 
@@ -29,12 +31,15 @@ function GMap(props: Props) {
 						draggable: false,
 						clickableIcons: false
 					}}
-					center={props.location}
+					center={props.locations[0] ?? defaultCenter}
 					zoom={14}
 					mapContainerClassName="w-full h-full   min-w-40 min-h-40"
 				>
 
-					<MarkerF position={props.location} options={{clickable: false}} />
+					{props.locations.map((location, index) => (
+						
+						<MarkerF key={index} position={location} options={{ clickable: false }} />
+					))}
 				</GoogleMap>
 			}
 		</div>
