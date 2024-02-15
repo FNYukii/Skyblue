@@ -57,7 +57,7 @@ function SignUpScreen() {
 
 	return (
 
-		<Screen title="サインアップ - Skyblue">
+		<Screen title="サインアップ - Skyblue" noHeaderAndFooter>
 
 			<FormModal className="w-full sm:w-[400px]">
 

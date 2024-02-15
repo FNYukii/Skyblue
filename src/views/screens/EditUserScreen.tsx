@@ -34,7 +34,7 @@ function EditUserScreen() {
 
 	return (
 
-		<Screen title="プロフィールを編集 - Skyblue">
+		<Screen title="プロフィールを編集 - Skyblue" noHeaderAndFooter>
 
 			<FormModal className="w-full sm:w-[400px]">
 

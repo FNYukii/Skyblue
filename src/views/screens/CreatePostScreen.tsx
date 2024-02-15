@@ -60,7 +60,7 @@ function CreatePostScreen() {
 
 	return (
 
-		<Screen title="新しい投稿 - Skyblue">
+		<Screen title="新しい投稿 - Skyblue" noHeaderAndFooter>
 
 			<FormModal className="w-full sm:w-[500px] md:w-[700px]">
 

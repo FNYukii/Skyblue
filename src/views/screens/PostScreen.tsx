@@ -66,7 +66,7 @@ function PostScreen() {
 
 	return (
 
-		<Screen title={pageTitle ?? "投稿 - Skyblue"}>
+		<Screen title={pageTitle ?? "投稿 - Skyblue"} noHeaderAndFooter>
 
 			<Escaper />
 			<Fixer />

@@ -40,7 +40,7 @@ function SignInScreen() {
 
 	return (
 
-		<Screen title="サインイン - Skyblue">
+		<Screen title="サインイン - Skyblue" noHeaderAndFooter>
 
 			<FormModal className="w-full sm:w-[400px]">
 

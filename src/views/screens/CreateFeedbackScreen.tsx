@@ -37,7 +37,7 @@ function CreateFeedbackScreen() {
 
 	return (
 
-		<Screen title="フィードバックを作成 - Skyblue">
+		<Screen title="フィードバックを作成 - Skyblue" noHeaderAndFooter>
 
 			<FormModal className="w-full sm:w-[400px]">
 

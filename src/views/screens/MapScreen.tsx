@@ -4,12 +4,11 @@ import PostService from "../../utils/PostService"
 import Header from "../components/sections/Header"
 import { GoogleMap, OverlayViewF, useJsApiLoader } from "@react-google-maps/api"
 import NavLinkToModal from "../components/others/NavLinkToModal"
+import Screen from "../components/others/Screen"
 
 
 
 function MapScreen() {
-
-	document.title = "マップ - Skyblue"
 
 	const [posts, setPosts] = useState<Post[] | null>(null)
 	const [isLoaded, setIsLoaded] = useState(false)
@@ -31,32 +30,35 @@ function MapScreen() {
 
 	return (
 
-		<div className="w-screen h-screen   flex flex-col">
+		<Screen title="マップ - Skyblue" noHeaderAndFooter noContainer>
 
-			<Header />
+			<div className="w-screen h-screen   flex flex-col">
 
-			<div className="grow">
+				<Header />
 
-				{!isLoaded &&
-					<div className="w-full h-full bg-gray-200" />
-				}
+				<div className="grow">
 
-				{isLoaded && posts === null &&
-					<p className="mt-16   text-center text-gray-500">読み取りに失敗しました</p>
-				}
+					{!isLoaded &&
+						<div className="w-full h-full bg-gray-200" />
+					}
 
-				{isLoaded && posts !== null && posts.length === 0 &&
-					<p className="mt-16   text-center text-gray-500">投稿はありません</p>
-				}
+					{isLoaded && posts === null &&
+						<p className="mt-16   text-center text-gray-500">読み取りに失敗しました</p>
+					}
+
+					{isLoaded && posts !== null && posts.length === 0 &&
+						<p className="mt-16   text-center text-gray-500">投稿はありません</p>
+					}
 
 
 
-				{isLoaded && posts !== null && posts.length !== 0 &&
+					{isLoaded && posts !== null && posts.length !== 0 &&
 
-					<PostMap posts={posts} className="w-full h-full   bg-gray-200" />
-				}
+						<PostMap posts={posts} className="w-full h-full   bg-gray-200" />
+					}
+				</div>
 			</div>
-		</div>
+		</Screen>
 	)
 }
 

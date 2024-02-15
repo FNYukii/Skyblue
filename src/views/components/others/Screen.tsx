@@ -2,8 +2,12 @@ import { ReactNode } from "react"
 import Header from "../sections/Header"
 import Footer from "../sections/Footer"
 
+
+
 interface Props {
 	title: string
+	noHeaderAndFooter?: boolean
+	noContainer?: boolean
 	children?: ReactNode
 }
 
@@ -17,13 +21,29 @@ function Screen(props: Props) {
 
 		<div className="h-full">
 
-			<Header />
+			{!props.noHeaderAndFooter &&
+				<Header />
+			}
 
-			<main className="mx-auto   w-full xl:w-[1280px]   px-4 xl:px-0   pt-2">
-				{props.children}
-			</main>
 
-			<Footer className="mt-16   sticky top-full" />
+
+			{!props.noContainer &&
+				<main className="mx-auto   w-full xl:w-[1280px]   px-4 xl:px-0   pt-2">
+					{props.children}
+				</main>
+			}
+
+			{props.noContainer &&
+				<main>
+					{props.children}
+				</main>
+			}
+
+			
+
+			{!props.noHeaderAndFooter &&
+				<Footer className="mt-16   sticky top-full" />
+			}
 		</div>
 	)
 }
