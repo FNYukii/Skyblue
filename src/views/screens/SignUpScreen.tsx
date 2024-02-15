@@ -40,8 +40,12 @@ function SignUpScreen() {
 
 		// Userドキュメント作成に失敗したら終了
 		if (!newUserId) {
+			
 			alert("ユーザーの作成に失敗しました。")
-			AuthService.signOut()
+
+			// Authenticationが作ったユーザーを削除
+			AuthService.deleteUser()
+
 			setIsLoading(false)
 			return
 		}

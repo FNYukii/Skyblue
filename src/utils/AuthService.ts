@@ -1,4 +1,4 @@
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth"
+import { createUserWithEmailAndPassword, deleteUser, signInWithEmailAndPassword } from "firebase/auth"
 import { auth } from "./firebase"
 
 class AuthService {
@@ -107,6 +107,26 @@ class AuthService {
 			.catch((error) => {
 
 				console.log(`FAIL! Failed to sign out. ${error}`)
+				return null
+			})
+	}
+
+
+
+	static async deleteUser(): Promise<string | null> {
+
+		// ユーザーを取得
+		const user = auth.currentUser
+		if (!user) return null
+
+		// ユーザーを削除
+		return deleteUser(user)
+			.then(() => {
+
+				return user.uid
+
+			}).catch((error) => {
+
 				return null
 			})
 	}
