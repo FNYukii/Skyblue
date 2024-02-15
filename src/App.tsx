@@ -69,21 +69,14 @@ function App() {
 
 				<div className="h-full">
 
-					<div className="h-full">
+					<Routes location={currentPath.match(/^\/posts\/\w+\/images\/\w+$/) || ["/sign-up", "/sign-in"].includes(currentPath) ? prevPath : currentPath}>
 
-						<Header />
-
-						<Routes location={currentPath.match(/^\/posts\/\w+\/images\/\w+$/) || ["/sign-up", "/sign-in"].includes(currentPath) ? prevPath : currentPath}>
-
-							<Route path="*" element={<NotFoundScreen />} />
-							<Route path="/" element={<TopScreen />} />
-							<Route path="/search" element={<SearchScreen />} />
-							<Route path="/maps" element={<MapScreen />} />
-							<Route path="/users/:userId" element={<UserScreen />} />
-						</Routes>
-
-						<Footer className="mt-16   sticky top-full" />
-					</div>
+						<Route path="*" element={<NotFoundScreen />} />
+						<Route path="/" element={<TopScreen />} />
+						<Route path="/search" element={<SearchScreen />} />
+						<Route path="/maps" element={<MapScreen />} />
+						<Route path="/users/:userId" element={<UserScreen />} />
+					</Routes>
 
 					<Routes>
 						<Route path="*" element={<></>} />
@@ -101,25 +94,18 @@ function App() {
 
 				<div className="h-full">
 
-					<div className="h-full">
+					<Routes location={currentPath.match(/^\/posts\/\w+\/images\/\w+$/) || ["/new", "/settings/profile", "/settings/feedback/new"].includes(currentPath) ? prevPath : currentPath}>
 
-						<Header />
+						<Route path="*" element={<NotFoundScreen />} />
+						<Route path="/" element={<TopScreen />} />
+						<Route path="/search" element={<SearchScreen />} />
+						<Route path="/maps" element={<MapScreen />} />
+						<Route path="/users/:userId" element={<UserScreen />} />
 
-						<Routes location={currentPath.match(/^\/posts\/\w+\/images\/\w+$/) || ["/new", "/settings/profile", "/settings/feedback/new"].includes(currentPath) ? prevPath : currentPath}>
-
-							<Route path="*" element={<NotFoundScreen />} />
-							<Route path="/" element={<TopScreen />} />
-							<Route path="/search" element={<SearchScreen />} />
-							<Route path="/maps" element={<MapScreen />} />
-							<Route path="/users/:userId" element={<UserScreen />} />
-
-							<Route path="/settings/account" element={<AccountScreen />} />
-							<Route path="/settings/feedback" element={<FeedbackScreen />} />
-							<Route path="/settings/about" element={<AboutScreen />} />
-						</Routes>
-
-						<Footer className="mt-16   sticky top-full" />
-					</div>
+						<Route path="/settings/account" element={<AccountScreen />} />
+						<Route path="/settings/feedback" element={<FeedbackScreen />} />
+						<Route path="/settings/about" element={<AboutScreen />} />
+					</Routes>
 
 					<Routes>
 
