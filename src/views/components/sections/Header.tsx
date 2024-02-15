@@ -73,8 +73,8 @@ function Header() {
 						<HamburgerMenu className="sm:hidden" isSignedIn={true} />
 
 						<div className="hidden sm:flex items-center gap-12">
+							<NavLink to="/maps" className="-my-2 -mx-6   py-2 px-6   rounded-full   hover:bg-gray-100 transition">マップ</NavLink>
 							<NavLink to={`/users/${AuthService.uidQuickly()}`} className="-my-2 -mx-6   py-2 px-6   rounded-full   hover:bg-gray-100 transition">プロフィール</NavLink>
-							<NavLink to="/settings/account" className="-my-2 -mx-6   py-2 px-6   rounded-full   hover:bg-gray-100 transition">設定</NavLink>
 							<NavLinkToModal to="new" className="px-6 py-2   bg-black text-white font-bold rounded-full   hover:bg-gray-600 transition">新しい投稿</NavLinkToModal>
 						</div>
 					</div>
@@ -145,8 +145,8 @@ function HamburgerMenu(props: { isSignedIn: boolean, className?: string }) {
 						{props.isSignedIn &&
 							<div className="mt-8   flex flex-col items-   gap-4">
 
+								<NavLink onClick={() => setIsOpen(false)} to="/maps" className="-my-2 -mx-4   py-2 px-4   rounded-full   hover:bg-gray-100 transition">マップ</NavLink>
 								<NavLink onClick={() => setIsOpen(false)} to={`/users/${AuthService.uidQuickly()}`} className="-my-2 -mx-4   py-2 px-4   rounded-full   hover:bg-gray-100 transition">プロフィール</NavLink>
-								<NavLink onClick={() => setIsOpen(false)} to="/settings/account" className="-my-2 -mx-4   py-2 px-4   rounded-full   hover:bg-gray-100 transition">設定</NavLink>
 
 								<NavLinkToModal onClick={() => setIsOpen(false)} to="new" className="px-6 py-2   bg-black text-white font-bold rounded-full   hover:bg-gray-600 transition">新しい投稿</NavLinkToModal>
 							</div>

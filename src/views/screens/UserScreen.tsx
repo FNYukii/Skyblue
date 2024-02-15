@@ -16,6 +16,7 @@ import { Unsubscribe } from "firebase/firestore"
 import ConfirmModal from "../components/others/ConfirmModal"
 import { AiOutlineLogout } from "react-icons/ai"
 import { AiOutlineEdit } from "react-icons/ai"
+import { AiOutlineSetting } from "react-icons/ai"
 
 
 
@@ -115,6 +116,13 @@ function UserScreen() {
 									<NavLinkToModal to="/settings/profile" className="flex items-center gap-3">
 										<AiOutlineEdit className="text-xl" />
 										<p>プロフィールを編集</p>
+									</NavLinkToModal>
+								</MenuItem>
+
+								<MenuItem>
+									<NavLinkToModal to="/settings/account" className="flex items-center gap-3">
+										<AiOutlineSetting className="text-xl" />
+										<p>設定</p>
 									</NavLinkToModal>
 								</MenuItem>
 
