@@ -106,12 +106,12 @@ function PostMap(props: { posts: Post[], className?: string }) {
 							position={post.location}
 							mapPaneName={"floatPane"}
 						>
-							<NavLinkToModal to={`/posts/${post.id}/images/1`} className="block w-10 aspect-square   border border-2 border-white   rounded-full cursor-pointer overflow-hidden   hover:brightness-90 transition">
+							<NavLinkToModal to={`/posts/${post.id}/images/1`} className="block w-12 aspect-square   border border-2 border-white   rounded-full cursor-pointer overflow-hidden   group">
 
 								<img
 									src={post.images[0].url}
 									alt="Attached on Post"
-									className="w-full h-full   bg-gray-100"
+									className="w-full h-full   bg-gray-100   group-hover:brightness-90 transition"
 								/>
 							</NavLinkToModal>
 						</OverlayViewF>
