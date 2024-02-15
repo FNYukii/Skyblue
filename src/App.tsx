@@ -1,8 +1,6 @@
 import { Routes, Route, useLocation } from "react-router-dom"
 import TopScreen from "./views/screens/TopScreen"
 import NotFoundScreen from "./views/screens/NotFoundScreen"
-import Header from "./views/components/sections/Header"
-import Footer from "./views/components/sections/Footer"
 import { useEffect, useState } from "react"
 import { onAuthStateChanged } from "firebase/auth"
 import { auth } from "./utils/firebase"

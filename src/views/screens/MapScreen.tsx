@@ -3,6 +3,7 @@ import Post from "../../entities/Post"
 import PostService from "../../utils/PostService"
 import GMap from "../components/others/GMap"
 import Fixer from "../components/others/Fixer"
+import Header from "../components/sections/Header"
 
 
 
@@ -30,35 +31,38 @@ function MapScreen() {
 
 	return (
 
-		<div>
+		<div className="w-screen h-screen   flex flex-col">
 
-			<Fixer />
+			<Header />
 
-			{!isLoaded &&
-				<div className="w-full h-full bg-gray-100" />
-			}
+			<div className="grow">
 
-			{isLoaded && posts === null &&
-				<p className="mt-16   text-center text-gray-500">読み取りに失敗しました</p>
-			}
+				{!isLoaded &&
+					<div className="w-full h-full bg-gray-100" />
+				}
 
-			{isLoaded && posts !== null && posts.length === 0 &&
-				<p className="mt-16   text-center text-gray-500">投稿はありません</p>
-			}
+				{isLoaded && posts === null &&
+					<p className="mt-16   text-center text-gray-500">読み取りに失敗しました</p>
+				}
+
+				{isLoaded && posts !== null && posts.length === 0 &&
+					<p className="mt-16   text-center text-gray-500">投稿はありません</p>
+				}
 
 
 
-			{isLoaded && posts !== null && posts.length !== 0 &&
+				{isLoaded && posts !== null && posts.length !== 0 &&
 
-				<GMap
-					locations={posts.map(post => post.location)}
-					center={{ lat: 35.1706763855153, lng: 136.88172646669815 }}
-					zoom={7}
-					draggable
-					scrollable
-					className="w-screen h-screen"
-				/>
-			}
+					<GMap
+						locations={posts.map(post => post.location)}
+						center={{ lat: 35.1706763855153, lng: 136.88172646669815 }}
+						zoom={7}
+						draggable
+						scrollable
+						className="w-full h-full"
+					/>
+				}
+			</div>
 		</div>
 	)
 }
