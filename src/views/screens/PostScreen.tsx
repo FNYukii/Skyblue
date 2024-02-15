@@ -174,7 +174,7 @@ function Display(props: { post: Post, imageIndex: number }) {
 
 		<div className="h-full   flex flex-col gap-2">
 
-			<div className="min-h-0 grow    w-fit mx-auto">
+			<div className="min-h-0   w-fit mx-auto">
 
 				<div className="h-full    max-w-screen   flex items-center gap-2">
 
