@@ -1,8 +1,6 @@
 import { Routes, Route, useLocation } from "react-router-dom"
 import TopScreen from "./views/screens/TopScreen"
 import NotFoundScreen from "./views/screens/NotFoundScreen"
-import Header from "./views/components/sections/Header"
-import Footer from "./views/components/sections/Footer"
 import { useEffect, useState } from "react"
 import { onAuthStateChanged } from "firebase/auth"
 import { auth } from "./utils/firebase"
@@ -18,6 +16,7 @@ import AboutScreen from "./views/screens/AboutScreen"
 import SignUpScreen from "./views/screens/SignUpScreen"
 import SignInScreen from "./views/screens/SignInScreen"
 import SearchScreen from "./views/screens/SearchScreen"
+import MapScreen from "./views/screens/MapScreen"
 
 function App() {
 
@@ -68,20 +67,14 @@ function App() {
 
 				<div className="h-full">
 
-					<div className="h-full">
+					<Routes location={currentPath.match(/^\/posts\/\w+\/images\/\w+$/) || ["/sign-up", "/sign-in"].includes(currentPath) ? prevPath : currentPath}>
 
-						<Header />
-
-						<Routes location={currentPath.match(/^\/posts\/\w+\/images\/\w+$/) || ["/sign-up", "/sign-in"].includes(currentPath) ? prevPath : currentPath}>
-
-							<Route path="*" element={<NotFoundScreen />} />
-							<Route path="/" element={<TopScreen />} />
-							<Route path="/search" element={<SearchScreen />} />
-							<Route path="/users/:userId" element={<UserScreen />} />
-						</Routes>
-
-						<Footer className="mt-16   sticky top-full" />
-					</div>
+						<Route path="*" element={<NotFoundScreen />} />
+						<Route path="/" element={<TopScreen />} />
+						<Route path="/search" element={<SearchScreen />} />
+						<Route path="/maps" element={<MapScreen />} />
+						<Route path="/users/:userId" element={<UserScreen />} />
+					</Routes>
 
 					<Routes>
 						<Route path="*" element={<></>} />
@@ -99,24 +92,18 @@ function App() {
 
 				<div className="h-full">
 
-					<div className="h-full">
+					<Routes location={currentPath.match(/^\/posts\/\w+\/images\/\w+$/) || ["/new", "/settings/profile", "/settings/feedback/new"].includes(currentPath) ? prevPath : currentPath}>
 
-						<Header />
+						<Route path="*" element={<NotFoundScreen />} />
+						<Route path="/" element={<TopScreen />} />
+						<Route path="/search" element={<SearchScreen />} />
+						<Route path="/maps" element={<MapScreen />} />
+						<Route path="/users/:userId" element={<UserScreen />} />
 
-						<Routes location={currentPath.match(/^\/posts\/\w+\/images\/\w+$/) || ["/new", "/settings/profile", "/settings/feedback/new"].includes(currentPath) ? prevPath : currentPath}>
-
-							<Route path="*" element={<NotFoundScreen />} />
-							<Route path="/" element={<TopScreen />} />
-							<Route path="/search" element={<SearchScreen />} />
-							<Route path="/users/:userId" element={<UserScreen />} />
-							
-							<Route path="/settings/account" element={<AccountScreen />} />
-							<Route path="/settings/feedback" element={<FeedbackScreen />} />
-							<Route path="/settings/about" element={<AboutScreen />} />
-						</Routes>
-
-						<Footer className="mt-16   sticky top-full" />
-					</div>
+						<Route path="/settings/account" element={<AccountScreen />} />
+						<Route path="/settings/feedback" element={<FeedbackScreen />} />
+						<Route path="/settings/about" element={<AboutScreen />} />
+					</Routes>
 
 					<Routes>
 
