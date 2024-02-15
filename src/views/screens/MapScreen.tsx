@@ -93,7 +93,7 @@ function PostMap(props: { posts: Post[], className?: string }) {
 						clickableIcons: false
 					}}
 					center={!isDragged ? defaultCenter : undefined}
-					zoom={7}
+					zoom={8}
 					mapContainerClassName="w-full h-full   min-w-40 min-h-40"
 
 					onDrag={() => setIsDragged(true)}
