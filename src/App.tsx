@@ -18,6 +18,7 @@ import AboutScreen from "./views/screens/AboutScreen"
 import SignUpScreen from "./views/screens/SignUpScreen"
 import SignInScreen from "./views/screens/SignInScreen"
 import SearchScreen from "./views/screens/SearchScreen"
+import MapScreen from "./views/screens/MapScreen"
 
 function App() {
 
@@ -77,6 +78,7 @@ function App() {
 							<Route path="*" element={<NotFoundScreen />} />
 							<Route path="/" element={<TopScreen />} />
 							<Route path="/search" element={<SearchScreen />} />
+							<Route path="/maps" element={<MapScreen />} />
 							<Route path="/users/:userId" element={<UserScreen />} />
 						</Routes>
 
@@ -108,8 +110,9 @@ function App() {
 							<Route path="*" element={<NotFoundScreen />} />
 							<Route path="/" element={<TopScreen />} />
 							<Route path="/search" element={<SearchScreen />} />
+							<Route path="/maps" element={<MapScreen />} />
 							<Route path="/users/:userId" element={<UserScreen />} />
-							
+
 							<Route path="/settings/account" element={<AccountScreen />} />
 							<Route path="/settings/feedback" element={<FeedbackScreen />} />
 							<Route path="/settings/about" element={<AboutScreen />} />
