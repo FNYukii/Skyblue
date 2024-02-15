@@ -1,8 +1,9 @@
 import { useState, useEffect } from "react"
 import Post from "../../entities/Post"
 import PostService from "../../utils/PostService"
-import GMap from "../components/others/GMap"
 import Header from "../components/sections/Header"
+import { GoogleMap, OverlayViewF, useJsApiLoader } from "@react-google-maps/api"
+import NavLinkToModal from "../components/others/NavLinkToModal"
 
 
 
@@ -52,14 +53,7 @@ function MapScreen() {
 
 				{isLoaded && posts !== null && posts.length !== 0 &&
 
-					<GMap
-						locations={posts.map(post => post.location)}
-						center={{ lat: 35.1706763855153, lng: 136.88172646669815 }}
-						zoom={7}
-						draggable
-						scrollable
-						className="w-full h-full"
-					/>
+					<PostMap posts={posts} className="w-full h-full" />
 				}
 			</div>
 		</div>
@@ -67,3 +61,64 @@ function MapScreen() {
 }
 
 export default MapScreen
+
+
+
+function PostMap(props: { posts: Post[], className?: string }) {
+
+	const { isLoaded } = useJsApiLoader({
+		id: 'google-map-script',
+		googleMapsApiKey: `${process.env.REACT_APP_GOOGLE_MAPS_PLATFORM_API_KEY}`,
+		language: "ja"
+	})
+
+	const defaultCenter = { lat: 35.1706763855153, lng: 136.88172646669815 }
+
+
+
+	const [isDragged, setIsDragged] = useState(false)
+
+
+
+	return (
+
+		<div className={props.className}>
+
+			{isLoaded &&
+				<GoogleMap
+					options={{
+						disableDefaultUI: true,
+						draggable: true,
+						scrollwheel: true,
+						clickableIcons: false
+					}}
+					center={!isDragged ? defaultCenter : undefined}
+					zoom={7}
+					mapContainerClassName="w-full h-full   min-w-40 min-h-40"
+
+					onDrag={() => setIsDragged(true)}
+				>
+
+					{props.posts.map((post, index) => (
+
+						<OverlayViewF
+							key={index}
+							position={post.location}
+							mapPaneName={"floatPane"}
+						>
+							<NavLinkToModal to={`/posts/${post.id}/images/1`} className="block w-10 aspect-square   border border-2 border-white   rounded-full cursor-pointer overflow-hidden   hover:brightness-90 transition">
+
+								<img
+									src={post.images[0].url}
+									alt="Attached on Post"
+									className="w-full h-full   bg-gray-100"
+								/>
+							</NavLinkToModal>
+						</OverlayViewF>
+					))}
+				</GoogleMap>
+			}
+		</div>
+	)
+
+}

@@ -4,10 +4,6 @@ import { GoogleMap, MarkerF, useJsApiLoader } from "@react-google-maps/api"
 interface Props {
 	locations: { lat: number, lng: number }[]
 
-	center?: { lat: number, lng: number }
-	zoom?: number,
-	draggable?: boolean
-	scrollable?: boolean
 	className?: string
 }
 
@@ -33,12 +29,12 @@ function GMap(props: Props) {
 				<GoogleMap
 					options={{
 						disableDefaultUI: true,
-						draggable: props.draggable,
-						scrollwheel: props.scrollable,
+						draggable: false,
+						scrollwheel: false,
 						clickableIcons: false
 					}}
-					center={props.center ?? props.locations[0] ?? defaultCenter}
-					zoom={props.zoom ?? 14}
+					center={props.locations[0] ?? defaultCenter}
+					zoom={14}
 					mapContainerClassName="w-full h-full   min-w-40 min-h-40"
 				>
 
