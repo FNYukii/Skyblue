@@ -2,7 +2,6 @@ import { useState, useEffect } from "react"
 import Post from "../../entities/Post"
 import PostService from "../../utils/PostService"
 import GMap from "../components/others/GMap"
-import Fixer from "../components/others/Fixer"
 import Header from "../components/sections/Header"
 
 
