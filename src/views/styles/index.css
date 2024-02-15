@@ -4,6 +4,15 @@
 
 
 
+/* iOSでinputが丸くならないように */
+input,
+textarea {
+	-webkit-appearance: none;
+	border-radius: 0;
+}
+
+
+
 @layer components {
 
 	.scrollbar-styled {

@@ -61,7 +61,14 @@ function SignUpScreen() {
 
 					<p className="mt-4 text-2xl font-bold">サインアップ</p>
 
-					<input value={email} onChange={e => setEmail(e.target.value)} placeholder="メールアドレス" className="block   mt-6 w-full pb-2   border-b border-gray-300   outline-none focus:border-blue-500   placeholder:text-gray-400" />
+					<input
+						type="email"
+						inputMode="email"
+						value={email}
+						onChange={e => setEmail(e.target.value)}
+						placeholder="メールアドレス"
+						className="block   mt-6 w-full pb-2   border-b border-gray-300   outline-none focus:border-blue-500   placeholder:text-gray-400"
+					/>
 
 					<PasswordInput value={password} onChange={e => setPassword(e.target.value)} placeholder="パスワード" className="mt-6" inputClassName="w-full pb-2   border-b border-gray-300   outline-none focus:border-blue-500   placeholder:text-gray-400" />
 					<PasswordInput value={passwordConfirm} onChange={e => setPasswordConfirm(e.target.value)} placeholder="パスワードを確認" className="mt-6" inputClassName="w-full pb-2   border-b border-gray-300   outline-none focus:border-blue-500   placeholder:text-gray-400" />
