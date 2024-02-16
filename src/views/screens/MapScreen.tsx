@@ -78,7 +78,8 @@ function PostMap(props: { posts: Post[], className?: string }) {
 
 
 
-	const [isDragged, setIsDragged] = useState(false)
+	// マップのセンターがdefaultCenterに戻されるのを防ぐためのフラグ
+	const [isMarkerClicked, setIsMarkerClicked] = useState(false)
 
 
 
@@ -94,11 +95,9 @@ function PostMap(props: { posts: Post[], className?: string }) {
 						scrollwheel: true,
 						clickableIcons: false
 					}}
-					center={!isDragged ? defaultCenter : undefined}
+					center={!isMarkerClicked ? defaultCenter : undefined}
 					zoom={8}
 					mapContainerClassName="w-full h-full   min-w-40 min-h-40"
-
-					onDrag={() => setIsDragged(true)}
 				>
 
 					{props.posts.map((post, index) => (
@@ -110,7 +109,7 @@ function PostMap(props: { posts: Post[], className?: string }) {
 						>
 							<div className="relative">
 
-								<NavLinkToModal to={`/posts/${post.id}/images/1`} className="absolute -top-6 -left-6     block w-12 aspect-square   border border-2 border-white   rounded-full cursor-pointer overflow-hidden   group">
+								<NavLinkToModal to={`/posts/${post.id}/images/1`} onClick={() => setIsMarkerClicked(true)} className="absolute -top-6 -left-6     block w-12 aspect-square   border border-2 border-white   rounded-full cursor-pointer overflow-hidden   group">
 
 									<img
 										src={post.images[0].url}
