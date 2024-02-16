@@ -109,7 +109,7 @@ function PostMap(props: { posts: Post[], className?: string }) {
 						>
 							<div className="relative">
 
-								<NavLinkToModal to={`/posts/${post.id}/images/1`} onClick={() => setIsMarkerClicked(true)} className="absolute -top-6 -left-6     block w-12 aspect-square   border border-2 border-white   rounded-full cursor-pointer overflow-hidden   group">
+								<NavLinkToModal to={`/posts/${post.id}/images/1`} onClick={() => setIsMarkerClicked(true)} className="absolute -top-6 -left-6     block w-12 aspect-square   border border-2 border-white   rounded-full cursor-pointer overflow-hidden   focus:z-10   group">
 
 									<img
 										src={post.images[0].url}
