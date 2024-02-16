@@ -78,7 +78,7 @@ function PostScreen() {
 						if (location.key === "default") navigate("/")
 						if (location.key !== "default") navigate(-1)
 					}}
-					className="w-screen h-screen bg-black/90"
+					className="w-screen h-screen bg-black/80"
 				/>
 
 				<div className="absolute   h-[95vh] max-w-[95vw] max-h-[95vh]   pointer-events-none">
