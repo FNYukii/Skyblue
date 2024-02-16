@@ -113,7 +113,7 @@ function PostMap(props: { posts: Post[], className?: string }) {
 								<img
 									src={post.images[0].url}
 									alt="Attached on Post"
-									className="w-full h-full   bg-gray-100   group-hover:brightness-90 transition"
+									className="w-full h-full  object-cover bg-gray-100   group-hover:brightness-90 transition"
 								/>
 							</NavLinkToModal>
 						</OverlayViewF>
