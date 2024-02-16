@@ -108,14 +108,17 @@ function PostMap(props: { posts: Post[], className?: string }) {
 							position={post.location}
 							mapPaneName={"floatPane"}
 						>
-							<NavLinkToModal to={`/posts/${post.id}/images/1`} className="block w-12 aspect-square   border border-2 border-white   rounded-full cursor-pointer overflow-hidden   group">
+							<div className="relative">
 
-								<img
-									src={post.images[0].url}
-									alt="Attached on Post"
-									className="w-full h-full  object-cover bg-gray-100   group-hover:brightness-90 transition"
-								/>
-							</NavLinkToModal>
+								<NavLinkToModal to={`/posts/${post.id}/images/1`} className="absolute -top-6 -left-6     block w-12 aspect-square   border border-2 border-white   rounded-full cursor-pointer overflow-hidden   group">
+
+									<img
+										src={post.images[0].url}
+										alt="Attached on Post"
+										className="w-full h-full  object-cover bg-gray-100   group-hover:brightness-90 transition"
+									/>
+								</NavLinkToModal>
+							</div>
 						</OverlayViewF>
 					))}
 				</GoogleMap>
