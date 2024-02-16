@@ -17,6 +17,8 @@ import ConfirmModal from "../components/others/ConfirmModal"
 import { AiOutlineLogout } from "react-icons/ai"
 import { AiOutlineEdit } from "react-icons/ai"
 import { AiOutlineSetting } from "react-icons/ai"
+import { onAuthStateChanged } from "firebase/auth"
+import { auth } from "../../utils/firebase"
 
 
 
@@ -28,7 +30,7 @@ function UserScreen() {
 
 
 
-	// User関連のState
+	// プロフィール表示中のUser
 	const [user, setUser] = useState<User | null>(null)
 	const [isLoaded, setIsLoaded] = useState(false)
 
@@ -61,9 +63,6 @@ function UserScreen() {
 	// タブバーの状態
 	const [tab, setTab] = useState(0)
 
-	// サインアウト確認大ログ
-	const [isShowSignOutModal, setIsShowSignOutModal] = useState(false)
-
 
 
 	return (
@@ -86,8 +85,6 @@ function UserScreen() {
 
 					<div>
 
-
-
 						<div className="w-full   flex flex-col items-center">
 							<img src={user.icon?.url ?? "/images/default-icon.png"} alt="User icon" className=" w-28 aspect-square rounded-full   object-cover bg-gray-200" />
 							<p className="mt-2   text-2xl font-bold   max-w-full   overflow-hidden whitespace-nowrap text-ellipsis">{user.displayName}</p>
@@ -102,50 +99,8 @@ function UserScreen() {
 								<button onClick={() => setTab(1)} className={`block   px-8 sm:px-16 py-2   hover:bg-gray-100 transition    ${tab === 1 && "border-b-2 border-black font-bold"}`}>いいね</button>
 							</div>
 
-							<Menu
-								menuButton={
-									<MenuButton className="-m-2 p-2 rounded-full   hover:bg-gray-100 transition">
-										<IoEllipsisHorizontal className="text-2xl text-gray-500" />
-									</MenuButton>
-								}
-								transition
-								arrow
-								position="anchor"
-							>
-								<MenuItem>
-									<NavLinkToModal to="/settings/profile" className="flex items-center gap-3">
-										<AiOutlineEdit className="text-xl" />
-										<p>プロフィールを編集</p>
-									</NavLinkToModal>
-								</MenuItem>
-
-								<MenuItem>
-									<NavLinkToModal to="/settings/account" className="flex items-center gap-3">
-										<AiOutlineSetting className="text-xl" />
-										<p>設定</p>
-									</NavLinkToModal>
-								</MenuItem>
-
-								<MenuItem>
-									<button onClick={() => setIsShowSignOutModal(true)} className="text-red-500   flex items-center gap-3">
-										<AiOutlineLogout className="text-xl" />
-										<p>サインアウト</p>
-									</button>
-								</MenuItem>
-							</Menu>
+							<UserMenu showUserId={user.id} />
 						</div>
-
-
-
-						{isShowSignOutModal &&
-							<ConfirmModal
-								title="サインアウトしてもよろしいですか?"
-								acceptLabel="サインアウト"
-								destructive
-								onClose={() => setIsShowSignOutModal(false)}
-								onAccept={() => AuthService.signOut()}
-							/>
-						}
 
 
 
@@ -166,3 +121,80 @@ function UserScreen() {
 }
 
 export default UserScreen
+
+
+
+function UserMenu(props: { showUserId: string }) {
+
+	// サインイン中のユーザーのUID
+	const [myUid, setMyUid] = useState<null | string>(null)
+
+	useEffect(() => {
+
+		// ログイン状態を取得
+		onAuthStateChanged(auth, (user) => {
+
+			if (!user) setMyUid(null)
+			if (user) setMyUid(user.uid)
+		})
+	}, [])
+
+
+
+	// サインアウト確認ダイヤログ
+	const [isShowSignOutModal, setIsShowSignOutModal] = useState(false)
+
+
+
+	return (
+		<>
+			{props.showUserId === myUid &&
+				<>
+					<Menu
+						menuButton={
+							<MenuButton className="-m-2 p-2 rounded-full   hover:bg-gray-100 transition">
+								<IoEllipsisHorizontal className="text-2xl text-gray-500" />
+							</MenuButton>
+						}
+						transition
+						arrow
+						position="anchor"
+					>
+						<MenuItem>
+							<NavLinkToModal to="/settings/profile" className="flex items-center gap-3">
+								<AiOutlineEdit className="text-xl" />
+								<p>プロフィールを編集</p>
+							</NavLinkToModal>
+						</MenuItem>
+
+						<MenuItem>
+							<NavLinkToModal to="/settings/account" className="flex items-center gap-3">
+								<AiOutlineSetting className="text-xl" />
+								<p>設定</p>
+							</NavLinkToModal>
+						</MenuItem>
+
+						<MenuItem>
+							<button onClick={() => setIsShowSignOutModal(true)} className="text-red-500   flex items-center gap-3">
+								<AiOutlineLogout className="text-xl" />
+								<p>サインアウト</p>
+							</button>
+						</MenuItem>
+					</Menu>
+
+
+
+					{isShowSignOutModal &&
+						<ConfirmModal
+							title="サインアウトしてもよろしいですか?"
+							acceptLabel="サインアウト"
+							destructive
+							onClose={() => setIsShowSignOutModal(false)}
+							onAccept={() => AuthService.signOut()}
+						/>
+					}
+				</>
+			}
+		</>
+	)
+}
