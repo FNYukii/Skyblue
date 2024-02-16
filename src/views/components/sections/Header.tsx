@@ -58,6 +58,7 @@ function Header() {
 						<HamburgerMenu className="sm:hidden" isSignedIn={false} />
 
 						<div className="hidden sm:flex gap-12 items-center">
+							<NavLinkToModal to="/maps" className="-my-2 -mx-6   py-2 px-6   rounded-full   hover:bg-gray-100 transition">マップ</NavLinkToModal>
 							<NavLinkToModal to="/sign-in" className="-my-2 -mx-6   py-2 px-6   rounded-full   hover:bg-gray-100 transition">サインイン</NavLinkToModal>
 							<NavLinkToModal to="/sign-up" className="px-6 py-2   bg-black text-white font-bold rounded-full   hover:bg-gray-600 transition">サインアップ</NavLinkToModal>
 						</div>
@@ -69,7 +70,7 @@ function Header() {
 
 						<SearchBarL className="hidden md:block lg:hidden" />
 						<SearchBarS className="block md:hidden" />
-						
+
 						<HamburgerMenu className="sm:hidden" isSignedIn={true} />
 
 						<div className="hidden sm:flex items-center gap-12">
@@ -135,6 +136,7 @@ function HamburgerMenu(props: { isSignedIn: boolean, className?: string }) {
 						{!props.isSignedIn &&
 							<div className="mt-8   flex flex-col items-   gap-4">
 
+								<NavLink onClick={() => setIsOpen(false)} to="/maps" className="-my-2 -mx-4   py-2 px-4   rounded-full   hover:bg-gray-100 transition">マップ</NavLink>
 								<NavLinkToModal onClick={() => setIsOpen(false)} to="/sign-in" className="-my-2 -mx-4   py-2 px-4   rounded-full   hover:bg-gray-100 transition">サインイン</NavLinkToModal>
 								<NavLinkToModal onClick={() => setIsOpen(false)} to="/sign-up" className="py-2 px-4   bg-black text-white font-bold rounded-full   hover:bg-gray-600 transition">サインアップ</NavLinkToModal>
 							</div>
@@ -147,7 +149,6 @@ function HamburgerMenu(props: { isSignedIn: boolean, className?: string }) {
 
 								<NavLink onClick={() => setIsOpen(false)} to="/maps" className="-my-2 -mx-4   py-2 px-4   rounded-full   hover:bg-gray-100 transition">マップ</NavLink>
 								<NavLink onClick={() => setIsOpen(false)} to={`/users/${AuthService.uidQuickly()}`} className="-my-2 -mx-4   py-2 px-4   rounded-full   hover:bg-gray-100 transition">プロフィール</NavLink>
-
 								<NavLinkToModal onClick={() => setIsOpen(false)} to="/new" className="px-6 py-2   bg-black text-white font-bold rounded-full   hover:bg-gray-600 transition">新しい投稿</NavLinkToModal>
 							</div>
 						}
