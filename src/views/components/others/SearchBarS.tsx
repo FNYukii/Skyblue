@@ -70,7 +70,7 @@ function SearchBarS(props: Props) {
 						</button>
 
 						<form onSubmit={e => onSubmit(e)} className="w-full">
-							<input value={keyword} onChange={e => setKeyword(e.target.value)} placeholder="検索" autoFocus inputMode="search" className="w-full  py-2 px-4 border rounded-full   placeholder:text-gray-400   outline-none focus:border-blue-500" />
+							<input value={keyword} onChange={e => setKeyword(e.target.value)} placeholder="検索" autoFocus inputMode="search" className="w-full  py-2 px-4 border rounded-full   placeholder:text-gray-400" />
 						</form>
 					</div>
 
