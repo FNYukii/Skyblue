@@ -3,13 +3,11 @@ import { useParams } from "react-router-dom"
 import User from "../../entities/User"
 import UserService from "../../utils/UserService"
 import LoadingIcon from "../components/others/LoadingIcon"
-import UserPostList from "../components/sections/UserPostList"
 import { IoEllipsisHorizontal } from "react-icons/io5"
 import { Menu, MenuButton, MenuItem } from "@szhsin/react-menu"
 import AuthService from "../../utils/AuthService"
 import '@szhsin/react-menu/dist/index.css'
 import '@szhsin/react-menu/dist/transitions/slide.css'
-import LikePostList from "../components/sections/LikePostList"
 import NavLinkToModal from "../components/others/NavLinkToModal"
 import Screen from "../components/others/Screen"
 import { Unsubscribe } from "firebase/firestore"
@@ -19,6 +17,9 @@ import { AiOutlineEdit } from "react-icons/ai"
 import { AiOutlineSetting } from "react-icons/ai"
 import { onAuthStateChanged } from "firebase/auth"
 import { auth } from "../../utils/firebase"
+import Post from "../../entities/Post"
+import PostService from "../../utils/PostService"
+import PostList from "../components/others/PostList"
 
 
 
@@ -196,5 +197,84 @@ function UserMenu(props: { showUserId: string }) {
 				</>
 			}
 		</>
+	)
+}
+
+
+
+function UserPostList(props: {userId: string, className?: string}) {
+
+	const [posts, setPosts] = useState<Post[] | null>(null)
+	const [isLoaded, setIsLoaded] = useState(false)
+
+
+
+	useEffect(() => {
+
+		let unsubscribe: Unsubscribe
+
+		(async () => {
+
+			unsubscribe = await PostService.onPostsByUserChanged(props.userId, posts => {
+
+				setPosts(posts)
+				setIsLoaded(true)
+
+			}, (error) => {
+
+				setIsLoaded(true)
+			})
+		})()
+
+		return () => {
+			if (unsubscribe) unsubscribe()
+		}
+
+		// eslint-disable-next-line
+	}, [])
+
+
+
+	return (
+		<PostList posts={posts} isLoaded={isLoaded} className="mt-4"/>
+	)
+}
+
+
+
+function LikePostList(props: {userId: string, className?: string}) {
+
+	const [posts, setPosts] = useState<Post[] | null>(null)
+	const [isLoaded, setIsLoaded] = useState(false)
+
+
+
+	useEffect(() => {
+
+		let unsubscribe: Unsubscribe
+
+		(async () => {
+
+			unsubscribe = await PostService.onLikesByUserChanged(props.userId, posts => {
+
+				setPosts(posts)
+				setIsLoaded(true)
+
+			}, (error) => {
+
+				setIsLoaded(true)
+			})
+		})()
+
+		return () => {
+			if (unsubscribe) unsubscribe()
+		}
+
+		// eslint-disable-next-line
+	}, [])
+
+
+	return (
+		<PostList posts={posts} isLoaded={isLoaded} noResultMessage="いいねした投稿はありません" className="mt-4" />
 	)
 }
