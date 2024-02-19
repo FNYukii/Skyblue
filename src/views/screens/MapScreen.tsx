@@ -35,7 +35,7 @@ function MapScreen() {
 
 		<Screen title="マップ - Skyblue" noHeaderAndFooter noContainer>
 
-			<div className="w-screen h-screen   flex flex-col">
+			<div className="w-screen h-svh   flex flex-col">
 
 				<Header />
 
