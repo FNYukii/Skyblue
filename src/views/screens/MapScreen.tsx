@@ -19,7 +19,10 @@ function MapScreen() {
 
 		(async () => {
 
-			const posts = await PostService.readPosts()
+			let posts = await PostService.readPosts()
+
+			// 新しいPostがマップの前面に表示されるように、順番を昇順にする
+			if (posts) posts = posts.reverse()
 
 			setPosts(posts)
 			setIsLoaded(true)
@@ -98,7 +101,7 @@ function PostMap(props: { posts: Post[], className?: string }) {
 					center={!isTilesLoaded ? defaultCenter : undefined}
 					zoom={8}
 					mapContainerClassName="w-full h-full   min-w-40 min-h-40"
-					
+
 					onTilesLoaded={() => setIsTilesLoaded(true)}
 				>
 
