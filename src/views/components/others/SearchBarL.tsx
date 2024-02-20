@@ -40,10 +40,10 @@ function SearchBarL(props: Props) {
 
 		<div className={props.className}>
 
-			<div className="flex">
+			<div className="flex w-full">
 
-				<form onSubmit={e => onSubmit(e)}>
-					<input value={keyword} onChange={e => setKeyword(e.target.value)} placeholder="検索" className="lg:w-[250px] xl:w-[400px]   py-2 px-4 border rounded-l-full   placeholder:text-gray-400" />
+				<form onSubmit={e => onSubmit(e)} className="grow">
+					<input value={keyword} onChange={e => setKeyword(e.target.value)} placeholder="検索" className="w-full   py-2 px-4 border rounded-l-full   placeholder:text-gray-400" />
 				</form>
 
 				<button onClick={search} className="flex items-center    py-2 pl-2 pr-3   border-y border-r rounded-r-full   hover:bg-gray-100 transition">

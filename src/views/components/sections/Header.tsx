@@ -43,51 +43,101 @@ function Header() {
 
 		<header className="mx-auto   w-full xl:w-[1280px]   px-4 xl:px-0   h-16 flex items-center   relative">
 
-			<div className="w-full flex justify-between items-center">
-
-				<NavLink to="/" className="text-3xl font-light">Skyblue</NavLink>
 
 
+			{isLoaded && !isSignedIn &&
+				<>
+					<div className="flex md:hidden   justify-between items-center   w-full">
 
-				{isLoaded && !isSignedIn &&
-					<div className="flex items-center   gap-4 sm:gap-8">
+						<NavLink to="/" className="text-3xl font-light">Skyblue</NavLink>
 
-						<SearchBarL className="hidden md:block lg:hidden" />
-						<SearchBarS className="block md:hidden" />
+						<div className="flex items-center gap-4">
+							<SearchBarS />
+							<HamburgerMenu isSignedIn={false} />
+						</div>
+					</div>
 
-						<HamburgerMenu className="sm:hidden" isSignedIn={false} />
 
-						<div className="hidden sm:flex gap-12 items-center">
+
+					<div className="hidden md:flex lg:hidden   w-full">
+
+						<NavLink to="/" className="text-3xl font-light">Skyblue</NavLink>
+
+						<div className="grow flex justify-end gap-12 items-center">
+							<SearchBarL />
+
 							<NavLinkToModal to="/maps" className="-my-2 -mx-6   py-2 px-6   rounded-full   hover:bg-gray-100 transition">マップ</NavLinkToModal>
 							<NavLinkToModal to="/sign-in" className="-my-2 -mx-6   py-2 px-6   rounded-full   hover:bg-gray-100 transition">サインイン</NavLinkToModal>
 							<NavLinkToModal to="/sign-up" className="px-6 py-2   bg-black text-white font-bold rounded-full   hover:bg-gray-600 transition">サインアップ</NavLinkToModal>
 						</div>
 					</div>
-				}
 
-				{isLoaded && isSignedIn &&
-					<div className="flex items-center   gap-4 sm:gap-8">
 
-						<SearchBarL className="hidden md:block lg:hidden" />
-						<SearchBarS className="block md:hidden" />
 
-						<HamburgerMenu className="sm:hidden" isSignedIn={true} />
+					<div className="hidden lg:grid grid-cols-3   w-full">
 
-						<div className="hidden sm:flex items-center gap-12">
+						<div>
+							<NavLink to="/" className="text-3xl font-light">Skyblue</NavLink>
+						</div>
+
+						<SearchBarL />
+
+						<div className="flex justify-end gap-12 items-center">
+							<NavLinkToModal to="/maps" className="-my-2 -mx-6   py-2 px-6   rounded-full   hover:bg-gray-100 transition">マップ</NavLinkToModal>
+							<NavLinkToModal to="/sign-in" className="-my-2 -mx-6   py-2 px-6   rounded-full   hover:bg-gray-100 transition">サインイン</NavLinkToModal>
+							<NavLinkToModal to="/sign-up" className="px-6 py-2   bg-black text-white font-bold rounded-full   hover:bg-gray-600 transition">サインアップ</NavLinkToModal>
+						</div>
+					</div>
+				</>
+			}
+
+
+
+			{isLoaded && isSignedIn &&
+				<>
+					<div className="flex md:hidden   justify-between items-center   w-full">
+
+						<NavLink to="/" className="text-3xl font-light">Skyblue</NavLink>
+
+						<div className="flex items-center gap-4">
+							<SearchBarS />
+							<HamburgerMenu isSignedIn />
+						</div>
+					</div>
+
+
+
+					<div className="hidden md:flex lg:hidden   w-full">
+
+						<NavLink to="/" className="text-3xl font-light">Skyblue</NavLink>
+
+						<div className="grow flex justify-end gap-12 items-center">
+							<SearchBarL />
+
 							<NavLink to="/maps" className="-my-2 -mx-6   py-2 px-6   rounded-full   hover:bg-gray-100 transition">マップ</NavLink>
 							<NavLink to={`/users/${AuthService.uidQuickly()}`} className="-my-2 -mx-6   py-2 px-6   rounded-full   hover:bg-gray-100 transition">プロフィール</NavLink>
 							<NavLinkToModal to="/new" className="px-6 py-2   bg-black text-white font-bold rounded-full   hover:bg-gray-600 transition">新しい投稿</NavLinkToModal>
 						</div>
 					</div>
-				}
-			</div>
 
 
 
-			<div className="absolute top-0 bottom-0 left-0 w-full h-full   flex justify-center items-center   pointer-events-none">
-				<SearchBarL className="hidden lg:block   pointer-events-auto" />
-			</div>
+					<div className="hidden lg:grid grid-cols-3   w-full">
 
+						<div>
+							<NavLink to="/" className="text-3xl font-light">Skyblue</NavLink>
+						</div>
+
+						<SearchBarL />
+
+						<div className="flex justify-end gap-12 items-center">
+							<NavLink to="/maps" className="-my-2 -mx-6   py-2 px-6   rounded-full   hover:bg-gray-100 transition">マップ</NavLink>
+							<NavLink to={`/users/${AuthService.uidQuickly()}`} className="-my-2 -mx-6   py-2 px-6   rounded-full   hover:bg-gray-100 transition">プロフィール</NavLink>
+							<NavLinkToModal to="/new" className="px-6 py-2   bg-black text-white font-bold rounded-full   hover:bg-gray-600 transition">新しい投稿</NavLinkToModal>
+						</div>
+					</div>
+				</>
+			}
 		</header>
 	)
 }
