@@ -49,6 +49,7 @@ function SignInScreen() {
 					<p className="mt-4 text-2xl font-bold">サインイン</p>
 
 					<input
+						autoFocus
 						type="email"
 						inputMode="email"
 						value={email}

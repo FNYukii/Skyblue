@@ -18,6 +18,7 @@ import ConfirmModal from "../components/others/ConfirmModal"
 import '@szhsin/react-menu/dist/index.css'
 import "@szhsin/react-menu/dist/theme-dark.css"
 import Fixer from "../components/others/Fixer"
+import FocusTrapper from "../components/others/FocusTrapper"
 
 
 
@@ -64,14 +65,20 @@ function PostScreen() {
 
 
 
+	// このモーダルのRef
+	const ref = useRef(null)
+
+
+
 	return (
 
 		<Screen title={pageTitle ?? "投稿 - Skyblue"} noHeaderAndFooter>
 
 			<Escaper />
 			<Fixer />
+			<FocusTrapper target={ref} />
 
-			<div className="fixed   top-0 left-0 w-screen h-screen   flex justify-center items-center">
+			<div ref={ref} className="fixed   top-0 left-0 w-screen h-screen   flex justify-center items-center">
 
 				<div
 					onClick={() => {

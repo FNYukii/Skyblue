@@ -69,7 +69,7 @@ function CreatePostScreen() {
 				<div className="mt-4   grid grid-cols-1 sm:grid-cols-2   gap-x-8 gap-y-4">
 
 					<div>
-						<PickImagesButton onPick={files => setImageFiles(files)} files={imageFiles} />
+						<PickImagesButton onPick={files => setImageFiles(files)} files={imageFiles} autoFocus />
 					</div>
 
 					<div>

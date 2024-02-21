@@ -8,6 +8,7 @@ interface Props {
 	files: File[]
 	onPick: (files: File[]) => void
 
+	autoFocus?: boolean
 	className?: string
 }
 
@@ -44,7 +45,7 @@ function PickImagesButton(props: Props) {
 
 			<div className="flex">
 
-				<button type="button" onClick={() => inputRef.current?.click()} className="w-full rounded-xl">
+				<button type="button" autoFocus={props.autoFocus} onClick={() => inputRef.current?.click()} className="w-full rounded-xl">
 
 					{props.files.length === 0 &&
 

@@ -1,8 +1,9 @@
 import { useLocation, useNavigate } from "react-router-dom"
 import { MdOutlineClose } from "react-icons/md"
 import Escaper from "./Escaper"
-import { ReactNode } from "react"
+import { ReactNode, useRef } from "react"
 import Fixer from "./Fixer"
+import FocusTrapper from "./FocusTrapper"
 
 interface Props {
 	children?: ReactNode
@@ -15,14 +16,18 @@ function FormModal(props: Props) {
 	const navigate = useNavigate()
 	const location = useLocation()
 
+	// このモーダルのRef
+	const ref = useRef(null)
+
 
 
 	return (
 
-		<div className="fixed   top-0 left-0 w-screen h-screen   flex justify-center items-center">
+		<div ref={ref} className="fixed   top-0 left-0 w-screen h-screen   flex justify-center items-center">
 
 			<Escaper />
 			<Fixer />
+			<FocusTrapper target={ref}/>
 
 
 			{/* モーダルの影 */}

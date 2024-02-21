@@ -40,7 +40,7 @@ function SignUpScreen() {
 
 		// Userドキュメント作成に失敗したら終了
 		if (!newUserId) {
-			
+
 			alert("ユーザーの作成に失敗しました。")
 
 			// Authenticationが作ったユーザーを削除
@@ -66,6 +66,7 @@ function SignUpScreen() {
 					<p className="mt-4 text-2xl font-bold">サインアップ</p>
 
 					<input
+						autoFocus
 						type="email"
 						inputMode="email"
 						value={email}
