@@ -17,7 +17,7 @@ function FormModal(props: Props) {
 	const location = useLocation()
 
 	// このモーダルのRef
-	const ref = useRef<HTMLDivElement>(null)
+	const ref = useRef(null)
 
 
 
