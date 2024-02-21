@@ -21,7 +21,7 @@ function ConfirmModal(props: Props) {
 	return (
 
 		<>
-			<FocusTrapper targetRef={ref} />
+			<FocusTrapper target={ref} />
 
 			<div ref={ref} className="z-10   fixed top-0 left-0   w-full h-full   flex justify-center items-center">
 

@@ -4,7 +4,7 @@ import { RefObject, useEffect } from "react"
 
 
 interface Props {
-	targetRef: RefObject<HTMLDivElement>
+	target: RefObject<HTMLDivElement>
 }
 
 
@@ -14,11 +14,11 @@ function FocusTrapper(props: Props) {
 	useEffect(() => {
 
 		// ref.currentが無ければ終了
-		if (props.targetRef === undefined) return
-		if (props.targetRef.current === null) return
+		if (props.target === undefined) return
+		if (props.target.current === null) return
 		
 		// FocusTrapオブジェクトを作成して実行
-		const focusTrap = createFocusTrap(props.targetRef.current)
+		const focusTrap = createFocusTrap(props.target.current)
 		focusTrap.activate()
 		console.log("FocusTrap activated.")
 
@@ -27,7 +27,7 @@ function FocusTrapper(props: Props) {
 			focusTrap.deactivate()
 		}
 
-	}, [props.targetRef])
+	}, [props.target])
 
 
 

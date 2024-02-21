@@ -76,7 +76,7 @@ function PostScreen() {
 
 			<Escaper />
 			<Fixer />
-			<FocusTrapper targetRef={ref} />
+			<FocusTrapper target={ref} />
 
 			<div ref={ref} className="fixed   top-0 left-0 w-screen h-screen   flex justify-center items-center">
 

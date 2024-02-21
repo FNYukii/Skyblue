@@ -27,7 +27,7 @@ function FormModal(props: Props) {
 
 			<Escaper />
 			<Fixer />
-			<FocusTrapper targetRef={ref}/>
+			<FocusTrapper target={ref}/>
 
 
 			{/* モーダルの影 */}
