@@ -21,7 +21,7 @@ function PostList(props: Props) {
 
 		<div className={props.className}>
 
-			{true &&
+			{!props.isLoaded &&
 
 				<>
 
