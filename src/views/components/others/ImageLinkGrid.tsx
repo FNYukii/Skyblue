@@ -1,3 +1,6 @@
+import { onAuthStateChanged } from "firebase/auth"
+import { useState, useEffect } from "react"
+import { auth } from "../../../utils/firebase"
 import LikeButton from "../buttons/LikeButton"
 import NavLinkToModal from "./NavLinkToModal"
 
@@ -100,9 +103,25 @@ function ImageLink(props: { postId: string, imageIndex: number, imageUrls: strin
 
 function LikeBar(props: { postId: string }) {
 
+	const [isSignedIn, setIsSignedIn] = useState(false)
+
+	useEffect(() => {
+
+		// ログイン状態を取得
+		onAuthStateChanged(auth, (user) => {
+
+			if (user) setIsSignedIn(true)
+			if (!user) setIsSignedIn(false)
+		})
+	}, [])
+
 	return (
-		<div className="absolute bottom-0 right-0   w-full pt-4  flex justify-end   bg-gradient-to-t from-black/60 to-transparent   pointer-events-none">
-			<LikeButton postId={props.postId} className="m-3   pointer-events-auto" />
-		</div>
+		<>
+			{isSignedIn &&
+				<div className="absolute bottom-0 right-0   w-full pt-4  flex justify-end   bg-gradient-to-t from-black/60 to-transparent   pointer-events-none">
+					<LikeButton postId={props.postId} className="m-3   pointer-events-auto" />
+				</div>
+			}
+		</>
 	)
 }
