@@ -21,7 +21,7 @@ function PostList(props: Props) {
 
 		<div className={props.className}>
 
-			{!props.isLoaded &&
+			{true &&
 
 				<>
 
@@ -117,7 +117,7 @@ function SkeletonBox(props: { fourBoxes?: boolean }) {
 
 	return (
 
-		<div className="w-full aspect-square">
+		<div className="w-full aspect-square   overflow-hidden">
 
 			{!props.fourBoxes &&
 				<Skeleton width="100%" height="100%" className="block" />
