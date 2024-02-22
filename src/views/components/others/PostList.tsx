@@ -1,6 +1,7 @@
+import Skeleton from "react-loading-skeleton"
 import Post from "../../../entities/Post"
 import ImageLinkGrid from "./ImageLinkGrid"
-
+import 'react-loading-skeleton/dist/skeleton.css'
 
 
 interface Props {
@@ -22,21 +23,21 @@ function PostList(props: Props) {
 
 			{!props.isLoaded &&
 
-				<div>
+				<>
 
 					<div className="grid md:hidden   grid-cols-2 gap-2">
 
-						<GrayBox fourBoxes />
-						<GrayBox />
+						<SkeletonBox fourBoxes />
+						<SkeletonBox />
 
-						<GrayBox />
-						<GrayBox fourBoxes />
+						<SkeletonBox />
+						<SkeletonBox fourBoxes />
 
-						<GrayBox fourBoxes />
-						<GrayBox />
+						<SkeletonBox fourBoxes />
+						<SkeletonBox />
 
-						<GrayBox />
-						<GrayBox fourBoxes />
+						<SkeletonBox />
+						<SkeletonBox fourBoxes />
 					</div>
 
 					<div className="hidden md:grid lg:hidden   grid-cols-3 gap-2">
@@ -45,11 +46,11 @@ function PostList(props: Props) {
 
 							<div key={index}>
 								{index % 2 === 0 &&
-									<GrayBox fourBoxes />
+									<SkeletonBox fourBoxes />
 								}
 
 								{index % 2 !== 0 &&
-									<GrayBox />
+									<SkeletonBox />
 								}
 							</div>
 						))}
@@ -57,22 +58,22 @@ function PostList(props: Props) {
 
 					<div className="hidden lg:grid   grid-cols-4 gap-2">
 
-						<GrayBox fourBoxes />
-						<GrayBox />
-						<GrayBox fourBoxes />
-						<GrayBox />
+						<SkeletonBox fourBoxes />
+						<SkeletonBox />
+						<SkeletonBox fourBoxes />
+						<SkeletonBox />
 
-						<GrayBox />
-						<GrayBox fourBoxes />
-						<GrayBox />
-						<GrayBox fourBoxes />
+						<SkeletonBox />
+						<SkeletonBox fourBoxes />
+						<SkeletonBox />
+						<SkeletonBox fourBoxes />
 
-						<GrayBox fourBoxes />
-						<GrayBox />
-						<GrayBox fourBoxes />
-						<GrayBox />
+						<SkeletonBox fourBoxes />
+						<SkeletonBox />
+						<SkeletonBox fourBoxes />
+						<SkeletonBox />
 					</div>
-				</div>
+				</>
 			}
 
 
@@ -112,22 +113,22 @@ export default PostList
 
 
 
-function GrayBox(props: { fourBoxes?: boolean }) {
+function SkeletonBox(props: { fourBoxes?: boolean }) {
 
 	return (
 
-		<div className="w-full aspect-square">
+		<div className="w-full aspect-square   overflow-hidden">
 
 			{!props.fourBoxes &&
-				<div className="w-full h-full   bg-gray-200" />
+				<Skeleton width="100%" height="100%" className="block" />
 			}
 
 			{props.fourBoxes &&
 				<div className="w-full h-full   grid grid-cols-2 gap-2">
-					<div className="w-full h-full   bg-gray-200" />
-					<div className="w-full h-full   bg-gray-200" />
-					<div className="w-full h-full   bg-gray-200" />
-					<div className="w-full h-full   bg-gray-200" />
+					<Skeleton width="100%" height="100%" className="block" />
+					<Skeleton width="100%" height="100%" className="block" />
+					<Skeleton width="100%" height="100%" className="block" />
+					<Skeleton width="100%" height="100%" className="block" />
 				</div>
 			}
 		</div>
