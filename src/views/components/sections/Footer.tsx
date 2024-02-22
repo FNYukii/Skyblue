@@ -24,7 +24,8 @@ function Footer(props: Props) {
 						<div>
 							<p className="font-bold text-xl">Pages</p>
 							<div className="mt-2 flex flex-col">
-								<NavLink to="/" className="text-gray-400 hover:underline">Top</NavLink>
+								<NavLink to="/" className="text-gray-400 hover:underline">トップ</NavLink>
+								<NavLink to="/maps" className="mt-1 text-gray-400 hover:underline">マップ</NavLink>
 							</div>
 						</div>
 					</div>
