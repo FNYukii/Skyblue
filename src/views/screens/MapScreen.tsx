@@ -6,6 +6,9 @@ import { GoogleMap, OverlayViewF, useJsApiLoader } from "@react-google-maps/api"
 import NavLinkToModal from "../components/others/NavLinkToModal"
 import Screen from "../components/others/Screen"
 
+import Skeleton from "react-loading-skeleton"
+import 'react-loading-skeleton/dist/skeleton.css'
+
 
 
 function MapScreen() {
@@ -42,7 +45,7 @@ function MapScreen() {
 				<div className="grow">
 
 					{!isLoaded &&
-						<div className="w-full h-full bg-gray-200" />
+						<Skeleton width="100%" height="100%" className="block" />
 					}
 
 					{isLoaded && posts === null &&
