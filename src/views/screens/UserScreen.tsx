@@ -175,11 +175,9 @@ function UserMenu(props: { showUserId: string }) {
 							</NavLinkToModal>
 						</MenuItem>
 
-						<MenuItem>
-							<button onClick={() => setIsShowSignOutModal(true)} className="text-red-500   flex items-center gap-3">
-								<AiOutlineLogout className="text-xl" />
-								<p>サインアウト</p>
-							</button>
+						<MenuItem onClick={() => setIsShowSignOutModal(true)} className="text-red-500   flex items-center gap-3">
+							<AiOutlineLogout className="text-xl" />
+							<p>サインアウト</p>
 						</MenuItem>
 					</Menu>
 
@@ -202,7 +200,7 @@ function UserMenu(props: { showUserId: string }) {
 
 
 
-function UserPostList(props: {userId: string, className?: string}) {
+function UserPostList(props: { userId: string, className?: string }) {
 
 	const [posts, setPosts] = useState<Post[] | null>(null)
 	const [isLoaded, setIsLoaded] = useState(false)
@@ -236,13 +234,13 @@ function UserPostList(props: {userId: string, className?: string}) {
 
 
 	return (
-		<PostList posts={posts} isLoaded={isLoaded} className="mt-4"/>
+		<PostList posts={posts} isLoaded={isLoaded} className="mt-4" />
 	)
 }
 
 
 
-function LikePostList(props: {userId: string, className?: string}) {
+function LikePostList(props: { userId: string, className?: string }) {
 
 	const [posts, setPosts] = useState<Post[] | null>(null)
 	const [isLoaded, setIsLoaded] = useState(false)

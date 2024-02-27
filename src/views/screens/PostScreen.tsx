@@ -233,9 +233,7 @@ function Display(props: { post: Post, imageIndex: number }) {
 							position="anchor"
 							theming="dark"
 						>
-							<MenuItem>
-								<button onClick={() => setIsShowDeleteModal(true)} className="text-red-500">削除</button>
-							</MenuItem>
+							<MenuItem onClick={() => setIsShowDeleteModal(true)} className="text-red-500">削除</MenuItem>
 						</Menu>
 					}
 
@@ -244,7 +242,7 @@ function Display(props: { post: Post, imageIndex: number }) {
 							title="この投稿を削除してもよろしいですか?"
 							acceptLabel="削除"
 							destructive
-							dark
+							// dark
 							onClose={() => setIsShowDeleteModal(false)}
 							onAccept={async () => {
 
