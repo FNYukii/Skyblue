@@ -161,15 +161,17 @@ function UserMenu(props: { showUserId: string }) {
 						arrow
 						position="anchor"
 					>
-						<MenuItem>
-							<NavLinkToModal to="/settings/profile" className="flex items-center gap-3">
+						<MenuItem style={{ padding: "0 0 0 0" }}>
+
+							<NavLinkToModal to="/settings/profile" className="px-6 py-2   flex items-center gap-3">
 								<AiOutlineEdit className="text-xl" />
 								<p>プロフィールを編集</p>
 							</NavLinkToModal>
 						</MenuItem>
 
-						<MenuItem>
-							<NavLink to="/settings/account" className="flex items-center gap-3">
+						<MenuItem style={{ padding: "0 0 0 0" }}>
+
+							<NavLink to="/settings/account" className="px-6 py-2   w-full   flex items-center gap-3">
 								<AiOutlineSetting className="text-xl" />
 								<p>設定</p>
 							</NavLink>
