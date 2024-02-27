@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { useParams } from "react-router-dom"
+import { NavLink, useParams } from "react-router-dom"
 import User from "../../entities/User"
 import UserService from "../../utils/UserService"
 import LoadingIcon from "../components/others/LoadingIcon"
@@ -169,10 +169,10 @@ function UserMenu(props: { showUserId: string }) {
 						</MenuItem>
 
 						<MenuItem>
-							<NavLinkToModal to="/settings/account" className="flex items-center gap-3">
+							<NavLink to="/settings/account" className="flex items-center gap-3">
 								<AiOutlineSetting className="text-xl" />
 								<p>設定</p>
-							</NavLinkToModal>
+							</NavLink>
 						</MenuItem>
 
 						<MenuItem onClick={() => setIsShowSignOutModal(true)} className="text-red-500   flex items-center gap-3">
