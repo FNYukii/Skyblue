@@ -125,6 +125,41 @@ class PostService {
 		}
 	}
 
+	static async onPostsChanged(
+		callback: (posts: Post[]) => unknown,
+		cancelCallback: (error: Error) => unknown,
+	): Promise<Unsubscribe> {
+
+		// 読み取りクエリを作成
+		const q = query(
+			collection(db, "posts"),
+			orderBy("createdAt", "desc"),
+			limit(100)
+		)
+
+		return onSnapshot(q, async (querySnapshot) => {
+
+			// まだバックエンドに書き込まれていないローカル変更は無視
+			if (querySnapshot.metadata.hasPendingWrites) return
+
+			// Postの配列を作成
+			let posts: Post[] = []
+			querySnapshot.forEach((doc) => {
+
+				const post = this.toPost(doc)
+				posts.push(post)
+			})
+
+			// Stateを更新
+			callback(posts)
+
+		}, (error) => {
+
+			console.log(`FAIL! Error to listen posts. ${error}`)
+			cancelCallback(error)
+		})
+	}
+
 
 
 	static async readPostsByName(keyword: string): Promise<Post[] | null> {
