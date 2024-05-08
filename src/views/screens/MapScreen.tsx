@@ -8,6 +8,7 @@ import Screen from "../components/others/Screen"
 
 import Skeleton from "react-loading-skeleton"
 import 'react-loading-skeleton/dist/skeleton.css'
+import { Unsubscribe } from "firebase/firestore"
 
 
 
@@ -20,16 +21,29 @@ function MapScreen() {
 
 	useEffect(() => {
 
+		let unsubscribe: Unsubscribe
+
 		(async () => {
 
-			let posts = await PostService.readPosts()
+			unsubscribe = await PostService.onPostsChanged(posts => {
 
-			// 新しいPostがマップの前面に表示されるように、順番を昇順にする
-			if (posts) posts = posts.reverse()
+				// 新しいPostがマップの前面に表示されるように、順番を昇順にする
+				if (posts) posts = posts.reverse()
 
-			setPosts(posts)
-			setIsLoaded(true)
+				setPosts(posts)
+				setIsLoaded(true)
+
+			}, (error) => {
+
+				setIsLoaded(true)
+			})
 		})()
+
+		return () => {
+			if (unsubscribe) unsubscribe()
+		}
+
+		// eslint-disable-next-line
 	}, [])
 
 
